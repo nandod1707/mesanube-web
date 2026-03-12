@@ -1,0 +1,281 @@
+- generic [active] [ref=e1]:
+  - link "Mesanube — inicio" [ref=e2] [cursor=pointer]:
+    - /url: /
+    - generic [ref=e3]:
+      - img [ref=e4]
+      - generic [ref=e7]: mesanube
+  - navigation "Navegación principal" [ref=e8]:
+    - generic [ref=e9]:
+      - link "Para tu negocio" [ref=e10] [cursor=pointer]:
+        - /url: /para
+      - link "Funciones" [ref=e11] [cursor=pointer]:
+        - /url: /funciones
+      - link "Precios" [ref=e12] [cursor=pointer]:
+        - /url: /precios
+      - link "Blog" [ref=e13] [cursor=pointer]:
+        - /url: /blog
+      - link "Iniciá sesión" [ref=e15] [cursor=pointer]:
+        - /url: /login
+      - link "Probá gratis" [ref=e16] [cursor=pointer]:
+        - /url: /registro
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - img
+      - generic [ref=e21]:
+        - img [ref=e22]
+        - generic [ref=e25]: mesanube
+      - heading "El POS que organiza tu restaurante y te ayuda a ganar más" [level=1] [ref=e26]
+      - paragraph [ref=e27]: Comanda digital, facturación ARCA y control de caja — diseñado para bares, cafeterías y restaurantes argentinos.
+      - generic [ref=e28]:
+        - link "Probá 30 días gratis →" [ref=e29] [cursor=pointer]:
+          - /url: /registro
+        - link "Agendá una demo →" [ref=e30] [cursor=pointer]:
+          - /url: /demo
+      - generic [ref=e31]:
+        - img "5 estrellas" [ref=e32]: ⭐⭐⭐⭐⭐
+        - generic [ref=e33]: "\"No pensé que iba a ser tan fácil\" — María G., Cafetería La Calma, Palermo"
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]: ✓
+        - text: Facturación ARCA incluida
+      - generic [ref=e38]:
+        - generic [ref=e39]: ✓
+        - text: 100% hecho en Argentina
+      - generic [ref=e40]:
+        - generic [ref=e41]: ✓
+        - text: Sin costos ocultos
+      - generic [ref=e42]:
+        - generic [ref=e43]: ✓
+        - text: Cancelá cuando querés
+      - generic [ref=e44]:
+        - generic [ref=e45]: ✓
+        - text: Soporte por WhatsApp
+    - generic [ref=e47]:
+      - generic [ref=e49]:
+        - generic [ref=e51]: Mesanube es el sistema de gestión
+        - generic [ref=e53]: pensado para el dueño del restó
+        - generic [ref=e55]: que quiere dejar de apagar incendios
+        - generic [ref=e57]: y empezar a crecer.
+      - generic [ref=e58]:
+        - paragraph [ref=e59]:
+          - generic [ref=e60]: ✾
+          - text: Hecho en Argentina, para Argentina
+        - paragraph [ref=e61]: "La facturación ARCA no es un add-on ni una integración complicada — está construida adentro del sistema desde el día uno. Igual que el resto: comanda, caja, app para mozos y reportes. Todo en un lugar, sin necesitar diez apps distintas."
+    - generic [ref=e63]:
+      - paragraph [ref=e64]: Tipos de negocio
+      - heading "Pensado para cada tipo de negocio gastronómico" [level=2] [ref=e65]
+      - paragraph [ref=e66]: Mesanube se adapta al ritmo de tu local — ya sea una cafetería con 3 mesas o una cadena con varios locales.
+      - generic [ref=e67]:
+        - link "Cafeterías Pedidos rápidos, carta QR y ARCA sin vueltas" [ref=e68] [cursor=pointer]:
+          - /url: /para/cafeterias
+          - generic [ref=e69]: ☕
+          - heading "Cafeterías" [level=3] [ref=e70]
+          - paragraph [ref=e71]: Pedidos rápidos, carta QR y ARCA sin vueltas
+        - link "Pizzerías Delivery, mostrador y salón en un solo sistema" [ref=e72] [cursor=pointer]:
+          - /url: /para/pizzerias
+          - generic [ref=e73]: 🍕
+          - heading "Pizzerías" [level=3] [ref=e74]
+          - paragraph [ref=e75]: Delivery, mostrador y salón en un solo sistema
+        - link "Bares Comanda ágil para múltiples mozos y mesas" [ref=e76] [cursor=pointer]:
+          - /url: /para/bares
+          - generic [ref=e77]: 🍷
+          - heading "Bares" [level=3] [ref=e78]
+          - paragraph [ref=e79]: Comanda ágil para múltiples mozos y mesas
+        - link "Parrillas y restaurantes Control completo de sala y cocina" [ref=e80] [cursor=pointer]:
+          - /url: /para/parrillas
+          - generic [ref=e81]: 🥩
+          - heading "Parrillas y restaurantes" [level=3] [ref=e82]
+          - paragraph [ref=e83]: Control completo de sala y cocina
+        - link "Dark kitchens Gestión de pedidos sin salón" [ref=e84] [cursor=pointer]:
+          - /url: /para/dark-kitchens
+          - generic [ref=e85]: 🌙
+          - heading "Dark kitchens" [level=3] [ref=e86]
+          - paragraph [ref=e87]: Gestión de pedidos sin salón
+        - link "Cadenas multilocal Control centralizado de múltiples sucursales" [ref=e88] [cursor=pointer]:
+          - /url: /para/cadenas-multilocal
+          - generic [ref=e89]: 🏢
+          - heading "Cadenas multilocal" [level=3] [ref=e90]
+          - paragraph [ref=e91]: Control centralizado de múltiples sucursales
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - paragraph [ref=e95]: Funciones
+        - heading "Todo lo que necesitás para gestionar tu local" [level=2] [ref=e96]
+        - paragraph [ref=e97]: Desde que abrís hasta que cerrás la caja, Mesanube te cubre.
+        - link "Ver todas las funciones" [ref=e98] [cursor=pointer]:
+          - /url: /funciones
+          - text: →
+      - generic [ref=e99]:
+        - link "Comanda digital Tomá pedidos desde cualquier dispositivo, enviá directo a cocina" [ref=e100] [cursor=pointer]:
+          - /url: /funciones/comanda-digital
+          - generic [ref=e101]: 🖥️
+          - generic [ref=e102]:
+            - heading "Comanda digital" [level=3] [ref=e103]
+            - paragraph [ref=e104]: Tomá pedidos desde cualquier dispositivo, enviá directo a cocina
+        - link "Arqueo de caja Cerrá cada turno con control total del efectivo" [ref=e105] [cursor=pointer]:
+          - /url: /funciones/arqueo-de-caja
+          - generic [ref=e106]: 📊
+          - generic [ref=e107]:
+            - heading "Arqueo de caja" [level=3] [ref=e108]
+            - paragraph [ref=e109]: Cerrá cada turno con control total del efectivo
+        - link "App para mozos Pedidos, cuentas y propinas digitales desde el celular" [ref=e110] [cursor=pointer]:
+          - /url: /funciones/app-para-mozos
+          - generic [ref=e111]: 📱
+          - generic [ref=e112]:
+            - heading "App para mozos" [level=3] [ref=e113]
+            - paragraph [ref=e114]: Pedidos, cuentas y propinas digitales desde el celular
+        - link "Carta QR Menú digital que tus clientes escanean en la mesa" [ref=e115] [cursor=pointer]:
+          - /url: /funciones/carta-qr
+          - generic [ref=e116]: 📋
+          - generic [ref=e117]:
+            - heading "Carta QR" [level=3] [ref=e118]
+            - paragraph [ref=e119]: Menú digital que tus clientes escanean en la mesa
+        - link "Monitor de cocina Los pedidos llegan solos, sin papel ni gritos" [ref=e120] [cursor=pointer]:
+          - /url: /funciones/monitor-de-cocina
+          - generic [ref=e121]: 🍳
+          - generic [ref=e122]:
+            - heading "Monitor de cocina" [level=3] [ref=e123]
+            - paragraph [ref=e124]: Los pedidos llegan solos, sin papel ni gritos
+        - link "Reportes Vendido por día, producto, turno y medio de pago" [ref=e125] [cursor=pointer]:
+          - /url: /funciones/reportes-y-analitica
+          - generic [ref=e126]: 📈
+          - generic [ref=e127]:
+            - heading "Reportes" [level=3] [ref=e128]
+            - paragraph [ref=e129]: Vendido por día, producto, turno y medio de pago
+    - generic [ref=e134]:
+      - paragraph [ref=e135]: Diferencial Mesanube
+      - heading "Facturación electrónica ARCA — ya incluida en tu POS" [level=2] [ref=e136]
+      - paragraph [ref=e137]: En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA. Emitís facturas A, B y C directamente desde tu POS, con impresión en ticket térmico. Sin complicaciones con el contador.
+      - link "Ver cómo funciona →" [ref=e138] [cursor=pointer]:
+        - /url: /funciones/facturacion-electronica-arca
+    - generic [ref=e142]:
+      - img [ref=e144]:
+        - generic [ref=e145]: COMING SOON · COMING SOON ·
+      - paragraph [ref=e146]: Próximamente
+      - heading "El primer POS argentino que hace que tus clientes vuelvan solos" [level=2] [ref=e147]
+      - paragraph [ref=e148]: Estamos construyendo el primer módulo de fidelización con gamificación para restaurantes argentinos. Puntos, recompensas, desafíos — todo integrado con tu POS.
+      - link "Quiero acceso anticipado →" [ref=e149] [cursor=pointer]:
+        - /url: /funciones/fidelizacion
+    - generic [ref=e151]:
+      - paragraph [ref=e152]: Precios
+      - heading "Precios transparentes y simples" [level=2] [ref=e153]
+      - paragraph [ref=e154]: Elegí el plan que se adapta a tu local. Todos incluyen prueba gratuita de 30 días.
+      - generic [ref=e155]:
+        - generic [ref=e156]:
+          - paragraph [ref=e157]: Básico
+          - paragraph [ref=e158]: $19.000/mes
+          - paragraph [ref=e159]: Perfecto para cafeterías pequeñas
+          - list [ref=e160]:
+            - listitem [ref=e161]:
+              - generic [ref=e162]: ✓
+              - text: Comanda digital
+            - listitem [ref=e163]:
+              - generic [ref=e164]: ✓
+              - text: Carta QR
+            - listitem [ref=e165]:
+              - generic [ref=e166]: ✓
+              - text: Facturación ARCA
+            - listitem [ref=e167]:
+              - generic [ref=e168]: ✓
+              - text: Arqueo de caja
+          - link "Empezar gratis" [ref=e169] [cursor=pointer]:
+            - /url: /registro
+        - generic [ref=e170]:
+          - generic [ref=e171]: Más popular
+          - paragraph [ref=e172]: Avanzado
+          - paragraph [ref=e173]: $34.000/mes
+          - paragraph [ref=e174]: Para bares y restaurantes
+          - list [ref=e175]:
+            - listitem [ref=e176]:
+              - generic [ref=e177]: ✓
+              - text: Todo el plan Básico
+            - listitem [ref=e178]:
+              - generic [ref=e179]: ✓
+              - text: App para mozos
+            - listitem [ref=e180]:
+              - generic [ref=e181]: ✓
+              - text: Monitor de cocina (KDS)
+            - listitem [ref=e182]:
+              - generic [ref=e183]: ✓
+              - text: Control de stock
+            - listitem [ref=e184]:
+              - generic [ref=e185]: ✓
+              - text: Reportes avanzados
+          - link "Empezar gratis" [ref=e186] [cursor=pointer]:
+            - /url: /registro
+      - link "Ver todos los planes y comparar →" [ref=e188] [cursor=pointer]:
+        - /url: /precios
+    - generic [ref=e190]:
+      - heading "¿Listo para dejar el papel atrás?" [level=2] [ref=e191]
+      - paragraph [ref=e192]: Probá Mesanube gratis por 30 días. Sin tarjeta de crédito. Sin permanencia. Sin complicaciones.
+      - generic [ref=e193]:
+        - link "Empezá tu prueba gratuita →" [ref=e194] [cursor=pointer]:
+          - /url: /registro
+        - link "O agendá una demo de 20 minutos →" [ref=e195] [cursor=pointer]:
+          - /url: /demo
+  - contentinfo [ref=e196]:
+    - generic [ref=e197]:
+      - img
+      - generic [ref=e199]:
+        - generic [ref=e200]: Organizá tu restaurante ✾ Organizá tu restaurante ✾ Organizá tu restaurante ✾ Organizá tu restaurante ✾
+        - generic [ref=e201]: Organizá tu restaurante ✾ Organizá tu restaurante ✾ Organizá tu restaurante ✾ Organizá tu restaurante ✾
+      - generic [ref=e202]:
+        - generic [ref=e203]:
+          - generic [ref=e204]:
+            - link "Mesanube — inicio" [ref=e205] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e206]:
+                - img [ref=e207]
+                - generic [ref=e210]: mesanube
+            - paragraph [ref=e211]: El POS que organiza tu restaurante y te ayuda a ganar más.
+            - link "Probá 30 días gratis" [ref=e212] [cursor=pointer]:
+              - /url: /registro
+            - link "Hablá con nosotros" [ref=e213] [cursor=pointer]:
+              - /url: https://wa.me/5491100000000
+              - img [ref=e214]
+              - text: Hablá con nosotros
+          - generic [ref=e216]:
+            - generic [ref=e217]:
+              - heading "Para tu negocio" [level=3] [ref=e218]
+              - list [ref=e219]:
+                - listitem [ref=e220]:
+                  - link "Cafeterías" [ref=e221] [cursor=pointer]:
+                    - /url: /para/cafeterias
+                - listitem [ref=e222]:
+                  - link "Restaurantes" [ref=e223] [cursor=pointer]:
+                    - /url: /para/restaurantes
+                - listitem [ref=e224]:
+                  - link "Bares" [ref=e225] [cursor=pointer]:
+                    - /url: /para/bares
+                - listitem [ref=e226]:
+                  - link "Pizzerías" [ref=e227] [cursor=pointer]:
+                    - /url: /para/pizzerias
+                - listitem [ref=e228]:
+                  - link "Parrillas" [ref=e229] [cursor=pointer]:
+                    - /url: /para/parrillas
+                - listitem [ref=e230]:
+                  - link "Dark kitchens" [ref=e231] [cursor=pointer]:
+                    - /url: /para/dark-kitchens
+            - generic [ref=e232]:
+              - heading "Funciones" [level=3] [ref=e233]
+              - list [ref=e234]:
+                - listitem [ref=e235]:
+                  - link "Comanda digital" [ref=e236] [cursor=pointer]:
+                    - /url: /funciones/comanda-digital
+                - listitem [ref=e237]:
+                  - link "Facturación ARCA" [ref=e238] [cursor=pointer]:
+                    - /url: /funciones/facturacion-electronica-arca
+                - listitem [ref=e239]:
+                  - link "App para mozos" [ref=e240] [cursor=pointer]:
+                    - /url: /funciones/app-para-mozos
+                - listitem [ref=e241]:
+                  - link "Reportes" [ref=e242] [cursor=pointer]:
+                    - /url: /funciones/reportes-y-analitica
+                - listitem [ref=e243]:
+                  - link "Carta QR" [ref=e244] [cursor=pointer]:
+                    - /url: /funciones/carta-qr
+                - listitem [ref=e245]:
+                  - link "Arqueo de caja" [ref=e246] [cursor=pointer]:
+                    - /url: /funciones/arqueo-de-caja
+        - generic [ref=e247]:
+          - paragraph [ref=e248]: © 2026 Mesanube. Todos los derechos reservados.
+          - paragraph [ref=e249]: Hecho con ♥ en Argentina

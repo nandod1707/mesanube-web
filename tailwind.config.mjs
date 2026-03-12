@@ -9,7 +9,6 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
-  darkMode: ['selector', '[data-theme="dark"]'],
   plugins: [tailwindcssAnimate, typography],
   prefix: '',
   safelist: [
@@ -49,6 +48,8 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        marquee: 'marquee 28s linear infinite',
+        rotate: 'rotate 20s linear infinite',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -56,6 +57,7 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        /* ── shadcn/ui semantic tokens ── */
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
@@ -92,10 +94,26 @@ const config = {
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
+
+        /* ── Mesanube brand tokens ── */
+        'cream-bg': 'rgb(255, 254, 252)',
+        'warm-white': 'rgb(255, 247, 238)',
+        'pale-cream': 'rgb(255, 249, 241)',
+        'dark-green': 'rgb(36, 52, 29)',
+        'medium-green': 'rgb(73, 87, 67)',
+        'forest-green': 'rgb(92, 125, 79)',
+        'muted-green': 'rgb(115, 126, 109)',
+        'pale-green': 'rgb(220, 228, 217)',
+        'light-green-bg': 'rgb(122, 150, 111)',
+        'brand-yellow': 'rgb(255, 190, 13)',
+        'warm-yellow': 'rgb(255, 203, 52)',
+        'brand-coral': 'rgb(246, 110, 70)',
+        salmon: 'rgb(248, 137, 103)',
+        'sky-blue': 'rgb(112, 155, 202)',
+        'pale-blue': 'rgb(225, 234, 244)',
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        sans: ['var(--font-dm-sans)', 'DM Sans', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
@@ -105,6 +123,14 @@ const config = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        rotate: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
         },
       },
       typography: () => ({

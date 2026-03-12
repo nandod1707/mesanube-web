@@ -1,0 +1,107 @@
+# Mesanube Web
+
+Marketing website for Mesanube, an Argentine POS system for restaurants, cafés, and bars. Built with Next.js 15 + Payload CMS 3 + MongoDB.
+
+## Quick Reference
+
+- **Package manager**: yarn
+- **Node version**: 22
+- **Dev server**: `yarn dev` → http://localhost:3000
+- **Admin panel**: http://localhost:3000/admin
+- **Type generation**: `yarn generate:types` (run after schema changes)
+- **Import map**: `yarn generate:importmap` (run after creating/modifying components)
+- **Type check**: `tsc --noEmit`
+- **Lint**: `yarn lint` / `yarn lint:fix`
+- **Tests**: `yarn test` (integration + e2e) / `yarn test:int` (vitest) / `yarn test:e2e` (playwright)
+- **Build**: `yarn build`
+
+## Architecture
+
+```
+src/
+├── app/
+│   ├── (frontend)/          # Public-facing routes (custom pages + dynamic [slug])
+│   └── (payload)/           # Payload admin panel
+├── collections/             # Payload collection configs (Pages, Posts, Media, Categories, Users)
+├── globals/                 # Header + Footer globals
+├── blocks/                  # Payload blocks (ArchiveBlock, Banner, CallToAction, Content, etc.)
+├── components/              # React components (Server by default, 'use client' when needed)
+├── fields/                  # Reusable field configs (defaultLexical)
+├── hooks/                   # Payload hook functions
+├── access/                  # Access control functions
+├── plugins/                 # Payload plugin configs (SEO, redirects, forms, search, nested-docs)
+├── heros/                   # Hero section components
+├── Header/ & Footer/        # Site header/footer configs + components
+├── providers/               # React context providers
+├── search/                  # Search field overrides + sync hooks
+├── utilities/               # Shared utility functions
+├── payload.config.ts        # Main Payload config
+└── payload-types.ts         # Auto-generated types (do not edit manually)
+```
+
+## Project Context
+
+Mesanube is a POS system for Argentine gastronomy businesses. This website serves as the marketing/content site — the POS product itself is a separate application. See `dev-resources/Mesanube_Arquitectura_Web_2026.md` for the full content architecture and SEO strategy.
+
+### Key business details
+- Target market: restaurants, cafés, bars, pizzerias, parrillas, dark kitchens in Argentina
+- Main differentiators: native ARCA billing, Argentine-first design, upcoming loyalty/gamification module
+- Pricing: Básico $19,000/mo, Avanzado $34,000/mo (billing handled externally)
+- Domain: mesanube.ar
+
+### Content structure
+- **Homepage**: hardcoded Next.js page (not managed via Payload)
+- **Internal pages**: built with Payload blocks (use cases, features, landing pages, blog)
+- **Blog/posts**: managed entirely through Payload admin panel by editors
+- **Language**: Spanish only (Argentine voseo — "vos/probá/organizá", never "tú/prueba/organiza")
+
+## Content & Copy Rules
+
+All user-facing text must follow these rules:
+- Use **voseo rioplatense**: "organizá", "probá", "empezá" (never tuteo)
+- Reference **local context**: ARCA (not AFIP), peso, Argentina
+- Be **concrete and direct**: "Pedidos a cocina en 3 segundos" not "Mejorá la eficiencia operativa"
+- Be **empathetic with the business owner**: "Sabemos lo que es cerrar la caja a medianoche"
+- Stay **anti-corporate**: "Sin vueltas, sin letra chica" not "Solución integral end-to-end"
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router, React 19, Server Components)
+- **CMS**: Payload CMS 3.71
+- **Database**: MongoDB (via mongoose adapter)
+- **Styling**: Tailwind CSS 3 + shadcn/ui components
+- **Rich text**: Lexical editor
+- **Plugins**: SEO, redirects, form-builder, search, nested-docs
+- **Image processing**: sharp
+- **Testing**: Vitest (integration) + Playwright (e2e)
+- **Hosting**: Vercel (auto-deploy)
+
+## Environments
+
+- **Local**: `yarn dev` → localhost:3000
+- **Dev**: Vercel preview deployments (PR branches)
+- **Production**: Vercel production (main branch)
+
+## Development Guidelines
+
+### Payload CMS
+- Follow all patterns documented in `AGENTS.md` — especially security patterns
+- Always pass `req` to nested operations in hooks (transaction safety)
+- Set `overrideAccess: false` when passing `user` to Local API
+- Use context flags to prevent infinite hook loops
+- Run `yarn generate:types` after any collection/field schema changes
+- Run `yarn generate:importmap` after creating or modifying admin components
+- Component paths in config are strings (file paths), not direct imports
+
+### Frontend
+- Server Components by default; only use `'use client'` when state/effects/handlers are needed
+- Use `@/` path alias for imports from `src/`
+- Use `getPayload({ config })` to access Payload in Server Components and API routes
+- Prefer Tailwind utility classes; use shadcn/ui components where available
+- Keep bundle size in mind — no unnecessary client-side JS
+
+### Code Quality
+- TypeScript strict mode — no `any` types without justification
+- Validate with `tsc --noEmit` after modifying code
+- English for code, comments, and commit messages
+- Spanish (Argentine) for all user-facing content

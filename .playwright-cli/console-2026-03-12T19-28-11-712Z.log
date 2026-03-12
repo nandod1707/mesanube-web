@@ -1,0 +1,6 @@
+[     765ms] [ERROR] The Content-Security-Policy directive name 'https:' contains one or more invalid characters. Only ASCII alphanumeric characters or dashes '-' are allowed in directive names. @ https://releaf.bio/:0
+[   19794ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://saaslogic.io/saas-fav-icon-small.png:0
+[   31235ms] [WARNING] GSAP target  not found. https://gsap.com @ https://saaslogic.io/_next/static/chunks/c15bf2b0-da3491590b507525.js:7
+[   31283ms] [WARNING] GSAP target  not found. https://gsap.com @ https://saaslogic.io/_next/static/chunks/c15bf2b0-da3491590b507525.js:7
+[   31361ms] [WARNING] Element not found: .logos-grid @ https://saaslogic.io/_next/static/chunks/1204-31f57c3c876ed45c.js:7
+[   48485ms] [WARNING] [Meta Pixel] - Invalid PixelID: null. @ https://connect.facebook.net/en_US/fbevents.js:175
