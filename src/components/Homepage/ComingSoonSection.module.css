@@ -1,0 +1,40 @@
+.section {
+  padding: var(--section-padding-y) var(--section-padding-x);
+  background: var(--pale-cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.decorLeft {
+  position: absolute;
+  left: clamp(1rem, 5vw, 6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(8rem, 14vw, 14rem);
+  height: clamp(10rem, 18vw, 18rem);
+  background: linear-gradient(160deg, var(--yellow) 0%, var(--coral) 100%);
+  opacity: 0.25;
+}
+
+.decorRight {
+  position: absolute;
+  right: clamp(1rem, 5vw, 6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(8rem, 14vw, 14rem);
+  height: clamp(10rem, 18vw, 18rem);
+  background: linear-gradient(160deg, var(--forest-green) 0%, var(--dark-green) 100%);
+  opacity: 0.18;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.79rem;
+  height: 5.79rem;
+  border-radius: 50%;
+  background: var(--dark-green);
+  margin-bottom: 2rem;
+}

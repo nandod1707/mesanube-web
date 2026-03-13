@@ -1,0 +1,36 @@
+.relative {
+  position: relative;
+}
+
+.decorLeft {
+  position: absolute;
+  left: -1rem;
+  top: -2rem;
+  width: 14rem;
+  height: 20rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(160deg, var(--light-green-bg) 0%, var(--medium-green) 100%);
+  opacity: 0.25;
+  transform: rotate(-3deg);
+}
+
+.decorRight {
+  position: absolute;
+  right: 0;
+  bottom: -2rem;
+  width: 18rem;
+  height: 12rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(160deg, var(--pale-blue) 0%, var(--sky-blue) 100%);
+  opacity: 0.3;
+  transform: rotate(2deg);
+}
+
+.card {
+  background: var(--warm-white);
+  border-radius: 1rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--pale-green);
+}

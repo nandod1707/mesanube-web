@@ -1,0 +1,61 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cardLight {
+  background: var(--warm-white);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--pale-green);
+}
+
+.cardDark {
+  background: var(--dark-green);
+  border-radius: 1rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.popularBadge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--yellow);
+  color: var(--dark-green);
+  border-radius: 9999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.checkLight {
+  color: var(--forest-green);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.checkDark {
+  color: var(--yellow);
+  font-weight: 700;
+  font-size: 0.8rem;
+}

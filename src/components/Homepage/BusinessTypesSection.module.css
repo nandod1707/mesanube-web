@@ -1,0 +1,25 @@
+.card {
+  background: var(--warm-white);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  display: block;
+  border: 1px solid var(--pale-green);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  border-color: var(--forest-green);
+  box-shadow: 0 4px 16px rgba(36, 52, 29, 0.08);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--forest-green);
+  outline-offset: 2px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: 1rem;
+}
