@@ -105,3 +105,41 @@ All user-facing text must follow these rules:
 - Validate with `tsc --noEmit` after modifying code
 - English for code, comments, and commit messages
 - Spanish (Argentine) for all user-facing content
+
+## Design System
+
+Design tokens and language extracted from the live site. All files live in `dev-resources/design/`.
+
+| File | When to read |
+|---|---|
+| `DESIGN.md` | Building any new component or page — compact token + component summary |
+| `design-language.md` | Full type scale, color inventory, spacing details |
+| `motion-tokens.json` | Adding animations, transitions, or scroll effects |
+| `design-tokens.json` | Precise W3C token values for any property |
+| `figma-variables.json` | Figma handoff or syncing tokens with a design file |
+| `variables.css` | Adding or auditing CSS custom properties |
+| `shadcn-theme.css` | Configuring or extending the shadcn/ui theme |
+
+### Quick-reference tokens
+
+**Colors**
+- Background: `#ffffff` · Heading: `#000000` · Body text: `#6f6f6f` · Muted: `#929292`
+- Accent (olive): `#485c11` · Accent soft: `#dfecc6` · Hero bg: `#8e9c78` · Divider: `#e9e9e9`
+
+**Typography**
+- Display (headings): `Crimson Text` serif — `var(--font-crimson)` — `font-display` Tailwind class
+- Body: `DM Sans` — `var(--font-dm-sans)` — `font-sans`
+- Mono (labels/tags): `Roboto Mono` — `var(--font-roboto-mono)` — `font-mono`
+- Body size: `15px / 21px` · Label size: `12px` · Button size: `14px`
+
+**Motion**
+- Primary easing: `cubic-bezier(0.22, 1, 0.36, 1)` · Reveal: `900ms` · Image zoom: `1200ms`
+- Reveal-on-scroll: `.reveal` → `.reveal.is-visible` (IntersectionObserver, 15% threshold)
+- Stagger delays: `.reveal-delay-1` (80ms) through `.reveal-delay-4` (320ms)
+
+**Spacing / layout**
+- Max content width: `1500px` · Horizontal padding: `px-4 sm:px-6 lg:px-10`
+- Section vertical padding: `py-[80px] lg:py-[120px]` · Border separators: `border-[#e9e9e9]`
+
+**Never invent new hex values** — reuse the tokens above or extend this list first.
+

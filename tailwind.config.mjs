@@ -114,6 +114,8 @@ const config = {
       },
       fontFamily: {
         sans: ['var(--font-dm-sans)', 'DM Sans', 'system-ui', 'sans-serif'],
+        display: ['var(--font-crimson)', 'Crimson Text', 'Georgia', 'serif'],
+        mono: ['var(--font-roboto-mono)', 'Roboto Mono', 'monospace'],
       },
       keyframes: {
         'accordion-down': {

@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 
-import { DM_Sans } from 'next/font/google'
+import { Crimson_Text, DM_Sans, Roboto_Mono } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
-import { Header } from '@/Header/Component'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
@@ -19,11 +17,29 @@ const dmSans = DM_Sans({
   display: 'swap',
 })
 
+const crimson = Crimson_Text({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-crimson',
+  display: 'swap',
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-roboto-mono',
+  display: 'swap',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={dmSans.variable} lang="es" suppressHydrationWarning>
+    <html
+      className={`${dmSans.variable} ${crimson.variable} ${robotoMono.variable}`}
+      lang="es"
+      suppressHydrationWarning
+    >
       <head>
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
@@ -34,10 +50,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             preview: isEnabled,
           }}
         />
-
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   )

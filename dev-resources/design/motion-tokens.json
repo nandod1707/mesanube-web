@@ -1,0 +1,68 @@
+{
+  "$description": "Motion tokens extracted by designlang",
+  "duration": {
+    "instant": {
+      "$value": "80ms",
+      "$type": "duration",
+      "ms": 80
+    },
+    "xs": {
+      "$value": "150ms",
+      "$type": "duration",
+      "ms": 150
+    },
+    "sm": {
+      "$value": "160ms",
+      "$type": "duration",
+      "ms": 160
+    },
+    "md": {
+      "$value": "300ms",
+      "$type": "duration",
+      "ms": 300
+    },
+    "xl": {
+      "$value": "900ms",
+      "$type": "duration",
+      "ms": 900
+    }
+  },
+  "easing": {
+    "ease-out-4": {
+      "$value": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "$type": "cubicBezier",
+      "family": "ease-out"
+    },
+    "custom-900": {
+      "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "$type": "cubicBezier",
+      "family": "custom"
+    },
+    "ease-out-802": {
+      "$value": "cubic-bezier(0, 0, 0.2, 1)",
+      "$type": "cubicBezier",
+      "family": "ease-out"
+    },
+    "spring-362": {
+      "$value": "cubic-bezier(0.175, 0.885, 0.32, 1.1)",
+      "$type": "cubicBezier",
+      "family": "spring"
+    },
+    "ease-out-313": {
+      "$value": "cubic-bezier(0.23, 0.88, 0.26, 0.92)",
+      "$type": "cubicBezier",
+      "family": "ease-out"
+    }
+  },
+  "spring": {
+    "spring-1": {
+      "$value": "cubic-bezier(0.175, 0.885, 0.32, 1.1)",
+      "$type": "cubicBezier",
+      "overshoot": true
+    }
+  },
+  "$meta": {
+    "feel": "springy",
+    "scrollLinked": true
+  }
+}
