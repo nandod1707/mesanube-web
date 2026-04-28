@@ -241,7 +241,7 @@ export default function ComandaDigitalCafeteriaPage() {
         </Reveal>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
 
         {/* ── 5 cosas que cambian ── */}
         <section

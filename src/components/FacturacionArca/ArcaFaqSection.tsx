@@ -1,13 +1,6 @@
 import React from 'react'
 
-import { Container } from '@/components/shared/Container'
-import Reveal from '@/components/shared/Reveal'
-import { Section } from '@/components/shared/Section'
-
-type FaqItem = {
-  q: string
-  a: string
-}
+import { FaqSection, type FaqItem } from '@/components/shared/FaqSection'
 
 const faqItems: FaqItem[] = [
   {
@@ -45,30 +38,5 @@ const faqItems: FaqItem[] = [
 ]
 
 export function ArcaFaqSection() {
-  return (
-    <Section id="faq" background="cream">
-      <Container size="mid">
-        <Reveal>
-          <p className="eyebrow mb-3">Preguntas frecuentes</p>
-          <h2
-            className="text-[var(--dark-green)] font-medium leading-[1.1] tracking-[-0.02em] mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
-          >
-            Todo lo que necesitás saber sobre ARCA y Mesanube
-          </h2>
-        </Reveal>
-
-        <div className="flex flex-col">
-          {faqItems.map((item, i) => (
-            <Reveal key={item.q}>
-              <div className="border-t border-[var(--pale-green)] py-5">
-                <h3 className="text-[var(--dark-green)] text-base font-medium mb-2">{item.q}</h3>
-                <p className="text-[var(--medium-green)] text-base leading-relaxed">{item.a}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
-    </Section>
-  )
+  return <FaqSection heading="Todo lo que necesitás saber sobre ARCA y Mesanube" items={faqItems} />
 }

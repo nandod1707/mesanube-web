@@ -103,7 +103,7 @@ const precioItems = [
 const faq = [
   {
     q: '¿Qué sistema POS es mejor para una cafetería pequeña en Argentina?',
-    a: 'Para cafeterías de 1 a 10 empleados en Argentina, lo más importante es que el sistema incluya facturación ARCA sin módulo adicional, funcione en hardware que ya tenés (tablet o celular), y tenga soporte local. Mesanube cumple los tres criterios desde el Plan Básico a $19.000/mes.',
+    a: 'Para cafeterías de 1 a 10 empleados en Argentina, lo más importante es que el sistema incluya facturación ARCA sin módulo adicional, funcione en hardware que ya tenés (tablet, celular o computadora), y tenga soporte local. Mesanube cumple los tres criterios desde el Plan Básico a $19.000/mes.',
   },
   {
     q: '¿Necesito hardware especial para usar una comanda digital en mi cafetería?',
@@ -237,7 +237,7 @@ export default function CafeteriasPage() {
         </Reveal>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* El problema */}
         <section
           id="problema"
@@ -273,7 +273,7 @@ export default function CafeteriasPage() {
               estaban pensadas para esto.
             </p>
             <p>
-              Los grandes sistemas ignoran a las cafeterías chicas: les parecen "demasiado chicas".
+              Los grandes sistemas ignoran a las cafeterías chicas: les parecen &ldquo;demasiado chicas&rdquo;.
               Los sistemas simples no cumplen con ARCA ni tienen control real de caja. Mesanube
               existe exactamente para ese espacio en el medio.
             </p>

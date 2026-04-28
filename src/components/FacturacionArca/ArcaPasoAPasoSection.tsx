@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { Container } from '@/components/shared/Container'
 import Reveal from '@/components/shared/Reveal'
-import { Section } from '@/components/shared/Section'
 
 type Step = {
   num: string
@@ -35,46 +33,49 @@ const steps: Step[] = [
 
 export function ArcaPasoAPasoSection() {
   return (
-    <Section background="cream">
-      <Container>
-        <Reveal>
-          <p className="eyebrow mb-3">Configuración</p>
-          <h2
-            className="text-[var(--dark-green)] font-medium leading-[1.1] tracking-[-0.02em] mb-3"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
-          >
-            Conectar Mesanube con ARCA lleva menos de 15 minutos
-          </h2>
-          <p className="text-[var(--medium-green)] text-base leading-relaxed mb-12">
-            Paso a paso, sin depender de tu contador para empezar.
-          </p>
-        </Reveal>
+    <section className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
+      <Reveal className="mb-12 lg:pr-[400px]">
+        <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+          Configuración
+        </p>
+        <h2
+          className="mb-5 font-display text-black"
+          style={{
+            fontSize: 'clamp(36px, 5.5vw, 60px)',
+            lineHeight: 0.9,
+            letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+          }}
+        >
+          Conectar Mesanube con ARCA lleva menos de 15 minutos
+        </h2>
+        <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+          Paso a paso, sin depender de tu contador para empezar.
+        </p>
+      </Reveal>
 
-        <div className="flex flex-col gap-0">
-          {steps.map((step, i) => (
-            <Reveal key={step.num}>
-              <div className="grid grid-cols-[3rem_1fr] sm:grid-cols-[5rem_1fr] gap-6 border-t border-[var(--pale-green)] pt-10 pb-10">
-                <span
-                  className="text-[var(--muted-green)] font-medium leading-none select-none"
-                  style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
-                  aria-hidden="true"
-                >
-                  {step.num}
-                </span>
-                <div>
-                  <h3
-                    className="text-[var(--dark-green)] font-medium leading-[1.15] tracking-[-0.01em] mb-3"
-                    style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)' }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="text-[var(--medium-green)] text-base leading-relaxed">{step.body}</p>
-                </div>
+      <div className="flex flex-col">
+        {steps.map((step) => (
+          <Reveal key={step.num}>
+            <div className="grid grid-cols-[3rem_1fr] gap-6 border-t border-[#e9e9e9] py-10 sm:grid-cols-[5rem_1fr]">
+              <span
+                className="select-none font-display leading-none text-[#929292]"
+                style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}
+                aria-hidden="true"
+              >
+                {step.num}
+              </span>
+              <div>
+                <h3 className="mb-3 text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-black">
+                  {step.title}
+                </h3>
+                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                  {step.body}
+                </p>
               </div>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
-    </Section>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
   )
 }

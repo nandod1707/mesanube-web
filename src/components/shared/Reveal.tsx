@@ -26,6 +26,15 @@ export default function Reveal({
     const el = ref.current
     if (!el) return
 
+    // Above-the-fold elements: trigger fade-in on load without waiting for scroll
+    // (the 0.15 IntersectionObserver threshold can leave tall hero blocks hidden).
+    const rect = el.getBoundingClientRect()
+    const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0
+    if (alreadyVisible) {
+      const id = requestAnimationFrame(() => el.classList.add('is-visible'))
+      if (once) return () => cancelAnimationFrame(id)
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

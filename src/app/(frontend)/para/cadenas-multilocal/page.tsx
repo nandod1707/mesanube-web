@@ -152,7 +152,7 @@ export default function CadenasMultilocalPage() {
         </Reveal>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Para quién */}
         <section
           id="para-quien"

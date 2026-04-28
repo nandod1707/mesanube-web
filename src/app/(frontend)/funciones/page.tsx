@@ -185,7 +185,7 @@ export default function FuncionesPage() {
         </div>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Feature cards index */}
         <section
           id="funciones"

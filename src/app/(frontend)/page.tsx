@@ -6,6 +6,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
+import { FaqSection } from '@/components/shared/FaqSection'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -141,7 +142,7 @@ const faqs = [
   },
   {
     q: '¿Necesito comprar hardware especial para usar Mesanube?',
-    a: 'No. Mesanube funciona en cualquier tablet o celular Android o iOS que ya tengas. Si necesitás imprimir tickets, es compatible con impresoras térmicas estándar.',
+    a: 'No. Mesanube funciona en cualquier tablet o celular Android o iOS, o computadora con Windows que ya tengas. Si necesitás imprimir tickets, es compatible con impresoras térmicas estándar.',
   },
   {
     q: '¿Cuál es la diferencia entre Mesanube y otros sistemas como Fudo o Maxirest?',
@@ -226,7 +227,7 @@ export default function HomePage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            <span>Sistema POS y comanda digital para restaurantes y cafeterías en Argentina.</span>
+            <span>Sistema POS para restaurantes y cafeterías en Argentina.</span>
           </h1>
 
           <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
@@ -242,10 +243,9 @@ export default function HomePage() {
           {/* Social proof */}
           <p className="text-center text-[13px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
             <em>
-              &ldquo;No pensé que iba a ser tan fácil — ni tuve que llamar a nadie, empecé sola y
-              en una hora ya estaba tomando pedidos.&rdquo;
+              &ldquo;No pensé que iba a ser tan fácil.&rdquo;
             </em>{' '}
-            — María G., Cafetería La Calma, Palermo
+            — Víctor, Minuto Café, Caballito
           </p>
         </div>
 
@@ -271,7 +271,7 @@ export default function HomePage() {
         </Reveal>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Trust bar */}
         <section
           id="que-es"
@@ -312,7 +312,7 @@ export default function HomePage() {
             <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Mesanube es el POS que usan cafeterías, bares y restaurantes argentinos para tomar
               pedidos sin papel, emitir facturas ARCA y cerrar la caja sin diferencias. Funciona en
-              cualquier tablet o celular. No necesitás hardware especial. Más de cientos de locales
+              cualquier tablet o celular, o computadora con Windows. No necesitás hardware especial. Más de cientos de locales
               en Argentina ya lo usan.
             </p>
           </Reveal>
@@ -382,12 +382,11 @@ export default function HomePage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Facturación electrónica ARCA — incluida en todos los planes
+                Facturación electrónica ARCA incluida en todos los planes
               </h2>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA
-                (ex-AFIP). Emitís facturas A, B y C directamente desde tu POS, con impresión en
-                ticket térmico. Sin tener que llamar al contador para cada operación.
+                En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA. Emitís facturas A, B y C directamente desde tu cuenta, con impresión en
+                ticket térmico. Sin entrar al facturador, ni tener que llenar precios a mano.
               </p>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
                 Sin procesos manuales. Sin aplicaciones que se actualizan cuando peor viene.
@@ -607,7 +606,7 @@ export default function HomePage() {
             {/* Plan Avanzado */}
             <Reveal
               delay={2}
-              className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[#e9e9e9] bg-black p-8"
+              className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
             >
               <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
                 Más popular
@@ -657,37 +656,7 @@ export default function HomePage() {
         </section>
 
         {/* FAQ */}
-        <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Preguntas frecuentes
-            </h2>
-          </Reveal>
-
-          <div className="flex w-full flex-col">
-            {faqs.map((faq, i) => (
-              <Reveal
-                key={i}
-                delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
-                className="flex w-full flex-col items-start gap-3 border-t border-[#e9e9e9] py-6"
-              >
-                <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-black">
-                  {faq.q}
-                </p>
-                <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  {faq.a}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        <FaqSection heading="Preguntas frecuentes" eyebrow={null} items={faqs} />
 
         {/* CTA final */}
         <section

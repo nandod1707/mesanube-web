@@ -25,16 +25,23 @@ export default function FloatingNav({ items = defaultItems }: { items?: NavItem[
   const lastY = useRef(0)
 
   useEffect(() => {
+    // Slide in on load (after first paint so the transition runs from the hidden state).
+    const reveal = requestAnimationFrame(() => setHidden(false))
+
     const onScroll = () => {
       const y = window.scrollY
-      const past = y > 600
       const goingDown = y > lastY.current + 4
+      const goingUp = y < lastY.current - 4
       lastY.current = y
-      setHidden(!past || (past && goingDown && y > 900))
+      if (y < 80) setHidden(false)
+      else if (goingDown) setHidden(true)
+      else if (goingUp) setHidden(false)
     }
-    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      cancelAnimationFrame(reveal)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   const handleClick = (href: string) => (e: React.MouseEvent) => {

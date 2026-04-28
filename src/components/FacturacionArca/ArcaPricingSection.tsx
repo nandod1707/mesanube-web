@@ -1,13 +1,8 @@
-'use client'
-
 import Link from 'next/link'
 import React from 'react'
 
-import { Button } from '@/components/shared/Button'
 import { TrialButton } from '@/components/shared/CtaButtons'
-import { Container } from '@/components/shared/Container'
 import Reveal from '@/components/shared/Reveal'
-import { Section } from '@/components/shared/Section'
 
 const basicFeatures = [
   'Facturación ARCA nativa (A, B y C)',
@@ -27,99 +22,114 @@ const advancedFeatures = [
 
 export function ArcaPricingSection() {
   return (
-    <Section background="pale-cream">
-      <Container size="mid">
-        <Reveal>
-          <p className="eyebrow mb-3">Precios</p>
-          <h2
-            className="text-[var(--dark-green)] font-medium leading-[1.1] tracking-[-0.02em] mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
-          >
-            La facturación ARCA está incluida en todos los planes
-          </h2>
-          <p className="text-[var(--medium-green)] text-base leading-relaxed mb-10">
-            Sin módulo de facturación separado. Sin costo por comprobante. Sin sorpresas.
-          </p>
-        </Reveal>
+    <section
+      id="precios"
+      className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
+    >
+      <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
+        <p className="font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+          Precios
+        </p>
+        <h2
+          className="w-full font-display text-black"
+          style={{
+            fontSize: 'clamp(36px, 5.5vw, 60px)',
+            lineHeight: 0.9,
+            letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+          }}
+        >
+          La facturación ARCA está incluida en todos los planes
+        </h2>
+        <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+          Sin módulo de facturación separado. Sin costo por comprobante. Sin sorpresas.
+        </p>
+      </Reveal>
 
-        <Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Básico */}
-            <div className="border border-[var(--pale-green)] rounded-[1.25rem] p-8">
-              <p className="text-[var(--medium-green)] text-[0.857rem] font-medium uppercase tracking-[0.06em] mb-2">
-                Básico
-              </p>
-              <p
-                className="text-[var(--dark-green)] font-bold tracking-[-0.02em] leading-none mb-1"
-                style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}
-              >
-                $19.000
-                <span className="text-base font-normal text-[var(--medium-green)]">/mes</span>
-              </p>
-              <p className="text-[var(--medium-green)] text-[0.857rem] mb-6">
-                Para cafeterías y mostrador
-              </p>
-              <ul className="flex flex-col gap-3 mb-8">
-                {basicFeatures.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[var(--medium-green)] text-sm">
-                    <span className="text-[var(--forest-green)] font-medium shrink-0 mt-[0.1rem]">
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <TrialButton className="w-full justify-center">
-                Empezar gratis
-              </TrialButton>
-            </div>
-
-            {/* Avanzado */}
-            <div className="border border-[var(--dark-green)] rounded-[1.25rem] p-8 bg-[var(--dark-green)]">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-[rgba(255,247,238,0.7)] text-[0.857rem] font-medium uppercase tracking-[0.06em]">
-                  Avanzado
-                </p>
-                <span className="text-[var(--yellow)] text-[0.75rem] font-medium uppercase tracking-[0.06em]">
-                  Más popular
-                </span>
-              </div>
-              <p
-                className="text-[var(--warm-white)] font-bold tracking-[-0.02em] leading-none mb-1"
-                style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}
-              >
-                $34.000
-                <span className="text-base font-normal text-[rgba(255,247,238,0.6)]">/mes</span>
-              </p>
-              <p className="text-[rgba(255,247,238,0.7)] text-[0.857rem] mb-6">
-                Para bares y restaurantes
-              </p>
-              <ul className="flex flex-col gap-3 mb-8">
-                {advancedFeatures.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[var(--warm-white)] text-sm">
-                    <span className="text-[var(--yellow)] font-medium shrink-0 mt-[0.1rem]">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <TrialButton className="w-full justify-center">
-                Empezar gratis
-              </TrialButton>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="text-center">
-            <Link
-              href="/precios"
-              className="text-[var(--forest-green)] text-[0.9rem] font-medium underline underline-offset-[3px] hover:text-[var(--dark-green)] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--forest-green)] focus-visible:outline-offset-2"
+      <div className="flex w-full flex-col gap-5 lg:flex-row">
+        {/* Plan Básico */}
+        <Reveal
+          delay={1}
+          className="flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[#e9e9e9] p-8"
+        >
+          <div>
+            <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+              Básico
+            </p>
+            <p
+              className="mt-2 font-display leading-none tracking-[-0.02em] text-black"
+              style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
             >
-              Ver todos los planes y comparar →
-            </Link>
+              $19.000
+              <span className="text-[16px] font-sans font-normal text-[#6f6f6f]">/mes</span>
+            </p>
+            <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+              Para cafeterías y locales con mostrador.
+            </p>
           </div>
+          <ul className="flex w-full flex-col gap-3">
+            {basicFeatures.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-black"
+              >
+                <span className="font-bold text-[#485c11]" aria-hidden="true">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <TrialButton className="w-full">Empezar gratis</TrialButton>
         </Reveal>
-      </Container>
-    </Section>
+
+        {/* Plan Avanzado */}
+        <Reveal
+          delay={2}
+          className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
+        >
+          <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
+            Más popular
+          </span>
+          <div>
+            <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#dfecc6]">
+              Avanzado
+            </p>
+            <p
+              className="mt-2 font-display leading-none tracking-[-0.02em] text-white"
+              style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
+            >
+              $34.000
+              <span className="text-[16px] font-sans font-normal text-white/60">/mes</span>
+            </p>
+            <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-white/70">
+              Para bares y restaurantes con salón.
+            </p>
+          </div>
+          <ul className="flex w-full flex-col gap-3">
+            {advancedFeatures.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-white"
+              >
+                <span className="font-bold text-[#dfecc6]" aria-hidden="true">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <TrialButton className="w-full">Empezar gratis</TrialButton>
+        </Reveal>
+      </div>
+
+      <div className="flex w-full justify-center">
+        <Link
+          href="/precios"
+          className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black"
+        >
+          Ver todos los planes y comparar →
+        </Link>
+      </div>
+    </section>
   )
 }

@@ -6,6 +6,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { FaqSection } from '@/components/shared/FaqSection'
 
 export const metadata: Metadata = {
   title: 'Soporte — Mesanube',
@@ -177,7 +178,7 @@ export default function SoportePage() {
         </Reveal>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Cómo contactarnos */}
         <section
           id="como-ayudamos"
@@ -334,43 +335,7 @@ export default function SoportePage() {
         </section>
 
         {/* FAQ */}
-        <section
-          id="faq"
-          className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[#e9e9e9] pt-[60px] pb-[40px] sm:pt-[80px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Preguntas frecuentes
-            </h2>
-            <p
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Lo que más nos preguntan sobre el soporte.
-            </p>
-          </Reveal>
-          <div className="w-full">
-            {faq.map((item, i) => (
-              <Reveal
-                key={i}
-                delay={(Math.min(i, 3) + 1) as 1 | 2 | 3 | 4}
-                as="article"
-                className="flex w-full flex-col gap-2 border-t border-[#e9e9e9] py-5 lg:pr-[400px]"
-              >
-                <p className="text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-black">
-                  {item.q}
-                </p>
-                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  {item.a}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        <FaqSection heading="Lo que más nos preguntan sobre el soporte." items={faq} />
 
         {/* CTA — Hablá con nosotros / todavía no sos cliente */}
         <section

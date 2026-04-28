@@ -5,6 +5,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
+import { FaqSection } from '@/components/shared/FaqSection'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -210,7 +211,7 @@ export default function PreciosPage() {
         </div>
       </header>
 
-      <main className="flex w-full flex-col items-start">
+      <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Planes */}
         <section
           id="planes"
@@ -276,7 +277,7 @@ export default function PreciosPage() {
             {/* Plan Avanzado */}
             <Reveal
               delay={2}
-              className="relative flex flex-1 flex-col items-start gap-8 rounded-[20px] border border-[#e9e9e9] bg-black p-8"
+              className="relative flex flex-1 flex-col items-start gap-8 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
             >
               <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
                 Más elegido
@@ -461,43 +462,7 @@ export default function PreciosPage() {
         </section>
 
         {/* FAQ */}
-        <section
-          id="faq"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Preguntas frecuentes
-            </h2>
-            <p
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Lo que más nos preguntan sobre los precios.
-            </p>
-          </Reveal>
-
-          <div className="flex w-full flex-col">
-            {faqs.map((faq, i) => (
-              <Reveal
-                key={i}
-                delay={Math.min((i % 4) + 1, 4) as 1 | 2 | 3 | 4}
-                className="flex w-full flex-col items-start gap-3 border-t border-[#e9e9e9] py-6 lg:pr-[400px]"
-              >
-                <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-black">
-                  {faq.q}
-                </p>
-                <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  {faq.a}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        <FaqSection heading="Lo que más nos preguntan sobre los precios." items={faqs} />
 
         {/* CTA final */}
         <section
