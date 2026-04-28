@@ -4,6 +4,7 @@ import { Crimson_Text, DM_Sans, Roboto_Mono } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
+import { TrialDialogProvider } from '@/components/shared/TrialDialog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
@@ -50,7 +51,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             preview: isEnabled,
           }}
         />
-        {children}
+        <TrialDialogProvider>{children}</TrialDialogProvider>
       </body>
     </html>
   )

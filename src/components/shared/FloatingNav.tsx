@@ -1,15 +1,26 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-const items = [
-  { id: 'funciones', label: 'Funciones' },
-  { id: 'comparativa', label: 'Comparativa' },
-  { id: 'como-funciona', label: 'Cómo funciona' },
-  { id: 'contacto', label: 'Empezá' },
+export type NavItem = {
+  /**
+   * Where the link goes. Three forms supported:
+   *   - `#section` — scrolls to a section on the current page
+   *   - `/#section` — navigates to the homepage and scrolls to that section
+   *   - `/path` — normal route navigation
+   */
+  href: string
+  label: string
+}
+
+const defaultItems: NavItem[] = [
+  { href: '/#funciones', label: 'Funciones' },
+  { href: '/#precios', label: 'Precios' },
+  { href: '/#contacto', label: 'Empezá' },
 ]
 
-export default function FloatingNav() {
+export default function FloatingNav({ items = defaultItems }: { items?: NavItem[] }) {
   const [hidden, setHidden] = useState(true)
   const lastY = useRef(0)
 
@@ -26,10 +37,13 @@ export default function FloatingNav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const jump = (id: string) => (e: React.MouseEvent) => {
-    e.preventDefault()
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const handleClick = (href: string) => (e: React.MouseEvent) => {
+    if (href.startsWith('#')) {
+      e.preventDefault()
+      const el = document.getElementById(href.slice(1))
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    // For '/#x' or '/path' let Next.js Link handle navigation normally.
   }
 
   return (
@@ -39,14 +53,14 @@ export default function FloatingNav() {
       className="nav-pill fixed left-1/2 top-4 z-50 flex -translate-x-1/2 items-center gap-4 rounded-full border border-black/5 bg-white/55 px-5 py-3 text-[13px] font-bold tracking-[-0.35px] text-black shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg sm:gap-7 sm:px-6 sm:py-4 sm:text-[14px]"
     >
       {items.map((item) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          onClick={jump(item.id)}
+        <Link
+          key={item.href}
+          href={item.href}
+          onClick={handleClick(item.href)}
           className="relative whitespace-nowrap transition-colors hover:text-[#485c11]"
         >
           {item.label}
-        </a>
+        </Link>
       ))}
     </nav>
   )

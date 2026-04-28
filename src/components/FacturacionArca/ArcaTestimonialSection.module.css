@@ -1,0 +1,24 @@
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  border-top: 1px solid var(--pale-green);
+  padding-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.quote {
+  margin: 0;
+  padding: 0;
+}
+
+.aside {
+  border-left: 2px solid var(--pale-green);
+  padding-left: 2rem;
+}
