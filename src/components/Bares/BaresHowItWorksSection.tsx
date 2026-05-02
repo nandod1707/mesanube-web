@@ -27,14 +27,14 @@ const steps: Step[] = [
   {
     num: '03',
     time: 'Al pagar',
-    title: 'Cuenta lista, propina registrada',
-    body: 'La cuenta está lista. Se divide si es necesario. La factura con ARCA sale en el momento. La propina queda registrada en la billetera digital del mozo.',
+    title: 'Cuenta lista, factura emitida',
+    body: 'La cuenta está lista. Se divide si es necesario. La factura con ARCA sale en el momento, sin pasar por otra app.',
   },
   {
     num: '04',
     time: 'Al cierre',
     title: 'Los números del día en pantalla',
-    body: 'El arqueo está armado con el detalle de todo lo que entró y salió. Las propinas distribuidas. Sin calculadora, sin reconstruir nada de memoria.',
+    body: 'El arqueo está armado con el detalle de todo lo que entró y salió. Sin calculadora, sin reconstruir nada de memoria.',
   },
 ]
 

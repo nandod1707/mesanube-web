@@ -30,7 +30,7 @@ const features: Feature[] = [
   {
     icon: '📱',
     title: 'App para mozos',
-    description: 'Pedidos, cuentas y propinas digitales desde el celular',
+    description: 'Pedidos y cuentas desde el celular del mozo',
     href: '/funciones/app-para-mozos',
   },
   {

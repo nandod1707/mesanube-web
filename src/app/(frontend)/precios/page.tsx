@@ -42,7 +42,6 @@ const advancedFeatures = [
   'Reportes de ventas por período, producto y medio de pago',
   'Control de stock con alertas de reposición',
   'Recetas y cálculo de márgenes por plato',
-  'Propinas digitales con billetera por mozo',
   'División de cuentas',
 ]
 
@@ -61,7 +60,6 @@ const comparisonRows: {
   { label: 'Reportes', basic: false, advanced: true },
   { label: 'Control de stock', basic: false, advanced: true },
   { label: 'Recetas y márgenes', basic: false, advanced: true },
-  { label: 'Propinas digitales', basic: false, advanced: true },
 ]
 
 const faqs = [

@@ -18,12 +18,6 @@ const features: Feature[] = [
       'Sin límite de usuarios. Cada mozo desde su celular, independiente. Los pedidos llegan consolidados a la barra y cocina.',
   },
   {
-    icon: '💰',
-    title: 'Propinas digitales con billetera',
-    description:
-      'Registro transparente por mozo. Sin efectivo que se pierde, sin conflictos al cierre.',
-  },
-  {
     icon: '÷',
     title: 'División de cuentas',
     description:
@@ -57,7 +51,7 @@ const features: Feature[] = [
     icon: '⭐',
     title: 'Reseñas en Google',
     description:
-      'Después de registrar la propina, la app sugiere al mozo pedirle al cliente una reseña en Google. Impacto directo en tu visibilidad online.',
+      'Después de cerrar la cuenta, la app sugiere al mozo pedirle al cliente una reseña en Google. Impacto directo en tu visibilidad online.',
   },
 ]
 

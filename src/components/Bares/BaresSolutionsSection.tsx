@@ -23,17 +23,6 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: 'Las propinas que siempre generan conflicto',
-    body: (
-      <>
-        En los bares la propina es parte del sueldo emocional del equipo. Y si no hay un sistema
-        claro, la distribución genera tensión. Mesanube tiene billetera digital para propinas: cada
-        propina queda registrada, asociada al mozo, visible para el encargado. Sin discusiones, sin
-        efectivo que desaparece.
-      </>
-    ),
-  },
-  {
     title: 'Las cuentas que se dividen',
     body: (
       <>

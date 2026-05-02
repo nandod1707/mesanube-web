@@ -34,7 +34,6 @@ const incomeItems: IncomeItem[] = [
   { label: 'Ventas en efectivo' },
   { label: 'Ventas con tarjeta (débito y crédito)' },
   { label: 'Ventas por transferencia o QR' },
-  { label: 'Propinas cobradas (si aplica)' },
 ]
 
 const expenseItems: ExpenseItem[] = [

@@ -29,7 +29,7 @@ const resuelve = [
   },
   {
     title: 'El arqueo que nunca cierra',
-    body: 'Cerrar la caja y que los números no cierren es una de las sensaciones más frustrantes del rubro. El arqueo de Mesanube lleva el conteo durante todo el turno: ingresos, egresos, propinas, pagos por transferencia. Cuando llegás a fin del día, el número está.',
+    body: 'Cerrar la caja y que los números no cierren es una de las sensaciones más frustrantes del rubro. El arqueo de Mesanube lleva el conteo durante todo el turno: ingresos, egresos, pagos por transferencia. Cuando llegás a fin del día, el número está.',
   },
   {
     title: 'La facturación ARCA',

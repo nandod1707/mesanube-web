@@ -20,8 +20,7 @@ export function BaresTestimonialSection() {
                   &ldquo;Tenemos seis mozos los fines de semana. Antes teníamos una sola tablet y
                   era un caos: uno esperaba que el otro terminara. Ahora cada uno trabaja desde su
                   celular y los pedidos llegan todos a la barra en orden. Mejoró todo: el servicio,
-                  el tiempo de espera, y hasta las propinas porque la gente nota que funciona
-                  bien.&rdquo;
+                  el tiempo de espera, y la gente nota que funciona bien.&rdquo;
                 </p>
                 <footer className="text-[var(--forest-green)] text-[0.857rem] font-medium tracking-[0.04em] uppercase">
                   Juliana M. — Bar El Patio, Chacarita

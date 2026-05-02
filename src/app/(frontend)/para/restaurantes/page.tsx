@@ -49,7 +49,7 @@ const roles = [
   {
     n: '01',
     title: 'El mozo',
-    body: 'Toma pedidos desde su celular sin capacitación larga. Ve sus mesas, agrega pedidos, saca la precuenta, cobra la propina. El sistema le muestra solo lo que necesita ver.',
+    body: 'Toma pedidos desde su celular sin capacitación larga. Ve sus mesas, agrega pedidos, saca la precuenta, cierra la cuenta. El sistema le muestra solo lo que necesita ver.',
   },
   {
     n: '02',
@@ -101,10 +101,6 @@ const funciones = [
     title: 'Arqueo de caja',
     body: 'Por turno, con detalle de ingresos, egresos y diferencias.',
   },
-  {
-    title: 'Propinas digitales',
-    body: 'Billetera digital para el equipo de salón. Transparente, sin disputas.',
-  },
 ]
 
 const precioItems = [
@@ -115,7 +111,6 @@ const precioItems = [
   'Facturación ARCA',
   'Reportes completos',
   'Arqueo de caja por turno',
-  'Propinas digitales',
   'Soporte por WhatsApp incluido',
 ]
 

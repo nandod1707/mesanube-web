@@ -16,7 +16,6 @@ const advancedFeatures = [
   'App para mozos (sin límite de usuarios)',
   'Monitor de cocina (KDS)',
   'Control de stock',
-  'Propinas digitales',
   'Reportes avanzados',
 ]
 

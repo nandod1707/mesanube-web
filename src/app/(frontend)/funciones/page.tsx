@@ -67,7 +67,7 @@ const featureCards = [
   {
     icon: '👨‍💼',
     title: 'App para mozos',
-    body: 'Tus mozos toman pedidos, ven las cuentas y cobran propinas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.',
+    body: 'Tus mozos toman pedidos y ven las cuentas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.',
     href: '/funciones/app-para-mozos',
     label: 'Ver app para mozos',
     badge: null,

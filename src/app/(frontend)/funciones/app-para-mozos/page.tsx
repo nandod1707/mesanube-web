@@ -12,9 +12,9 @@ import { FaqSection } from '@/components/shared/FaqSection'
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'App para Mozos en Argentina — Pedidos desde Mesa y Gestión de Propinas | Mesanube',
+  title: 'App para Mozos en Argentina — Pedidos desde la mesa | Mesanube',
   description:
-    'App para mozos que permite tomar pedidos desde cualquier celular o tablet. Gestión de propinas con billetera digital y solicitud de reseñas en Google. Para restaurantes argentinos.',
+    'App para mozos que permite tomar pedidos desde cualquier celular o tablet. Para restaurantes argentinos.',
 }
 
 /* ─────────────────────────────────────────────
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
 ───────────────────────────────────────────── */
 const navItems = [
   { href: '/#funciones', label: 'Funciones' },
-  { href: '/#propinas', label: 'Propinas' },
   { href: '/#faq', label: 'Preguntas' },
   { href: '#contacto', label: 'Empezá' },
 ]
@@ -54,12 +53,7 @@ const featureCards: FeatureCard[] = [
     title: 'Gestionar el cobro',
     description:
       'La cuenta se cobra en efectivo, tarjeta, transferencia o en combinación. Si la mesa quiere pagar por separado, el sistema divide la cuenta.',
-  },
-  {
-    title: 'Registrar la propina',
-    description:
-      'La propina queda en la billetera digital del mozo. Al cierre, el encargado ve el total del equipo y cómo se distribuyen.',
-  },
+  }
 ]
 
 type RoleCard = { role: string; description: string }
@@ -68,12 +62,12 @@ const roleCards: RoleCard[] = [
   {
     role: 'Mozo',
     description:
-      'Ve sus mesas, sus pedidos y sus propinas. No ve las mesas de sus compañeros ni los datos de caja.',
+      'Ve sus mesas y sus pedidos. No cierra mesa ni ve los datos de caja.',
   },
   {
     role: 'Encargado',
     description:
-      'Ve todo el salón: todas las mesas, todos los pedidos activos, todas las propinas del equipo. Puede intervenir en cualquier mesa.',
+      'Ve todo el salón: todas las mesas, todos los pedidos activos, puede abrir y cerrar la caja y hacer retiros. Puede intervenir en cualquier mesa.',
   },
   {
     role: 'Dueño',
@@ -87,7 +81,7 @@ type FaqItem = { q: string; a: string }
 const faqItems: FaqItem[] = [
   {
     q: '¿Qué es una app para mozos y cómo funciona?',
-    a: 'Una app para mozos es una aplicación móvil que permite al personal de salón tomar pedidos, emitir cuentas y registrar propinas desde su celular. En Mesanube se sincroniza en tiempo real con el monitor de cocina y con el sistema de caja, sin terminales adicionales.',
+    a: 'Una app para mozos es una aplicación móvil que permite al personal de salón tomar pedidos, emitir cuentas desde su celular. En Mesanube se sincroniza en tiempo real con el monitor de cocina y con el sistema de caja, sin terminales adicionales.',
   },
   {
     q: '¿Cuántos mozos pueden usar la app en simultáneo?',
@@ -212,7 +206,7 @@ export default function AppParaMozosPage() {
           </h1>
           <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] max-w-[520px] mb-8">
             Tus mozos trabajan con el celular que ya tienen en el bolsillo. Toman pedidos, ven las
-            cuentas y cobran sus propinas, sin terminales ni hardware nuevo.
+            cuentas y cierran las mesas, sin terminales ni hardware nuevo.
           </p>
           <div className="flex flex-wrap gap-3">
             <PrimaryButton href="#contacto">Incluida en el Plan Avanzado — Probá gratis</PrimaryButton>
@@ -313,51 +307,6 @@ export default function AppParaMozosPage() {
           </div>
         </section>
 
-        {/* ── Propinas digitales ── */}
-        <section
-          id="propinas"
-          className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-            <Reveal className="flex flex-col gap-6">
-              <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] uppercase">
-                Propinas digitales
-              </p>
-              <h2
-                className="font-display text-black"
-                style={{
-                  fontSize: 'clamp(36px, 5.5vw, 60px)',
-                  lineHeight: 0.9,
-                  letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-                }}
-              >
-                Transparencia que mejora el trabajo en equipo
-              </h2>
-              <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Las propinas son parte del ingreso real del equipo de salón. Y en muchos locales,
-                la falta de un sistema claro genera tensión: quién se llevó cuánto, cómo se
-                comparte si fueron tres mozos en la misma mesa, qué pasa con las propinas por
-                transferencia.
-              </p>
-              <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Mesanube tiene billetera digital por mozo. Cada propina queda registrada, vinculada
-                al mozo que atendió la mesa, visible para el encargado. Al cierre de la noche hay
-                un resumen claro de cuánto recibió cada uno. Sin efectivo que desaparece, sin que
-                el encargado tenga que hacer de árbitro.
-              </p>
-            </Reveal>
-            <Reveal delay={1} className="relative w-full overflow-hidden rounded-[20px] bg-[#f5f5f0]" style={{ minHeight: '360px' }}>
-              <Image
-                src="/figma/columns.png"
-                alt="Propinas digitales en Mesanube"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </Reveal>
-          </div>
-        </section>
-
         {/* ── Reseñas en Google ── */}
         <Reveal
           as="section"
@@ -383,7 +332,7 @@ export default function AppParaMozosPage() {
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
                 ¿Cuándo es el momento ideal para pedirle a un cliente una reseña en Google? Justo
                 después de una experiencia positiva. Y pocos momentos son más positivos que cuando
-                un cliente dejó propina porque quedó conforme con el servicio.
+                la cuenta acaba de cerrarse y el cliente quedó conforme con el servicio.
               </p>
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
                 La app de Mesanube sugiere al mozo, en ese momento exacto, invitar al cliente a
@@ -503,7 +452,7 @@ export default function AppParaMozosPage() {
                     letterSpacing: '-0.5px',
                   }}
                 >
-                  &ldquo;Mis mozos aprendieron a usar la app en veinte minutos. La primera noche que la usamos ya se notó la diferencia: los pedidos llegaban a la cocina antes de que el mozo volviera a la mesa.&rdquo;
+                  &ldquo;Mis mozos aprendieron a usar la app en veinte minutos. La primera noche que la usamos ya se notó la diferencia: los pedidos llegaban a la cocina antes de que el mozo volviera de la mesa.&rdquo;
                 </p>
                 <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
                   — Patricia L., Restaurante La Esquina, Flores
@@ -536,7 +485,6 @@ export default function AppParaMozosPage() {
             <ul className="flex flex-col gap-2 mb-8 text-left">
               {[
                 'Sin límite de mozos simultáneos',
-                'Propinas digitales con billetera',
                 'Solicitud de reseñas en Google',
                 'Roles y permisos por usuario',
                 'Soporte directo por WhatsApp',
@@ -607,9 +555,6 @@ export default function AppParaMozosPage() {
           <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
             <Link href="#funciones" className="hover:text-[#485c11] transition-colors duration-150">
               Funciones
-            </Link>
-            <Link href="#propinas" className="hover:text-[#485c11] transition-colors duration-150">
-              Propinas
             </Link>
             <Link href="#contacto" className="hover:text-[#485c11] transition-colors duration-150">
               Empezá

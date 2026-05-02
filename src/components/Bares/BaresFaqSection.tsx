@@ -8,10 +8,6 @@ const faqItems: FaqItem[] = [
     a: 'Sin límite. Todos pueden trabajar en simultáneo desde sus propios celulares sin interferir entre sí. No hay terminal compartida ni cola de acceso.',
   },
   {
-    q: '¿Las propinas digitales requieren una app para el cliente?',
-    a: 'No. La gestión de propinas es interna al sistema: el mozo la registra y se distribuye entre el equipo. El cliente no tiene que hacer nada distinto a lo que hace siempre.',
-  },
-  {
     q: '¿Puedo ver en tiempo real qué mesa está siendo atendida y cuál no?',
     a: 'Sí. El encargado tiene una vista completa del salón: estado de cada mesa, pedidos activos, tiempo de espera desde el último pedido.',
   },

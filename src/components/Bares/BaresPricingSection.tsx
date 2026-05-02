@@ -6,7 +6,6 @@ import Reveal from '@/components/shared/Reveal'
 
 const included = [
   'App para mozos sin límite de usuarios',
-  'Propinas digitales con billetera',
   'División de cuentas y multimedios de pago',
   'Monitor de cocina (KDS)',
   'Facturación ARCA (facturas A, B y C)',
@@ -36,7 +35,7 @@ export function BaresPricingSection() {
           Plan Avanzado — para bares que no paran
         </h2>
         <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-          Para bares con múltiples mozos: app para todo el equipo de salón, propinas digitales,
+          Para bares con múltiples mozos: app para todo el equipo de salón, división de cuentas,
           comanda ágil, facturación ARCA y reportes. Todo incluido.
         </p>
       </Reveal>

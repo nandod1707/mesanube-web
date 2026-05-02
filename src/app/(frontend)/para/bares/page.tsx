@@ -16,9 +16,9 @@ import FloatingNav from '@/components/shared/FloatingNav'
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Sistema POS para Bares en Argentina — Comanda Ágil y Propinas Digitales | Mesanube',
+  title: 'Sistema POS para Bares en Argentina — Comanda Ágil para Múltiples Mozos | Mesanube',
   description:
-    'Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, propinas digitales y facturación ARCA. Probá 30 días gratis.',
+    'Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá 30 días gratis.',
 }
 
 /* ─────────────────────────────────────────────

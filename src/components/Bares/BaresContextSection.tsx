@@ -14,7 +14,7 @@ export function BaresContextSection() {
             className="text-[var(--dark-green)] font-medium leading-[1.1] tracking-[-0.02em] mb-6"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
           >
-            Rápido, múltiples mozos, propinas, cuentas que se dividen
+            Rápido, múltiples mozos, cuentas que se dividen
           </h2>
         </Reveal>
 
@@ -22,8 +22,7 @@ export function BaresContextSection() {
           <p className="text-[var(--medium-green)] text-base leading-relaxed mb-4">
             El bar es uno de los ambientes más exigentes para un sistema de gestión. No es un
             restaurante con servicio tranquilo: es una máquina de pedidos continuos, varios mozos
-            trabajando en simultáneo, cuentas que se pagan de a partes, y propinas que hay que
-            distribuir de alguna forma transparente al final de la noche.
+            trabajando en simultáneo, y cuentas que se pagan de a partes al final de la noche.
           </p>
           <p className="text-[var(--medium-green)] text-base leading-relaxed">
             Encima está la presión de ARCA: facturar en el momento, sin que el proceso frene la

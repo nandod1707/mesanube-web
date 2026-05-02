@@ -49,7 +49,7 @@ const businessTypes = [
   },
   {
     name: 'Bares',
-    body: 'Comanda ágil para múltiples mozos, cuentas por mesa y propinas digitales.',
+    body: 'Comanda ágil para múltiples mozos, cuentas por mesa.',
     href: '/para/bares',
     label: 'Sistema para bares',
   },
@@ -89,7 +89,7 @@ const features = [
   {
     icon: '/figma/icon-account.svg',
     title: 'App para mozos',
-    body: 'Tus mozos toman pedidos, ven las cuentas y cobran propinas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.',
+    body: 'Tus mozos toman pedidos y ven las mesas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.',
     href: '/funciones/app-para-mozos',
   },
   {
@@ -245,7 +245,7 @@ export default function HomePage() {
             <em>
               &ldquo;No pensé que iba a ser tan fácil.&rdquo;
             </em>{' '}
-            — Víctor, Minuto Café, Caballito
+            — Minuto Café, Caballito
           </p>
         </div>
 
