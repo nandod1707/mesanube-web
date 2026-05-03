@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Comanda Digital para Restaurantes y Cafeterías — Pedidos desde Celular | Mesanube',
+  title: 'Comanda Digital para Restaurantes y Cafeterías. Pedidos desde Celular | Mesanube',
   description:
     'Comanda digital integrada al POS. Pedidos desde cualquier celular o tablet, llegan a cocina en tiempo real. Para restaurantes y cafeterías argentinas. Probá 30 días gratis.',
 }
@@ -40,7 +41,7 @@ const steps: StepItem[] = [
     number: '02',
     title: 'Selecciona los productos',
     description:
-      'Toca los ítems, suma la cantidad, agrega modificaciones o notas — "sin sal", "al punto", "sin hielo". El sistema guarda exactamente lo que indicó.',
+      'Toca los ítems, suma la cantidad, agrega modificaciones o notas como "sin sal", "al punto", "sin hielo". El sistema guarda exactamente lo que indicó.',
   },
   {
     number: '03',
@@ -201,7 +202,7 @@ export default function ComandaDigitalPage() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Funciones — Comanda digital
+            Funciones, Comanda digital
           </p>
           <h1
             className="word-rise mb-6 font-display text-black"
@@ -468,7 +469,7 @@ export default function ComandaDigitalPage() {
                   turno.&rdquo;
                 </p>
                 <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-                  — Gonzalo R., Restaurante El Almacén, Villa Crespo
+                  Gonzalo R., Restaurante El Almacén, Villa Crespo
                 </footer>
               </blockquote>
             </div>
@@ -497,7 +498,7 @@ export default function ComandaDigitalPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Dejá el papel — probá la comanda digital gratis
+                Dejá el papel y probá la comanda digital gratis
               </h2>
             </div>
             <div className="flex flex-col justify-center gap-4">
@@ -513,41 +514,7 @@ export default function ComandaDigitalPage() {
         </Reveal>
       </main>
 
-      {/* ── Footer ── */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex h-10 w-full items-center justify-between"
-        >
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link href="#flujo" className="transition-colors duration-150 hover:text-[#485c11]">
-              Cómo funciona
-            </Link>
-            <Link href="#detalles" className="transition-colors duration-150 hover:text-[#485c11]">
-              Funciones
-            </Link>
-            <Link href="#contacto" className="transition-colors duration-150 hover:text-[#485c11]">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

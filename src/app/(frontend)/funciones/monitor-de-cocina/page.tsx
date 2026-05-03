@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Monitor de Cocina (KDS) para Restaurantes — Pedidos en Pantalla en Tiempo Real | Mesanube',
+  title: 'Monitor de Cocina (KDS) para Restaurantes. Pedidos en Pantalla en Tiempo Real | Mesanube',
   description:
     'Monitor de cocina integrado al POS. Los pedidos llegan en tiempo real a la pantalla de cocina, el cocinero los marca como listos y el mozo lo sabe al instante. Para restaurantes argentinos.',
 }
@@ -171,7 +172,7 @@ export default function MonitorDeCocinaPage() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Funciones — Monitor de cocina
+            Funciones, Monitor de cocina
           </p>
           <h1
             className="word-rise mb-6 font-display text-black"
@@ -181,7 +182,7 @@ export default function MonitorDeCocinaPage() {
               letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
             }}
           >
-            {'Monitor de cocina — los pedidos en pantalla, en orden, en tiempo real'.split(' ').map(
+            {'Monitor de cocina. Los pedidos en pantalla, en orden, en tiempo real'.split(' ').map(
               (word, i) => (
                 <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
                   {word}
@@ -195,7 +196,7 @@ export default function MonitorDeCocinaPage() {
             cocinero lo marca desde la pantalla.
           </p>
           <div className="flex flex-wrap gap-3">
-            <TrialButton>Incluido en el Plan Avanzado — Probá gratis</TrialButton>
+            <TrialButton>Incluido en el Plan Avanzado. Probá gratis</TrialButton>
             <SoftButton href="#como-funciona">Ver cómo funciona</SoftButton>
           </div>
         </Reveal>
@@ -430,7 +431,7 @@ export default function MonitorDeCocinaPage() {
                   palabra.&rdquo;
                 </p>
                 <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-                  — Sebastián M., Restaurante El Rincón, Villa Crespo
+                  Sebastián M., Restaurante El Rincón, Villa Crespo
                 </footer>
               </blockquote>
             </div>
@@ -468,7 +469,7 @@ export default function MonitorDeCocinaPage() {
                 'Pedidos en tiempo real a la pantalla de cocina',
                 'Marcado de pedidos listo desde el monitor',
                 'Notificación al mozo cuando el pedido está',
-                'Sin hardware especial — cualquier tablet sirve',
+                'Sin hardware especial, cualquier tablet sirve',
                 'Soporte directo por WhatsApp',
               ].map((item) => (
                 <li
@@ -511,7 +512,7 @@ export default function MonitorDeCocinaPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Conectá tu sala con tu cocina — probalo gratis
+                Conectá tu sala con tu cocina. Probalo gratis
               </h2>
             </div>
             <div className="flex flex-col justify-center gap-4">
@@ -532,44 +533,7 @@ export default function MonitorDeCocinaPage() {
         </Reveal>
       </main>
 
-      {/* ── Footer ── */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex h-10 w-full items-center justify-between"
-        >
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link
-              href="#como-funciona"
-              className="transition-colors duration-150 hover:text-[#485c11]"
-            >
-              Cómo funciona
-            </Link>
-            <Link href="#faq" className="transition-colors duration-150 hover:text-[#485c11]">
-              Preguntas
-            </Link>
-            <Link href="#contacto" className="transition-colors duration-150 hover:text-[#485c11]">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

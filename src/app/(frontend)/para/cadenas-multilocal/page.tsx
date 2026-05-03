@@ -6,9 +6,10 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { TrialButton } from '@/components/shared/CtaButtons'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
-  title: 'Sistema POS para Cadenas Multilocal — Control Centralizado de Sucursales | Mesanube',
+  title: 'Sistema POS para Cadenas Multilocal. Control Centralizado de Sucursales | Mesanube',
   description:
     'Gestión centralizada para cafeterías y restaurantes con más de una sucursal. Próximamente en Mesanube. Anotate para acceso anticipado.',
 }
@@ -125,7 +126,7 @@ export default function CadenasMultilocalPage() {
               letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
             }}
           >
-            <span>Mesanube para cadenas multilocal — próximamente.</span>
+            <span>Mesanube para cadenas multilocal. Próximamente.</span>
           </h1>
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Abriste tu segunda sucursal. O estás a punto de hacerlo. Y ya sabés que el sistema que
@@ -322,38 +323,7 @@ export default function CadenasMultilocalPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <a href="#para-quien" className="transition-colors hover:text-[#485c11]">
-              Para quién
-            </a>
-            <a href="#que-viene" className="transition-colors hover:text-[#485c11]">
-              Qué viene
-            </a>
-            <a href="#mientras-tanto" className="transition-colors hover:text-[#485c11]">
-              Mientras tanto
-            </a>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

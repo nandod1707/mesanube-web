@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Arqueo de Caja para Restaurantes — Control de Efectivo por Turno | Mesanube',
+  title: 'Arqueo de Caja para Restaurantes. Control de Efectivo por Turno | Mesanube',
   description:
     'Arqueo de caja integrado al POS. Controlá efectivo, transferencias y tarjetas por turno. Diferencias marcadas automáticamente. Para restaurantes y cafeterías argentinas.',
 }
@@ -174,7 +175,7 @@ export default function ArqueoDeCajaPage() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Funciones — Arqueo de caja
+            Funciones, Arqueo de caja
           </p>
           <h1
             className="word-rise mb-6 font-display text-black"
@@ -238,7 +239,7 @@ export default function ArqueoDeCajaPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                La caja que nunca cierra — y el estrés que genera
+                La caja que nunca cierra, y el estrés que genera
               </h2>
             </div>
             <div className="flex flex-col gap-5">
@@ -453,7 +454,7 @@ export default function ArqueoDeCajaPage() {
                   te dice dónde mirar.&rdquo;
                 </p>
                 <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-                  — Claudia M., Bar La Querencia, San Telmo
+                  Claudia M., Bar La Querencia, San Telmo
                 </footer>
               </blockquote>
             </div>
@@ -482,7 +483,7 @@ export default function ArqueoDeCajaPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Cerrá la caja sin estrés — probalo gratis
+                Cerrá la caja sin estrés. Probalo gratis
               </h2>
             </div>
             <div className="flex flex-col justify-center gap-4">
@@ -498,44 +499,7 @@ export default function ArqueoDeCajaPage() {
         </Reveal>
       </main>
 
-      {/* ── Footer ── */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex h-10 w-full items-center justify-between"
-        >
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link
-              href="#que-registra"
-              className="transition-colors duration-150 hover:text-[#485c11]"
-            >
-              Qué registra
-            </Link>
-            <Link href="#cierre" className="transition-colors duration-150 hover:text-[#485c11]">
-              Cierre de turno
-            </Link>
-            <Link href="#contacto" className="transition-colors duration-150 hover:text-[#485c11]">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

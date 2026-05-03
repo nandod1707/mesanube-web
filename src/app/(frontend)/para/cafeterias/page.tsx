@@ -6,9 +6,10 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
-  title: 'Sistema POS para Cafeterías en Argentina — Comanda Digital y Facturación ARCA | Mesanube',
+  title: 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación ARCA | Mesanube',
   description:
     'Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación ARCA desde $19.000/mes. Probá 30 días gratis, sin tarjeta.',
 }
@@ -25,7 +26,7 @@ const navItems = [
 const resuelve = [
   {
     title: 'Los errores de pedido',
-    body: 'Cuando el pedido queda en papel o de memoria, los errores son inevitables. Con Mesanube, cada pedido que tomás va directo al monitor de cocina: en texto, legible, en tiempo real. Sin teléfono descompuesto. Sin "creí que había dicho con leche".',
+    body: 'Cuando el pedido queda en papel o de memoria, los errores son inevitables. Con Mesanube, cada pedido que tomás va directo al monitor de cocina: en texto, legible, en tiempo real. Sin teléfono descompuesto. Sin "disculpá, era con leche vegetal".',
   },
   {
     title: 'El arqueo que nunca cierra',
@@ -79,7 +80,7 @@ const funciones = [
   },
   {
     title: 'Facturación ARCA nativa',
-    body: 'Facturas A, B y C. Ticket fiscal. Ticket X. Todo desde el mismo sistema.',
+    body: 'Facturas A, B y C con factura electrónica. Todo desde el mismo sistema.',
   },
   {
     title: 'Reportes del día',
@@ -449,7 +450,7 @@ export default function CafeteriasPage() {
             <div className="flex w-full flex-col items-start gap-2 leading-[1.4]">
               <p className="text-[18px] tracking-[-0.09px] text-black">Claudia V.</p>
               <p className="font-mono text-[14px] tracking-[-0.14px] text-[#485c11]">
-                Dueña — Cafetería Ocho y Medio, Villa Crespo
+                Dueña, Cafetería Ocho y Medio, Villa Crespo
               </p>
             </div>
           </Reveal>
@@ -510,7 +511,7 @@ export default function CafeteriasPage() {
             </ul>
             <div className="flex flex-col gap-4">
               <TrialButton className="w-full">
-                30 días gratis — sin tarjeta de crédito
+                30 días gratis, sin tarjeta de crédito
               </TrialButton>
               <Link
                 href="/precios"
@@ -572,7 +573,7 @@ export default function CafeteriasPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Probá Mesanube en tu cafetería — 30 días gratis.
+            Probá Mesanube en tu cafetería. 30 días gratis.
           </Reveal>
           <Reveal
             delay={1}
@@ -591,38 +592,7 @@ export default function CafeteriasPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <a href="#problema" className="transition-colors hover:text-[#485c11]">
-              El problema
-            </a>
-            <a href="#funciones" className="transition-colors hover:text-[#485c11]">
-              Funciones
-            </a>
-            <a href="#precios" className="transition-colors hover:text-[#485c11]">
-              Precio
-            </a>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

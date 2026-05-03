@@ -6,12 +6,13 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Comanda Digital para Cafeterías en Argentina — Sistema de Pedidos sin Papel | Mesanube',
+  title: 'Comanda Digital para Cafeterías en Argentina. Sistema de Pedidos sin Papel | Mesanube',
   description:
     'Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá 30 días gratis.',
 }
@@ -177,7 +178,7 @@ export default function ComandaDigitalCafeteriaPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav items={navItems} />
 
-      {/* ── Top nav (minimal — conversion landing) ── */}
+      {/* ── Top nav (minimal, conversion landing) ── */}
       <nav className="flex w-full max-w-[1500px] items-center justify-between py-5">
         <Link
           href="/"
@@ -193,7 +194,7 @@ export default function ComandaDigitalCafeteriaPage() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] mb-5 uppercase">
-            Landing — Comanda Digital para Cafeterías
+            Landing, Comanda Digital para Cafeterías
           </p>
           <h1
             className="word-rise font-display text-black mb-6"
@@ -218,7 +219,7 @@ export default function ComandaDigitalCafeteriaPage() {
             tablet o celular, sin hardware nuevo.
           </p>
           <div className="flex flex-wrap gap-3">
-            <PrimaryButton href="#contacto">Empezá gratis — sin tarjeta</PrimaryButton>
+            <PrimaryButton href="#contacto">Empezá gratis, sin tarjeta</PrimaryButton>
             <SoftButton href="#como-funciona">Cómo funciona</SoftButton>
           </div>
           <p className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
@@ -290,7 +291,7 @@ export default function ComandaDigitalCafeteriaPage() {
           </div>
         </section>
 
-        {/* ── Cómo funciona — tres pasos ── */}
+        {/* ── Cómo funciona, tres pasos ── */}
         <section
           id="como-funciona"
           className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
@@ -364,7 +365,7 @@ export default function ComandaDigitalCafeteriaPage() {
                     aprendió a usar sola. No tuve que explicarle nada, es muy intuitiva.&rdquo;
                   </p>
                   <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-                    — Fernanda A., Cafetería Detrás del Espejo, Colegiales
+                    Fernanda A., Cafetería Detrás del Espejo, Colegiales
                   </footer>
                 </blockquote>
               </div>
@@ -503,41 +504,7 @@ export default function ComandaDigitalCafeteriaPage() {
         </Reveal>
       </main>
 
-      {/* ── Footer ── */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex h-10 w-full items-center justify-between"
-        >
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link href="#beneficios" className="hover:text-[#485c11] transition-colors duration-150">
-              Beneficios
-            </Link>
-            <Link href="#como-funciona" className="hover:text-[#485c11] transition-colors duration-150">
-              Cómo funciona
-            </Link>
-            <Link href="#contacto" className="hover:text-[#485c11] transition-colors duration-150">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

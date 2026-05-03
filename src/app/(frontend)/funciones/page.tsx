@@ -5,12 +5,13 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Funciones — Todo lo que Incluye el Sistema POS Mesanube | Mesanube',
+  title: 'Funciones. Todo lo que Incluye el Sistema POS Mesanube | Mesanube',
   description:
     'Comanda digital, arqueo de caja, carta QR, monitor de cocina, reportes y fidelización. Sistema POS completo para restaurantes y cafeterías argentinas.',
 }
@@ -170,7 +171,7 @@ export default function FuncionesPage() {
               letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
             }}
           >
-            <span>Todo lo que necesitás para gestionar tu local — en un solo sistema.</span>
+            <span>Todo lo que necesitás para gestionar tu local, en un solo sistema.</span>
           </h1>
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Desde que abrís hasta que cerrás la caja. Mesanube conecta la sala, la cocina y la caja
@@ -236,7 +237,7 @@ export default function FuncionesPage() {
                 <Link
                   href={f.href}
                   className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#485c11] focus-visible:outline-offset-2"
-                  aria-label={`${f.label} — ${f.title}`}
+                  aria-label={`${f.label}: ${f.title}`}
                 >
                   {f.label} →
                 </Link>
@@ -306,38 +307,7 @@ export default function FuncionesPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link href="#funciones" className="transition-colors hover:text-[#485c11]">
-              Funciones
-            </Link>
-            <Link href="/precios" className="transition-colors hover:text-[#485c11]">
-              Precios
-            </Link>
-            <Link href="#contacto" className="transition-colors hover:text-[#485c11]">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

@@ -6,9 +6,10 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
-  title: 'Sistema POS para Restaurantes en Argentina — Gestión Completa con ARCA | Mesanube',
+  title: 'Sistema POS para Restaurantes en Argentina. Gestión Completa con ARCA | Mesanube',
   description:
     'Sistema de gestión para restaurantes argentinos. Comanda digital, app para mozos, monitor de cocina, ARCA y control de stock. Probá 30 días gratis.',
 }
@@ -461,7 +462,7 @@ export default function RestaurantesPage() {
             <div className="flex w-full flex-col items-start gap-2 leading-[1.4]">
               <p className="text-[18px] tracking-[-0.09px] text-black">Martín R.</p>
               <p className="font-mono text-[14px] tracking-[-0.14px] text-[#485c11]">
-                Dueño — Restaurante Almacén del Centro, San Telmo
+                Dueño, Restaurante Almacén del Centro, San Telmo
               </p>
             </div>
           </Reveal>
@@ -515,7 +516,7 @@ export default function RestaurantesPage() {
                 letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
               }}
             >
-              Plan Avanzado — $34.000/mes.
+              Plan Avanzado, $34.000/mes.
             </p>
             <p className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Para restaurantes con salón completo. Todo incluido, sin módulos adicionales.
@@ -527,7 +528,7 @@ export default function RestaurantesPage() {
             className="w-full rounded-[20px] border border-[#e9e9e9] p-8"
           >
             <p className="mb-2 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Plan Avanzado — Más popular
+              Plan Avanzado, más popular
             </p>
             <p
               className="mb-1 font-display leading-none text-black"
@@ -614,7 +615,7 @@ export default function RestaurantesPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Organizá tu restaurante — 30 días gratis.
+            Organizá tu restaurante. 30 días gratis.
           </Reveal>
           <Reveal
             delay={1}
@@ -633,38 +634,7 @@ export default function RestaurantesPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <a href="#problema" className="transition-colors hover:text-[#485c11]">
-              El problema
-            </a>
-            <a href="#funciones" className="transition-colors hover:text-[#485c11]">
-              Funciones
-            </a>
-            <a href="#precios" className="transition-colors hover:text-[#485c11]">
-              Precio
-            </a>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

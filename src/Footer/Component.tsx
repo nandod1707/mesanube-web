@@ -9,7 +9,6 @@ const businessLinks = [
   { label: 'Bares', href: '/para/bares' },
   { label: 'Pizzerías', href: '/para/pizzerias' },
   { label: 'Parrillas', href: '/para/parrillas' },
-  { label: 'Dark kitchens', href: '/para/dark-kitchens' },
 ]
 
 const featureLinks = [

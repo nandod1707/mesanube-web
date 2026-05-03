@@ -52,7 +52,7 @@ export function PricingSection() {
                 </li>
               ))}
             </ul>
-            <Button href="/registro" variant="dark" className="w-full justify-center">
+            <Button href="/registro" variant="dark" className={`${styles.cardButton} justify-center`}>
               Empezar gratis
             </Button>
           </div>
@@ -81,7 +81,7 @@ export function PricingSection() {
                 </li>
               ))}
             </ul>
-            <Button href="/registro" variant="primary" className="w-full justify-center">
+            <Button href="/registro" variant="primary" className={`${styles.cardButton} justify-center`}>
               Empezar gratis
             </Button>
           </div>

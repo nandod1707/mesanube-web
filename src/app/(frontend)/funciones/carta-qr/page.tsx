@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Carta QR para Restaurantes y Cafeterías — Menú Digital que se Actualiza Solo | Mesanube',
+  title: 'Carta QR para Restaurantes y Cafeterías. Menú Digital que se Actualiza Solo | Mesanube',
   description:
     'Carta QR integrada al sistema POS. Tus clientes escanean y ven el menú en tiempo real desde su teléfono. Sin imprimir cartas, sin precios desactualizados. Para locales argentinos.',
 }
@@ -92,7 +93,7 @@ const faqItems: FaqItem[] = [
   },
   {
     q: '¿El cliente puede hacer el pedido desde el QR?',
-    a: 'Hoy la carta QR es solo de consulta. El pedido lo toma el mozo desde la app o el encargado desde el mostrador. Próximamente vamos a habilitar que el cliente pueda pedir desde la carta — si querés ser de los primeros, anotate en la sección de acceso anticipado.',
+    a: 'Hoy la carta QR es solo de consulta. El pedido lo toma el mozo desde la app o el encargado desde el mostrador. Próximamente vamos a habilitar que el cliente pueda pedir desde la carta. Si querés ser de los primeros, anotate en la sección de acceso anticipado.',
   },
   {
     q: '¿Cuántas cartas QR puedo tener?',
@@ -184,7 +185,7 @@ export default function CartaQrPage() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Funciones — Carta QR
+            Funciones, Carta QR
           </p>
           <h1
             className="word-rise mb-6 font-display text-black"
@@ -417,7 +418,7 @@ export default function CartaQrPage() {
                   tiene el precio nuevo.&rdquo;
                 </p>
                 <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-                  — Martina V., Cafetería Rincón Verde, Palermo
+                  Martina V., Cafetería Rincón Verde, Palermo
                 </footer>
               </blockquote>
             </div>
@@ -446,7 +447,7 @@ export default function CartaQrPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Menú digital actualizado en tiempo real — probalo gratis
+                Menú digital actualizado en tiempo real. Probalo gratis
               </h2>
             </div>
             <div className="flex flex-col justify-center gap-4">
@@ -462,47 +463,7 @@ export default function CartaQrPage() {
         </Reveal>
       </main>
 
-      {/* ── Footer ── */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex h-10 w-full items-center justify-between"
-        >
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link
-              href="#como-funciona"
-              className="transition-colors duration-150 hover:text-[#485c11]"
-            >
-              Cómo funciona
-            </Link>
-            <Link
-              href="#donde-usar"
-              className="transition-colors duration-150 hover:text-[#485c11]"
-            >
-              Dónde usarlo
-            </Link>
-            <Link href="#contacto" className="transition-colors duration-150 hover:text-[#485c11]">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

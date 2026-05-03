@@ -6,12 +6,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Precios — Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
+  title: 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
   description:
     'Planes desde $19.000/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. 30 días gratis, sin tarjeta de crédito.',
 }
@@ -81,7 +82,7 @@ const faqs = [
   },
   {
     q: '¿Tienen plan para más de un local?',
-    a: 'Si tenés o estás abriendo una segunda o tercera sucursal, contactanos directo. Tenemos una solución para cadenas multilocal que está en desarrollo — escribinos por WhatsApp y coordinamos.',
+    a: 'Si tenés o estás abriendo una segunda o tercera sucursal, contactanos directo. Tenemos una solución para cadenas multilocal que está en desarrollo. Escribinos por WhatsApp y coordinamos.',
   },
   {
     q: '¿Qué incluye el soporte?',
@@ -156,7 +157,7 @@ function Check({ value }: { value: boolean }) {
   }
   return (
     <span className="text-[#929292]" aria-label="No incluido">
-      —
+      –
     </span>
   )
 }
@@ -476,7 +477,7 @@ export default function PreciosPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Empezá gratis — 30 días sin tarjeta
+            Empezá gratis. 30 días sin tarjeta
           </Reveal>
           <Reveal
             delay={1}
@@ -500,38 +501,7 @@ export default function PreciosPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link href="#planes" className="transition-colors hover:text-[#485c11]">
-              Planes
-            </Link>
-            <Link href="#descuentos" className="transition-colors hover:text-[#485c11]">
-              Descuentos
-            </Link>
-            <Link href="#faq" className="transition-colors hover:text-[#485c11]">
-              Preguntas
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

@@ -9,13 +9,16 @@
   background: var(--warm-white);
   border-radius: 1rem;
   padding: 2rem;
+  padding-bottom: calc(2rem + 2.75rem + 1rem);
   border: 1px solid var(--pale-green);
+  position: relative;
 }
 
 .cardDark {
   background: var(--dark-green);
   border-radius: 1rem;
   padding: 2rem;
+  padding-bottom: calc(2rem + 2.75rem + 1rem);
   position: relative;
   overflow: hidden;
 }
@@ -46,6 +49,13 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
+}
+
+.cardButton {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
 }
 
 .checkLight {

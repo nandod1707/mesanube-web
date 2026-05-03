@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'App para Mozos en Argentina — Pedidos desde la mesa | Mesanube',
+  title: 'App para Mozos en Argentina. Pedidos desde la mesa | Mesanube',
   description:
     'App para mozos que permite tomar pedidos desde cualquier celular o tablet. Para restaurantes argentinos.',
 }
@@ -185,7 +186,7 @@ export default function AppParaMozosPage() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] mb-5 uppercase">
-            Funciones — App para mozos
+            Funciones, App para mozos
           </p>
           <h1
             className="word-rise font-display text-black mb-6"
@@ -209,7 +210,7 @@ export default function AppParaMozosPage() {
             cuentas y cierran las mesas, sin terminales ni hardware nuevo.
           </p>
           <div className="flex flex-wrap gap-3">
-            <PrimaryButton href="#contacto">Incluida en el Plan Avanzado — Probá gratis</PrimaryButton>
+            <PrimaryButton href="#contacto">Incluida en el Plan Avanzado. Probá gratis</PrimaryButton>
             <SoftButton href="#funciones">Ver funciones</SoftButton>
           </div>
         </Reveal>
@@ -455,7 +456,7 @@ export default function AppParaMozosPage() {
                   &ldquo;Mis mozos aprendieron a usar la app en veinte minutos. La primera noche que la usamos ya se notó la diferencia: los pedidos llegaban a la cocina antes de que el mozo volviera de la mesa.&rdquo;
                 </p>
                 <footer className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-                  — Patricia L., Restaurante La Esquina, Flores
+                  Patricia L., Restaurante La Esquina, Flores
                 </footer>
               </blockquote>
             </div>
@@ -546,38 +547,7 @@ export default function AppParaMozosPage() {
         </Reveal>
       </main>
 
-      {/* ── Footer ── */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex h-10 w-full items-center justify-between"
-        >
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link href="#funciones" className="hover:text-[#485c11] transition-colors duration-150">
-              Funciones
-            </Link>
-            <Link href="#contacto" className="hover:text-[#485c11] transition-colors duration-150">
-              Empezá
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

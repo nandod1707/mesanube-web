@@ -40,12 +40,6 @@ const businessTypes: BusinessType[] = [
     href: '/para/parrillas',
   },
   {
-    emoji: '🌙',
-    name: 'Dark kitchens',
-    tagline: 'Gestión de pedidos sin salón',
-    href: '/para/dark-kitchens',
-  },
-  {
     emoji: '🏢',
     name: 'Cadenas multilocal',
     tagline: 'Control centralizado de múltiples sucursales',

@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Mesanube — Sistema POS y Comanda Digital para Restaurantes y Cafeterías en Argentina',
+  title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías en Argentina',
   description:
     'Sistema de gestión gastronómica para restaurantes argentinos. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá 30 días gratis, sin tarjeta.',
 }
@@ -37,7 +38,7 @@ const trustItems = [
 const businessTypes = [
   {
     name: 'Cafeterías',
-    body: 'Pedidos rápidos desde mostrador, carta QR y ARCA sin vueltas.',
+    body: 'Pedidos rápidos desde el mostrador, carta QR y ARCA sin vueltas.',
     href: '/para/cafeterias',
     label: 'Sistema POS para cafeterías',
   },
@@ -49,7 +50,7 @@ const businessTypes = [
   },
   {
     name: 'Bares',
-    body: 'Comanda ágil para múltiples mozos, cuentas por mesa.',
+    body: 'Comanda ágil para múltiples camareros, cuentas por mesa.',
     href: '/para/bares',
     label: 'Sistema para bares',
   },
@@ -57,12 +58,6 @@ const businessTypes = [
     name: 'Pizzerías',
     body: 'Delivery, mostrador y salón en un solo sistema, todo conectado.',
     href: '/para/pizzerias',
-    label: 'Ver más',
-  },
-  {
-    name: 'Dark kitchens',
-    body: 'Pedidos sin salón, con monitor de cocina en tiempo real.',
-    href: '/#funciones',
     label: 'Ver más',
   },
   {
@@ -101,7 +96,7 @@ const features = [
   {
     icon: '/figma/icon-earth.svg',
     title: 'Monitor de cocina',
-    body: 'Los pedidos llegan a la pantalla de cocina solos, en orden. Sin papelitos volanderos, sin comandas perdidas.',
+    body: 'Los pedidos llegan a la pantalla de cocina solos, en orden. Sin papelitos voladores, sin comandas perdidas.',
     href: '/funciones/monitor-de-cocina',
   },
   {
@@ -146,7 +141,7 @@ const faqs = [
   },
   {
     q: '¿Cuál es la diferencia entre Mesanube y otros sistemas como Fudo o Maxirest?',
-    a: 'Mesanube incluye facturación ARCA y app para mozos en el plan base, sin cobrar módulos por separado. A diferencia de sistemas pensados para otros mercados o para grandes cadenas, Mesanube está hecho en Argentina para locales de entre 1 y 10 empleados, con soporte directo del equipo que desarrolla el producto.',
+    a: 'Mesanube incluye facturación ARCA y app para mozos sin cobrar módulos por separado. A diferencia de sistemas pensados para otros mercados o para grandes cadenas, Mesanube está hecho en Argentina para locales de entre 1 y 10 empleados, con soporte directo del equipo que desarrolla el producto.',
   },
 ]
 
@@ -245,7 +240,7 @@ export default function HomePage() {
             <em>
               &ldquo;No pensé que iba a ser tan fácil.&rdquo;
             </em>{' '}
-            — Minuto Café, Caballito
+            Minuto Café, Caballito
           </p>
         </div>
 
@@ -312,8 +307,7 @@ export default function HomePage() {
             <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Mesanube es el POS que usan cafeterías, bares y restaurantes argentinos para tomar
               pedidos sin papel, emitir facturas ARCA y cerrar la caja sin diferencias. Funciona en
-              cualquier tablet o celular, o computadora con Windows. No necesitás hardware especial. Más de cientos de locales
-              en Argentina ya lo usan.
+              cualquier tablet o celular, o computadora con Windows. No necesitás hardware especial.
             </p>
           </Reveal>
         </section>
@@ -340,7 +334,7 @@ export default function HomePage() {
               </p>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
                 Mesanube se adapta al ritmo de tu local, ya sea una cafetería con tres mesas o un
-                restaurante con veinte cubiertos.
+                restaurante con veinte.
               </p>
             </Reveal>
 
@@ -391,7 +385,7 @@ export default function HomePage() {
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
                 Sin procesos manuales. Sin aplicaciones que se actualizan cuando peor viene.
               </p>
-              <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-black">
+              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-black">
                 Es nativo. Viene incluido. Funciona.
               </p>
             </div>
@@ -438,7 +432,7 @@ export default function HomePage() {
                 Todo lo que necesitás para gestionar tu local
               </p>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Desde que abrís hasta que cerrás la caja, Mesanube te cubre.
+                Desde que levantás la perisiana hasta que cerrás la caja, Mesanube te cubre.
               </p>
             </Reveal>
 
@@ -556,7 +550,7 @@ export default function HomePage() {
                 letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
               }}
             >
-              Precios transparentes — sin letra chica
+              Precios transparentes, sin letra chica
             </p>
             <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Todos los planes incluyen 30 días de prueba gratuita. Sin tarjeta de crédito para
@@ -564,7 +558,7 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="flex w-full flex-col gap-5 lg:flex-row">
+          <div className="flex w-full flex-col gap-5 md:flex-row">
             {/* Plan Básico */}
             <Reveal
               delay={1}
@@ -690,38 +684,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav className="flex h-10 w-full items-center justify-between" aria-label="Footer">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <Link href="/#funciones" className="transition-colors hover:text-[#485c11]">
-              Funciones
-            </Link>
-            <Link href="/precios" className="transition-colors hover:text-[#485c11]">
-              Precios
-            </Link>
-            <Link href="#" className="transition-colors hover:text-[#485c11]">
-              Soporte
-            </Link>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

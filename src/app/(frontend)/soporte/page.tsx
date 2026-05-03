@@ -7,9 +7,10 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
-  title: 'Soporte — Mesanube',
+  title: 'Soporte, Mesanube',
   description:
     'Soporte por WhatsApp para usuarios de Mesanube. Sin tickets, sin bot. Te responde el equipo que desarrolló el sistema.',
 }
@@ -25,7 +26,7 @@ const navItems = [
 
 const canales = [
   {
-    title: 'WhatsApp — la forma más rápida',
+    title: 'WhatsApp, la forma más rápida',
     body: '+54 9 11 2401-8983. Mandanos un mensaje con tu nombre, el nombre de tu local y lo que está pasando. Respondemos en horario de trabajo. Para urgencias operativas, priorizamos.',
     cta: 'Escribir por WhatsApp →',
     href: 'https://wa.me/5491124018983',
@@ -290,8 +291,7 @@ export default function SoportePage() {
               Respondemos en horario de trabajo de lunes a sábado.
             </p>
             <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Para urgencias durante el servicio — sistema caído, error crítico que impide operar
-              — priorizamos independientemente del horario.
+              Para urgencias durante el servicio, sistema caído o error crítico que impide operar, priorizamos independientemente del horario.
             </p>
             <Link
               href="https://wa.me/5491100000000"
@@ -337,7 +337,7 @@ export default function SoportePage() {
         {/* FAQ */}
         <FaqSection heading="Lo que más nos preguntan sobre el soporte." items={faq} />
 
-        {/* CTA — Hablá con nosotros / todavía no sos cliente */}
+        {/* CTA: Hablá con nosotros / todavía no sos cliente */}
         <section
           id="contacto"
           className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[#e9e9e9] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
@@ -368,38 +368,7 @@ export default function SoportePage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <a href="#como-ayudamos" className="transition-colors hover:text-[#485c11]">
-              Cómo ayudamos
-            </a>
-            <a href="#que-resolvemos" className="transition-colors hover:text-[#485c11]">
-              Qué resolvemos
-            </a>
-            <a href="#faq" className="transition-colors hover:text-[#485c11]">
-              FAQ
-            </a>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

@@ -11,12 +11,13 @@ import { BaresSolutionsSection } from '@/components/Bares/BaresSolutionsSection'
 import { BaresTestimonialSection } from '@/components/Bares/BaresTestimonialSection'
 import { BaresContextSection } from '@/components/Bares/BaresContextSection'
 import FloatingNav from '@/components/shared/FloatingNav'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Sistema POS para Bares en Argentina — Comanda Ágil para Múltiples Mozos | Mesanube',
+  title: 'Sistema POS para Bares en Argentina. Comanda Ágil para Múltiples Mozos | Mesanube',
   description:
     'Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá 30 días gratis.',
 }
@@ -49,6 +50,7 @@ export default function BaresPage() {
         <BaresFaqSection />
         <BaresCtaSection />
       </main>
+      <SiteFooter />
     </>
   )
 }

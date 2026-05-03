@@ -183,7 +183,6 @@ function Modal({ mode, onClose }: { mode: Mode; onClose: () => void }) {
                 <option value="restaurante">Restaurante</option>
                 <option value="bar">Bar</option>
                 <option value="pizzeria">Pizzería</option>
-                <option value="dark-kitchen">Dark kitchen</option>
                 <option value="otro">Otro</option>
               </Select>
             </div>

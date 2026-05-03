@@ -6,9 +6,10 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
-  title: 'Sistema POS para Pizzerías en Argentina — Delivery, Mostrador y Salón | Mesanube',
+  title: 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube',
   description:
     'Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación ARCA y arqueo de caja incluidos. Probá 30 días gratis.',
 }
@@ -52,7 +53,7 @@ const funciones = [
   },
   {
     title: 'Arqueo de caja',
-    body: 'Efectivo, tarjeta, transferencia — por turno, con registro de egresos y pagos a proveedores.',
+    body: 'Efectivo, tarjeta, transferencia por turno, con registro de egresos y pagos a proveedores.',
   },
   {
     title: 'Facturación ARCA',
@@ -80,7 +81,7 @@ const precioItems = [
 const faq = [
   {
     q: '¿Mesanube se integra con PedidosYa o Rappi?',
-    a: 'No, hoy Mesanube no tiene integración con plataformas de delivery de terceros. Para delivery propio — el que coordinás directamente con tus clientes por teléfono o redes — funciona perfectamente: cargás el pedido en el sistema, va a cocina, la caja lo registra.',
+    a: 'No, hoy Mesanube no tiene integración con plataformas de delivery de terceros. Para delivery propio, el que coordinás directamente con tus clientes por teléfono o redes, funciona perfectamente: cargás el pedido en el sistema, va a cocina, la caja lo registra.',
   },
   {
     q: '¿Puedo manejar mostrador y salón desde el mismo sistema?',
@@ -225,7 +226,7 @@ export default function PizzeriasPage() {
                 letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
               }}
             >
-              No es lo mismo que un restaurante — y el sistema tiene que saberlo.
+              No es lo mismo que un restaurante, y el sistema tiene que saberlo.
             </p>
           </Reveal>
           <Reveal
@@ -244,7 +245,7 @@ export default function PizzeriasPage() {
             </p>
             <p>
               Mesanube no tiene features específicos solo para pizzerías, pero tiene todo lo que una
-              pizzería necesita — y está probado con el ritmo de trabajo que conocés.
+              pizzería necesita, y está probado con el ritmo de trabajo que conocés.
             </p>
           </Reveal>
         </section>
@@ -290,8 +291,7 @@ export default function PizzeriasPage() {
             className="mt-[40px] w-full"
           >
             <p className="text-[14px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
-              Mesanube no se integra con PedidosYa ni Rappi. Para delivery propio — el que
-              coordinás vos directamente con tus clientes — funciona perfectamente.
+              Mesanube no se integra con PedidosYa ni Rappi. Para delivery propio, el que coordinás vos directamente con tus clientes, funciona perfectamente.
             </p>
           </Reveal>
         </section>
@@ -439,7 +439,7 @@ export default function PizzeriasPage() {
                 letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
               }}
             >
-              Plan Avanzado — $34.000/mes.
+              Plan Avanzado, $34.000/mes.
             </p>
             <p className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Para pizzerías con salón y delivery: app para mozos, monitor de cocina, arqueo de
@@ -477,7 +477,7 @@ export default function PizzeriasPage() {
               ))}
             </ul>
             <div className="flex flex-col gap-4">
-              <TrialButton className="w-full">30 días gratis — sin tarjeta de crédito</TrialButton>
+              <TrialButton className="w-full">30 días gratis, sin tarjeta de crédito</TrialButton>
               <Link
                 href="/precios"
                 className="text-center text-[14px] leading-[1.4] tracking-[-0.09px] text-[#485c11] underline underline-offset-4 transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#485c11] focus-visible:outline-offset-2"
@@ -538,7 +538,7 @@ export default function PizzeriasPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Probá Mesanube en tu pizzería — 30 días gratis.
+            Probá Mesanube en tu pizzería. 30 días gratis.
           </Reveal>
           <Reveal
             delay={1}
@@ -555,38 +555,7 @@ export default function PizzeriasPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
-        <nav aria-label="Navegación del footer" className="flex h-10 w-full items-center justify-between">
-          <div className="flex items-center gap-5 text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black sm:gap-[27px]">
-            <a href="#problema" className="transition-colors hover:text-[#485c11]">
-              El problema
-            </a>
-            <a href="#funciones" className="transition-colors hover:text-[#485c11]">
-              Funciones
-            </a>
-            <a href="#precios" className="transition-colors hover:text-[#485c11]">
-              Precio
-            </a>
-          </div>
-        </nav>
-        <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10">
-          <Link
-            href="/"
-            className="text-[22px] leading-[1.2] tracking-[-1px] text-black sm:text-[28px]"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-          >
-            mesanube
-          </Link>
-          <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            <p>© Mesanube.</p>
-            <p>2026</p>
-          </div>
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Todos los derechos reservados
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
