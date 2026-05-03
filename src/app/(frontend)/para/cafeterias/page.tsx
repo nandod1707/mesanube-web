@@ -93,11 +93,9 @@ const funciones = [
 ]
 
 const precioItems = [
-  'Comanda digital',
   'Carta QR',
   'Facturación ARCA',
   'Arqueo de caja',
-  'Reportes del día',
   'Soporte por WhatsApp incluido',
 ]
 
