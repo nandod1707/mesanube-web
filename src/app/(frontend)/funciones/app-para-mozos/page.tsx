@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -464,49 +465,18 @@ export default function AppParaMozosPage() {
         </Reveal>
 
         {/* ── Precio ── */}
-        <Reveal
-          as="section"
-          className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <div className="mx-auto max-w-[600px] rounded-[20px] border border-[#e9e9e9] p-8 text-center">
-            <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] mb-4 uppercase">
-              Incluida en el Plan Avanzado
-            </p>
-            <p
-              className="font-display text-black mb-2"
-              style={{ fontSize: 'clamp(36px, 5.5vw, 60px)', lineHeight: 0.9, letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)' }}
-            >
-              $34.000
-              <span className="text-[#6f6f6f]" style={{ fontSize: '0.5em', letterSpacing: '-0.5px' }}>/mes</span>
-            </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] mb-6">
-              App para mozos, monitor de cocina, control de stock, recetas, facturación ARCA y
-              reportes completos. Sin módulos adicionales, sin límite de usuarios.
-            </p>
-            <ul className="flex flex-col gap-2 mb-8 text-left">
-              {[
-                'Sin límite de mozos simultáneos',
-                'Solicitud de reseñas en Google',
-                'Roles y permisos por usuario',
-                'Soporte directo por WhatsApp',
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-                >
-                  <span className="text-[#485c11]" aria-hidden="true">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <PrimaryButton href="#contacto" className="w-full justify-center">
-              Empezá tu prueba gratuita
-            </PrimaryButton>
-            <p className="mt-3 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-              30 días gratis. Sin tarjeta de crédito.
-            </p>
-          </div>
-        </Reveal>
+        <PricingCards
+          variant="advanced"
+          compact
+          compactLabel="Incluida en el Plan Avanzado"
+          description="App para mozos, monitor de cocina, control de stock, recetas, facturación ARCA y reportes completos. Sin módulos adicionales, sin límite de usuarios."
+          features={[
+            'Sin límite de mozos simultáneos',
+            'Solicitud de reseñas en Google',
+            'Roles y permisos por usuario',
+            'Soporte directo por WhatsApp',
+          ]}
+        />
 
         {/* ── FAQ ── */}
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />

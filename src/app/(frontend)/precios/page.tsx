@@ -6,6 +6,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -26,32 +27,15 @@ const navItems = [
   { href: '#contacto', label: 'Empezá' },
 ]
 
-const basicFeatures = [
-  'Comanda digital desde tablet o celular',
-  'Gestión de menú (categorías, productos, precios, modificadores)',
-  'Carta QR para tus clientes',
-  'Facturación electrónica ARCA (facturas A, B y C)',
-  'Arqueo de caja por turno',
-  'Soporte por WhatsApp',
-  'Actualizaciones incluidas',
-]
-
-const advancedFeatures = [
-  'Todo lo del Plan Básico',
-  'App para mozos (sin límite de usuarios simultáneos)',
-  'Monitor de cocina (pedidos a pantalla en tiempo real)',
-  'Reportes de ventas por período, producto y medio de pago',
-  'Control de stock con alertas de reposición',
-  'Recetas y cálculo de márgenes por plato',
-  'División de cuentas',
-]
+const { features: basicFeatures } = PLAN_BASIC
+const { features: advancedFeatures } = PLAN_ADVANCED
 
 const comparisonRows: {
   label: string
   basic: boolean
   advanced: boolean
 }[] = [
-  { label: 'Comanda digital', basic: true, advanced: true },
+  { label: 'Pedidos digitales', basic: true, advanced: true },
   { label: 'Carta QR', basic: true, advanced: true },
   { label: 'Facturación ARCA', basic: true, advanced: true },
   { label: 'Arqueo de caja', basic: true, advanced: true },
@@ -250,7 +234,7 @@ export default function PreciosPage() {
                   className="font-display leading-none tracking-[-0.02em] text-black"
                   style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                 >
-                  $19.000
+                  {PLAN_BASIC.price}
                   <span className="text-[16px] font-sans font-normal text-[#6f6f6f]">/mes</span>
                 </p>
                 <p className="text-[14px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
@@ -289,7 +273,7 @@ export default function PreciosPage() {
                   className="font-display leading-none tracking-[-0.02em] text-white"
                   style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                 >
-                  $34.000
+                  {PLAN_ADVANCED.price}
                   <span className="text-[16px] font-sans font-normal text-white/60">/mes</span>
                 </p>
                 <p className="text-[14px] leading-[1.4] tracking-[-0.09px] text-white/70">
@@ -348,14 +332,14 @@ export default function PreciosPage() {
                     scope="col"
                   >
                     Básico
-                    <span className="ml-1 font-normal text-[#929292]">$19.000</span>
+                    <span className="ml-1 font-normal text-[#929292]">{PLAN_BASIC.price}</span>
                   </th>
                   <th
                     className="pb-4 font-mono text-[14px] font-bold tracking-[-0.14px] text-[#485c11]"
                     scope="col"
                   >
                     Avanzado
-                    <span className="ml-1 font-normal text-[#929292]">$34.000</span>
+                    <span className="ml-1 font-normal text-[#929292]">{PLAN_ADVANCED.price}</span>
                   </th>
                 </tr>
               </thead>

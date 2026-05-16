@@ -6,6 +6,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -374,68 +375,30 @@ export default function ComandaDigitalCafeteriaPage() {
         </section>
 
         {/* ── Precio ── */}
-        <Reveal
-          as="section"
-          id="precio"
-          className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <div className="mx-auto max-w-[600px] rounded-[20px] border border-[#e9e9e9] p-8 text-center">
-            <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] mb-4 uppercase">
-              Precio
-            </p>
-            <p
-              className="font-display text-black mb-2"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              $19.000
-              <span className="text-[#6f6f6f]" style={{ fontSize: '0.5em', letterSpacing: '-0.5px' }}>
-                /mes
-              </span>
-            </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] mb-2">
-              Plan Básico para cafeterías
-            </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#929292] mb-6 text-sm">
-              Para ponerlo en perspectiva: son aproximadamente 6 cafés con leche por día. O lo que
-              perdés en una semana con errores de pedido que terminan en reposición o descuentos.
-            </p>
-            <ul className="flex flex-col gap-2 mb-8 text-left">
-              {[
-                'Comanda digital desde cualquier celular o tablet',
-                'Carta QR actualizable en tiempo real',
-                'Facturación electrónica ARCA incluida',
-                'Arqueo de caja por turno',
-                'Soporte directo por WhatsApp',
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-                >
-                  <span className="text-[#485c11]" aria-hidden="true">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <PrimaryButton href="#contacto" className="w-full justify-center">
-              Empezá tu prueba gratuita
-            </PrimaryButton>
-            <p className="mt-3 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-              30 días gratis. Sin tarjeta de crédito.
-            </p>
-            <div className="mt-4">
-              <Link
-                href="/precios"
-                className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] underline underline-offset-2 hover:text-[#3a4c0d] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#485c11] focus-visible:outline-offset-2"
-              >
-                Ver todos los planes →
-              </Link>
-            </div>
-          </div>
-        </Reveal>
+        <PricingCards
+          variant="basic"
+          compact
+          compactLabel="Precio"
+          description={
+            <>
+              <p>Plan Básico para cafeterías</p>
+              <p className="mt-1 text-sm text-[#929292]">
+                Para ponerlo en perspectiva: son aproximadamente 6 cafés con leche por día. O lo
+                que perdés en una semana con errores de pedido que terminan en reposición o
+                descuentos.
+              </p>
+            </>
+          }
+          features={[
+            'Comanda digital desde cualquier celular o tablet',
+            'Carta QR actualizable en tiempo real',
+            'Facturación electrónica ARCA incluida',
+            'Arqueo de caja por turno',
+            'Soporte directo por WhatsApp',
+          ]}
+          showAllPlansLink
+          allPlansLinkText="Ver todos los planes →"
+        />
 
         {/* ── FAQ ── */}
         <section className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">

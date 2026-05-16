@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -439,56 +440,19 @@ export default function MonitorDeCocinaPage() {
         </Reveal>
 
         {/* ── Precio ── */}
-        <Reveal
-          as="section"
-          className="w-full max-w-[1500px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <div className="mx-auto max-w-[600px] rounded-[20px] border border-[#e9e9e9] p-8 text-center">
-            <p className="mb-4 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Incluido en el Plan Avanzado
-            </p>
-            <p
-              className="mb-2 font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              $34.000
-              <span className="text-[#6f6f6f]" style={{ fontSize: '0.5em', letterSpacing: '-0.5px' }}>
-                /mes
-              </span>
-            </p>
-            <p className="mb-6 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Monitor de cocina, app para mozos, control de stock, recetas, facturación ARCA y
-              reportes completos. Sin módulos adicionales.
-            </p>
-            <ul className="mb-8 flex flex-col gap-2 text-left">
-              {[
-                'Pedidos en tiempo real a la pantalla de cocina',
-                'Marcado de pedidos listo desde el monitor',
-                'Notificación al mozo cuando el pedido está',
-                'Sin hardware especial, cualquier tablet sirve',
-                'Soporte directo por WhatsApp',
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-                >
-                  <span className="text-[#485c11]" aria-hidden="true">
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <TrialButton className="w-full">Empezá tu prueba gratuita</TrialButton>
-            <p className="mt-3 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-              30 días gratis. Sin tarjeta de crédito.
-            </p>
-          </div>
-        </Reveal>
+        <PricingCards
+          variant="advanced"
+          compact
+          compactLabel="Incluido en el Plan Avanzado"
+          description="Monitor de cocina, app para mozos, control de stock, recetas, facturación ARCA y reportes completos. Sin módulos adicionales."
+          features={[
+            'Pedidos en tiempo real a la pantalla de cocina',
+            'Marcado de pedidos listo desde el monitor',
+            'Notificación al mozo cuando el pedido está',
+            'Sin hardware especial, cualquier tablet sirve',
+            'Soporte directo por WhatsApp',
+          ]}
+        />
 
         {/* ── FAQ ── */}
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />

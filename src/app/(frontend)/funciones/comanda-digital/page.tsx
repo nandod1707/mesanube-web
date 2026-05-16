@@ -406,7 +406,7 @@ export default function ComandaDigitalPage() {
                     <span className="font-sans text-[16px] font-normal text-[#6f6f6f]">/mes</span>
                   </p>
                   <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                    Comanda desde mostrador o tablet fija.
+                    Pedidos digitales con impresión en cocina. Ideal para mostrador o tablet fija.
                   </p>
                 </div>
                 <div className="rounded-[20px] border border-[#e9e9e9] p-8">
@@ -498,7 +498,7 @@ export default function ComandaDigitalPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Dejá el papel y probá la comanda digital gratis
+                Terminá con los pedidos que se pierden. Probalo gratis.
               </h2>
             </div>
             <div className="flex flex-col justify-center gap-4">

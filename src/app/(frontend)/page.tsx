@@ -666,7 +666,7 @@ export default function HomePage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            ¿Listo para dejar el papel atrás?
+            ¿Listo para que ningún pedido se vuelva a perder?
           </Reveal>
           <Reveal
             delay={1}

@@ -6,6 +6,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
@@ -455,71 +456,16 @@ export default function CafeteriasPage() {
         </section>
 
         {/* Precio */}
-        <section
-          id="precios"
-          className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[#e9e9e9] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
-        >
-          <Reveal className="flex w-full flex-col items-center gap-[30px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Precio
-            </h2>
-            <p
-              className="w-full text-center font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              $19.000 por mes.
-            </p>
-            <p className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Para ponerlo en perspectiva: es menos de lo que perdés con un pedido equivocado por
-              semana durante un año, o con una diferencia de caja que no podés explicar.
-            </p>
-          </Reveal>
-
-          <Reveal
-            delay={1}
-            className="w-full rounded-[20px] border border-[#e9e9e9] p-8"
-          >
-            <p className="mb-2 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Plan Básico
-            </p>
-            <p
-              className="mb-1 font-display leading-none text-black"
-              style={{ fontSize: 'clamp(36px, 5vw, 56px)', letterSpacing: '-2px' }}
-            >
-              $19.000
-              <span className="text-[18px] font-normal tracking-normal text-[#6f6f6f]">/mes</span>
-            </p>
-            <p className="mb-6 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Para cafeterías y locales con mostrador
-            </p>
-            <ul className="mb-8 flex flex-col gap-3">
-              {precioItems.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-3 text-[18px] leading-[1.4] tracking-[-0.09px] text-black"
-                >
-                  <span className="font-mono text-[#485c11]">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-col gap-4">
-              <TrialButton className="w-full">
-                30 días gratis, sin tarjeta de crédito
-              </TrialButton>
-              <Link
-                href="/precios"
-                className="text-center text-[14px] leading-[1.4] tracking-[-0.09px] text-[#485c11] underline underline-offset-4 transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#485c11] focus-visible:outline-offset-2"
-              >
-                Ver todos los planes →
-              </Link>
-            </div>
-          </Reveal>
-        </section>
+        <PricingCards
+          variant="basic"
+          eyebrow="Precio"
+          heading="$19.000 por mes."
+          description="Para ponerlo en perspectiva: es menos de lo que perdés con un pedido equivocado por semana durante un año, o con una diferencia de caja que no podés explicar."
+          basicDescription="Para cafeterías y locales con mostrador"
+          features={precioItems}
+          ctaText="30 días gratis, sin tarjeta de crédito"
+          allPlansLinkText="Ver todos los planes →"
+        />
 
         {/* FAQ */}
         <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">

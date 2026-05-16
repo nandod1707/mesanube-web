@@ -13,7 +13,7 @@ export function CtaFinalSection() {
           className="text-[var(--warm-white)] font-medium leading-[1.1] tracking-[-0.02em] mb-4"
           style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
         >
-          ¿Listo para dejar el papel atrás?
+          ¿Listo para que ningún pedido se vuelva a perder?
         </h2>
 
         <p className="text-[rgba(255,247,238,0.75)] text-base leading-[1.6] mb-10">

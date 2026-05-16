@@ -3,12 +3,13 @@ import React from 'react'
 
 import { Button } from '@/components/shared/Button'
 import { Container } from '@/components/shared/Container'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/components/shared/PricingCards'
 import { Section } from '@/components/shared/Section'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 
 import styles from './PricingSection.module.css'
 
-const basicFeatures = ['Comanda digital', 'Carta QR', 'Facturación ARCA', 'Arqueo de caja']
+const basicFeatures = ['Pedidos digitales', 'Carta QR', 'Facturación ARCA', 'Arqueo de caja']
 
 const advancedFeatures = [
   'Todo el plan Básico',
@@ -38,7 +39,7 @@ export function PricingSection() {
               className="text-[var(--dark-green)] font-bold tracking-[-0.02em] leading-none mb-1"
               style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}
             >
-              $19.000
+              {PLAN_BASIC.price}
               <span className="text-base font-normal text-[var(--medium-green)]">/mes</span>
             </p>
             <p className="text-[var(--medium-green)] text-[0.857rem] mb-6">
@@ -67,7 +68,7 @@ export function PricingSection() {
               className="text-[var(--warm-white)] font-bold tracking-[-0.02em] leading-none mb-1"
               style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}
             >
-              $34.000
+              {PLAN_ADVANCED.price}
               <span className="text-base font-normal text-[rgba(255,247,238,0.6)]">/mes</span>
             </p>
             <p className="text-[rgba(255,247,238,0.7)] text-[0.857rem] mb-6">
