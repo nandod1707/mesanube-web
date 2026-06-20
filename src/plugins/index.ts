@@ -3,6 +3,7 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
+import { s3Storage } from '@payloadcms/storage-s3'
 import { Plugin } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
@@ -87,6 +88,27 @@ export const plugins: Plugin[] = [
       fields: ({ defaultFields }) => {
         return [...defaultFields, ...searchFields]
       },
+    },
+  }),
+  s3Storage({
+    // Only enable when R2 is configured; otherwise fall back to local disk storage.
+    enabled: Boolean(process.env.R2_BUCKET),
+    collections: {
+      // Files are served through Payload's own route on our domain (proxy mode),
+      // keeping the R2 bucket private — bare R2 object URLs are not publicly accessible.
+      media: true,
+    },
+    bucket: process.env.R2_BUCKET || '',
+    // Upload directly from the browser to R2, bypassing Vercel's 4.5MB request body limit.
+    clientUploads: true,
+    config: {
+      credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+      },
+      region: 'auto',
+      endpoint: process.env.R2_ENDPOINT,
+      forcePathStyle: true,
     },
   }),
 ]
