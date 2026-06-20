@@ -5,7 +5,7 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import Reveal from '@/components/shared/Reveal'
 
-const headline = 'Para el bar que no para — comanda ágil, caja que cierra'
+const headline = 'Para el bar que no para. Comanda ágil, caja que cierra'
 
 export function BaresHeroSection() {
   return (
@@ -47,7 +47,7 @@ export function BaresHeroSection() {
             que nada se pierda en el camino.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Probá 30 días gratis</TrialButton>
+            <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
             <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Sin tarjeta de crédito. Sin permanencia.
             </p>

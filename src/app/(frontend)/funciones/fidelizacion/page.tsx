@@ -250,7 +250,7 @@ export default function FidelizacionPage() {
                 sin costo adicional, desde el primer día que salen.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <TrialButton>Probá Mesanube gratis 30 días</TrialButton>
+                <TrialButton>Probá Mesanube gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 export const metadata: Metadata = {
   title: 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
   description:
-    'Planes desde $19.000/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. 30 días gratis, sin tarjeta de crédito.',
+    `Planes desde ${PLAN_BASIC.price}/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta de crédito.`,
 }
 
 /* ── Static data ── */
@@ -49,16 +49,16 @@ const comparisonRows: {
 
 const faqs = [
   {
-    q: '¿Los 30 días gratis son con acceso completo?',
+    q: `¿Los ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis son con acceso completo?`,
     a: 'Sí. Durante el período de prueba tenés acceso completo al plan que elegiste, sin restricciones de funciones ni límite de transacciones.',
   },
   {
     q: '¿Necesito tarjeta de crédito para empezar?',
-    a: 'No. Los 30 días de prueba arrancan sin tarjeta. Cuando se termina el período, elegís si continuás y cómo pagás.',
+    a: `No. Los ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba arrancan sin tarjeta. Cuando se termina el período, elegís si continuás y cómo pagás.`,
   },
   {
     q: '¿Qué pasa cuando termina el período de prueba?',
-    a: 'Te avisamos antes de que termine. Si querés continuar, cargás el método de pago y seguís sin interrupciones. Si decidís no continuar, los datos de tu local quedan guardados por 30 días más por si cambiás de idea.',
+    a: `Te avisamos antes de que termine. Si querés continuar, cargás el método de pago y seguís sin interrupciones. Si decidís no continuar, los datos de tu local quedan guardados por ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} más por si cambiás de idea.`,
   },
   {
     q: '¿Puedo cambiar de plan después?',
@@ -182,7 +182,7 @@ export default function PreciosPage() {
             <span>Precios sin letra chica.</span>
           </h1>
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-            30 días gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin
+            {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin
             tarjeta, sin permanencia, sin sorpresas en la factura.
           </p>
           <div className="flex flex-wrap items-center gap-4">
@@ -215,7 +215,7 @@ export default function PreciosPage() {
               Dos planes, sin módulos de pago separado
             </p>
             <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Todos los planes incluyen 30 días de prueba gratuita. Sin tarjeta de crédito para
+              Todos los planes incluyen {process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba gratuita. Sin tarjeta de crédito para
               empezar.
             </p>
           </Reveal>
@@ -254,7 +254,7 @@ export default function PreciosPage() {
                   </li>
                 ))}
               </ul>
-              <TrialButton className="w-full">Empezá con el Plan Básico</TrialButton>
+              <TrialButton className="w-full">Empezá con el Plan {PLAN_BASIC.name}</TrialButton>
             </Reveal>
 
             {/* Plan Avanzado */}
@@ -296,7 +296,7 @@ export default function PreciosPage() {
                   </li>
                 ))}
               </ul>
-              <TrialButton className="w-full">Empezá con el Plan Avanzado</TrialButton>
+              <TrialButton className="w-full">Empezá con el Plan {PLAN_ADVANCED.name}</TrialButton>
             </Reveal>
           </div>
         </section>
@@ -428,8 +428,8 @@ export default function PreciosPage() {
                   12 meses por adelantado
                 </p>
                 <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  El pago anual en el Plan Avanzado sale lo mismo que pagar 9 meses al precio de
-                  lista.
+                  El pago anual en el Plan {PLAN_ADVANCED.name} sale lo mismo que pagar 9 meses al
+                  precio de lista.
                 </p>
               </div>
             </Reveal>
@@ -439,7 +439,7 @@ export default function PreciosPage() {
             delay={1}
             className="w-full rounded-[20px] bg-[#dfecc6] px-8 py-[40px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#485c11]"
           >
-            Los primeros 30 días son siempre gratis, independientemente del plan y la frecuencia de
+            Los primeros {process.env.NEXT_PUBLIC_TRIAL_PERIOD} son siempre gratis, independientemente del plan y la frecuencia de
             pago.
           </Reveal>
         </section>
@@ -461,18 +461,18 @@ export default function PreciosPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Empezá gratis. 30 días sin tarjeta
+            Empezá gratis. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta
           </Reveal>
           <Reveal
             delay={1}
             as="p"
             className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
           >
-            Si después de los 30 días decidís que Mesanube no es para tu local, no perdiste nada.
+            Si después de los {process.env.NEXT_PUBLIC_TRIAL_PERIOD} decidís que Mesanube no es para tu local, no perdiste nada.
           </Reveal>
           <Reveal delay={2} className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <TrialButton>Probá el Plan Básico gratis</TrialButton>
-            <SoftButton href="#planes">Probá el Plan Avanzado gratis</SoftButton>
+            <TrialButton>Probá el Plan {PLAN_BASIC.name} gratis</TrialButton>
+            <SoftButton href="#planes">Probá el Plan {PLAN_ADVANCED.name} gratis</SoftButton>
           </Reveal>
           <Reveal
             delay={3}

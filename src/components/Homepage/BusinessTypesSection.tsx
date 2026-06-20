@@ -54,7 +54,7 @@ export function BusinessTypesSection() {
         <SectionHeading
           eyebrow="Tipos de negocio"
           heading="Pensado para cada tipo de negocio gastronómico"
-          description="Mesanube se adapta al ritmo de tu local — ya sea una cafetería con 3 mesas o una cadena con varios locales."
+          description="Mesanube se adapta al ritmo de tu local, sea una cafetería con 3 mesas o una cadena con varios locales."
         />
 
         <div className={`${styles.cardGrid} mt-[3.214rem]`}>

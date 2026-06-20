@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -89,7 +90,7 @@ const faqItems: FaqItem[] = [
   },
   {
     q: '¿Está incluido en todos los planes?',
-    a: 'El monitor de cocina está incluido en el Plan Avanzado ($34.000/mes). El Plan Básico no lo incluye porque está pensado para locales sin cocina separada.',
+    a: `El monitor de cocina está incluido en el Plan ${PLAN_ADVANCED.name} (${PLAN_ADVANCED.price}/mes). El Plan ${PLAN_BASIC.name} no lo incluye porque está pensado para locales sin cocina separada.`,
   },
 ]
 
@@ -197,7 +198,7 @@ export default function MonitorDeCocinaPage() {
             cocinero lo marca desde la pantalla.
           </p>
           <div className="flex flex-wrap gap-3">
-            <TrialButton>Incluido en el Plan Avanzado. Probá gratis</TrialButton>
+            <TrialButton>Incluido en el Plan {PLAN_ADVANCED.name}. Probá gratis</TrialButton>
             <SoftButton href="#como-funciona">Ver cómo funciona</SoftButton>
           </div>
         </Reveal>
@@ -443,7 +444,7 @@ export default function MonitorDeCocinaPage() {
         <PricingCards
           variant="advanced"
           compact
-          compactLabel="Incluido en el Plan Avanzado"
+          compactLabel={`Incluido en el Plan ${PLAN_ADVANCED.name}`}
           description="Monitor de cocina, app para mozos, control de stock, recetas, facturación ARCA y reportes completos. Sin módulos adicionales."
           features={[
             'Pedidos en tiempo real a la pantalla de cocina',
@@ -481,7 +482,7 @@ export default function MonitorDeCocinaPage() {
             </div>
             <div className="flex flex-col justify-center gap-4">
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Plan Avanzado. 30 días sin tarjeta de crédito. Si querés ver el monitor de cocina
+                Plan {PLAN_ADVANCED.name}. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta de crédito. Si querés ver el monitor de cocina
                 en acción antes de empezar, agendá una demo.
               </p>
               <div className="flex flex-wrap gap-3">

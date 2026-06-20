@@ -70,8 +70,8 @@ export const IntroSection: React.FC = () => {
             Hecho en Argentina, para Argentina
           </p>
           <p className={styles.description}>
-            La facturación ARCA no es un add-on ni una integración complicada — está construida
-            adentro del sistema desde el día uno. Igual que el resto: comanda, caja, app para mozos
+            La facturación ARCA no es un add-on ni una integración complicada. Está construida
+            adentro del sistema desde el día uno, igual que el resto: comanda, caja, app para mozos
             y reportes. Todo en un lugar, sin necesitar diez apps distintas.
           </p>
         </div>

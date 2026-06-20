@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { PLAN_BASIC } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -101,7 +102,7 @@ const faqItems: FaqItem[] = [
   },
   {
     q: '¿La carta QR tiene costo adicional?',
-    a: 'No. Está incluida en todos los planes de Mesanube, desde el Plan Básico.',
+    a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_BASIC.name}.`,
   },
 ]
 
@@ -207,7 +208,7 @@ export default function CartaQrPage() {
             que acordar de cambiar nada.
           </p>
           <div className="flex flex-wrap gap-3">
-            <TrialButton>Probá 30 días gratis</TrialButton>
+            <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
             <SoftButton href="#como-funciona">Ver cómo funciona</SoftButton>
           </div>
         </Reveal>
@@ -452,7 +453,7 @@ export default function CartaQrPage() {
             </div>
             <div className="flex flex-col justify-center gap-4">
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                30 días sin tarjeta de crédito. La carta QR está incluida en todos los planes.
+                {process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta de crédito. La carta QR está incluida en todos los planes.
               </p>
               <div className="flex flex-wrap gap-3">
                 <TrialButton>Empezá tu prueba gratuita</TrialButton>

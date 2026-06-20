@@ -20,7 +20,7 @@ export function ArcaSection() {
           <div className={`${styles.card} mx-auto`} style={{ maxWidth: 'var(--container-max-narrow)' }}>
             <SectionHeading
               eyebrow="Diferencial Mesanube"
-              heading="Facturación electrónica ARCA — ya incluida en tu POS"
+              heading="Facturación electrónica ARCA, ya incluida en tu POS"
               description="En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA. Emitís facturas A, B y C directamente desde tu POS, con impresión en ticket térmico. Sin complicaciones con el contador."
             />
             <div className="mt-7">

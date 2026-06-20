@@ -26,7 +26,7 @@ export function PricingSection() {
         <SectionHeading
           eyebrow="Precios"
           heading="Precios transparentes y simples"
-          description="Elegí el plan que se adapta a tu local. Todos incluyen prueba gratuita de 30 días."
+          description={`Elegí el plan que se adapta a tu local. Todos incluyen prueba gratuita de ${process.env.NEXT_PUBLIC_TRIAL_PERIOD}.`}
         />
 
         <div className={`${styles.grid} mt-12`}>

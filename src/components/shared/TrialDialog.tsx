@@ -123,7 +123,7 @@ function Modal({ mode, onClose }: { mode: Mode; onClose: () => void }) {
                 letterSpacing: '-1px',
               }}
             >
-              {isTrial ? 'Probá Mesanube 30 días gratis' : 'Te mostramos cómo funciona'}
+              {isTrial ? `Probá Mesanube ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis` : 'Te mostramos cómo funciona'}
             </h2>
             <p className="mt-3 text-[16px] leading-[1.4] tracking-[-0.08px] text-[#6f6f6f]">
               {isTrial

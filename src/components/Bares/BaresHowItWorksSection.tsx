@@ -48,7 +48,7 @@ export function BaresHowItWorksSection() {
             className="text-[var(--dark-green)] font-medium leading-[1.1] tracking-[-0.02em] mb-12"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
           >
-            Cómo funciona en tu bar — del primer cliente hasta el último pedido
+            Cómo funciona en tu bar, del primer cliente hasta el último pedido
           </h2>
         </Reveal>
 

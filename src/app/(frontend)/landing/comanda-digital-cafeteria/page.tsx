@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_BASIC } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -15,7 +16,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 export const metadata: Metadata = {
   title: 'Comanda Digital para Cafeterías en Argentina. Sistema de Pedidos sin Papel | Mesanube',
   description:
-    'Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá 30 días gratis.',
+    `Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
 }
 
 /* ─────────────────────────────────────────────
@@ -107,11 +108,11 @@ const faqItems: FaqItem[] = [
   },
   {
     q: '¿La comanda digital incluye facturación ARCA?',
-    a: 'Sí. El Plan Básico de Mesanube incluye comanda digital y facturación ARCA en el mismo sistema, desde $19.000/mes. No son módulos separados.',
+    a: `Sí. El Plan ${PLAN_BASIC.name} de Mesanube incluye comanda digital y facturación ARCA en el mismo sistema, desde ${PLAN_BASIC.price}/mes. No son módulos separados.`,
   },
   {
     q: '¿Puedo cancelar si no me convence?',
-    a: 'Sí. Sin permanencia mínima, sin cargos de cancelación. Los 30 días de prueba son gratis sin tarjeta de crédito.',
+    a: `Sí. Sin permanencia mínima, sin cargos de cancelación. Los ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba son gratis sin tarjeta de crédito.`,
   },
 ]
 
@@ -224,7 +225,7 @@ export default function ComandaDigitalCafeteriaPage() {
             <SoftButton href="#como-funciona">Cómo funciona</SoftButton>
           </div>
           <p className="mt-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-            30 días de prueba. Sin permanencia. Cancelás cuando querés.
+            {process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba. Sin permanencia. Cancelás cuando querés.
           </p>
         </Reveal>
 
@@ -381,7 +382,7 @@ export default function ComandaDigitalCafeteriaPage() {
           compactLabel="Precio"
           description={
             <>
-              <p>Plan Básico para cafeterías</p>
+              <p>Plan {PLAN_BASIC.name} para cafeterías</p>
               <p className="mt-1 text-sm text-[#929292]">
                 Para ponerlo en perspectiva: son aproximadamente 6 cafés con leche por día. O lo
                 que perdés en una semana con errores de pedido que terminan en reposición o

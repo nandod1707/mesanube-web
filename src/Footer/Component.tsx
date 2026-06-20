@@ -170,7 +170,7 @@ export async function Footer() {
                   marginBottom: '0.75rem',
                 }}
               >
-                Probá 30 días gratis
+                Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis
               </Link>
 
               <br />

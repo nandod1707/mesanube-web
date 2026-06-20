@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { FaqSection, type FaqItem } from '@/components/shared/FaqSection'
+import { PLAN_BASIC } from '@/config/plans'
 
 const faqItems: FaqItem[] = [
   {
@@ -29,7 +30,7 @@ const faqItems: FaqItem[] = [
   },
   {
     q: '¿Tiene algún costo adicional la facturación ARCA?',
-    a: 'No. Está incluida en todos los planes de Mesanube, desde el Plan Básico ($19.000/mes). Sin módulo de facturación separado, sin costo por comprobante.',
+    a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_BASIC.name} (${PLAN_BASIC.price}/mes). Sin módulo de facturación separado, sin costo por comprobante.`,
   },
   {
     q: '¿Funciona si cambia la normativa de ARCA?',

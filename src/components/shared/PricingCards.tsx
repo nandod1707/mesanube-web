@@ -3,40 +3,10 @@ import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
 import Reveal from '@/components/shared/Reveal'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 
-// ─── Single source of truth for plan data ────────────────────────────────────
-// Edit prices and features here — all pages pick them up automatically.
-
-export const PLAN_BASIC = {
-  price: '$19.000',
-  name: 'Básico',
-  description: 'Para cafeterías, locales de mostrador y negocios que no tienen salón con mozos.',
-  features: [
-    'Pedidos digitales con impresión en cocina',
-    'Gestión de menú (categorías, productos, precios, modificadores)',
-    'Carta QR para tus clientes',
-    'Facturación electrónica ARCA (facturas A, B y C)',
-    'Arqueo de caja por turno',
-    'Soporte por WhatsApp',
-    'Actualizaciones incluidas',
-  ],
-}
-
-export const PLAN_ADVANCED = {
-  price: '$34.000',
-  name: 'Avanzado',
-  description: 'Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.',
-  popular: 'Más popular',
-  features: [
-    'Todo el plan Básico',
-    'App para mozos (sin límite de usuarios simultáneos)',
-    'Monitor de cocina (pedidos a pantalla en tiempo real)',
-    'Reportes de ventas por período, producto y medio de pago',
-    'Control de stock con alertas de reposición',
-    'Recetas y cálculo de márgenes por plato',
-    'División de cuentas',
-  ],
-}
+// Re-export so existing imports from this module keep working.
+export { PLAN_BASIC, PLAN_ADVANCED }
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -139,7 +109,7 @@ export function PricingCards({
           </ul>
           <TrialButton className="w-full">{cta}</TrialButton>
           <p className="mt-3 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#929292]">
-            30 días gratis. Sin tarjeta de crédito.
+            {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis. Sin tarjeta de crédito.
           </p>
           {showLink && (
             <div className="mt-4">

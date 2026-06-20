@@ -9,6 +9,7 @@ import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { PLAN_ADVANCED } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -211,7 +212,7 @@ export default function AppParaMozosPage() {
             cuentas y cierran las mesas, sin terminales ni hardware nuevo.
           </p>
           <div className="flex flex-wrap gap-3">
-            <PrimaryButton href="#contacto">Incluida en el Plan Avanzado. Probá gratis</PrimaryButton>
+            <PrimaryButton href="#contacto">Incluida en el Plan {PLAN_ADVANCED.name}. Probá gratis</PrimaryButton>
             <SoftButton href="#funciones">Ver funciones</SoftButton>
           </div>
         </Reveal>
@@ -468,7 +469,7 @@ export default function AppParaMozosPage() {
         <PricingCards
           variant="advanced"
           compact
-          compactLabel="Incluida en el Plan Avanzado"
+          compactLabel={`Incluida en el Plan ${PLAN_ADVANCED.name}`}
           description="App para mozos, monitor de cocina, control de stock, recetas, facturación ARCA y reportes completos. Sin módulos adicionales, sin límite de usuarios."
           features={[
             'Sin límite de mozos simultáneos',
@@ -505,7 +506,7 @@ export default function AppParaMozosPage() {
             </div>
             <div className="flex flex-col gap-4 justify-center">
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Incluida en el Plan Avanzado. 30 días gratis, sin tarjeta de crédito. Si querés
+                Incluida en el Plan {PLAN_ADVANCED.name}. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta de crédito. Si querés
                 ver la app en acción antes de empezar, agendá una demo.
               </p>
               <div className="flex flex-wrap gap-3">

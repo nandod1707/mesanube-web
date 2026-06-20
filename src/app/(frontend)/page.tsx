@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -15,7 +16,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 export const metadata: Metadata = {
   title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías en Argentina',
   description:
-    'Sistema de gestión gastronómica para restaurantes argentinos. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá 30 días gratis, sin tarjeta.',
+    `Sistema de gestión gastronómica para restaurantes argentinos. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta.`,
 }
 
 /* ── Static data ── */
@@ -29,7 +30,6 @@ const navItems = [
 
 const trustItems = [
   'Facturación ARCA incluida',
-  '100% hecho en Argentina',
   'Sin costos ocultos',
   'Cancelás cuando querés',
   'Soporte directo por WhatsApp',
@@ -133,7 +133,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta un sistema de gestión para restaurantes en Argentina?',
-    a: 'Mesanube arranca desde $19.000/mes para cafeterías y locales de mostrador (Plan Básico) y $34.000/mes para bares y restaurantes con salón (Plan Avanzado). Los primeros 30 días son gratis, sin tarjeta de crédito.',
+    a: `Mesanube arranca desde ${PLAN_BASIC.price}/mes para cafeterías y locales de mostrador (Plan ${PLAN_BASIC.name}) y ${PLAN_ADVANCED.price}/mes para bares y restaurantes con salón (Plan ${PLAN_ADVANCED.name}). Los primeros ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} son gratis, sin tarjeta de crédito.`,
   },
   {
     q: '¿Necesito comprar hardware especial para usar Mesanube?',
@@ -231,7 +231,7 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <TrialButton>Probá 30 días gratis</TrialButton>
+            <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
             <DemoLink tone="dark">Agendá una demo →</DemoLink>
           </div>
 
@@ -253,11 +253,12 @@ export default function HomePage() {
             >
               <div className="absolute inset-[2%_2%_0_2%] overflow-hidden rounded-[10px] sm:rounded-[14px] lg:rounded-[16px]">
                 <Image
-                  src="/figma/inner-screen.png"
+                  src="/media/inner-screen.webp"
                   alt="Panel de control de Mesanube"
-                  fill
+                  width={1741}
+                  height={993}
                   sizes="(max-width: 1024px) 90vw, 870px"
-                  className="object-cover"
+                  className="w-full h-auto"
                   priority
                 />
               </div>
@@ -432,7 +433,7 @@ export default function HomePage() {
                 Todo lo que necesitás para gestionar tu local
               </p>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Desde que levantás la perisiana hasta que cerrás la caja, Mesanube te cubre.
+                Desde que levantás la persiana hasta que cerrás la caja, Mesanube te cubre.
               </p>
             </Reveal>
 
@@ -553,7 +554,7 @@ export default function HomePage() {
               Precios transparentes, sin letra chica
             </p>
             <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Todos los planes incluyen 30 días de prueba gratuita. Sin tarjeta de crédito para
+              Todos los planes incluyen {process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba gratuita. Sin tarjeta de crédito para
               empezar.
             </p>
           </Reveal>
@@ -566,13 +567,13 @@ export default function HomePage() {
             >
               <div>
                 <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-                  Básico
+                  {PLAN_BASIC.name}
                 </p>
                 <p
                   className="mt-2 font-display leading-none tracking-[-0.02em] text-black"
                   style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                 >
-                  $19.000
+                  {PLAN_BASIC.price}
                   <span className="text-[16px] font-sans font-normal text-[#6f6f6f]">/mes</span>
                 </p>
                 <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
@@ -603,17 +604,17 @@ export default function HomePage() {
               className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
             >
               <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
-                Más popular
+                {PLAN_ADVANCED.popular}
               </span>
               <div>
                 <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#dfecc6]">
-                  Avanzado
+                  {PLAN_ADVANCED.name}
                 </p>
                 <p
                   className="mt-2 font-display leading-none tracking-[-0.02em] text-white"
                   style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                 >
-                  $34.000
+                  {PLAN_ADVANCED.price}
                   <span className="text-[16px] font-sans font-normal text-white/60">/mes</span>
                 </p>
                 <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-white/70">
@@ -673,7 +674,7 @@ export default function HomePage() {
             as="p"
             className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
           >
-            Probá Mesanube gratis por 30 días. Sin tarjeta de crédito. Sin permanencia.
+            Probá Mesanube gratis por {process.env.NEXT_PUBLIC_TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia.
           </Reveal>
           <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
             <TrialButton className="w-full">

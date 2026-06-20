@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación ARCA | Mesanube',
   description:
-    'Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación ARCA desde $19.000/mes. Probá 30 días gratis, sin tarjeta.',
+    `Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación ARCA desde ${PLAN_BASIC.price}/mes. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta.`,
 }
 
 /* ── Static data ── */
@@ -89,7 +90,7 @@ const funciones = [
   },
   {
     title: 'App para mozos',
-    body: 'Si tu cafetería tiene mesas con servicio, los mozos toman pedidos desde su celular. Los pedidos llegan a cocina al instante. (Plan Avanzado)',
+    body: `Si tu cafetería tiene mesas con servicio, los mozos toman pedidos desde su celular. Los pedidos llegan a cocina al instante. (Plan ${PLAN_ADVANCED.name})`,
   },
 ]
 
@@ -103,7 +104,7 @@ const precioItems = [
 const faq = [
   {
     q: '¿Qué sistema POS es mejor para una cafetería pequeña en Argentina?',
-    a: 'Para cafeterías de 1 a 10 empleados en Argentina, lo más importante es que el sistema incluya facturación ARCA sin módulo adicional, funcione en hardware que ya tenés (tablet, celular o computadora), y tenga soporte local. Mesanube cumple los tres criterios desde el Plan Básico a $19.000/mes.',
+    a: `Para cafeterías de 1 a 10 empleados en Argentina, lo más importante es que el sistema incluya facturación ARCA sin módulo adicional, funcione en hardware que ya tenés (tablet, celular o computadora), y tenga soporte local. Mesanube cumple los tres criterios desde el Plan ${PLAN_BASIC.name} a ${PLAN_BASIC.price}/mes.`,
   },
   {
     q: '¿Necesito hardware especial para usar una comanda digital en mi cafetería?',
@@ -115,7 +116,7 @@ const faq = [
   },
   {
     q: '¿La facturación ARCA tiene costo adicional?',
-    a: 'No. Está incluida en el Plan Básico desde $19.000/mes. Sin módulo de facturación separado, sin costo por comprobante.',
+    a: `No. Está incluida en el Plan ${PLAN_BASIC.name} desde ${PLAN_BASIC.price}/mes. Sin módulo de facturación separado, sin costo por comprobante.`,
   },
   {
     q: '¿Funciona si soy monotributista?',
@@ -218,7 +219,7 @@ export default function CafeteriasPage() {
             y no cuesta lo que creés.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Probá gratis 30 días</TrialButton>
+            <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
             <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Sin tarjeta de crédito. Sin permanencia.
             </p>
@@ -459,11 +460,11 @@ export default function CafeteriasPage() {
         <PricingCards
           variant="basic"
           eyebrow="Precio"
-          heading="$19.000 por mes."
+          heading={`${PLAN_BASIC.price} por mes.`}
           description="Para ponerlo en perspectiva: es menos de lo que perdés con un pedido equivocado por semana durante un año, o con una diferencia de caja que no podés explicar."
           basicDescription="Para cafeterías y locales con mostrador"
           features={precioItems}
-          ctaText="30 días gratis, sin tarjeta de crédito"
+          ctaText={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta de crédito`}
           allPlansLinkText="Ver todos los planes →"
         />
 
@@ -517,7 +518,7 @@ export default function CafeteriasPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Probá Mesanube en tu cafetería. 30 días gratis.
+            Probá Mesanube en tu cafetería. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.
           </Reveal>
           <Reveal
             delay={1}

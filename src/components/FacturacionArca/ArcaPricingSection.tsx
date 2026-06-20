@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_BASIC } from '@/config/plans'
 
 const basicFeatures = [
   'Facturación ARCA nativa (A, B y C)',
@@ -10,7 +11,7 @@ const basicFeatures = [
 ]
 
 const advancedFeatures = [
-  'Todo lo del Plan Básico',
+  `Todo lo del Plan ${PLAN_BASIC.name}`,
   'App para mozos (sin límite de usuarios)',
   'Monitor de cocina (KDS)',
   'Control de stock',

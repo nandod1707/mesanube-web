@@ -358,11 +358,11 @@ export default function SoportePage() {
             as="p"
             className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
           >
-            Probá gratis 30 días. Sin tarjeta de crédito. Sin permanencia. O agendá una demo y te
+            Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia. O agendá una demo y te
             mostramos cómo funciona.
           </Reveal>
           <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
-            <TrialButton className="w-full">Probá gratis 30 días</TrialButton>
+            <TrialButton className="w-full">Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
             <DemoButton>Agendá una demo →</DemoButton>
           </Reveal>
         </section>

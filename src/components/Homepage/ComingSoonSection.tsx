@@ -40,7 +40,7 @@ export function ComingSoonSection() {
         <SectionHeading
           eyebrow="Próximamente"
           heading="El primer POS argentino que hace que tus clientes vuelvan solos"
-          description="Estamos construyendo el primer módulo de fidelización con gamificación para restaurantes argentinos. Puntos, recompensas, desafíos — todo integrado con tu POS."
+          description="Estamos construyendo el primer módulo de fidelización con gamificación para restaurantes argentinos. Puntos, recompensas y desafíos, todo integrado con tu POS."
           align="center"
         />
 

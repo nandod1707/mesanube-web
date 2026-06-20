@@ -19,7 +19,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 export const metadata: Metadata = {
   title: 'Sistema POS para Bares en Argentina. Comanda Ágil para Múltiples Mozos | Mesanube',
   description:
-    'Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá 30 días gratis.',
+    `Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
 }
 
 /* ─────────────────────────────────────────────

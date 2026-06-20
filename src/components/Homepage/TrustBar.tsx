@@ -4,7 +4,6 @@ import styles from './TrustBar.module.css'
 
 const trustItems = [
   'Facturación ARCA incluida',
-  '100% hecho en Argentina',
   'Sin costos ocultos',
   'Cancelá cuando querés',
   'Soporte por WhatsApp',

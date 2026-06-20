@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 /* ─────────────────────────────────────────────
@@ -16,7 +17,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 export const metadata: Metadata = {
   title: 'Reportes y Analítica para Restaurantes. Ventas, Productos y Medios de Pago | Mesanube',
   description:
-    'Reportes de ventas integrados al POS. Qué vendiste, cuándo, qué producto rinde más y cómo pagan tus clientes. Para restaurantes y bares argentinos. Solo Plan Avanzado.',
+    `Reportes de ventas integrados al POS. Qué vendiste, cuándo, qué producto rinde más y cómo pagan tus clientes. Para restaurantes y bares argentinos. Solo Plan ${PLAN_ADVANCED.name}.`,
 }
 
 /* ─────────────────────────────────────────────
@@ -59,7 +60,7 @@ type FaqItem = { q: string; a: string }
 const faqItems: FaqItem[] = [
   {
     q: '¿Los reportes están en todos los planes?',
-    a: 'No. Los reportes están disponibles únicamente en el Plan Avanzado ($34.000/mes). El Plan Básico no los incluye.',
+    a: `No. Los reportes están disponibles únicamente en el Plan ${PLAN_ADVANCED.name} (${PLAN_ADVANCED.price}/mes). El Plan ${PLAN_BASIC.name} no los incluye.`,
   },
   {
     q: '¿Con qué frecuencia se actualizan los reportes?',
@@ -180,7 +181,7 @@ export default function ReportesYAnaliticaPage() {
             clientela? Con los reportes de Mesanube lo sabés al instante, sin armar nada a mano.
           </p>
           <div className="flex flex-wrap gap-3">
-            <TrialButton>Incluido en el Plan Avanzado. Probá gratis</TrialButton>
+            <TrialButton>Incluido en el Plan {PLAN_ADVANCED.name}. Probá gratis</TrialButton>
             <SoftButton href="#que-muestran">Ver los reportes</SoftButton>
           </div>
         </Reveal>
@@ -387,7 +388,7 @@ export default function ReportesYAnaliticaPage() {
         <PricingCards
           variant="advanced"
           compact
-          compactLabel="Incluido en el Plan Avanzado"
+          compactLabel={`Incluido en el Plan ${PLAN_ADVANCED.name}`}
           description="Reportes completos, monitor de cocina, app para mozos, control de stock, recetas y facturación ARCA. Sin módulos adicionales."
           features={[
             'Ventas por período, producto, mozo y medio de pago',
@@ -420,12 +421,12 @@ export default function ReportesYAnaliticaPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                Empezá a tomar decisiones con datos. 30 días gratis
+                Empezá a tomar decisiones con datos. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis
               </h2>
             </div>
             <div className="flex flex-col justify-center gap-4">
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Los reportes están en el Plan Avanzado. Sin tarjeta de crédito. Si querés ver un
+                Los reportes están en el Plan {PLAN_ADVANCED.name}. Sin tarjeta de crédito. Si querés ver un
                 ejemplo de los reportes en acción antes de empezar, agendá una demo.
               </p>
               <div className="flex flex-wrap gap-3">

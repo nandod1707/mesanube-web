@@ -6,6 +6,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { PLAN_ADVANCED } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -63,7 +64,7 @@ const featureCards = [
     body: 'Qué vendiste, cuánto, a qué hora y con qué medio de pago. Una pantalla, sin planillas.',
     href: '/funciones/reportes-y-analitica',
     label: 'Ver reportes',
-    badge: 'Plan Avanzado',
+    badge: `Plan ${PLAN_ADVANCED.name}`,
   },
   {
     icon: '👨‍💼',
@@ -178,7 +179,7 @@ export default function FuncionesPage() {
             en tiempo real, sin apps separadas, sin hardware especial.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Probá gratis 30 días</TrialButton>
+            <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
             <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Sin tarjeta de crédito. Sin permanencia.
             </p>
@@ -290,7 +291,7 @@ export default function FuncionesPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Probá todas las funciones gratis por 30 días
+            Probá todas las funciones gratis por {process.env.NEXT_PUBLIC_TRIAL_PERIOD}
           </Reveal>
           <Reveal
             delay={1}

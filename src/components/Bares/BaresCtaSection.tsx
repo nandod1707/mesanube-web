@@ -18,7 +18,7 @@ export function BaresCtaSection() {
             className="text-[var(--warm-white)] font-medium leading-[1.1] tracking-[-0.02em] mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)' }}
           >
-            Tu bar se merece un sistema a su altura — probalo gratis
+            Tu bar se merece un sistema a su altura. Probalo gratis
           </h2>
           <p className="text-[rgba(255,247,238,0.75)] text-base leading-[1.6] mb-10">
             Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona en un bar antes de

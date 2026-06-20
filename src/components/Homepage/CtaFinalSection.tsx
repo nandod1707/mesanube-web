@@ -17,7 +17,7 @@ export function CtaFinalSection() {
         </h2>
 
         <p className="text-[rgba(255,247,238,0.75)] text-base leading-[1.6] mb-10">
-          Probá Mesanube gratis por 30 días. Sin tarjeta de crédito. Sin permanencia. Sin
+          Probá Mesanube gratis por {process.env.NEXT_PUBLIC_TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia. Sin
           complicaciones.
         </p>
 

@@ -23,7 +23,7 @@ export function ArcaCtaSection() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Probá la facturación ARCA de Mesanube — 30 días gratis
+            Probá la facturación ARCA de Mesanube: {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis
           </h2>
         </div>
         <div className="flex flex-col justify-center gap-4">

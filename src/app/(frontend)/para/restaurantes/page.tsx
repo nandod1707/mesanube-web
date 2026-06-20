@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Restaurantes en Argentina. Gestión Completa con ARCA | Mesanube',
   description:
-    'Sistema de gestión para restaurantes argentinos. Comanda digital, app para mozos, monitor de cocina, ARCA y control de stock. Probá 30 días gratis.',
+    `Sistema de gestión para restaurantes argentinos. Comanda digital, app para mozos, monitor de cocina, ARCA y control de stock. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */
@@ -230,7 +231,7 @@ export default function RestaurantesPage() {
             Mesanube organiza la sala, conecta con cocina y te da los números al final del día.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Probá gratis 30 días</TrialButton>
+            <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
             <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Sin tarjeta de crédito. Sin permanencia.
             </p>
@@ -504,11 +505,11 @@ export default function RestaurantesPage() {
         <PricingCards
           variant="advanced"
           eyebrow="Precio"
-          heading="Plan Avanzado, $34.000/mes."
+          heading={`Plan ${PLAN_ADVANCED.name}, ${PLAN_ADVANCED.price}/mes.`}
           description="Para restaurantes con salón completo. Todo incluido, sin módulos adicionales."
           advancedDescription="Para bares y restaurantes con salón"
           features={precioItems}
-          ctaText="30 días gratis para verlo en acción"
+          ctaText={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis para verlo en acción`}
         />
 
         {/* FAQ */}
@@ -561,7 +562,7 @@ export default function RestaurantesPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Organizá tu restaurante. 30 días gratis.
+            Organizá tu restaurante. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.
           </Reveal>
           <Reveal
             delay={1}

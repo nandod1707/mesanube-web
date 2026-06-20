@@ -5,7 +5,7 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import Reveal from '@/components/shared/Reveal'
 
-const headline = 'Facturación ARCA incluida — sin vueltas, sin apps adicionales'
+const headline = 'Facturación ARCA incluida, sin vueltas y sin apps adicionales'
 
 export function ArcaHeroSection() {
   return (
@@ -26,7 +26,7 @@ export function ArcaHeroSection() {
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
         <Reveal>
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Funciones — Facturación electrónica ARCA
+            Funciones / Facturación electrónica ARCA
           </p>
           <h1
             className="word-rise mb-6 font-display text-black"
@@ -47,7 +47,7 @@ export function ArcaHeroSection() {
             mesa. Sin instalar nada más, sin procesos manuales, sin esperar que alguien se acuerde.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Probá 30 días gratis</TrialButton>
+            <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
             <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Sin tarjeta de crédito. Sin permanencia.
             </p>

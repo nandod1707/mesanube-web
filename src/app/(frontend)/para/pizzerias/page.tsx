@@ -7,12 +7,13 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube',
   description:
-    'Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación ARCA y arqueo de caja incluidos. Probá 30 días gratis.',
+    `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación ARCA y arqueo de caja incluidos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */
@@ -66,7 +67,7 @@ const funciones = [
   },
   {
     title: 'App para mozos',
-    body: 'Cada mozo desde su celular, sin terminal compartida, sin esperas. Plan Avanzado.',
+    body: `Cada mozo desde su celular, sin terminal compartida, sin esperas. Plan ${PLAN_ADVANCED.name}.`,
   },
 ]
 
@@ -190,7 +191,7 @@ export default function PizzeriasPage() {
             para eso.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Probá gratis 30 días</TrialButton>
+            <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
             <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
               Sin tarjeta de crédito. Sin permanencia.
             </p>
@@ -323,7 +324,7 @@ export default function PizzeriasPage() {
               simultáneos, sin que el sistema se trabe, sin que los mozos tengan que compartir una
               sola terminal. Cada uno trabaja desde su celular, independiente.
             </p>
-            <TrialButton>Probá gratis 30 días</TrialButton>
+            <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
           </Reveal>
 
           <Reveal
@@ -427,7 +428,7 @@ export default function PizzeriasPage() {
         <PricingCards
           variant="advanced"
           eyebrow="Precio"
-          heading="Plan Avanzado, $34.000/mes."
+          heading={`Plan ${PLAN_ADVANCED.name}, ${PLAN_ADVANCED.price}/mes.`}
           description={
             <>
               <p>
@@ -435,14 +436,14 @@ export default function PizzeriasPage() {
                 caja, facturación ARCA y reportes. Todo incluido.
               </p>
               <p className="mt-3">
-                Si tu pizzería es solo mostrador y delivery sin salón, el Plan Básico ($19.000/mes)
+                Si tu pizzería es solo mostrador y delivery sin salón, el Plan {PLAN_BASIC.name} ({PLAN_BASIC.price}/mes)
                 puede ser suficiente. Escribinos y te orientamos.
               </p>
             </>
           }
           advancedDescription="Para pizzerías con salón y delivery"
           features={precioItems}
-          ctaText="30 días gratis, sin tarjeta de crédito"
+          ctaText={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta de crédito`}
           allPlansLinkText="Ver todos los planes →"
         />
 
@@ -496,7 +497,7 @@ export default function PizzeriasPage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            Probá Mesanube en tu pizzería. 30 días gratis.
+            Probá Mesanube en tu pizzería. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.
           </Reveal>
           <Reveal
             delay={1}

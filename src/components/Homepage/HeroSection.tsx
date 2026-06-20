@@ -43,14 +43,14 @@ export function HeroSection() {
           className="text-[rgba(255,247,238,0.8)] leading-relaxed text-center mx-auto mb-10"
           style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.3rem)', maxWidth: '52ch' }}
         >
-          Comanda digital, facturación ARCA y control de caja — diseñado para bares, cafeterías y
+          Comanda digital, facturación ARCA y control de caja. Diseñado para bares, cafeterías y
           restaurantes argentinos.
         </p>
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 justify-center mb-8">
           <Button href="/registro" variant="primary">
-            Probá 30 días gratis →
+            Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis →
           </Button>
           <Button href="/demo" variant="ghost">
             Agendá una demo →

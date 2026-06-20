@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { PricingCards } from '@/components/shared/PricingCards'
+import { PLAN_ADVANCED } from '@/config/plans'
 
 const features = [
   'App para mozos sin límite de usuarios',
@@ -17,9 +18,9 @@ export function BaresPricingSection() {
     <PricingCards
       variant="advanced"
       eyebrow="Precio"
-      heading="Plan Avanzado — para bares que no paran"
+      heading={`Plan ${PLAN_ADVANCED.name}: para bares que no paran`}
       description="Para bares con múltiples mozos: app para todo el equipo de salón, división de cuentas, comanda ágil, facturación ARCA y reportes. Todo incluido."
-      advancedDescription="30 días gratis. Sin tarjeta de crédito, sin compromiso."
+      advancedDescription={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis. Sin tarjeta de crédito, sin compromiso.`}
       features={features}
       allPlansLinkText="Ver todos los planes →"
     />

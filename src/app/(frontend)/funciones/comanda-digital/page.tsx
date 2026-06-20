@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -15,7 +16,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 export const metadata: Metadata = {
   title: 'Comanda Digital para Restaurantes y Cafeterías. Pedidos desde Celular | Mesanube',
   description:
-    'Comanda digital integrada al POS. Pedidos desde cualquier celular o tablet, llegan a cocina en tiempo real. Para restaurantes y cafeterías argentinas. Probá 30 días gratis.',
+    `Comanda digital integrada al POS. Pedidos desde cualquier celular o tablet, llegan a cocina en tiempo real. Para restaurantes y cafeterías argentinas. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
 }
 
 /* ─────────────────────────────────────────────
@@ -223,7 +224,7 @@ export default function ComandaDigitalPage() {
             en cocina en tiempo real, en el momento en que lo tomás.
           </p>
           <div className="flex flex-wrap gap-3">
-            <TrialButton>Probá 30 días gratis</TrialButton>
+            <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
             <SoftButton href="#flujo">Ver cómo funciona</SoftButton>
           </div>
         </Reveal>
@@ -396,13 +397,13 @@ export default function ComandaDigitalPage() {
               <div className="flex flex-col gap-4">
                 <div className="rounded-[20px] border border-[#e9e9e9] p-8">
                   <p className="mb-1 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-                    Plan Básico
+                    Plan {PLAN_BASIC.name}
                   </p>
                   <p
                     className="mb-2 font-display leading-none tracking-[-0.02em] text-black"
                     style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                   >
-                    $19.000
+                    {PLAN_BASIC.price}
                     <span className="font-sans text-[16px] font-normal text-[#6f6f6f]">/mes</span>
                   </p>
                   <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
@@ -411,13 +412,13 @@ export default function ComandaDigitalPage() {
                 </div>
                 <div className="rounded-[20px] border border-[#e9e9e9] p-8">
                   <p className="mb-1 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-                    Plan Avanzado
+                    Plan {PLAN_ADVANCED.name}
                   </p>
                   <p
                     className="mb-2 font-display leading-none tracking-[-0.02em] text-black"
                     style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                   >
-                    $34.000
+                    {PLAN_ADVANCED.price}
                     <span className="font-sans text-[16px] font-normal text-[#6f6f6f]">/mes</span>
                   </p>
                   <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
@@ -503,7 +504,7 @@ export default function ComandaDigitalPage() {
             </div>
             <div className="flex flex-col justify-center gap-4">
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                30 días sin tarjeta de crédito. El setup lleva menos de una hora.
+                {process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta de crédito. El setup lleva menos de una hora.
               </p>
               <div className="flex flex-wrap gap-3">
                 <TrialButton>Empezá tu prueba gratuita</TrialButton>
