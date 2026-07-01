@@ -122,9 +122,10 @@ Design tokens and language extracted from the live site. All files live in `dev-
 
 ### Quick-reference tokens
 
-**Colors**
-- Background: `#ffffff` · Heading: `#000000` · Body text: `#6f6f6f` · Muted: `#929292`
-- Accent (olive): `#485c11` · Accent soft: `#dfecc6` · Hero bg: `#8e9c78` · Divider: `#e9e9e9`
+**Colors** — one palette (olive/black/gray), single accent. Reference by CSS var, never raw hex.
+- Heading `var(--heading)` `#000` · Body `var(--body)` `#6f6f6f` · Caption `var(--caption)` `#929292` · Divider `var(--divider)` `#e9e9e9`
+- Accent `var(--olive)` `#485c11` · Accent hover `var(--olive-dark)` · Accent soft `var(--olive-soft)` `#dfecc6` · Dark panel `var(--surface-dark)` · Hero bg `var(--hero-bg)` `#8e9c78`
+- Deprecated (green system, being removed): `--dark-green` (→ `--heading` text / `--surface-dark` panel), `--forest-green` (→ `--olive`), `--medium-green` (→ `--body`), `--pale-green` (→ `--divider`). Full token table + rules: `.claude/rules/frontend.md §2`.
 
 **Typography**
 - Display (headings): `Crimson Text` serif — `var(--font-crimson)` — `font-display` Tailwind class
@@ -139,7 +140,7 @@ Design tokens and language extracted from the live site. All files live in `dev-
 
 **Spacing / layout**
 - Max content width: `1500px` · Horizontal padding: `px-4 sm:px-6 lg:px-10`
-- Section vertical padding: `py-[80px] lg:py-[120px]` · Border separators: `border-[#e9e9e9]`
+- Section vertical padding: `py-[80px] lg:py-[120px]` · Border separators: `border-[var(--divider)]`
 
 **Never invent new hex values** — reuse the tokens above or extend this list first.
 

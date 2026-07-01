@@ -35,66 +35,85 @@ Apply styles in this order — exhaust each level before moving to the next:
 
 **Never hardcode rgb/hex color values.** All colors are defined as CSS custom properties in `src/app/(frontend)/globals.css`. Always reference them by variable name.
 
+The site uses **one palette: olive / black / gray** (the shipped design). There is a **single
+accent** — olive `--olive`. These canonical semantic tokens are the source of truth:
+
 | Variable | Value | Usage |
 |---|---|---|
-| `--dark-green` | `rgb(36, 52, 29)` | Primary text, dark backgrounds |
-| `--medium-green` | `rgb(73, 87, 67)` | Secondary text, descriptions |
-| `--forest-green` | `rgb(92, 125, 79)` | Eyebrow labels, checkmarks, accents |
-| `--muted-green` | `rgb(115, 126, 109)` | Tertiary text |
-| `--pale-green` | `rgb(220, 228, 217)` | Borders, dividers |
-| `--light-green-bg` | `rgb(122, 150, 111)` | Decorative backgrounds |
-| `--cream-bg` | `rgb(255, 254, 252)` | Page background, section backgrounds |
-| `--warm-white` | `rgb(255, 247, 238)` | Card backgrounds, text on dark |
-| `--pale-cream` | `rgb(255, 249, 241)` | Alternate section background |
-| `--yellow` | `rgb(255, 190, 13)` | Primary CTA, highlights |
-| `--warm-yellow` | `rgb(255, 203, 52)` | Yellow hover state |
-| `--coral` | `rgb(246, 110, 70)` | Decorative accents |
-| `--sky-blue` | `rgb(112, 155, 202)` | Decorative accents |
-| `--pale-blue` | `rgb(225, 234, 244)` | Decorative backgrounds |
+| `--heading` | `#000000` | Headings (h1–h3) — pure black |
+| `--olive` | `#485c11` | **The single accent** — eyebrows, links, checkmarks, primary CTA background |
+| `--olive-dark` | `#3a4c0d` | Accent hover (primary button) |
+| `--olive-soft` | `#dfecc6` | Accent soft — badges, soft button background |
+| `--body` | `#6f6f6f` | Body / paragraph text |
+| `--caption` | `#929292` | Captions, footnotes, plan-number labels |
+| `--divider` | `#e9e9e9` | Section `border-t` separators, card borders |
+| `--surface-dark` | `rgb(36, 52, 29)` | Dark-green brand panels (Avanzado card, CTA, ComingSoon, hero gradient) |
+| `--hero-bg` | `#8e9c78` | Hero background |
+| `--media-bg` | `#f5f5f0` | Image / media placeholder background |
+| `--cream-bg` | `rgb(255, 254, 252)` | Page / section background |
+| `--warm-white` | `rgb(255, 247, 238)` | Text on dark panels |
+| `--yellow` | `rgb(255, 190, 13)` | Reserved (homepage highlights) |
 
-In Tailwind: `text-[var(--dark-green)]`, `bg-[var(--cream-bg)]`, `border-[var(--pale-green)]`
+In Tailwind: `text-[var(--heading)]`, `text-[var(--body)]`, `text-[var(--olive)]`, `border-[var(--divider)]`, `bg-[var(--surface-dark)]`
 
-In CSS Modules / globals.css: `color: var(--dark-green);`
+In CSS Modules / globals.css: `color: var(--body);`
 
 When adding a new color, add it to `:root` in `globals.css` first — never use a one-off value.
+
+> **Deprecated — do not use in new code:** `--dark-green`, `--medium-green`, `--forest-green`,
+> `--muted-green`, `--pale-green`, `--light-green-bg`. These belong to an older "green" system that
+> was never fully shipped. When migrating a component, replace them:
+> `--dark-green` (text) → `--heading`; `--dark-green` (panel bg) → `--surface-dark`;
+> `--forest-green` → `--olive`; `--medium-green` → `--body`; `--pale-green` → `--divider`.
+> They remain defined in `globals.css` only until the migration is complete, then get removed.
+>
+> **Note:** `globals.css` also defines shadcn tokens named `--accent` and `--muted` (HSL, for the
+> Payload admin). Those are **not** the marketing palette — the accent is `--olive`, the muted text
+> is `--caption`. Don't cross the wires.
 
 ---
 
 ## 3. Typography system
 
-The base `font-size` on `html` is fluid (defined in `globals.css`), so `rem` values are inherently responsive. Do not use `clamp()` for font sizes inside components — the fluid base already handles scaling. Use `clamp()` only for layout dimensions (widths, padding, gaps) where the fluid base isn't enough.
+Three font families carry the whole system:
+- **Headings** → `font-display` (Crimson Text, serif)
+- **Eyebrows & captions** → `font-mono` (Roboto Mono)
+- **Body & UI** → `font-sans` (DM Sans)
 
-### Type scale
+The big headings use explicit `clamp()` on `font-size` (this is the shipped pattern — don't convert
+them to fluid `rem`). Body and smaller text use fixed `px` sizes.
 
-Define these as `@layer components` in `globals.css` or use Tailwind equivalents:
+### Type scale (shipped)
 
-| Role | Size | Weight | Tracking | Color |
-|---|---|---|---|---|
-| `h1` | `clamp(2.4rem, 6vw, 8.29rem)` | 500 | `-0.02em` | `--dark-green` |
-| `h2` | `clamp(1.8rem, 3.5vw, 3.5rem)` | 500 | `-0.02em` | `--dark-green` |
-| `h3` | `1rem` | 500 | `normal` | `--dark-green` |
-| Eyebrow | `0.857rem` | 500 | `0.06em` | `--forest-green` |
-| Body | `1rem` | 400 | `normal` | `--medium-green` |
-| Small | `0.857rem` | 400 | `normal` | `--medium-green` |
-| Caption | `0.75rem` | 400/600 | `normal` | `--medium-green` |
+Prefer the `SectionTitle`, `Eyebrow`, and `Body` primitives in `src/components/shared/` over
+re-typing these classes. Reference values:
 
-Eyebrow labels (small uppercase text above headings) are a repeated pattern. Use the `.eyebrow` class defined in `globals.css`:
+| Role | Font | Size | Weight | Line-height | Tracking | Color |
+|---|---|---|---|---|---|---|
+| `h1` (hero) | display | via `HeroHeading` | 400 | tight | — | `--heading` |
+| `h2` (section) | display | `clamp(36px, 5.5vw, 60px)` | 400 | `0.9` | `clamp(-1px, -0.2vw, -1.8px)` | `--heading` |
+| `h3` (card) | sans/display | `18px` | 700 | `1.4` | `-0.09px` | `--heading` |
+| Eyebrow | mono | `14px` | 400 | `1.4` | `-0.14px` + `uppercase` | `--olive` |
+| Body | sans | `18px` | 400 | `1.4` | `-0.09px` | `--body` |
+| Caption | mono | `14px` | 400 | `1.4` | `-0.14px` | `--caption` |
 
-```css
-/* globals.css @layer components */
-.eyebrow {
-  color: var(--forest-green);
-  font-size: 0.857rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+Eyebrow labels (small uppercase mono text above headings) are a repeated pattern. Use the `Eyebrow`
+primitive — it renders the canonical style:
+
+```tsx
+import { Eyebrow } from '@/components/shared/Eyebrow'
+
+<Eyebrow>Funciones, Comanda digital</Eyebrow>
+// → font-mono, 14px, uppercase, tracking -0.14px, text-[var(--olive)]
 ```
 
+> The legacy `.eyebrow` class in `globals.css` still uses the old green system (sans, `--forest-green`)
+> and is only consumed by not-yet-migrated homepage sections. Don't use it in new code; it's removed
+> once those sections migrate.
+
 Line heights:
-- Headings: `1.1`
-- Body copy: `1.5`–`1.65`
-- UI labels: `1`–`1.2`
+- Big headings (h1/h2): `0.9`
+- Card titles (h3) / body / labels: `1.4`
 
 ---
 
@@ -173,45 +192,39 @@ Use: `className={styles.wipeOverlay}`
 
 ## 6. Shared UI primitives
 
-Before writing layout markup inline, check if a shared primitive exists. If it doesn't but the pattern repeats 2+ times, create it.
+Before writing layout markup inline, check if a shared primitive exists. If it doesn't but the pattern repeats 2+ times, create it. All primitives live in `src/components/shared/`.
 
-### `<Section>` — standard section wrapper
-```tsx
-// src/components/shared/Section.tsx
-type SectionProps = {
-  children: React.ReactNode
-  className?: string
-  background?: 'cream' | 'warm-white' | 'pale-cream' | 'dark-green'
-}
-```
-Applies `var(--section-padding-y) var(--section-padding-x)` padding and background color.
+### Canonical primitives (use these)
 
-### `<Container>` — max-width centered content
-```tsx
-type ContainerProps = {
-  children: React.ReactNode
-  size?: 'default' | 'narrow' | 'mid'  // 72rem / 44rem / 60rem
-  className?: string
-}
-```
+| Primitive | Purpose |
+|---|---|
+| `<PageSection reveal? id?>` | Section wrapper — top divider + shipped padding rhythm, capped at 1500px |
+| `<PageNav cta?>` | Top nav bar — wordmark + trial CTA |
+| `<Eyebrow>` | Mono uppercase olive label above a heading |
+| `<SectionTitle as?>` | Serif display heading, `clamp(36px, 5.5vw, 60px)` / line-height 0.9, black |
+| `<Body tone?>` | `body` (18px gray) or `caption` (14px mono muted) paragraph |
+| `<LinkButton variant href|onClick>` | In-page CTA — `primary` (olive) or `outline` (bordered white). Replaces per-page `PrimaryButton`/`SoftButton` |
+| `<MediaFrame src aspectRatio>` | 20px-radius `next/image fill` frame |
+| `<FaqSection items>` | Full FAQ block |
+| `<PricingCards variant>` | Pricing card(s), fed from `src/config/plans.ts` |
+| `TrialButton` / `DemoButton` (`CtaButtons`) | Dialog-opening trial/demo CTAs (client) |
+| `<FloatingNav items>` | Sticky anchor nav |
+| `<Reveal>` | Scroll-reveal wrapper |
 
-### `<SectionHeading>` — eyebrow + h2 + description
+Example composition:
 ```tsx
-type SectionHeadingProps = {
-  eyebrow?: string
-  heading: string
-  description?: string
-  align?: 'left' | 'center'
-}
+<PageSection reveal id="flujo">
+  <Eyebrow className="mb-5">Cómo funciona</Eyebrow>
+  <SectionTitle>El flujo completo</SectionTitle>
+  <Body className="mt-6">Sin papel. Sin pedidos que se pierden.</Body>
+  <LinkButton href="#contacto" className="mt-8">Empezá</LinkButton>
+</PageSection>
 ```
 
-### `<Button>` — CTA button
-Three variants:
-- `primary` — yellow pill (`--yellow` bg, `--dark-green` text)
-- `ghost` — transparent pill with border (light or dark border depending on background)
-- `dark` — dark green pill (`--dark-green` bg, `--warm-white` text)
-
-All buttons use `border-radius: 9999px`, `font-weight: 500`, `font-family: var(--font-dm-sans)`.
+### Legacy — do not use in new code
+`Section`, `Container`, `SectionHeading`, `Button` (in `shared/`) belong to the old **green**
+system and are only consumed by not-yet-migrated `Homepage/*` and `Bares/*` components. They get
+removed as those migrate. Don't add new usages.
 
 ---
 
