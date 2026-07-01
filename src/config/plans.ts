@@ -22,13 +22,13 @@ export type Plan = {
 }
 
 export const PLAN_BASIC: Plan = {
-  name: 'Básico',
-  priceMonthly: 21000,
-  price: formatARS(21000),
+  name: 'Chico',
+  priceMonthly: 24000,
+  price: formatARS(24000),
   description: 'Para cafeterías, locales de mostrador y negocios que no tienen salón con mozos.',
   features: [
-    'Pedidos digitales con impresión en cocina',
-    'Gestión de menú (categorías, productos, precios, modificadores)',
+    'Impresión de comandas',
+    'Gestión de menú (categorías, productos, precios)',
     'Carta QR para tus clientes',
     'Facturación electrónica ARCA (facturas A, B y C)',
     'Arqueo de caja por turno',
@@ -38,7 +38,24 @@ export const PLAN_BASIC: Plan = {
 }
 
 export const PLAN_ADVANCED: Plan = {
-  name: 'Avanzado',
+  name: 'Mediano',
+  priceMonthly: 38000,
+  price: formatARS(38000),
+  description: 'Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.',
+  popular: 'Más popular',
+  features: [
+    `Todo el plan ${PLAN_BASIC.name}`,
+    'App para mozos (sin límite de usuarios simultáneos)',
+    'Monitor de cocina (pedidos a pantalla en tiempo real)',
+    'Reportes de ventas por período, producto y medio de pago',
+    'Control de stock con alertas de reposición',
+    'Recetas y cálculo de márgenes por plato',
+    'División de cuentas',
+  ],
+}
+
+export const PLAN_LARGE: Plan = {
+  name: 'Grande',
   priceMonthly: 38000,
   price: formatARS(38000),
   description: 'Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.',
