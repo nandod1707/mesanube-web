@@ -222,12 +222,14 @@ export default function HomePage() {
               letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
             }}
           >
-            <span>Sistema POS para restaurantes y cafeterías en Argentina.</span>
+            <span>El sistema de gestión para gastronomía</span>
+            <br/>
+            <span>más fácil que vas a probar.</span>
           </h1>
 
           <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Organizá tu local, cumplí con ARCA y controlá la caja. Diseñado para bares, cafeterías
-            y restaurantes argentinos. Sin costos ocultos. Sin permanencia mínima.
+            y restaurantes. Sin costos ocultos, y sin permanencia mínima.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -236,11 +238,11 @@ export default function HomePage() {
           </div>
 
           {/* Social proof */}
-          <p className="text-center text-[13px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
+          <p className="text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
             <em>
               &ldquo;No pensé que iba a ser tan fácil.&rdquo;
             </em>{' '}
-            Minuto Café, Caballito
+            - Minuto Café, Caballito
           </p>
         </div>
 
@@ -253,7 +255,7 @@ export default function HomePage() {
             >
               <div className="absolute inset-[2%_2%_0_2%] overflow-hidden rounded-[10px] sm:rounded-[14px] lg:rounded-[16px]">
                 <Image
-                  src="/media/inner-screen.webp"
+                  src="/api/media/file/inner-screen-1.webp"
                   alt="Panel de control de Mesanube"
                   width={1741}
                   height={993}
@@ -277,7 +279,7 @@ export default function HomePage() {
           {trustItems.map((item) => (
             <span
               key={item}
-              className="flex items-center gap-1.5 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
+              className="flex items-center gap-1.5 text-[16px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
             >
               <span className="font-bold text-[#485c11]" aria-hidden="true">
                 ✓
@@ -380,14 +382,10 @@ export default function HomePage() {
                 Facturación electrónica ARCA incluida en todos los planes
               </h2>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA. Emitís facturas A, B y C directamente desde tu cuenta, con impresión en
-                ticket térmico. Sin entrar al facturador, ni tener que llenar precios a mano.
+                En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA. Emitís facturas A, B y C directamente desde tu cuenta, con impresión desde cualquier comandera con ticket térmico.
               </p>
               <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                Sin procesos manuales. Sin aplicaciones que se actualizan cuando peor viene.
-              </p>
-              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-black">
-                Es nativo. Viene incluido. Funciona.
+                Sin controladores fiscales, sin entrar al facturador, ni tener que llenar precios a mano.
               </p>
             </div>
             <Link
@@ -404,7 +402,7 @@ export default function HomePage() {
           >
             <div className="relative aspect-[4/5] w-full sm:aspect-[16/10] lg:h-[711px]">
               <Image
-                src="/figma/columns.png"
+                src="/api/media/file/las-tres-gracias-1.webp"
                 alt="Estructura clara y ordenada del sistema Mesanube"
                 fill
                 sizes="(max-width: 1024px) 100vw, 740px"
@@ -476,7 +474,7 @@ export default function HomePage() {
           <Reveal className="zoom-wrap relative w-full overflow-hidden rounded-[20px] lg:w-1/2 lg:flex-[1_0_0] lg:rounded-[30px]">
             <div className="relative aspect-[550/624] w-full">
               <Image
-                src="/figma/sphere.png"
+                src="/api/media/file/coffee-times.webp"
                 alt="Bar con Mesanube implementado"
                 fill
                 sizes="(max-width: 1024px) 100vw, 550px"
@@ -496,14 +494,12 @@ export default function HomePage() {
                 letterSpacing: 'clamp(-0.8px, -0.2vw, -1.6px)',
               }}
             >
-              &ldquo;Tuve un problema un lunes a la mañana antes de abrir. Escribí por WhatsApp y
-              en diez minutos lo tenía resuelto, y me respondió alguien que sabía exactamente qué
-              hacer.&rdquo;
+              &ldquo;Es tan fácil de usar que las cajeras casi no necesitaron capacitación, les mostré cómo se usa y a los 10 minutos ya lo manejaban sin problemas.&rdquo;
             </p>
             <div className="flex w-full flex-col items-start gap-2 leading-[1.4]">
-              <p className="text-[18px] tracking-[-0.09px] text-black">Diego F.</p>
+              <p className="text-[18px] tracking-[-0.09px] text-black">Stan</p>
               <p className="font-mono text-[14px] tracking-[-0.14px] text-[#485c11]">
-                Bar Belgrano, Almagro
+                Coffee Times, Caballito
               </p>
             </div>
           </Reveal>
