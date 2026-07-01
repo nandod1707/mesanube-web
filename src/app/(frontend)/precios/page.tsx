@@ -8,6 +8,7 @@ import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -171,16 +172,7 @@ export default function PreciosPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Precios
           </p>
-          <h1
-            className="word-rise w-full font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            <span>Precios sin letra chica.</span>
-          </h1>
+          <HeroHeading text="Precios sin letra chica." className="w-full" />
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin
             tarjeta, sin permanencia, sin sorpresas en la factura.

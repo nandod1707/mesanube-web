@@ -1,0 +1,50 @@
+/* Reusable hero headline used across internal pages.
+   Each word is masked individually so the rise-in animation still plays,
+   while the tight display line-height never clips ascenders/descenders. */
+
+.heading {
+  font-size: clamp(56px, 8vw, 130px);
+  line-height: 1;
+  letter-spacing: clamp(-2px, -0.4vw, -5px);
+}
+
+/* Per-word mask: clips the pre-animation offset without cropping the glyphs.
+   Vertical padding gives accents/descenders room; negative margins keep the
+   visual line rhythm tight. `overflow: clip` (with visible x) avoids
+   horizontal clipping of italic/serif side-bearings. */
+.word {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.14em 0 0.24em;
+  margin: -0.14em 0.22em -0.24em 0;
+  vertical-align: top;
+}
+
+.inner {
+  display: inline-block;
+  line-height: 1;
+  transform: translateY(120%);
+  opacity: 0;
+  animation: riseWord 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Keyframes are defined locally so CSS Modules keeps the animation-name in
+   sync when it scopes the class hashes. */
+@keyframes riseWord {
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}

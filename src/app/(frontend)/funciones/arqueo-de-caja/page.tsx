@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -177,20 +178,7 @@ export default function ArqueoDeCajaPage() {
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Funciones, Arqueo de caja
           </p>
-          <h1
-            className="word-rise mb-6 font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'Cerrá el turno con los números que corresponden'.split(' ').map((word, i) => (
-              <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text="Cerrá el turno con los números que corresponden" className="mb-6" />
           <p className="mb-8 max-w-[540px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Sin calculadora. Sin cuentas a mano. Sin diferencias que no podés explicar a las 2 de
             la madrugada. El arqueo de Mesanube lleva el control durante todo el turno y te da el

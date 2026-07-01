@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Cadenas Multilocal. Control Centralizado de Sucursales | Mesanube',
@@ -118,16 +119,7 @@ export default function CadenasMultilocalPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Para cadenas multilocal
           </p>
-          <h1
-            className="word-rise w-full font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            <span>Mesanube para cadenas multilocal. Próximamente.</span>
-          </h1>
+          <HeroHeading text="Mesanube para cadenas multilocal. Próximamente." className="w-full" />
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Abriste tu segunda sucursal. O estás a punto de hacerlo. Y ya sabés que el sistema que
             usabas para una va a quedarse corto.

@@ -9,6 +9,7 @@ import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_BASIC } from '@/config/plans'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -188,20 +189,7 @@ export default function CartaQrPage() {
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Funciones, Carta QR
           </p>
-          <h1
-            className="word-rise mb-6 font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'El menú que siempre está actualizado'.split(' ').map((word, i) => (
-              <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text="El menú que siempre está actualizado" className="mb-6" />
           <p className="mb-8 max-w-[520px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Tu cliente escanea el código en la mesa y ve el menú en tiempo real, en su teléfono. Sin
             cartas impresas que desactualizar, sin precios tachados a mano, sin que nadie se tenga

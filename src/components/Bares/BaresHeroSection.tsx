@@ -4,6 +4,7 @@ import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
 import Reveal from '@/components/shared/Reveal'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 const headline = 'Para el bar que no para. Comanda ágil, caja que cierra'
 
@@ -28,20 +29,7 @@ export function BaresHeroSection() {
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Para bares
           </p>
-          <h1
-            className="word-rise mb-6 font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {headline.split(' ').map((word, i) => (
-              <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text={headline} className="mb-6" />
           <p className="mb-8 max-w-[560px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Los viernes a la noche no perdonan errores. Mesanube mantiene el ritmo de tu bar sin
             que nada se pierda en el camino.

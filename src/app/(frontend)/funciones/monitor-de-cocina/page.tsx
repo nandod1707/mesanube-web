@@ -10,6 +10,7 @@ import { FaqSection } from '@/components/shared/FaqSection'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -176,22 +177,7 @@ export default function MonitorDeCocinaPage() {
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Funciones, Monitor de cocina
           </p>
-          <h1
-            className="word-rise mb-6 font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'Monitor de cocina. Los pedidos en pantalla, en orden, en tiempo real'.split(' ').map(
-              (word, i) => (
-                <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
-                  {word}
-                </span>
-              ),
-            )}
-          </h1>
+          <HeroHeading text="Monitor de cocina. Los pedidos en pantalla, en orden, en tiempo real" className="mb-6" />
           <p className="mb-8 max-w-[520px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             El cocinero no espera el papelito. El mozo no tiene que gritar. Los pedidos llegan solos
             a la pantalla de cocina en el momento en que se toman. Y cuando el plato está listo, el

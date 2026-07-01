@@ -9,6 +9,7 @@ import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube',
@@ -175,16 +176,7 @@ export default function PizzeriasPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Para pizzerías
           </p>
-          <h1
-            className="word-rise w-full font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            <span>El sistema que aguanta el ritmo de una pizzería.</span>
-          </h1>
+          <HeroHeading text="El sistema que aguanta el ritmo de una pizzería." className="w-full" />
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Salón, mostrador y delivery en simultáneo. Pico del viernes a las 21. La caja al final
             del turno sin que nadie se quede hasta la medianoche calculando. Mesanube está pensado

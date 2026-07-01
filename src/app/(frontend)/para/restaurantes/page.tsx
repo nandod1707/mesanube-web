@@ -9,6 +9,7 @@ import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { PLAN_ADVANCED } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Restaurantes en Argentina. Gestión Completa con ARCA | Mesanube',
@@ -216,16 +217,7 @@ export default function RestaurantesPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Para restaurantes
           </p>
-          <h1
-            className="word-rise w-full font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            <span>De la primera comanda al cierre.</span>
-          </h1>
+          <HeroHeading text="De la primera comanda al cierre." className="w-full" />
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Para los que saben lo que es abrir a mediodía y no levantar cabeza hasta medianoche.
             Mesanube organiza la sala, conecta con cocina y te da los números al final del día.

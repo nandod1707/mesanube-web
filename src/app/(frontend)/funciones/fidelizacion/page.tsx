@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -88,20 +89,7 @@ export default function FidelizacionPage() {
               Próximamente
             </span>
           </div>
-          <h1
-            className="word-rise mb-6 font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'Fidelización, próximamente'.split(' ').map((word, i) => (
-              <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text="Fidelización, próximamente" className="mb-6" />
           <p className="mb-8 max-w-[540px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Estamos construyendo el primer módulo de fidelización para restaurantes argentinos.
             Integrado directamente al POS. Sin que tus clientes tengan que bajarse ninguna app.

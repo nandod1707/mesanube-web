@@ -8,6 +8,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 export const metadata: Metadata = {
   title: 'Soporte, Mesanube',
@@ -146,16 +147,7 @@ export default function SoportePage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Soporte
           </p>
-          <h1
-            className="word-rise w-full font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            <span>El equipo de Mesanube, directo por WhatsApp.</span>
-          </h1>
+          <HeroHeading text="El equipo de Mesanube, directo por WhatsApp." className="w-full" />
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Cuando algo no funciona o tenés una duda, no querés esperar en una cola de tickets ni
             hablar con un bot. Te entendemos. Por eso el soporte de Mesanube es directo al equipo.

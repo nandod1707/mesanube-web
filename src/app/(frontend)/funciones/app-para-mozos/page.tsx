@@ -10,6 +10,7 @@ import { FaqSection } from '@/components/shared/FaqSection'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_ADVANCED } from '@/config/plans'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -190,23 +191,7 @@ export default function AppParaMozosPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] mb-5 uppercase">
             Funciones, App para mozos
           </p>
-          <h1
-            className="word-rise font-display text-black mb-6"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'La app para mozos que simplifica el servicio'.split(' ').map((word, i) => (
-              <span
-                key={i}
-                style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}
-              >
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text="La app para mozos que simplifica el servicio" className="mb-6" />
           <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] max-w-[520px] mb-8">
             Tus mozos trabajan con el celular que ya tienen en el bolsillo. Toman pedidos, ven las
             cuentas y cierran las mesas, sin terminales ni hardware nuevo.

@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 
@@ -205,20 +206,7 @@ export default function ComandaDigitalPage() {
           <p className="mb-5 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Funciones, Comanda digital
           </p>
-          <h1
-            className="word-rise mb-6 font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'Del celular del mozo a la cocina en segundos'.split(' ').map((word, i) => (
-              <span key={i} style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}>
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text="Del celular del mozo a la cocina en segundos" className="mb-6" />
           <p className="mb-8 max-w-[520px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Sin papel. Sin pedidos que se pierden. Sin &ldquo;¿qué dijo que quería?&rdquo;. El pedido aparece
             en cocina en tiempo real, en el momento en que lo tomás.

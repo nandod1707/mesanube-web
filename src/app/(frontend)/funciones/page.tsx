@@ -7,6 +7,7 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_ADVANCED } from '@/config/plans'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -164,16 +165,7 @@ export default function FuncionesPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
             Funciones
           </p>
-          <h1
-            className="word-rise w-full font-display text-black"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            <span>Todo lo que necesitás para gestionar tu local, en un solo sistema.</span>
-          </h1>
+          <HeroHeading text="Todo lo que necesitás para gestionar tu local, en un solo sistema." className="w-full" />
           <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
             Desde que abrís hasta que cerrás la caja. Mesanube conecta la sala, la cocina y la caja
             en tiempo real, sin apps separadas, sin hardware especial.

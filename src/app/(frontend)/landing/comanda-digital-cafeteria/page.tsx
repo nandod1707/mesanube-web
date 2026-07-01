@@ -9,6 +9,7 @@ import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { PLAN_BASIC } from '@/config/plans'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -198,23 +199,7 @@ export default function ComandaDigitalCafeteriaPage() {
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11] mb-5 uppercase">
             Landing, Comanda Digital para Cafeterías
           </p>
-          <h1
-            className="word-rise font-display text-black mb-6"
-            style={{
-              fontSize: 'clamp(56px, 10vw, 130px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-2px, -0.4vw, -5px)',
-            }}
-          >
-            {'Comanda digital para tu cafetería'.split(' ').map((word, i) => (
-              <span
-                key={i}
-                style={{ animationDelay: `${i * 60}ms`, marginRight: '0.22em' }}
-              >
-                {word}
-              </span>
-            ))}
-          </h1>
+          <HeroHeading text="Comanda digital para tu cafetería" className="mb-6" />
           <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] max-w-[520px] mb-8">
             Los pedidos en papel se pierden, se leen mal y no llegan a tiempo. Con la comanda
             digital de Mesanube, cada pedido va directo a cocina en tres segundos, desde cualquier
