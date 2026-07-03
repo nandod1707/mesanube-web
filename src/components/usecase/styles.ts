@@ -16,6 +16,12 @@ export const BIG_NUMBER_STYLE = {
   letterSpacing: 'clamp(-2px, -0.3vw, -3.2px)',
 } as const
 
+// Smaller variant for time/label markers (e.g. "8:30") instead of "01".
+export const SMALL_NUMBER_STYLE = {
+  fontSize: 'clamp(36px, 4vw, 56px)',
+  letterSpacing: 'clamp(-1px, -0.2vw, -2px)',
+} as const
+
 export const QUOTE_STYLE = {
   fontSize: 'clamp(24px, 3vw, 40px)',
   lineHeight: 1,

@@ -16,6 +16,8 @@ type CardGridProps = {
   columns?: 3 | 4
   /** Optional full-width image rendered under the grid. */
   image?: { src: string; alt: string }
+  /** Optional small caption rendered under the grid. */
+  footnote?: string
 }
 
 const COLS: Record<3 | 4, string> = {
@@ -27,7 +29,15 @@ const COLS: Record<3 | 4, string> = {
  * Eyebrow + heading followed by a responsive grid of text cards, with an
  * optional image below. Covers the "qué resuelve" and "funciones" sections.
  */
-export function CardGrid({ id, eyebrow, heading, items, columns = 3, image }: CardGridProps) {
+export function CardGrid({
+  id,
+  eyebrow,
+  heading,
+  items,
+  columns = 3,
+  image,
+  footnote,
+}: CardGridProps) {
   return (
     <section
       id={id}
@@ -53,6 +63,14 @@ export function CardGrid({ id, eyebrow, heading, items, columns = 3, image }: Ca
           </Reveal>
         ))}
       </div>
+
+      {footnote && (
+        <Reveal delay={1} className="mt-[40px] w-full">
+          <p className="text-[14px] leading-[1.4] tracking-[-0.09px] text-[var(--caption)]">
+            {footnote}
+          </p>
+        </Reveal>
+      )}
 
       {image && (
         <Reveal

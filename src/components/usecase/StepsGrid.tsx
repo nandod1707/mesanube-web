@@ -3,7 +3,7 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import Reveal from '@/components/shared/Reveal'
 
-import { BIG_NUMBER_STYLE, BODY, CARD_TITLE, TITLE_STYLE } from './styles'
+import { BIG_NUMBER_STYLE, BODY, CARD_TITLE, SMALL_NUMBER_STYLE, TITLE_STYLE } from './styles'
 
 type Step = { n: string; title: string; body: string }
 
@@ -12,13 +12,17 @@ type StepsGridProps = {
   steps: Step[]
   /** Optional soft CTA shown to the right of the heading. */
   softCta?: string
+  /** Marker size: `lg` for "01" numbers (default), `sm` for time labels like "8:30". */
+  numberSize?: 'lg' | 'sm'
 }
 
 /**
  * Numbered 4-up grid with a heading and an optional soft CTA. Covers the
- * "cada rol, cada pantalla" / "del primer cliente al último pedido" sections.
+ * "cada rol, cada pantalla" / "del primer cliente al último pedido" sections,
+ * and (with `numberSize="sm"`) the time-labelled "de la apertura al cierre".
  */
-export function StepsGrid({ heading, steps, softCta }: StepsGridProps) {
+export function StepsGrid({ heading, steps, softCta, numberSize = 'lg' }: StepsGridProps) {
+  const numberStyle = numberSize === 'sm' ? SMALL_NUMBER_STYLE : BIG_NUMBER_STYLE
   return (
     <section className="flex w-full max-w-[1500px] flex-col items-start gap-[50px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:gap-[80px] sm:pt-[80px] lg:pb-[120px]">
       <Reveal className="flex w-full flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
@@ -36,7 +40,7 @@ export function StepsGrid({ heading, steps, softCta }: StepsGridProps) {
             aria-label={`Paso ${i + 1} de ${steps.length}`}
             className="flex flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[40px] pr-[30px] pb-5 sm:gap-[60px] sm:pt-[60px]"
           >
-            <p className="w-full leading-none text-[var(--caption)]" style={BIG_NUMBER_STYLE}>
+            <p className="w-full leading-none text-[var(--caption)]" style={numberStyle}>
               {s.n}
             </p>
             <div className="flex w-full flex-col items-start gap-5">
