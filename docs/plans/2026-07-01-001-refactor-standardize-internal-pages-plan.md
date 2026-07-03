@@ -211,11 +211,21 @@ Agregar a `globals.css :root` con nombres semánticos y reescribir los `.md`:
   arquitectura antes de escalar.
 
 ### Fase 5 — Migrar el resto de internas
-- `funciones/*` (carta-qr, monitor-de-cocina, arqueo-de-caja, app-para-mozos, fidelización,
-  reportes-y-analitica, page índice), `para/*` (restaurantes, cafeterias, pizzerias,
-  cadenas-multilocal), `landing/comanda-digital-cafeteria`, `precios`, `soporte`.
-- Reescribir `Bares/*` y `FacturacionArca/*` para consumir Capa 3 (o migrar sus páginas a Capa 3
-  y **borrar** los sets duplicados).
+- **Ajuste de enfoque (con el usuario):** en vez de primitivos de bajo nivel, se extrajo una
+  **colección de componentes de sección** en `src/components/usecase/` que rinde EXACTAMENTE el
+  markup shippeado de `/para/*` sobre los tokens: `UseCaseTopNav`, `UseCaseHero`, `ProseSection`,
+  `CardGrid` (cols 3|4, `image?`, `footnote?`), `StepsGrid` (`numberSize` lg|sm, `softCta?`),
+  `SplitFeature`, `Testimonial`, `FaqBlock`, `UseCaseCta` + `styles.ts`. Los 8 primitivos de bajo
+  nivel se **borraron**.
+- [x] **Las 4 `/para/*`** (`bares`, `restaurantes`, `pizzerias`, `cafeterias`) reescritas como
+  *datos + composición* sobre la colección. `Bares/*` (verde) eliminado. Cada una validada
+  visualmente (screenshots en dev) casi-idéntica a su versión previa (±24px por estandarizar el gap
+  de cards).
+- [ ] `funciones/*` (carta-qr, monitor-de-cocina, arqueo-de-caja, app-para-mozos, fidelización,
+  reportes-y-analitica, page índice), `landing/comanda-digital-cafeteria`, `precios`, `soporte`,
+  `para/cadenas-multilocal` — evaluar cuáles encajan en la colección `usecase` y cuáles necesitan
+  componentes nuevos.
+- [ ] Migrar `FacturacionArca/*` y **borrar** el set duplicado.
 - **Criterio:** ninguna página interna >150 líneas; cero `PrimaryButton`/`SoftButton` locales;
   cero hex crudo (todo vía `var(--…)`).
 
