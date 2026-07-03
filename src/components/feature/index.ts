@@ -1,6 +1,8 @@
 export { FeatureTopNav } from './FeatureTopNav'
 export { FeatureHero } from './FeatureHero'
 export { FeatureSplit } from './FeatureSplit'
+export { FeatureGrid } from './FeatureGrid'
+export { FeaturePlansTeaser } from './FeaturePlansTeaser'
 export { FeatureMedia } from './FeatureMedia'
 export { StepsRow } from './StepsRow'
 export { FeatureTestimonial } from './FeatureTestimonial'

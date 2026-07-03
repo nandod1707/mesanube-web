@@ -11,10 +11,15 @@ type StepsRowProps = {
   eyebrow: string
   heading: string
   steps: Step[]
+  /** `grid` = 3-up cards (default); `list` = number-left / text-right rows. */
+  layout?: 'grid' | 'list'
 }
 
-/** Feature-page "cómo funciona": stacked header + a 3-up grid of numbered steps. */
-export function StepsRow({ id, eyebrow, heading, steps }: StepsRowProps) {
+/**
+ * Feature-page "cómo funciona": stacked header + numbered steps, either as a
+ * 3-up grid or a vertical number-left list.
+ */
+export function StepsRow({ id, eyebrow, heading, steps, layout = 'grid' }: StepsRowProps) {
   return (
     <section
       id={id}
@@ -27,21 +32,41 @@ export function StepsRow({ id, eyebrow, heading, steps }: StepsRowProps) {
         </h2>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-3">
-        {steps.map((step, i) => (
-          <Reveal
-            key={step.number}
-            delay={(i % 3) as 0 | 1 | 2 | 3 | 4}
-            className="flex flex-col items-start gap-4 border-t border-[var(--divider)] pt-[40px] pb-[40px] pr-5"
-          >
-            <p className="font-display text-[var(--caption)]" style={STEP_NUMBER_STYLE}>
-              {step.number}
-            </p>
-            <p className={CARD_TITLE}>{step.title}</p>
-            <p className={BODY}>{step.description}</p>
-          </Reveal>
-        ))}
-      </div>
+      {layout === 'grid' ? (
+        <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-3">
+          {steps.map((step, i) => (
+            <Reveal
+              key={step.number}
+              delay={(i % 3) as 0 | 1 | 2 | 3 | 4}
+              className="flex flex-col items-start gap-4 border-t border-[var(--divider)] pt-[40px] pb-[40px] pr-5"
+            >
+              <p className="font-display text-[var(--caption)]" style={STEP_NUMBER_STYLE}>
+                {step.number}
+              </p>
+              <p className={CARD_TITLE}>{step.title}</p>
+              <p className={BODY}>{step.description}</p>
+            </Reveal>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col">
+          {steps.map((step, i) => (
+            <Reveal
+              key={step.number}
+              delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
+              className="grid grid-cols-1 gap-4 border-t border-[var(--divider)] pt-[40px] pb-[40px] sm:grid-cols-[120px_1fr] lg:grid-cols-[180px_1fr]"
+            >
+              <p className="font-display leading-none text-[var(--caption)]" style={STEP_NUMBER_STYLE}>
+                {step.number}
+              </p>
+              <div className="flex flex-col gap-3">
+                <p className={CARD_TITLE}>{step.title}</p>
+                <p className={BODY}>{step.description}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      )}
     </section>
   )
 }
