@@ -1,98 +1,67 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 
-import FloatingNav from '@/components/shared/FloatingNav'
-import Reveal from '@/components/shared/Reveal'
 import { TrialButton } from '@/components/shared/CtaButtons'
+import FloatingNav from '@/components/shared/FloatingNav'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { HeroHeading } from '@/components/shared/HeroHeading'
+import {
+  CardGrid,
+  CtaLink,
+  ProseSection,
+  UseCaseCta,
+  UseCaseHero,
+  UseCaseTopNav,
+} from '@/components/usecase'
 
 export const metadata: Metadata = {
-  title: 'Sistema POS para Cadenas Multilocal. Control Centralizado de Sucursales | Mesanube',
+  title: 'Sistema POS Multilocal en Argentina. Tablero Consolidado de Sucursales | Mesanube',
   description:
-    'Gestión centralizada para cafeterías y restaurantes con más de una sucursal. Próximamente en Mesanube. Anotate para acceso anticipado.',
+    'Gestión centralizada para cafeterías y restaurantes con más de una sucursal: tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Probá gratis.',
 }
 
 /* ── Static data ── */
 
 const navItems = [
-  { href: '#para-quien', label: 'Para quién' },
-  { href: '#que-viene', label: 'Qué viene' },
-  { href: '#mientras-tanto', label: 'Mientras tanto' },
+  { href: '#problema', label: 'El problema' },
+  { href: '#funciones', label: 'Qué incluye' },
+  { href: '#tiempo-real', label: 'En tiempo real' },
   { href: '#contacto', label: 'Empezá' },
 ]
 
 const features = [
   {
-    title: 'Panel unificado',
-    body: 'Las ventas de cada sucursal en tiempo real, desde un solo lugar. Sin entrar y salir de sistemas distintos.',
+    title: 'Tablero consolidado',
+    body: 'Ventas, costos, caja y stock de todos tus locales en una sola pantalla, actualizados en tiempo real. Entrás una vez y ves el negocio completo.',
   },
   {
-    title: 'Menú compartido',
-    body: 'Menú compartido entre locales o diferente por sucursal, según lo que necesités. Un cambio de precio que se replica en todos los locales.',
+    title: 'Catálogo compartido',
+    body: 'Cargás el menú una vez y lo replicás a todos los locales, o lo personalizás por sucursal. Cambiás un precio y llega a donde vos quieras.',
   },
   {
-    title: 'Reportes consolidados',
-    body: 'Reportes consolidados o por local. Sabés cuál sucursal está vendiendo más hoy, qué producto rota mejor en cada una.',
+    title: 'Facturación multi-CUIT',
+    body: 'Cada local puede facturar ante ARCA con su propio CUIT y punto de venta. Ideal si tus sucursales son razones sociales distintas o una franquicia.',
   },
   {
-    title: 'Usuarios y roles',
-    body: 'Usuarios y roles por sucursal. El encargado de cada local ve lo suyo; vos ves todo.',
+    title: 'Permisos por local',
+    body: 'Cada encargado entra y ve solo lo suyo: su caja, sus ventas, su stock. Vos, como dueño, ves todos. Usuarios y roles por sucursal.',
   },
   {
-    title: 'Arqueo por local',
-    body: 'Arqueo de caja por local, con visión global para el dueño. Cerrás el día con los números de ambas sucursales en una sola pantalla.',
+    title: 'Caja consolidada',
+    body: 'Arqueo por caja y por turno en cada local, y el cierre del día consolidado de toda la cadena. Sabés cuánto entró en total sin sumar a mano.',
+  },
+  {
+    title: 'Reportes comparados',
+    body: 'Rentabilidad, CMV y margen por local y consolidado. Ves qué sucursal vende más, qué producto rota mejor en cada una y dónde se te va la plata.',
+  },
+  {
+    title: 'Stock y alertas por local',
+    body: 'Control de stock por sucursal con alertas de reposición, y el reporte Real vs Teórico que te muestra la merma en pesos, local por local.',
+  },
+  {
+    title: 'Gastos por local',
+    body: 'Registrás ingresos y egresos por sucursal, con comprobante adjunto. Cada local con sus cuentas claras y el panorama general para vos.',
   },
 ]
-
-/* ── Button primitives ── */
-
-function PrimaryButton({
-  children,
-  href = '#contacto',
-  className = '',
-}: {
-  children: React.ReactNode
-  href?: string
-  className?: string
-}) {
-  return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center gap-1.5 rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[#3a4c0d] active:scale-[0.98] ${className}`}
-    >
-      <span>{children}</span>
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 6 7"
-        fill="none"
-        className="translate-y-px transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        aria-hidden="true"
-      >
-        <path
-          d="M0.5 6L5.5 1M5.5 1H1.5M5.5 1V5"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeLinecap="square"
-        />
-      </svg>
-    </Link>
-  )
-}
-
-function SoftButton({ children, href = '#' }: { children: React.ReactNode; href?: string }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex items-center justify-center rounded-full bg-[#dfecc6] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black transition-[background-color,transform] duration-300 hover:bg-[#d0e1ac] active:scale-[0.98]"
-    >
-      {children}
-    </Link>
-  )
-}
 
 /* ── Page ── */
 
@@ -100,219 +69,63 @@ export default function CadenasMultilocalPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav items={navItems} />
+      <UseCaseTopNav />
 
-      {/* Top nav */}
-      <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
-        <Link
-          href="/"
-          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-black sm:text-[30px] sm:tracking-[-1.5px]"
-          style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-        >
-          mesanube
-        </Link>
-        <TrialButton>Probá gratis</TrialButton>
-      </nav>
-
-      {/* Hero */}
-      <header className="flex w-full max-w-[1500px] flex-col items-start gap-[60px] overflow-clip sm:gap-[100px]">
-        <div className="flex w-full flex-col items-start gap-6">
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Para cadenas multilocal
-          </p>
-          <HeroHeading text="Mesanube para cadenas multilocal. Próximamente." className="w-full" />
-          <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-            Abriste tu segunda sucursal. O estás a punto de hacerlo. Y ya sabés que el sistema que
-            usabas para una va a quedarse corto.
-          </p>
-          <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-            Estamos construyendo el panel de control centralizado para dueños de dos o más locales.
-            Anotate para ser de los primeros en acceder.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <PrimaryButton href="#contacto">Quiero acceso anticipado</PrimaryButton>
-          </div>
-        </div>
-
-        <Reveal className="zoom-wrap relative h-[220px] w-full overflow-hidden rounded-[20px] sm:h-[320px] lg:h-[420px] lg:rounded-[30px]">
-          <Image
-            src="/figma/landscape.png"
-            alt="Cadenas multilocal gestionadas con Mesanube"
-            fill
-            sizes="(max-width: 1024px) 100vw, 1500px"
-            className="object-cover"
-            priority
-          />
-        </Reveal>
-      </header>
+      <UseCaseHero
+        eyebrow="Para cadenas multilocal"
+        heading="Todos tus locales en una sola pantalla, en tiempo real."
+        subtitle={[
+          'Abriste el segundo local y de golpe todo se duplicó: dos cajas para arquear, dos stocks para controlar, dos veces el trabajo. Y ningún lugar donde ver el negocio completo.',
+          'Mesanube es multi-local de base: consolidá ventas, costos, caja y stock de todas tus sucursales en un tablero, actualizado en vivo.',
+        ]}
+        image={{ src: '/figma/landscape.png', alt: 'Cadena de locales gestionada con Mesanube' }}
+      />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
-        {/* Para quién */}
-        <section
-          id="para-quien"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              A quién va dirigido
-            </h2>
-            <p
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Para el dueño que está creciendo.
-            </p>
-          </Reveal>
-          <Reveal
-            delay={1}
-            className="flex w-full flex-col items-start gap-5 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] lg:pr-[400px]"
-          >
-            <p>
-              No estamos hablando de cadenas corporativas con cientos de locales y equipo de IT.
-              Estamos hablando del dueño de una cafetería en Palermo que abre su segunda sucursal en
-              Belgrano. O del restaurante familiar que suma un segundo punto en el mismo barrio.
-            </p>
-            <p>
-              Ese dueño necesita ver los dos locales desde el mismo lugar. Saber cuál está vendiendo
-              más hoy. Poder cambiar el menú de los dos al mismo tiempo. Cerrar el día con los
-              números de ambas sucursales en una sola pantalla.
-            </p>
-            <p className="font-bold text-black">Eso es lo que viene.</p>
-          </Reveal>
-        </section>
+        <ProseSection
+          id="problema"
+          eyebrow="El problema que conocés"
+          heading="Crecer no debería significar perder el control."
+          paragraphs={[
+            'Con un local, los números los tenés en la cabeza. Con dos, empieza el rompecabezas: cada sucursal con su caja, su stock y sus números por separado, y vos armando planillas a fin de mes para entender si te fue bien.',
+            'Los sistemas pensados para un solo local te obligan a entrar y salir de cuentas distintas. Los corporativos son caros y están hechos para cadenas de cientos de sucursales, no para el que tiene dos o tres.',
+            'Mesanube está en el medio, para el dueño que está creciendo, con el control centralizado que necesitás y sin la complejidad que no.',
+          ]}
+        />
 
-        {/* Qué va a incluir */}
-        <section
-          id="que-viene"
-          className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[#e9e9e9] pt-[60px] pb-[40px] sm:pt-[80px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Qué va a incluir
-            </h2>
-            <p
-              className="w-full font-display text-black lg:pr-[400px]"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Control centralizado sin complicaciones.
-            </p>
-          </Reveal>
-          <div className="grid w-full grid-cols-1 gap-x-[20px] sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((f, i) => (
-              <Reveal
-                key={f.title}
-                delay={Math.min((i % 3) + 1, 4) as 1 | 2 | 3 | 4}
-                as="article"
-                className="flex flex-col items-start gap-4 border-t border-[#e9e9e9] py-[40px] pr-5"
-              >
-                <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-black">
-                  {f.title}
-                </p>
-                <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  {f.body}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        <CardGrid
+          id="funciones"
+          eyebrow="Qué incluye"
+          heading="Control centralizado, local por local."
+          items={features}
+          image={{
+            src: '/figma/columns.png',
+            alt: 'Tablero multi-local de Mesanube consolidando varias sucursales',
+          }}
+        />
 
-        {/* Imagen */}
-        <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
-          <Reveal className="zoom-wrap relative h-[260px] w-full overflow-hidden rounded-[20px] sm:h-[380px] lg:h-[500px] lg:rounded-[30px]">
-            <Image
-              src="/figma/columns.png"
-              alt="Panel centralizado de Mesanube para múltiples sucursales"
-              fill
-              sizes="(max-width: 1024px) 100vw, 1500px"
-              className="object-cover"
-            />
-          </Reveal>
-        </section>
+        <ProseSection
+          id="tiempo-real"
+          eyebrow="En tiempo real"
+          heading="Un pedido en Palermo, una caja en Belgrano: lo ves en el momento."
+          paragraphs={[
+            'No hay que exportar, refrescar ni esperar a fin de día. Cada venta, cada cierre de caja y cada alerta de stock aparece en tu tablero apenas pasa, en todas tus pantallas a la vez.',
+            'Cada local trabaja aislado y seguro —sus datos, sus usuarios, su facturación— pero vos ves todo junto. Si tus sucursales facturan con CUIT distintos, cada una emite ante ARCA con su propio perfil fiscal.',
+          ]}
+          cta={
+            <>
+              <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
+              <CtaLink href="/precios" variant="soft">
+                Ver planes y precios →
+              </CtaLink>
+            </>
+          }
+        />
 
-        {/* Mientras tanto */}
-        <section
-          id="mientras-tanto"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Mientras tanto
-            </h2>
-            <p
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              El mejor momento para empezar es antes de la segunda apertura.
-            </p>
-          </Reveal>
-          <Reveal
-            delay={1}
-            className="flex w-full flex-col items-start gap-5 text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f] lg:pr-[400px]"
-          >
-            <p>
-              Si ya tenés un local con Mesanube y estás abriendo el segundo, escribinos. Podemos
-              orientarte sobre cómo manejar la transición y tenés prioridad en el acceso anticipado
-              al panel multilocal.
-            </p>
-            <p>
-              Si todavía no usás Mesanube en ninguno de tus locales, el mejor momento para empezar
-              es antes de la segunda apertura. Así cuando llegue el panel multilocal, ya tenés todo
-              configurado.
-            </p>
-          </Reveal>
-          <Reveal delay={2} className="flex flex-wrap gap-4">
-            <TrialButton>Probá Mesanube gratis en tu primer local</TrialButton>
-            <SoftButton href="#contacto">Anotarme para acceso anticipado →</SoftButton>
-          </Reveal>
-        </section>
-
-        {/* CTA final */}
-        <section
-          id="contacto"
-          className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[#e9e9e9] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
-        >
-          <Reveal
-            as="p"
-            className="w-full text-center font-display text-black"
-            style={{
-              fontSize: 'clamp(36px, 5.5vw, 60px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-            }}
-          >
-            Anotate para acceso anticipado al panel multilocal.
-          </Reveal>
-          <Reveal
-            delay={1}
-            as="p"
-            className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-          >
-            Te avisamos cuando esté disponible. Sin spam. Si ya usás Mesanube, tenés prioridad
-            automática.
-          </Reveal>
-          <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
-            <TrialButton className="w-full">Quiero acceso anticipado</TrialButton>
-            <Link
-              href="https://wa.me/5491100000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black"
-            >
-              O escribinos por WhatsApp →
-            </Link>
-          </Reveal>
-        </section>
+        <UseCaseCta
+          heading="Sumá todos tus locales a Mesanube."
+          subtitle="Probalo gratis en tu primer local y escalá cuando quieras. Sin tarjeta de crédito, sin permanencia. Si ya tenés varios locales, agendá una demo y te mostramos el tablero consolidado en vivo."
+        />
       </main>
 
       <SiteFooter />
