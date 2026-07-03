@@ -8,14 +8,17 @@ type ProseSectionProps = {
   id?: string
   eyebrow: string
   heading: string
-  paragraphs: string[]
+  paragraphs: React.ReactNode[]
+  /** Optional CTA row rendered under the paragraphs. */
+  cta?: React.ReactNode
 }
 
 /**
  * Two-part text section: eyebrow + big heading, then a column of paragraphs
- * (both constrained on large screens). Used for "el problema" and "soporte".
+ * (both constrained on large screens) and an optional CTA. Used for "el
+ * problema", "soporte", and coming-soon copy blocks.
  */
-export function ProseSection({ id, eyebrow, heading, paragraphs }: ProseSectionProps) {
+export function ProseSection({ id, eyebrow, heading, paragraphs, cta }: ProseSectionProps) {
   return (
     <section
       id={id}
@@ -32,6 +35,11 @@ export function ProseSection({ id, eyebrow, heading, paragraphs }: ProseSectionP
           <p key={i}>{p}</p>
         ))}
       </Reveal>
+      {cta && (
+        <Reveal delay={2} className="flex flex-wrap gap-4">
+          {cta}
+        </Reveal>
+      )}
     </section>
   )
 }

@@ -10,15 +10,18 @@ import { BODY, EYEBROW } from './styles'
 type UseCaseHeroProps = {
   eyebrow: string
   heading: string
-  subtitle: string
+  /** A single paragraph or several. */
+  subtitle: string | string[]
   image: { src: string; alt: string }
-  /** Small text next to the CTA. */
-  note?: string
+  /** Small text next to the CTA. Pass `null` to hide it. */
+  note?: string | null
   ctaLabel?: string
+  /** Replace the default trial CTA + note row entirely (e.g. a waitlist link). */
+  cta?: React.ReactNode
 }
 
 /**
- * Use-case hero: eyebrow, serif headline, subtitle, trial CTA + note, and a
+ * Use-case hero: eyebrow, serif headline, subtitle(s), a CTA row, and a
  * full-width rounded image.
  */
 export function UseCaseHero({
@@ -28,16 +31,30 @@ export function UseCaseHero({
   image,
   note = 'Sin tarjeta de crédito. Sin permanencia.',
   ctaLabel = `Probá gratis ${process.env.NEXT_PUBLIC_TRIAL_PERIOD}`,
+  cta,
 }: UseCaseHeroProps) {
+  const subtitles = Array.isArray(subtitle) ? subtitle : [subtitle]
   return (
     <header className="flex w-full max-w-[1500px] flex-col items-start gap-[60px] overflow-clip sm:gap-[100px]">
       <div className="flex w-full flex-col items-start gap-6">
         <p className={EYEBROW}>{eyebrow}</p>
         <HeroHeading text={heading} className="w-full" />
-        <p className={`max-w-[52ch] ${BODY}`}>{subtitle}</p>
+        {subtitles.map((s, i) => (
+          <p key={i} className={`max-w-[52ch] ${BODY}`}>
+            {s}
+          </p>
+        ))}
         <div className="flex flex-wrap items-center gap-4">
-          <TrialButton>{ctaLabel}</TrialButton>
-          <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">{note}</p>
+          {cta ?? (
+            <>
+              <TrialButton>{ctaLabel}</TrialButton>
+              {note !== null && (
+                <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+                  {note}
+                </p>
+              )}
+            </>
+          )}
         </div>
       </div>
 

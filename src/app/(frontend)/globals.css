@@ -41,7 +41,7 @@
     --olive: #485c11;            /* THE single accent (eyebrows, links, checks, primary CTA) */
     --olive-dark: #3a4c0d;       /* accent hover */
     --olive-soft: #dfecc6;       /* accent soft (badges, soft buttons) */
-    --olive-tint: #f7faf0;       /* barely-tinted olive (outline button hover) */
+    --olive-soft-hover: #d0e1ac; /* soft button hover */
     --body: #6f6f6f;             /* body / paragraph text */
     --caption: #929292;          /* captions, footnotes, plan-number labels */
     --divider: #e9e9e9;          /* section border-t separators */
