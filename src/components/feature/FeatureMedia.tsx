@@ -13,12 +13,16 @@ type FeatureMediaProps = {
   image: { src: string; alt: string }
   /** Put the image on the left instead of the right. */
   reversed?: boolean
+  /** Optional checklist under the paragraphs. */
+  bullets?: string[]
+  /** Optional CTA row under the text column. */
+  cta?: React.ReactNode
 }
 
 /** Two-column section with text on one side and an image on the other. */
-export function FeatureMedia({ id, eyebrow, heading, paragraphs, image, reversed }: FeatureMediaProps) {
+export function FeatureMedia({ id, eyebrow, heading, paragraphs, image, reversed, bullets, cta }: FeatureMediaProps) {
   const text = (
-    <Reveal className={`flex flex-col gap-6 ${reversed ? 'lg:order-2' : ''}`}>
+    <Reveal className={`flex flex-col justify-center gap-6 ${reversed ? 'lg:order-2' : ''}`}>
       <p className={EYEBROW}>{eyebrow}</p>
       <h2 className={TITLE} style={TITLE_STYLE}>
         {heading}
@@ -28,6 +32,19 @@ export function FeatureMedia({ id, eyebrow, heading, paragraphs, image, reversed
           {p}
         </p>
       ))}
+      {bullets && (
+        <ul className="flex flex-col gap-2">
+          {bullets.map((item) => (
+            <li key={item} className={`flex items-start gap-2 ${BODY}`}>
+              <span className="mt-[2px] text-[var(--olive)]" aria-hidden="true">
+                ✓
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+      {cta && <div className="flex flex-wrap gap-3">{cta}</div>}
     </Reveal>
   )
   const media = (

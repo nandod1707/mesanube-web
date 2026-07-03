@@ -1,4 +1,6 @@
 export { FeatureTopNav } from './FeatureTopNav'
+export { FeatureCallout } from './FeatureCallout'
+export { FeatureChecklists } from './FeatureChecklists'
 export { FeatureHero } from './FeatureHero'
 export { FeatureSplit } from './FeatureSplit'
 export { FeatureGrid } from './FeatureGrid'

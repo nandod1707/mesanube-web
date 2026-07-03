@@ -11,6 +11,8 @@ type FeatureSplitProps = {
   paragraphs: React.ReactNode[]
   /** Optional checklist rendered under the paragraphs. */
   bullets?: string[]
+  /** Optional CTA row under the text column. */
+  cta?: React.ReactNode
 }
 
 /**
@@ -18,7 +20,7 @@ type FeatureSplitProps = {
  * paragraphs (and an optional checklist) on the right. Covers "el problema",
  * "sin hardware especial" and similar feature-page blocks.
  */
-export function FeatureSplit({ id, eyebrow, heading, paragraphs, bullets }: FeatureSplitProps) {
+export function FeatureSplit({ id, eyebrow, heading, paragraphs, bullets, cta }: FeatureSplitProps) {
   return (
     <Reveal
       as="section"
@@ -50,6 +52,7 @@ export function FeatureSplit({ id, eyebrow, heading, paragraphs, bullets }: Feat
               ))}
             </ul>
           )}
+          {cta && <div className="flex flex-wrap gap-3 pt-2">{cta}</div>}
         </div>
       </div>
     </Reveal>

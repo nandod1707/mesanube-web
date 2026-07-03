@@ -12,19 +12,29 @@ type FeatureGridProps = {
   heading: string
   items: Card[]
   /** Columns at the lg breakpoint. Defaults to 3. */
-  columns?: 2 | 3
+  columns?: 2 | 3 | 4
+  /** `bold` = bold-sans card title (default); `label` = mono uppercase label (e.g. roles). */
+  titleVariant?: 'bold' | 'label'
 }
 
-const COLS: Record<2 | 3, string> = {
+const COLS: Record<2 | 3 | 4, string> = {
   2: 'lg:grid-cols-2',
   3: 'lg:grid-cols-3',
+  4: 'lg:grid-cols-4',
 }
 
 /**
  * Feature-page card grid ("detalles que importan"): stacked header + a grid of
  * cards with a bold sans title and gray body.
  */
-export function FeatureGrid({ id, eyebrow, heading, items, columns = 3 }: FeatureGridProps) {
+export function FeatureGrid({
+  id,
+  eyebrow,
+  heading,
+  items,
+  columns = 3,
+  titleVariant = 'bold',
+}: FeatureGridProps) {
   return (
     <section
       id={id}
@@ -42,12 +52,19 @@ export function FeatureGrid({ id, eyebrow, heading, items, columns = 3 }: Featur
           <Reveal
             key={typeof item.title === 'string' ? item.title : i}
             delay={(i % columns) as 0 | 1 | 2 | 3 | 4}
-            className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
+            className={`flex flex-col items-start border-t border-[var(--divider)] py-[40px] pr-5 ${titleVariant === 'bold' ? 'gap-6' : 'gap-4'}`}
           >
-            <div>
-              <h3 className={`mb-2 ${BOLD_CARD_TITLE}`}>{item.title}</h3>
-              <p className={BODY}>{item.body}</p>
-            </div>
+            {titleVariant === 'bold' ? (
+              <div>
+                <h3 className={`mb-2 ${BOLD_CARD_TITLE}`}>{item.title}</h3>
+                <p className={BODY}>{item.body}</p>
+              </div>
+            ) : (
+              <>
+                <p className={EYEBROW}>{item.title}</p>
+                <p className={BODY}>{item.body}</p>
+              </>
+            )}
           </Reveal>
         ))}
       </div>
