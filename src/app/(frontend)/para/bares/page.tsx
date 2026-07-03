@@ -3,18 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-import { Body } from '@/components/shared/Body'
-import { CardTitle } from '@/components/shared/CardTitle'
-import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
-import { Eyebrow } from '@/components/shared/Eyebrow'
-import { FaqSection, type FaqItem } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
-import { HeroHeading } from '@/components/shared/HeroHeading'
-import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
-import { SectionTitle } from '@/components/shared/SectionTitle'
-import { SiteFooter } from '@/components/shared/SiteFooter'
+import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
+import { PricingCards } from '@/components/shared/PricingCards'
 import { PLAN_ADVANCED } from '@/config/plans'
+import { SiteFooter } from '@/components/shared/SiteFooter'
+import { HeroHeading } from '@/components/shared/HeroHeading'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Bares en Argentina. Comanda Ágil para Múltiples Mozos | Mesanube',
@@ -27,11 +22,11 @@ export const metadata: Metadata = {
 const navItems = [
   { href: '#problema', label: 'El problema' },
   { href: '#funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precio' },
+  { href: '#precios', label: 'Precio' },
   { href: '#contacto', label: 'Empezá' },
 ]
 
-const solutions: { title: string; body: React.ReactNode }[] = [
+const resuelve = [
   {
     title: 'Comandas simultáneas de múltiples mozos',
     body: 'Cada mozo trabaja desde su celular. Los pedidos llegan a la barra y a la cocina en tiempo real, en orden, sin que nadie espere que el otro libere la terminal. No hay cuello de botella ni "esperá que estoy usando la comanda": cada uno trabaja independiente y el sistema consolida todo.',
@@ -48,34 +43,30 @@ const solutions: { title: string; body: React.ReactNode }[] = [
 
 const pasos = [
   {
-    num: '01',
-    phase: 'Antes de abrir',
+    n: '01',
     title: 'El menú listo en dos minutos',
-    body: 'Cargás el menú de la noche. Si hay especiales del día, los sumás en dos minutos. Los QR ya están activos en las mesas.',
+    body: 'Cargás el menú de la noche. Si hay especiales del día, los sumás en dos minutos. Los QR ya están activos en las mesas antes del primer cliente.',
   },
   {
-    num: '02',
-    phase: 'Durante el servicio',
+    n: '02',
     title: 'Cada mozo trabaja desde su celular',
     body: 'Toma el pedido, lo manda a la barra o a la cocina según corresponda, ve el estado de sus mesas y saca la precuenta cuando la piden. El encargado ve el panorama completo del salón en su pantalla.',
   },
   {
-    num: '03',
-    phase: 'Al pagar',
+    n: '03',
     title: 'Cuenta lista, factura emitida',
     body: 'La cuenta está lista. Se divide si es necesario. La factura con ARCA sale en el momento, sin pasar por otra app.',
   },
   {
-    num: '04',
-    phase: 'Al cierre',
+    n: '04',
     title: 'Los números del día en pantalla',
-    body: 'El arqueo está armado con el detalle de todo lo que entró y salió. Sin calculadora, sin reconstruir nada de memoria.',
+    body: 'El arqueo está armado con el detalle de todo lo que entró y salió. Sin calculadora, sin reconstruir nada de memoria a las 2 de la mañana.',
   },
 ]
 
 const funciones = [
   {
-    title: 'App para mozos (múltiples en simultáneo)',
+    title: 'App para mozos',
     body: 'Sin límite de usuarios. Cada mozo desde su celular, independiente. Los pedidos llegan consolidados a la barra y la cocina.',
   },
   {
@@ -84,10 +75,10 @@ const funciones = [
   },
   {
     title: 'Facturación ARCA',
-    body: 'Factura A, B y C en el momento, desde el mismo sistema donde tomaste el pedido.',
+    body: 'Facturas A, B y C en el momento, desde el mismo sistema donde tomaste el pedido.',
   },
   {
-    title: 'Monitor de cocina',
+    title: 'Monitor de cocina (KDS)',
     body: 'Los pedidos de cocina llegan a la pantalla en tiempo real. Los tragos que van a la barra quedan en la app del mozo.',
   },
   {
@@ -96,11 +87,15 @@ const funciones = [
   },
   {
     title: 'Arqueo multimedios',
-    body: 'Efectivo, tarjeta, transferencia, billeteras: cada uno separado durante todo el turno, resumen al cierre.',
+    body: 'Efectivo, tarjeta, transferencia y billeteras: cada uno separado durante todo el turno, resumen al cierre.',
   },
   {
     title: 'Reseñas en Google',
-    body: 'Después de cerrar la cuenta, la app le sugiere al mozo pedirle al cliente una reseña en Google. Impacto directo en tu visibilidad online.',
+    body: 'Al cerrar la cuenta, la app le sugiere al mozo pedirle al cliente una reseña en Google. Impacto directo en tu visibilidad online.',
+  },
+  {
+    title: 'Reportes del día',
+    body: 'Qué se vendió, cuánto entró, por qué medio pagaron. Una pantalla, un vistazo, sin planillas.',
   },
 ]
 
@@ -114,7 +109,7 @@ const precioItems = [
   'Reportes completos',
 ]
 
-const faq: FaqItem[] = [
+const faq = [
   {
     q: '¿Cuántos mozos pueden usar la app al mismo tiempo?',
     a: 'Sin límite. Todos pueden trabajar en simultáneo desde sus propios celulares sin interferir entre sí. No hay terminal compartida ni cola de acceso.',
@@ -144,7 +139,7 @@ export default function BaresPage() {
       <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
         <Link
           href="/"
-          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-black sm:text-[30px] sm:tracking-[-1.5px]"
+          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-[var(--heading)] sm:text-[30px] sm:tracking-[-1.5px]"
           style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
         >
           mesanube
@@ -155,17 +150,19 @@ export default function BaresPage() {
       {/* Hero */}
       <header className="flex w-full max-w-[1500px] flex-col items-start gap-[60px] overflow-clip sm:gap-[100px]">
         <div className="flex w-full flex-col items-start gap-6">
-          <Eyebrow>Para bares</Eyebrow>
+          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+            Para bares
+          </p>
           <HeroHeading text="Para el bar que no para. Comanda ágil, caja que cierra." className="w-full" />
-          <Body className="max-w-[52ch]">
+          <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
             Los viernes a la noche no perdonan errores. Mesanube mantiene el ritmo de tu bar sin que
             nada se pierda en el camino.
-          </Body>
+          </p>
           <div className="flex flex-wrap items-center gap-4">
             <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
-            <Body as="p" className="!text-[13px]">
+            <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Sin tarjeta de crédito. Sin permanencia.
-            </Body>
+            </p>
           </div>
         </div>
 
@@ -188,46 +185,70 @@ export default function BaresPage() {
           className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
         >
           <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <Eyebrow as="h2">El bar tiene sus propias reglas</Eyebrow>
-            <SectionTitle className="w-full">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+              El bar tiene sus propias reglas
+            </h2>
+            <p
+              className="w-full font-display text-[var(--heading)]"
+              style={{
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
+                lineHeight: 0.9,
+                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+              }}
+            >
               Rápido, múltiples mozos, cuentas que se dividen.
-            </SectionTitle>
+            </p>
           </Reveal>
-          <Reveal delay={1} className="flex w-full flex-col items-start gap-5 lg:pr-[400px]">
-            <Body>
+          <Reveal
+            delay={1}
+            className="flex w-full flex-col items-start gap-5 text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)] lg:pr-[400px]"
+          >
+            <p>
               El bar es uno de los ambientes más exigentes para un sistema de gestión. No es un
               restaurante con servicio tranquilo: es una máquina de pedidos continuos, varios mozos
               trabajando en simultáneo, y cuentas que se pagan de a partes al final de la noche.
-            </Body>
-            <Body>
+            </p>
+            <p>
               Encima está la presión de ARCA: facturar en el momento, sin que el proceso frene la
               operación ni genere una cola en la barra. Los sistemas genéricos no están pensados para
               ese ritmo. Mesanube sí.
-            </Body>
+            </p>
           </Reveal>
         </section>
 
         {/* Qué resuelve */}
-        <section
-          id="funciones"
-          className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
-        >
+        <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
           <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:pt-[80px]">
-            <Eyebrow as="h2">Velocidad sin caos</Eyebrow>
-            <SectionTitle className="w-full lg:pr-[400px]">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+              Velocidad sin caos
+            </h2>
+            <p
+              className="w-full font-display text-[var(--heading)] lg:pr-[400px]"
+              style={{
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
+                lineHeight: 0.9,
+                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+              }}
+            >
               Qué resuelve Mesanube en tu bar.
-            </SectionTitle>
+            </p>
           </Reveal>
           <div className="grid w-full grid-cols-1 gap-x-[20px] sm:grid-cols-2 lg:grid-cols-3">
-            {solutions.map((s, i) => (
+            {resuelve.map((item, i) => (
               <Reveal
-                key={s.title}
-                delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
+                key={item.title}
+                delay={Math.min((i % 3) + 1, 4) as 1 | 2 | 3 | 4}
                 as="article"
-                className="flex flex-col items-start gap-5 border-t border-[var(--divider)] py-[40px] pr-5"
+                className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
               >
-                <CardTitle>{s.title}</CardTitle>
-                <Body>{s.body}</Body>
+                <div className="flex w-full flex-col items-start gap-5">
+                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                    {item.title}
+                  </p>
+                  <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+                    {item.body}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -235,16 +256,23 @@ export default function BaresPage() {
 
         {/* Cómo funciona */}
         <section className="flex w-full max-w-[1500px] flex-col items-start gap-[50px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:gap-[80px] sm:pt-[80px] lg:pb-[120px]">
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <Eyebrow as="h2">Paso a paso</Eyebrow>
-            <SectionTitle className="w-full">
+          <Reveal className="flex w-full flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+            <p
+              className="font-display text-[var(--heading)]"
+              style={{
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
+                lineHeight: 0.9,
+                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+              }}
+            >
               Del primer cliente hasta el último pedido.
-            </SectionTitle>
+            </p>
+            <TrialButton variant="soft">Empezá gratis</TrialButton>
           </Reveal>
           <div className="grid w-full grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {pasos.map((s, i) => (
               <Reveal
-                key={s.num}
+                key={s.n}
                 delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
                 as="article"
                 aria-label={`Paso ${i + 1} de 4`}
@@ -252,15 +280,20 @@ export default function BaresPage() {
               >
                 <p
                   className="w-full leading-none text-[var(--caption)]"
-                  style={{ fontSize: 'clamp(36px, 4vw, 56px)', letterSpacing: 'clamp(-1px, -0.2vw, -2px)' }}
-                  aria-hidden="true"
+                  style={{
+                    fontSize: 'clamp(56px, 6vw, 80px)',
+                    letterSpacing: 'clamp(-2px, -0.3vw, -3.2px)',
+                  }}
                 >
-                  {s.num}
+                  {s.n}
                 </p>
-                <div className="flex w-full flex-col items-start gap-3">
-                  <Eyebrow>{s.phase}</Eyebrow>
-                  <CardTitle>{s.title}</CardTitle>
-                  <Body>{s.body}</Body>
+                <div className="flex w-full flex-col items-start gap-5">
+                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                    {s.title}
+                  </p>
+                  <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+                    {s.body}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -268,24 +301,54 @@ export default function BaresPage() {
         </section>
 
         {/* Funciones */}
-        <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
+        <section
+          id="funciones"
+          className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
+        >
           <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:pt-[80px] sm:pb-[60px] lg:pr-[400px]">
-            <Eyebrow as="h2">Funciones</Eyebrow>
-            <SectionTitle className="w-full">Funciones clave para bares.</SectionTitle>
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+              Funciones
+            </h2>
+            <p
+              className="w-full font-display text-[var(--heading)]"
+              style={{
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
+                lineHeight: 0.9,
+                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+              }}
+            >
+              Funciones clave para bares.
+            </p>
           </Reveal>
-          <div className="grid w-full grid-cols-1 gap-x-[20px] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid w-full grid-cols-1 gap-x-[20px] sm:grid-cols-2 lg:grid-cols-3">
             {funciones.map((f, i) => (
               <Reveal
                 key={f.title}
-                delay={Math.min((i % 4) + 1, 4) as 1 | 2 | 3 | 4}
+                delay={Math.min((i % 3) + 1, 4) as 1 | 2 | 3 | 4}
                 as="article"
                 className="flex flex-col items-start gap-4 border-t border-[var(--divider)] py-[40px] pr-5"
               >
-                <CardTitle>{f.title}</CardTitle>
-                <Body>{f.body}</Body>
+                <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                  {f.title}
+                </p>
+                <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+                  {f.body}
+                </p>
               </Reveal>
             ))}
           </div>
+          <Reveal
+            delay={1}
+            className="zoom-wrap relative mt-[40px] h-[260px] w-full overflow-hidden rounded-[20px] sm:h-[380px] lg:h-[500px] lg:rounded-[30px]"
+          >
+            <Image
+              src="/figma/columns.png"
+              alt="Panel de funciones de Mesanube para bares"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1500px"
+              className="object-cover"
+            />
+          </Reveal>
         </section>
 
         {/* Testimonio */}
@@ -321,27 +384,44 @@ export default function BaresPage() {
               y la gente nota que funciona bien.&rdquo;
             </p>
             <div className="flex w-full flex-col items-start gap-2 leading-[1.4]">
-              <p className="text-[18px] tracking-[-0.09px] text-black">Juliana M.</p>
-              <Eyebrow>Bar El Patio, Chacarita</Eyebrow>
+              <p className="text-[18px] tracking-[-0.09px] text-[var(--heading)]">Juliana M.</p>
+              <p className="font-mono text-[14px] tracking-[-0.14px] text-[var(--olive)]">
+                Bar El Patio, Chacarita
+              </p>
             </div>
           </Reveal>
         </section>
 
-        {/* Soporte real */}
+        {/* Soporte */}
         <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
           <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <Eyebrow as="h2">Soporte real</Eyebrow>
-            <SectionTitle className="w-full">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+              Soporte real
+            </h2>
+            <p
+              className="w-full font-display text-[var(--heading)]"
+              style={{
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
+                lineHeight: 0.9,
+                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+              }}
+            >
               No hay peor momento para que algo falle que el viernes con el bar lleno.
-            </SectionTitle>
+            </p>
           </Reveal>
-          <Reveal delay={1} className="flex w-full flex-col items-start lg:pr-[400px]">
-            <Body>
+          <Reveal
+            delay={1}
+            className="flex w-full flex-col items-start gap-5 text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)] lg:pr-[400px]"
+          >
+            <p>
               Con Mesanube sabés que si algo sale mal y escribís por WhatsApp, te responde el equipo
-              que conoce el sistema de adentro. Sin call center, sin bot, sin &ldquo;esperá al
-              próximo turno disponible&rdquo;. Gente del rubro que entiende lo que significa tener el
-              bar lleno y el sistema parado.
-            </Body>
+              que conoce el sistema de adentro. Sin call center, sin bot, sin &ldquo;esperá al próximo
+              turno disponible&rdquo;.
+            </p>
+            <p>
+              Gente del rubro que entiende lo que significa tener el bar lleno y el sistema parado. Eso
+              no lo puede prometer ningún competidor con soporte corporativo.
+            </p>
           </Reveal>
         </section>
 
@@ -357,23 +437,64 @@ export default function BaresPage() {
         />
 
         {/* FAQ */}
-        <FaqSection heading="Lo que más nos preguntan" items={faq} />
+        <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
+          <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:pt-[80px] lg:pr-[400px]">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+              Preguntas frecuentes
+            </h2>
+            <p
+              className="w-full font-display text-[var(--heading)]"
+              style={{
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
+                lineHeight: 0.9,
+                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+              }}
+            >
+              Lo que más nos preguntan.
+            </p>
+          </Reveal>
+          <div className="w-full">
+            {faq.map((item, i) => (
+              <Reveal
+                key={i}
+                delay={(Math.min(i, 3) + 1) as 1 | 2 | 3 | 4}
+                as="article"
+                className="flex w-full flex-col gap-2 border-t border-[var(--divider)] py-5 lg:pr-[400px]"
+              >
+                <p className="text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]">
+                  {item.q}
+                </p>
+                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+                  {item.a}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
         {/* CTA final */}
         <section
           id="contacto"
           className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[var(--divider)] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
         >
-          <Reveal as="div" className="w-full">
-            <SectionTitle className="w-full text-center">
-              Tu bar se merece un sistema a su altura. Probalo gratis.
-            </SectionTitle>
+          <Reveal
+            as="p"
+            className="w-full text-center font-display text-[var(--heading)]"
+            style={{
+              fontSize: 'clamp(36px, 5.5vw, 60px)',
+              lineHeight: 0.9,
+              letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
+            }}
+          >
+            Tu bar se merece un sistema a su altura. Probalo gratis.
           </Reveal>
-          <Reveal delay={1} className="w-full">
-            <Body className="w-full text-center">
-              Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona en un bar antes de
-              empezar, agendá una demo y te lo mostramos en vivo.
-            </Body>
+          <Reveal
+            delay={1}
+            as="p"
+            className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]"
+          >
+            Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona en un bar antes de
+            empezar, agendá una demo y te lo mostramos en vivo.
           </Reveal>
           <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
             <TrialButton className="w-full">Empezá tu prueba gratuita</TrialButton>
