@@ -70,37 +70,31 @@ const businessTypes = [
 
 const features = [
   {
-    icon: '/figma/icon-cable.svg',
     title: 'Comanda digital',
     body: 'Tomá pedidos desde cualquier celular o tablet. Llegan a cocina al instante, sin papel, sin gritos, sin pedidos que se pierden.',
     href: '/funciones/comanda-digital',
   },
   {
-    icon: '/figma/icon-chart.svg',
     title: 'Arqueo de caja',
     body: 'Cerrá el turno con el control exacto del efectivo. Sin calculadora. Sin cuentas a mano. Sin diferencias que no podés explicar.',
     href: '/funciones/arqueo-de-caja',
   },
   {
-    icon: '/figma/icon-account.svg',
     title: 'App para mozos',
     body: 'Tus mozos toman pedidos y ven las mesas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.',
     href: '/funciones/app-para-mozos',
   },
   {
-    icon: '/figma/icon-check.svg',
     title: 'Carta QR',
     body: 'Menú digital que tus clientes escanean en la mesa. Lo actualizás desde el sistema y el cambio aparece al instante en cada teléfono.',
     href: '/funciones/carta-qr',
   },
   {
-    icon: '/figma/icon-earth.svg',
     title: 'Monitor de cocina',
     body: 'Los pedidos llegan a la pantalla de cocina solos, en orden. Sin papelitos voladores, sin comandas perdidas.',
     href: '/funciones/monitor-de-cocina',
   },
   {
-    icon: '/figma/icon-chart.svg',
     title: 'Reportes',
     body: 'Qué vendiste por día, qué producto se va más, qué medio de pago domina. En un vistazo, no en una planilla de Excel de fin de mes.',
     href: '/funciones/reportes-y-analitica',
@@ -302,7 +296,7 @@ export default function HomePage() {
                   as="article"
                   className="flex flex-col items-start gap-4 border-t border-[var(--divider)] py-[40px] pr-5"
                 >
-                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                  <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]">
                     {bt.name}
                   </p>
                   <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
@@ -396,11 +390,8 @@ export default function HomePage() {
                   as="article"
                   className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
                 >
-                  <div className="relative size-6">
-                    <Image src={f.icon} alt="" fill sizes="24px" />
-                  </div>
                   <div className="flex w-full flex-col items-start gap-5">
-                    <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                    <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]">
                       {f.title}
                     </p>
                     <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
