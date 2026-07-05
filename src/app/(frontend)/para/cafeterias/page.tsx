@@ -4,6 +4,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
   FaqBlock,
@@ -11,7 +12,6 @@ import {
   StepsGrid,
   Testimonial,
   UseCaseCta,
-  UseCaseHero,
   UseCaseTopNav,
 } from '@/components/usecase'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
@@ -101,11 +101,13 @@ export default function CafeteriasPage() {
       <FloatingNav />
       <UseCaseTopNav />
 
-      <UseCaseHero
+      <ShowcaseHero
         eyebrow="Para cafeterías"
         heading="El sistema que tu cafetería necesita, con ARCA incluida."
         subtitle="¿Todavía tomás pedidos en papel y cerrás la caja con calculadora? Hay una mejor forma, y no cuesta lo que creés."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Cafetería organizada con Mesanube' }}
+        background={{ src: '/figma/hero-mountains.png', alt: 'Cafetería organizada con Mesanube' }}
+        align="left"
+        note="Sin tarjeta de crédito. Sin permanencia."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

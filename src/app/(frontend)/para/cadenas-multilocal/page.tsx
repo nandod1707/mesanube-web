@@ -4,12 +4,12 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
   CtaLink,
   ProseSection,
   UseCaseCta,
-  UseCaseHero,
   UseCaseTopNav,
 } from '@/components/usecase'
 
@@ -64,14 +64,16 @@ export default function CadenasMultilocalPage() {
       <FloatingNav />
       <UseCaseTopNav />
 
-      <UseCaseHero
+      <ShowcaseHero
         eyebrow="Para cadenas multilocal"
         heading="Todos tus locales en una sola pantalla, en tiempo real."
         subtitle={[
           'Abriste el segundo local y de golpe todo se duplicó: dos cajas para arquear, dos stocks para controlar, dos veces el trabajo. Y ningún lugar donde ver el negocio completo.',
           'Mesanube es multi-local de base: consolidá ventas, costos, caja y stock de todas tus sucursales en un tablero, actualizado en vivo.',
         ]}
-        image={{ src: '/figma/landscape.png', alt: 'Cadena de locales gestionada con Mesanube' }}
+        background={{ src: '/figma/hero-mountains.png', alt: 'Cadena de locales gestionada con Mesanube' }}
+        align="left"
+        note="Sin tarjeta de crédito. Sin permanencia."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

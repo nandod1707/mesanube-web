@@ -4,6 +4,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
   FaqBlock,
@@ -11,7 +12,6 @@ import {
   SplitFeature,
   Testimonial,
   UseCaseCta,
-  UseCaseHero,
   UseCaseTopNav,
 } from '@/components/usecase'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
@@ -83,11 +83,13 @@ export default function PizzeriasPage() {
       <FloatingNav />
       <UseCaseTopNav />
 
-      <UseCaseHero
+      <ShowcaseHero
         eyebrow="Para pizzerías"
         heading="El sistema que aguanta el ritmo de una pizzería."
         subtitle="Salón, mostrador y delivery en simultáneo. Pico del viernes a las 21. La caja al final del turno sin que nadie se quede hasta la medianoche calculando. Mesanube está pensado para eso."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Pizzería organizada con Mesanube' }}
+        background={{ src: '/figma/hero-mountains.png', alt: 'Pizzería organizada con Mesanube' }}
+        align="left"
+        note="Sin tarjeta de crédito. Sin permanencia."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

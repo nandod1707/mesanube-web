@@ -4,6 +4,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
   FaqBlock,
@@ -11,7 +12,6 @@ import {
   StepsGrid,
   Testimonial,
   UseCaseCta,
-  UseCaseHero,
   UseCaseTopNav,
 } from '@/components/usecase'
 import { PLAN_ADVANCED } from '@/config/plans'
@@ -115,11 +115,13 @@ export default function RestaurantesPage() {
       <FloatingNav />
       <UseCaseTopNav />
 
-      <UseCaseHero
+      <ShowcaseHero
         eyebrow="Para restaurantes"
         heading="De la primera comanda al cierre."
         subtitle="Para los que saben lo que es abrir a mediodía y no levantar cabeza hasta medianoche. Mesanube organiza la sala, conecta con cocina y te da los números al final del día."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Restaurante organizado con Mesanube' }}
+        background={{ src: '/figma/hero-mountains.png', alt: 'Restaurante organizado con Mesanube' }}
+        align="left"
+        note="Sin tarjeta de crédito. Sin permanencia."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

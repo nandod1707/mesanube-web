@@ -11,7 +11,8 @@ type ShowcaseHeroProps = {
   eyebrow?: string
   /** Headline line(s) — each line rises in as its own span. */
   heading: string | string[]
-  subtitle: string
+  /** A single paragraph or several. */
+  subtitle: string | string[]
   /** CTA row. Defaults to a trial button + demo link. */
   cta?: React.ReactNode
   /** Small line under the CTAs (e.g. social proof). */
@@ -53,12 +54,13 @@ export function ShowcaseHero({
   align = 'center',
 }: ShowcaseHeroProps) {
   const lines = Array.isArray(heading) ? heading : [heading]
+  const subtitles = Array.isArray(subtitle) ? subtitle : [subtitle]
 
   return (
     <header className="flex w-full max-w-[1500px] flex-col items-start gap-[80px] overflow-clip sm:gap-[160px] lg:gap-[240px]">
       <div className="flex w-full flex-col items-center gap-8">
         {eyebrow && (
-          <p className="font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
+          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
             {eyebrow}
           </p>
         )}
@@ -78,9 +80,14 @@ export function ShowcaseHero({
           ))}
         </h1>
 
-        <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-          {subtitle}
-        </p>
+        {subtitles.map((s, i) => (
+          <p
+            key={i}
+            className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]"
+          >
+            {s}
+          </p>
+        ))}
 
         <div className="flex flex-wrap items-center justify-center gap-3">
           {cta ?? (

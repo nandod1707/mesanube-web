@@ -4,6 +4,7 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
   FaqBlock,
@@ -11,7 +12,6 @@ import {
   StepsGrid,
   Testimonial,
   UseCaseCta,
-  UseCaseHero,
   UseCaseTopNav,
 } from '@/components/usecase'
 import { PLAN_ADVANCED } from '@/config/plans'
@@ -139,11 +139,13 @@ export default function BaresPage() {
       <FloatingNav />
       <UseCaseTopNav />
 
-      <UseCaseHero
+      <ShowcaseHero
         eyebrow="Para bares"
         heading="Para el bar que no para. Comanda ágil, caja que cierra."
         subtitle="Los viernes a la noche no perdonan errores. Mesanube mantiene el ritmo de tu bar sin que nada se pierda en el camino."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Bar argentino organizado con Mesanube' }}
+        background={{ src: '/figma/hero-mountains.png', alt: 'Bar argentino organizado con Mesanube' }}
+        align="left"
+        note="Sin tarjeta de crédito. Sin permanencia."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
