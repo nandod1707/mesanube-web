@@ -30,7 +30,7 @@ export function LinkCardGrid({ id, eyebrow, heading, items }: LinkCardGridProps)
       id={id}
       className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
     >
-      <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:pt-[80px] sm:pb-[60px] lg:pr-[400px]">
+      <Reveal className="flex w-full flex-col items-start gap-[30px] pt-[60px] pb-[40px] sm:pt-[80px] sm:pb-[60px] lg:pr-[400px]">
         <h2 className={EYEBROW}>{eyebrow}</h2>
         <p className={`${TITLE} lg:pr-[400px]`} style={TITLE_STYLE}>
           {heading}
@@ -47,7 +47,7 @@ export function LinkCardGrid({ id, eyebrow, heading, items }: LinkCardGridProps)
           >
             <div className="flex w-full flex-col items-start gap-5">
               <div className="flex w-full items-center gap-3">
-                <p className="font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                <p className="text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]">
                   {item.title}
                 </p>
                 {item.badge && (
