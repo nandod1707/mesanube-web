@@ -205,7 +205,7 @@ export function PricingCards({
           {/* Plan Avanzado */}
           <Reveal
             delay={2}
-            className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
+            className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--surface-dark)] bg-[var(--surface-dark)] p-8"
           >
             <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
               {PLAN_ADVANCED.popular}
@@ -248,7 +248,7 @@ export function PricingCards({
             delay={1}
             className={`relative flex w-full max-w-[28rem] flex-col items-start gap-6 rounded-[20px] p-8 ${
               isAdvanced
-                ? 'border border-[var(--dark-green)] bg-[var(--dark-green)]'
+                ? 'border border-[var(--surface-dark)] bg-[var(--surface-dark)]'
                 : 'border border-[#e9e9e9]'
             }`}
           >
