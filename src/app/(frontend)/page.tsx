@@ -14,9 +14,9 @@ import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
    SEO Metadata
 ───────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías en Argentina',
+  title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías',
   description:
-    `Sistema de gestión gastronómica para restaurantes argentinos. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta.`,
+    `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta.`,
 }
 
 /* ── Static data ── */
@@ -125,14 +125,14 @@ const advancedFeatures = [
 const faqs = [
   {
     q: '¿Qué es un sistema POS para restaurantes?',
-    a: 'Un sistema POS (punto de venta) para restaurantes es el software que unifica la toma de pedidos, la emisión de facturas, el control de caja y los reportes de venta en un solo lugar. Mesanube es un POS diseñado específicamente para el mercado gastronómico argentino, con facturación ARCA incluida.',
+    a: 'Un sistema POS (punto de venta) para restaurantes es el software que unifica la toma de pedidos, la emisión de facturas, el control de caja y los reportes de venta en un solo lugar. Mesanube es un POS diseñado específicamente para el mercado gastronómico, con facturación ARCA incluida.',
   },
   {
     q: '¿Mesanube es compatible con ARCA (ex-AFIP)?',
     a: 'Sí. La facturación electrónica ARCA está incluida en todos los planes, sin módulo adicional, sin app separada. Emitís facturas A, B y C directamente desde el POS.',
   },
   {
-    q: '¿Cuánto cuesta un sistema de gestión para restaurantes en Argentina?',
+    q: '¿Cuánto cuesta un sistema de gestión para gastronomía?',
     a: `Mesanube arranca desde ${PLAN_BASIC.price}/mes para cafeterías y locales de mostrador (Plan ${PLAN_BASIC.name}) y ${PLAN_ADVANCED.price}/mes para bares y restaurantes con salón (Plan ${PLAN_ADVANCED.name}). Los primeros ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} son gratis, sin tarjeta de crédito.`,
   },
   {
@@ -141,7 +141,7 @@ const faqs = [
   },
   {
     q: '¿Cuál es la diferencia entre Mesanube y otros sistemas como Fudo o Maxirest?',
-    a: 'Mesanube incluye facturación ARCA y app para mozos sin cobrar módulos por separado. A diferencia de sistemas pensados para otros mercados o para grandes cadenas, Mesanube está hecho en Argentina para locales de entre 1 y 10 empleados, con soporte directo del equipo que desarrolla el producto.',
+    a: 'Mesanube incluye facturación ARCA y app para mozos sin cobrar módulos por separado. Está hecho en Argentina para locales de entre 1 y 10 empleados, con soporte directo del equipo que desarrolla el producto.',
   },
 ]
 
@@ -238,7 +238,7 @@ export default function HomePage() {
           </div>
 
           {/* Social proof */}
-          <p className="text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
+          <p className="text-center text-[16px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
             <em>
               &ldquo;No pensé que iba a ser tan fácil.&rdquo;
             </em>{' '}
@@ -506,7 +506,7 @@ export default function HomePage() {
         </section>
 
         {/* Coming soon */}
-        <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
+        {/* <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
           <Reveal className="flex w-full flex-col items-center gap-8 rounded-[20px] bg-[#dfecc6] px-6 py-[80px] text-center sm:px-12 sm:py-[120px] lg:px-[240px]">
             <h2
               className="w-full font-display text-black"
@@ -528,7 +528,7 @@ export default function HomePage() {
             </p>
             <SoftButton href="/funciones/fidelizacion">Quiero acceso anticipado →</SoftButton>
           </Reveal>
-        </section>
+        </section> */}
 
         {/* Pricing */}
         <section

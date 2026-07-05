@@ -92,9 +92,7 @@ export default function ReportesYAnaliticaPage() {
           ]}
           bullets={[
             'Ventas en tiempo real desde cualquier dispositivo',
-            'Exportación para compartir con el contador',
-            'Acceso con tu usuario habitual de Mesanube',
-            'Sin instalar nada adicional',
+            'Datos unificados en panel multi-local'
           ]}
           image={{ src: '/figma/columns.png', alt: 'Reportes de Mesanube accesibles desde celular' }}
         />
