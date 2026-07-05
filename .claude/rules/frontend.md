@@ -153,29 +153,20 @@ Common mapping:
 - Component files: max ~200 lines. Split further if needed.
 
 ### Section extraction
-Every `<section>` block in a page should be its own component in `src/components/`. Group by page:
+Internal pages are **data + composition**: they define copy as data and compose the section
+components from the collections in §6 — they don't write section markup inline. Keep page files
+small (mostly data + a short composition tree).
 
 ```
 src/components/
-  Homepage/
-    HeroSection.tsx
-    HeroSection.module.css
-    TrustBar.tsx
-    IntroSection.tsx
-    IntroSection.module.css
-    BusinessTypesSection.tsx
-    FeaturesSection.tsx
-    ArcaSection.tsx
-    ComingSoonSection.tsx
-    PricingSection.tsx
-    CtaSection.tsx
-  shared/
-    Section.tsx          # wrapper with standard padding
-    Container.tsx        # max-width centered div
-    SectionHeading.tsx   # eyebrow + h2 + optional description
-    Button.tsx           # primary / ghost / dark variants
-    Card.tsx             # standard card shell
+  feature/       # /funciones/* detail-page sections (FeatureHero, FeatureSplit, StepsRow, FeatureGrid, …)
+  usecase/       # /para/* + funciones index sections (UseCaseHero, CardGrid, StepsGrid, LinkCardGrid, …)
+  shared/        # cross-cutting: CtaLink, CtaButtons, PricingCards, FaqSection, FloatingNav, Reveal, HeroHeading, SiteFooter
+  Homepage/      # legacy hardcoded homepage sections (green system, pending migration)
 ```
+
+Each collection has a `styles.ts` with the shared type-scale constants (TITLE_STYLE, EYEBROW,
+BODY, …) so the idiom is defined once. See §6 for which collection to use.
 
 ### CSS Module co-location
 Every component that needs styles beyond Tailwind utilities gets a `.module.css` file next to it:
@@ -190,41 +181,82 @@ Use: `className={styles.wipeOverlay}`
 
 ---
 
-## 6. Shared UI primitives
+## 6. Section-component collections
 
-Before writing layout markup inline, check if a shared primitive exists. If it doesn't but the pattern repeats 2+ times, create it. All primitives live in `src/components/shared/`.
+Internal pages are built as **data + composition**: define the copy as arrays/props, then compose
+section components. **Don't write section markup inline.** There are two collections, one per page
+template — pick by the page's idiom.
 
-### Canonical primitives (use these)
+### `src/components/feature/` — feature/detail pages (`/funciones/*`)
+Idiom: 22px wordmark nav, **UPPERCASE** mono eyebrow, two-column sections, 3-up numbered steps,
+compact pricing, two-column CTA.
 
-| Primitive | Purpose |
+| Component | Purpose |
 |---|---|
-| `<PageSection reveal? id?>` | Section wrapper — top divider + shipped padding rhythm, capped at 1500px |
-| `<PageNav cta?>` | Top nav bar — wordmark + trial CTA |
-| `<Eyebrow>` | Mono uppercase olive label above a heading |
-| `<SectionTitle as?>` | Serif display heading, `clamp(36px, 5.5vw, 60px)` / line-height 0.9, black |
-| `<Body tone?>` | `body` (18px gray) or `caption` (14px mono muted) paragraph |
-| `<LinkButton variant href|onClick>` | In-page CTA — `primary` (olive) or `outline` (bordered white). Replaces per-page `PrimaryButton`/`SoftButton` |
-| `<MediaFrame src aspectRatio>` | 20px-radius `next/image fill` frame |
-| `<FaqSection items>` | Full FAQ block |
-| `<PricingCards variant>` | Pricing card(s), fed from `src/config/plans.ts` |
-| `TrialButton` / `DemoButton` (`CtaButtons`) | Dialog-opening trial/demo CTAs (client) |
-| `<FloatingNav items>` | Sticky anchor nav |
-| `<Reveal>` | Scroll-reveal wrapper |
+| `<FeatureTopNav cta?>` | Top nav (22px wordmark + trial CTA) |
+| `<FeatureHero eyebrow heading subtitle image ctaLabel? secondary? note?>` | Hero + 16/7 image |
+| `<FeatureSplit eyebrow heading paragraphs bullets? cta?>` | Two-column text section |
+| `<FeatureGrid eyebrow heading items columns? titleVariant?>` | Card grid (bold-sans title, or `label`) |
+| `<FeatureMedia eyebrow heading paragraphs image reversed? bullets? cta?>` | Text + image |
+| `<StepsRow eyebrow heading steps layout? subtitle?>` | Numbered steps (`grid` 3-up or `list`) |
+| `<FeaturePlansTeaser eyebrow heading plans>` | "En qué planes está incluida" 2-col teaser |
+| `<FeatureChecklists eyebrow heading columns>` | Two labelled checklists |
+| `<FeatureCallout heading paragraphs cta?>` | Centered soft "próximamente" panel |
+| `<FeatureTestimonial quote author image?>` | Quote + image |
+| `<FeatureCta heading body links?>` | Two-column closing CTA |
 
-Example composition:
+### `src/components/usecase/` — use-case pages (`/para/*`) + the funciones index
+Idiom: 26/30px wordmark nav, **sentence-case** mono eyebrow, stacked headers, centered CTA.
+
+| Component | Purpose |
+|---|---|
+| `<UseCaseTopNav cta?>` | Top nav (26/30px wordmark + trial CTA) |
+| `<UseCaseHero eyebrow heading subtitle image? note? cta?>` | Hero (image optional; text-only for the index) |
+| `<ProseSection eyebrow heading paragraphs cta?>` | Stacked heading + paragraph column |
+| `<CardGrid eyebrow heading items columns? image? footnote?>` | Card grid |
+| `<SplitFeature eyebrow heading paragraphs image cta?>` | Text beside a tall image |
+| `<StepsGrid heading steps softCta? numberSize?>` | Numbered 4-up grid (`sm` for time labels) |
+| `<Testimonial quote author role image>` | Image + quote |
+| `<UseCaseCta heading subtitle primaryLabel? secondary?>` | Centered closing CTA |
+| `<LinkCardGrid eyebrow heading items>` | Directory cards linking to detail pages |
+
+### Shared building blocks (used by both collections)
+
+| Building block | Purpose |
+|---|---|
+| `<CtaLink href variant>` | Pill link CTA — `primary` (olive) / `soft` / `outline`. Replaces per-page `PrimaryButton`/`SoftButton` |
+| `TrialButton` / `DemoButton` / `DemoLink` (`CtaButtons`) | Dialog-opening trial/demo CTAs (client) |
+| `<FaqSection heading items>` | FAQ block |
+| `<PricingCards variant>` | Pricing card(s), fed from `src/config/plans.ts` — never hardcode prices |
+| `<FloatingNav items>` | Sticky anchor nav |
+| `<HeroHeading text>` | Animated serif hero headline |
+| `<Reveal>` | Scroll-reveal wrapper |
+| `<SiteFooter links?>` | Site footer |
+
+Example (feature detail page):
 ```tsx
-<PageSection reveal id="flujo">
-  <Eyebrow className="mb-5">Cómo funciona</Eyebrow>
-  <SectionTitle>El flujo completo</SectionTitle>
-  <Body className="mt-6">Sin papel. Sin pedidos que se pierden.</Body>
-  <LinkButton href="#contacto" className="mt-8">Empezá</LinkButton>
-</PageSection>
+<FeatureTopNav />
+<FeatureHero eyebrow="Funciones, Monitor de cocina" heading="…" subtitle="…"
+  image={{ src, alt }} ctaLabel="Probá gratis" secondary={{ href: '#como-funciona', label: 'Ver cómo funciona' }} />
+<main className="…">
+  <FeatureSplit eyebrow="El problema" heading="…" paragraphs={[…]} />
+  <StepsRow id="como-funciona" eyebrow="Cómo funciona" heading="…" steps={steps} />
+  <FeatureGrid eyebrow="Funciones" heading="…" items={cards} />
+  <FeatureTestimonial quote="…" author="…" />
+  <PricingCards variant="advanced" compact features={[…]} />
+  <FaqSection heading="…" items={faq} />
+  <FeatureCta heading="…" body="…" />
+</main>
+<SiteFooter />
 ```
 
+If a page has a genuinely one-off section, write it inline **with tokens** (not a new component) —
+don't force it into a component. A bespoke inline section is fine; duplicated inline markup is not.
+
 ### Legacy — do not use in new code
-`Section`, `Container`, `SectionHeading`, `Button` (in `shared/`) belong to the old **green**
-system and are only consumed by not-yet-migrated `Homepage/*` and `Bares/*` components. They get
-removed as those migrate. Don't add new usages.
+`Section`, `Container`, `SectionHeading`, `Button` in `shared/` belong to the old **green** system,
+consumed only by the not-yet-migrated `Homepage/*`. They get removed once the home migrates. The
+page-scoped `Bares/*` and `FacturacionArca/*` sets were already deleted after migration.
 
 ---
 
