@@ -3,12 +3,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
-import { DemoButton, TrialButton } from '@/components/shared/CtaButtons'
-import { FaqSection } from '@/components/shared/FaqSection'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { HeroHeading } from '@/components/shared/HeroHeading'
+import { CardGrid, CtaLink, UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
+
+const TRIAL = process.env.NEXT_PUBLIC_TRIAL_PERIOD
+const WHATSAPP = 'https://wa.me/5491124018983'
 
 export const metadata: Metadata = {
   title: 'Soporte, Mesanube',
@@ -30,7 +32,7 @@ const canales = [
     title: 'WhatsApp, la forma más rápida',
     body: '+54 9 11 2401-8983. Mandanos un mensaje con tu nombre, el nombre de tu local y lo que está pasando. Respondemos en horario de trabajo. Para urgencias operativas, priorizamos.',
     cta: 'Escribir por WhatsApp →',
-    href: 'https://wa.me/5491124018983',
+    href: WHATSAPP,
   },
   {
     title: 'Email',
@@ -86,103 +88,38 @@ const faq = [
   },
 ]
 
-/* ── Button primitives ── */
-
-function PrimaryButton({
-  children,
-  href,
-  className = '',
-}: {
-  children: React.ReactNode
-  href: string
-  className?: string
-}) {
-  return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center gap-1.5 rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[#3a4c0d] active:scale-[0.98] ${className}`}
-    >
-      <span>{children}</span>
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 6 7"
-        fill="none"
-        className="translate-y-px transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        aria-hidden="true"
-      >
-        <path
-          d="M0.5 6L5.5 1M5.5 1H1.5M5.5 1V5"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeLinecap="square"
-        />
-      </svg>
-    </Link>
-  )
-}
-
 /* ── Page ── */
 
 export default function SoportePage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav items={navItems} />
+      <UseCaseTopNav />
 
-      {/* Top nav */}
-      <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
-        <Link
-          href="/"
-          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-black sm:text-[30px] sm:tracking-[-1.5px]"
-          style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-        >
-          mesanube
-        </Link>
-        <TrialButton>Probá gratis</TrialButton>
-      </nav>
-
-      {/* Hero */}
-      <header className="flex w-full max-w-[1500px] flex-col items-start gap-[60px] overflow-clip sm:gap-[100px]">
-        <div className="flex w-full flex-col items-start gap-6">
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Soporte
-          </p>
-          <HeroHeading text="El equipo de Mesanube, directo por WhatsApp." className="w-full" />
-          <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-            Cuando algo no funciona o tenés una duda, no querés esperar en una cola de tickets ni
-            hablar con un bot. Te entendemos. Por eso el soporte de Mesanube es directo al equipo.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <PrimaryButton href="https://wa.me/5491100000000">
-              Escribir por WhatsApp
-            </PrimaryButton>
-          </div>
-        </div>
-
-        <Reveal className="zoom-wrap relative h-[220px] w-full overflow-hidden rounded-[20px] sm:h-[320px] lg:h-[420px] lg:rounded-[30px]">
-          <Image
-            src="/figma/hero-mountains.png"
-            alt="Soporte de Mesanube"
-            fill
-            sizes="(max-width: 1024px) 100vw, 1500px"
-            className="object-cover"
-            priority
-          />
-        </Reveal>
-      </header>
+      <UseCaseHero
+        eyebrow="Soporte"
+        heading="El equipo de Mesanube, directo por WhatsApp."
+        subtitle="Cuando algo no funciona o tenés una duda, no querés esperar en una cola de tickets ni hablar con un bot. Te entendemos. Por eso el soporte de Mesanube es directo al equipo."
+        image={{ src: '/figma/hero-mountains.png', alt: 'Soporte de Mesanube' }}
+        cta={
+          <CtaLink href={WHATSAPP} variant="primary" external>
+            Escribir por WhatsApp
+          </CtaLink>
+        }
+      />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
-        {/* Cómo contactarnos */}
+        {/* Cómo contactarnos — two channel cards with external links */}
         <section
           id="como-ayudamos"
           className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
         >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[#e9e9e9] pt-[60px] pb-[40px] sm:pt-[80px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+          <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:pt-[80px]">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
               Cómo contactarnos
             </h2>
             <p
-              className="w-full font-display text-black lg:pr-[400px]"
+              className="w-full font-display text-[var(--heading)] lg:pr-[400px]"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 60px)',
                 lineHeight: 0.9,
@@ -198,13 +135,13 @@ export default function SoportePage() {
                 key={canal.title}
                 delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
                 as="article"
-                className="flex flex-col items-start gap-6 border-t border-[#e9e9e9] py-[40px] pr-5"
+                className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
               >
                 <div className="flex w-full flex-col items-start gap-5">
-                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-black">
+                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
                     {canal.title}
                   </p>
-                  <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                  <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                     {canal.body}
                   </p>
                 </div>
@@ -212,7 +149,7 @@ export default function SoportePage() {
                   href={canal.href}
                   target={canal.href.startsWith('https') ? '_blank' : undefined}
                   rel={canal.href.startsWith('https') ? 'noopener noreferrer' : undefined}
-                  className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#485c11] focus-visible:outline-offset-2"
+                  className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--olive)] focus-visible:outline-offset-2"
                 >
                   {canal.cta}
                 </Link>
@@ -222,55 +159,24 @@ export default function SoportePage() {
         </section>
 
         {/* Qué tipos de problemas resolvemos */}
-        <section
+        <CardGrid
           id="que-resolvemos"
-          className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[#e9e9e9] pt-[60px] pb-[40px] sm:pt-[80px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Qué tipos de problemas resolvemos
-            </h2>
-            <p
-              className="w-full font-display text-black lg:pr-[400px]"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Desde la configuración hasta la operación diaria.
-            </p>
-          </Reveal>
-          <div className="grid w-full grid-cols-1 gap-x-[20px] sm:grid-cols-2 lg:grid-cols-3">
-            {tiposDeProblemas.map((tipo, i) => (
-              <Reveal
-                key={tipo.title}
-                delay={Math.min((i % 3) + 1, 4) as 1 | 2 | 3 | 4}
-                as="article"
-                className="flex flex-col items-start gap-4 border-t border-[#e9e9e9] py-[40px] pr-5"
-              >
-                <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-black">
-                  {tipo.title}
-                </p>
-                <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  {tipo.body}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+          eyebrow="Qué tipos de problemas resolvemos"
+          heading="Desde la configuración hasta la operación diaria."
+          items={tiposDeProblemas}
+        />
 
-        {/* Horario */}
+        {/* Horario — text + tall image with a WhatsApp CTA */}
         <section
           id="horario"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:flex-row lg:items-start lg:gap-[20px] lg:pb-[120px]"
+          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:flex-row lg:items-start lg:gap-[20px] lg:pb-[120px]"
         >
           <Reveal className="flex w-full flex-[1_0_0] flex-col items-start gap-[30px] lg:gap-10 lg:pr-[80px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
               Horario
             </h2>
             <p
-              className="w-full font-display text-black"
+              className="w-full font-display text-[var(--heading)]"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 60px)',
                 lineHeight: 0.9,
@@ -279,35 +185,16 @@ export default function SoportePage() {
             >
               Lunes a sábado, en horario de trabajo.
             </p>
-            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Respondemos en horario de trabajo de lunes a sábado.
             </p>
-            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Para urgencias durante el servicio, sistema caído o error crítico que impide operar, priorizamos independientemente del horario.
+            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+              Para urgencias durante el servicio, sistema caído o error crítico que impide operar,
+              priorizamos independientemente del horario.
             </p>
-            <Link
-              href="https://wa.me/5491100000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[#3a4c0d] active:scale-[0.98]"
-            >
-              <span>Escribir por WhatsApp</span>
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 6 7"
-                fill="none"
-                className="translate-y-px transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                aria-hidden="true"
-              >
-                <path
-                  d="M0.5 6L5.5 1M5.5 1H1.5M5.5 1V5"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="square"
-                />
-              </svg>
-            </Link>
+            <CtaLink href={WHATSAPP} variant="primary" external>
+              Escribir por WhatsApp
+            </CtaLink>
           </Reveal>
 
           <Reveal
@@ -329,35 +216,13 @@ export default function SoportePage() {
         {/* FAQ */}
         <FaqSection heading="Lo que más nos preguntan sobre el soporte." items={faq} />
 
-        {/* CTA: Hablá con nosotros / todavía no sos cliente */}
-        <section
-          id="contacto"
-          className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[#e9e9e9] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
-        >
-          <Reveal
-            as="p"
-            className="w-full text-center font-display text-black"
-            style={{
-              fontSize: 'clamp(36px, 5.5vw, 60px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-            }}
-          >
-            ¿Todavía no usás Mesanube?
-          </Reveal>
-          <Reveal
-            delay={1}
-            as="p"
-            className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-          >
-            Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia. O agendá una demo y te
-            mostramos cómo funciona.
-          </Reveal>
-          <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
-            <TrialButton className="w-full">Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
-            <DemoButton>Agendá una demo →</DemoButton>
-          </Reveal>
-        </section>
+        {/* CTA final */}
+        <UseCaseCta
+          heading="¿Todavía no usás Mesanube?"
+          subtitle={`Probá gratis ${TRIAL}. Sin tarjeta de crédito. Sin permanencia. O agendá una demo y te mostramos cómo funciona.`}
+          primaryLabel={`Probá gratis ${TRIAL}`}
+          demoLabel="Agendá una demo →"
+        />
       </main>
 
       <SiteFooter />
