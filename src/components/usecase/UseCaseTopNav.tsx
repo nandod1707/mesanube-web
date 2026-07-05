@@ -17,7 +17,8 @@ export function UseCaseTopNav({ cta = 'Probá gratis' }: { cta?: string }) {
       >
         mesanube
       </Link>
-      <TrialButton>{cta}</TrialButton>
+      {/* Hidden on mobile — the CTA lives inside the FloatingNav hamburger menu there. */}
+      <TrialButton className="hidden lg:inline-flex">{cta}</TrialButton>
     </nav>
   )
 }

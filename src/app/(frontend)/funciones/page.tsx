@@ -22,12 +22,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precios' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const featureCards = [
   { title: 'Comanda digital', body: 'El pedido va del celular del mozo a cocina en segundos. Sin papel, sin gritos, sin pedidos que se pierden.', href: '/funciones/comanda-digital', label: 'Ver comanda digital', badge: null },
   { title: 'Arqueo de caja', body: 'Cerrá el turno con el control exacto del efectivo, las transferencias y los pagos con tarjeta. Sin calculadora, sin diferencias sin explicación.', href: '/funciones/arqueo-de-caja', label: 'Ver arqueo de caja', badge: null },
@@ -44,7 +38,7 @@ const featureCards = [
 export default function FuncionesPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

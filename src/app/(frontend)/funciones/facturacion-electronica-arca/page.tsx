@@ -18,13 +18,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#como-funciona', label: 'Cómo funciona' },
-  { href: '#tipos', label: 'Comprobantes' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const steps = [
   { number: '01', title: 'Configurás tu CUIT y datos fiscales en el sistema', description: 'Los datos van una sola vez, en la pantalla de configuración. Nombre del negocio, CUIT, condición ante ARCA.' },
   { number: '02', title: 'Vinculás Mesanube con tu cuenta de ARCA', description: 'El proceso usa el sistema de delegación oficial de ARCA, el mismo que usaría tu contador. No le das la contraseña de ARCA a nadie: le das permiso a Mesanube para emitir en tu nombre.' },
@@ -63,7 +56,7 @@ const faqItems = [
 export default function FacturacionElectronicaArcaPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero
@@ -234,7 +227,7 @@ export default function FacturacionElectronicaArcaPage() {
         />
       </main>
 
-      <SiteFooter links={navItems} />
+      <SiteFooter />
     </div>
   )
 }

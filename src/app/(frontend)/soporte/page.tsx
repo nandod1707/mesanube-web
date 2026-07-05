@@ -20,13 +20,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#como-ayudamos', label: 'Cómo ayudamos' },
-  { href: '#que-resolvemos', label: 'Qué resolvemos' },
-  { href: '#horario', label: 'Horario' },
-  { href: '#faq', label: 'FAQ' },
-]
-
 const canales = [
   {
     title: 'WhatsApp, la forma más rápida',
@@ -93,7 +86,7 @@ const faq = [
 export default function SoportePage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

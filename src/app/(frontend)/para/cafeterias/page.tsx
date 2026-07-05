@@ -24,13 +24,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '/#problema', label: 'El problema' },
-  { href: '/#funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precio' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const problema = [
   'Llega el pico del mediodía. Tres mesas pidiendo al mismo tiempo, la chica del mostrador anotando en papel, el pedido que va a la cocina equivocado, y el cliente que se impacienta. Al final del día, cuando querés cerrar caja, el efectivo no cierra con lo que vendiste y no sabés de dónde viene la diferencia.',
   'No es que algo esté mal en tu local. Es que las herramientas que estás usando no estaban pensadas para esto.',
@@ -105,7 +98,7 @@ const faq = [
 export default function CafeteriasPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

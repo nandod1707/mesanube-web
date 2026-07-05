@@ -21,13 +21,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#que-es', label: '¿Qué es?' },
-  { href: '#funciones', label: 'Funciones' },
-  { href: '#precios', label: 'Precios' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const trustItems = [
   'Facturación ARCA incluida',
   'Sin costos ocultos',
@@ -144,7 +137,7 @@ const faqs = [
 export default function HomePage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
 
       {/* Top nav */}
       <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
@@ -155,7 +148,8 @@ export default function HomePage() {
         >
           mesanube
         </Link>
-        <TrialButton>Probá gratis</TrialButton>
+        {/* Hidden on mobile — the CTA lives inside the FloatingNav hamburger menu there. */}
+        <TrialButton className="hidden lg:inline-flex">Probá gratis</TrialButton>
       </nav>
 
       {/* Hero */}

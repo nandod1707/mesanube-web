@@ -19,13 +19,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#que-viene', label: '¿Qué viene?' },
-  { href: '#acceso', label: 'Acceso anticipado' },
-  { href: '/#funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precios' },
-]
-
 const comingFeatures = [
   'Puntos por consumo acumulados automáticamente con cada venta',
   'Recompensas configurables (descuentos, productos gratis, experiencias)',
@@ -46,7 +39,7 @@ const TITLE_STYLE = {
 export default function FidelizacionPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       {/* Hero (bespoke: coming-soon badge + image overlay) */}

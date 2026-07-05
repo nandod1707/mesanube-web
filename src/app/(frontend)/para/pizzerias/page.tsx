@@ -24,13 +24,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#problema', label: 'El problema' },
-  { href: '#funciones', label: 'Funciones' },
-  { href: '#precios', label: 'Precio' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const problema = [
   'Una pizzería no es un restaurante donde se sirve pizza. Es una operación distinta. En el mismo turno hay mesas del salón, clientes que llevan para pedir en el mostrador y pedidos de delivery propio que hay que coordinar con la cocina. Todo al mismo tiempo, con el mismo equipo.',
   'En el pico del viernes, la cocina no para. El ritmo es otro. Y si el sistema no acompaña ese ritmo, se convierte en un problema más.',
@@ -87,7 +80,7 @@ const faq = [
 export default function PizzeriasPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

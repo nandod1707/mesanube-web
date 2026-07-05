@@ -20,13 +20,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#precios', label: 'Planes' },
-  { href: '#descuentos', label: 'Descuentos' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const comparisonRows: { label: string; basic: boolean; advanced: boolean }[] = [
   { label: 'Pedidos digitales', basic: true, advanced: true },
   { label: 'Carta QR', basic: true, advanced: true },
@@ -97,7 +90,7 @@ function Check({ value }: { value: boolean }) {
 export default function PreciosPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

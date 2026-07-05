@@ -25,13 +25,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#que-muestran', label: 'Reportes' },
-  { href: '#desde-el-celular', label: 'Desde el celular' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const reportCards = [
   { title: 'Ventas por período', body: 'Comparación día a día, semana a semana o mes a mes. Ves si estás creciendo, si hay una caída, y en qué momento del día o de la semana pasan las cosas.' },
   { title: 'Productos más vendidos', body: 'Qué ítems salen más. Cuáles tienen menos movimiento. Información concreta para decidir qué mantener en la carta, qué promocionar y qué sacar.' },
@@ -52,7 +45,7 @@ const faqItems = [
 export default function ReportesYAnaliticaPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero

@@ -22,13 +22,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#beneficios', label: 'Beneficios' },
-  { href: '#como-funciona', label: 'Cómo funciona' },
-  { href: '#precios', label: 'Precio' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const benefitCards = [
   {
     number: '01',
@@ -115,7 +108,7 @@ const faqItems = [
 export default function ComandaDigitalCafeteriaPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav cta="Empezá gratis" />
 
       <FeatureHero

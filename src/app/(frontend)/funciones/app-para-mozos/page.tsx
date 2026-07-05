@@ -23,12 +23,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '/#funciones', label: 'Funciones' },
-  { href: '/#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const featureCards = [
   { title: 'Tomar pedidos por mesa', body: 'El mozo abre su mesa, selecciona los productos, agrega modificaciones o notas, y envía. El pedido aparece en el monitor de cocina al instante.' },
   { title: 'Agregar ítems a una comanda', body: 'Si la mesa pide algo más, el mozo lo suma a la comanda existente. Sin abrir una nueva, sin complicaciones.' },
@@ -57,7 +51,7 @@ const faqItems = [
 export default function AppParaMozosPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero

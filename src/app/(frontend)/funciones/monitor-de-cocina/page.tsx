@@ -25,13 +25,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#problema', label: 'El problema' },
-  { href: '#como-funciona', label: 'Cómo funciona' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const steps = [
   { number: '01', title: 'El mozo toma el pedido', description: 'Desde su celular, selecciona los productos y toca "Enviar". El pedido parte.' },
   { number: '02', title: 'Llega al monitor al instante', description: 'En la pantalla de la cocina aparece el pedido: número de mesa, productos, modificaciones, hora de entrada. En texto claro, sin ambigüedad.' },
@@ -54,7 +47,7 @@ const faqItems = [
 export default function MonitorDeCocinaPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero

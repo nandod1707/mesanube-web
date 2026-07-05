@@ -24,13 +24,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#flujo', label: 'Cómo funciona' },
-  { href: '#detalles', label: 'Funciones' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const steps = [
   { number: '01', title: 'El mozo abre la mesa', description: 'En la app selecciona la mesa o el pedido de mostrador. Ve los productos organizados por categoría: entradas, principales, bebidas, postres.' },
   { number: '02', title: 'Selecciona los productos', description: 'Toca los ítems, suma la cantidad, agrega modificaciones o notas como "sin sal", "al punto", "sin hielo". El sistema guarda exactamente lo que indicó.' },
@@ -61,7 +54,7 @@ const faqItems = [
 export default function ComandaDigitalPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero

@@ -23,13 +23,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#que-registra', label: 'Qué registra' },
-  { href: '#cierre', label: 'Cierre de turno' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const steps = [
   { number: '01', title: 'Contás el efectivo en caja', description: 'Al final del turno, contás el dinero físico. Lo ingresás en el sistema.' },
   { number: '02', title: 'El sistema cruza los datos', description: 'Mesanube compara el efectivo que contaste con el total de ventas en efectivo registradas durante el turno, descontando egresos. Si hay diferencia, la muestra.' },
@@ -50,7 +43,7 @@ const faqItems = [
 export default function ArqueoDeCajaPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero

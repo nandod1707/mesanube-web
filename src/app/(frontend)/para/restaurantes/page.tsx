@@ -24,13 +24,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '/#problema', label: 'El problema' },
-  { href: '/#funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precio' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const problema = [
   'Los márgenes son ajustados, los precios cambian seguido, el personal rota, y el cliente quiere el plato en tiempo y forma. Encima de todo eso: la obligación de facturar con ARCA (ex-AFIP), mantener el stock actualizado, y cerrar la caja con los números que corresponden.',
   'La mayoría de los sistemas de gestión para restaurantes están pensados para otro mercado, traducidos al castellano neutro, y soportados por un equipo en otro país que no sabe lo que es ARCA ni el arqueo de caja en pesos. O son sistemas locales viejos que cuestan más de lo que vale lo que hacen.',
@@ -119,7 +112,7 @@ const faq = [
 export default function RestaurantesPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

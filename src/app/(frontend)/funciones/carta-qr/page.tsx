@@ -25,13 +25,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#como-funciona', label: 'Cómo funciona' },
-  { href: '#donde-usar', label: 'Dónde usarlo' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const steps = [
   { number: '01', title: 'El cliente escanea el QR', description: 'Con la cámara del teléfono, como hace con cualquier código QR. No necesita bajarse ninguna app, no necesita tener cuenta en ningún lado.' },
   { number: '02', title: 'Ve el menú en su teléfono', description: 'El menú aparece organizado por categorías: entradas, principales, bebidas, postres. Con fotos si las subiste, con descripción si la escribiste.' },
@@ -60,7 +53,7 @@ const faqItems = [
 export default function CartaQrPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <FeatureTopNav />
 
       <FeatureHero

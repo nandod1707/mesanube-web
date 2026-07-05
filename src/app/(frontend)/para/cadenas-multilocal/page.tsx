@@ -21,13 +21,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#problema', label: 'El problema' },
-  { href: '#funciones', label: 'Qué incluye' },
-  { href: '#tiempo-real', label: 'En tiempo real' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const features = [
   {
     title: 'Tablero consolidado',
@@ -68,7 +61,7 @@ const features = [
 export default function CadenasMultilocalPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero

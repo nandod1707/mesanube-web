@@ -24,13 +24,6 @@ export const metadata: Metadata = {
 
 /* ── Static data ── */
 
-const navItems = [
-  { href: '#problema', label: 'El problema' },
-  { href: '#funciones', label: 'Funciones' },
-  { href: '#precios', label: 'Precio' },
-  { href: '#contacto', label: 'Empezá' },
-]
-
 const problema = [
   'El bar es uno de los ambientes más exigentes para un sistema de gestión. No es un restaurante con servicio tranquilo: es una máquina de pedidos continuos, varios mozos trabajando en simultáneo, y cuentas que se pagan de a partes al final de la noche.',
   'Encima está la presión de ARCA: facturar en el momento, sin que el proceso frene la operación ni genere una cola en la barra. Los sistemas genéricos no están pensados para ese ritmo. Mesanube sí.',
@@ -143,7 +136,7 @@ const faq = [
 export default function BaresPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
-      <FloatingNav items={navItems} />
+      <FloatingNav />
       <UseCaseTopNav />
 
       <UseCaseHero
