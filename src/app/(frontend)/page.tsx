@@ -169,7 +169,7 @@ export default function HomePage() {
           </h1>
 
           <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-            Organizá tu local, cumplí con ARCA y controlá la caja. Diseñado para bares, cafeterías
+            Tomá pedidos, controlá la caja, y organizá tu local. Diseñado para bares, cafeterías
             y restaurantes. Sin costos ocultos, y sin permanencia mínima.
           </p>
 
@@ -241,7 +241,7 @@ export default function HomePage() {
                 letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
               }}
             >
-              Un sistema de gestión gastronómica hecho para locales argentinos
+              Un sistema de gestión gastronómica hecho para locales como el tuyo
             </h2>
           </Reveal>
           <Reveal
