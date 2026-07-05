@@ -115,7 +115,7 @@ const basicFeatures = [
 ]
 
 const advancedFeatures = [
-  'Todo el plan Básico',
+  `Todo el plan ${PLAN_BASIC.name}`,
   'App para mozos',
   'Monitor de cocina',
   'Control de stock',
@@ -145,53 +145,6 @@ const faqs = [
   },
 ]
 
-/* ── Button primitives ── */
-
-function PrimaryButton({
-  children,
-  href = '#contacto',
-  className = '',
-}: {
-  children: React.ReactNode
-  href?: string
-  className?: string
-}) {
-  return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center gap-1.5 rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[#3a4c0d] active:scale-[0.98] ${className}`}
-    >
-      <span>{children}</span>
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 6 7"
-        fill="none"
-        className="translate-y-px transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        aria-hidden="true"
-      >
-        <path
-          d="M0.5 6L5.5 1M5.5 1H1.5M5.5 1V5"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeLinecap="square"
-        />
-      </svg>
-    </Link>
-  )
-}
-
-function SoftButton({ children, href = '#' }: { children: React.ReactNode; href?: string }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex items-center justify-center rounded-full bg-[#dfecc6] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black transition-[background-color,transform] duration-300 hover:bg-[#d0e1ac] active:scale-[0.98]"
-    >
-      {children}
-    </Link>
-  )
-}
-
 /* ── Page ── */
 
 export default function HomePage() {
@@ -203,7 +156,7 @@ export default function HomePage() {
       <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
         <Link
           href="/"
-          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-black sm:text-[30px] sm:tracking-[-1.5px]"
+          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-[var(--heading)] sm:text-[30px] sm:tracking-[-1.5px]"
           style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
         >
           mesanube
@@ -215,7 +168,7 @@ export default function HomePage() {
       <header className="flex w-full max-w-[1500px] flex-col items-start gap-[80px] overflow-clip sm:gap-[160px] lg:gap-[240px]">
         <div className="flex w-full flex-col items-center gap-8">
           <h1
-            className="word-rise w-full text-center font-display text-black"
+            className="word-rise w-full text-center font-display text-[var(--heading)]"
             style={{
               fontSize: 'clamp(36px, 5.5vw, 60px)',
               lineHeight: 1.1,
@@ -227,7 +180,7 @@ export default function HomePage() {
             <span>más fácil que vas a probar.</span>
           </h1>
 
-          <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+          <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
             Organizá tu local, cumplí con ARCA y controlá la caja. Diseñado para bares, cafeterías
             y restaurantes. Sin costos ocultos, y sin permanencia mínima.
           </p>
@@ -238,7 +191,7 @@ export default function HomePage() {
           </div>
 
           {/* Social proof */}
-          <p className="text-center text-[16px] leading-[1.4] tracking-[-0.09px] text-[#929292]">
+          <p className="text-center text-[16px] leading-[1.4] tracking-[-0.09px] text-[var(--caption)]">
             <em>
               &ldquo;No pensé que iba a ser tan fácil.&rdquo;
             </em>{' '}
@@ -247,7 +200,7 @@ export default function HomePage() {
         </div>
 
         <Reveal className="relative w-full">
-          <div className="relative h-[220px] w-full overflow-visible rounded-[20px] bg-[#8e9c78] sm:h-[280px] sm:rounded-[24px] lg:h-[362px] lg:rounded-[30px]">
+          <div className="relative h-[220px] w-full overflow-visible rounded-[20px] bg-[var(--hero-bg)] sm:h-[280px] sm:rounded-[24px] lg:h-[362px] lg:rounded-[30px]">
             <div
               aria-label="Vista previa del panel de Mesanube mostrando comandas, mesas y reportes"
               className="ipad-float absolute left-1/2 top-1/2 w-[88%] max-w-[907px] overflow-hidden rounded-[14px] border-x-2 border-t-2 border-white/50 bg-black shadow-[0_-4px_20px_rgba(0,0,0,0.1)] sm:rounded-[18px] lg:rounded-[24px]"
@@ -274,14 +227,14 @@ export default function HomePage() {
         <section
           id="que-es"
           aria-label="Indicadores de confianza"
-          className="flex w-full max-w-[1500px] flex-wrap items-center justify-start gap-x-[30px] gap-y-[12px] border-t border-[#e9e9e9] py-[50px] sm:justify-center"
+          className="flex w-full max-w-[1500px] flex-wrap items-center justify-start gap-x-[30px] gap-y-[12px] border-t border-[var(--divider)] py-[50px] sm:justify-center"
         >
           {trustItems.map((item) => (
             <span
               key={item}
-              className="flex items-center gap-1.5 text-[16px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
+              className="flex items-center gap-1.5 text-[16px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]"
             >
-              <span className="font-bold text-[#485c11]" aria-hidden="true">
+              <span className="font-bold text-[var(--olive)]" aria-hidden="true">
                 ✓
               </span>
               {item}
@@ -290,10 +243,10 @@ export default function HomePage() {
         </section>
 
         {/* ¿Qué es Mesanube? */}
-        <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pb-[80px] pt-[60px] sm:gap-[50px] sm:pt-[80px] lg:flex-row lg:items-start lg:gap-[80px] lg:pb-[120px]">
+        <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pb-[80px] pt-[60px] sm:gap-[50px] sm:pt-[80px] lg:flex-row lg:items-start lg:gap-[80px] lg:pb-[120px]">
           <Reveal className="flex w-full flex-col items-start gap-[30px] lg:w-1/2 lg:gap-10">
             <h2
-              className="w-full font-display text-black"
+              className="w-full font-display text-[var(--heading)]"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 60px)',
                 lineHeight: 0.9,
@@ -307,7 +260,7 @@ export default function HomePage() {
             delay={1}
             className="flex w-full flex-col items-start gap-6 lg:w-1/2 lg:pt-2"
           >
-            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Mesanube es el POS que usan cafeterías, bares y restaurantes argentinos para tomar
               pedidos sin papel, emitir facturas ARCA y cerrar la caja sin diferencias. Funciona en
               cualquier tablet o celular, o computadora con Windows. No necesitás hardware especial.
@@ -320,13 +273,13 @@ export default function HomePage() {
           id="funciones"
           className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]"
         >
-          <div className="flex w-full flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[40px] sm:gap-[50px] sm:pt-[80px] sm:pb-[60px]">
+          <div className="flex w-full flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:gap-[50px] sm:pt-[80px] sm:pb-[60px]">
             <Reveal className="flex w-full flex-col items-start gap-[30px] sm:gap-[50px] lg:pr-[400px]">
-              <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+              <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                 Tipos de negocio
               </h2>
               <p
-                className="w-full font-display text-black"
+                className="w-full font-display text-[var(--heading)]"
                 style={{
                   fontSize: 'clamp(36px, 5.5vw, 60px)',
                   lineHeight: 0.9,
@@ -335,7 +288,7 @@ export default function HomePage() {
               >
                 Pensado para cada tipo de negocio gastronómico
               </p>
-              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 Mesanube se adapta al ritmo de tu local, ya sea una cafetería con tres mesas o un
                 restaurante con veinte.
               </p>
@@ -347,17 +300,17 @@ export default function HomePage() {
                   key={bt.href}
                   delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
                   as="article"
-                  className="flex flex-col items-start gap-4 border-t border-[#e9e9e9] py-[40px] pr-5"
+                  className="flex flex-col items-start gap-4 border-t border-[var(--divider)] py-[40px] pr-5"
                 >
-                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-black">
+                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
                     {bt.name}
                   </p>
-                  <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                  <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                     {bt.body}
                   </p>
                   <Link
                     href={bt.href}
-                    className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black"
+                    className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
                   >
                     {bt.label} →
                   </Link>
@@ -369,10 +322,10 @@ export default function HomePage() {
 
         {/* ARCA diferencial */}
         <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] pb-[80px] lg:flex-row lg:items-start lg:gap-[20px] lg:pb-[120px]">
-          <Reveal className="flex w-full flex-[1_0_0] flex-col items-start gap-10 border-t border-[#e9e9e9] pt-[60px] pb-[40px] lg:pb-[80px]">
+          <Reveal className="flex w-full flex-[1_0_0] flex-col items-start gap-10 border-t border-[var(--divider)] pt-[60px] pb-[40px] lg:pb-[80px]">
             <div className="flex w-full flex-col items-start gap-[30px] lg:gap-10 lg:pr-[80px]">
               <h2
-                className="w-full font-display text-black"
+                className="w-full font-display text-[var(--heading)]"
                 style={{
                   fontSize: 'clamp(36px, 5.5vw, 60px)',
                   lineHeight: 0.9,
@@ -381,16 +334,16 @@ export default function HomePage() {
               >
                 Facturación electrónica ARCA incluida en todos los planes
               </h2>
-              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 En Mesanube no tenés que instalar ninguna app extra para cumplir con ARCA. Emitís facturas A, B y C directamente desde tu cuenta, con impresión desde cualquier comandera con ticket térmico.
               </p>
-              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 Sin controladores fiscales, sin entrar al facturador, ni tener que llenar precios a mano.
               </p>
             </div>
             <Link
               href="/funciones/facturacion-electronica-arca"
-              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black"
+              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
             >
               Ver cómo funciona la facturación ARCA →
             </Link>
@@ -415,13 +368,13 @@ export default function HomePage() {
 
         {/* Features */}
         <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
-          <div className="flex w-full flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[40px] sm:gap-[50px] sm:pt-[80px] sm:pb-[60px]">
+          <div className="flex w-full flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:gap-[50px] sm:pt-[80px] sm:pb-[60px]">
             <Reveal className="flex w-full flex-col items-start gap-[30px] sm:gap-[50px] lg:pr-[400px]">
-              <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+              <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                 Funciones
               </h2>
               <p
-                className="w-full font-display text-black"
+                className="w-full font-display text-[var(--heading)]"
                 style={{
                   fontSize: 'clamp(36px, 5.5vw, 60px)',
                   lineHeight: 0.9,
@@ -430,7 +383,7 @@ export default function HomePage() {
               >
                 Todo lo que necesitás para gestionar tu local
               </p>
-              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 Desde que levantás la persiana hasta que cerrás la caja, Mesanube te cubre.
               </p>
             </Reveal>
@@ -441,22 +394,22 @@ export default function HomePage() {
                   key={f.href}
                   delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
                   as="article"
-                  className="flex flex-col items-start gap-6 border-t border-[#e9e9e9] py-[40px] pr-5"
+                  className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
                 >
                   <div className="relative size-6">
                     <Image src={f.icon} alt="" fill sizes="24px" />
                   </div>
                   <div className="flex w-full flex-col items-start gap-5">
-                    <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-black">
+                    <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
                       {f.title}
                     </p>
-                    <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                    <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                       {f.body}
                     </p>
                   </div>
                   <Link
                     href={f.href}
-                    className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black"
+                    className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
                   >
                     Ver cómo funciona →
                   </Link>
@@ -484,10 +437,10 @@ export default function HomePage() {
           </Reveal>
           <Reveal
             delay={1}
-            className="flex w-full flex-[1_0_0] flex-col items-start justify-center gap-8 border-t border-[#e9e9e9] pt-8 sm:gap-[50px] lg:w-1/2 lg:pl-[50px] lg:pt-0"
+            className="flex w-full flex-[1_0_0] flex-col items-start justify-center gap-8 border-t border-[var(--divider)] pt-8 sm:gap-[50px] lg:w-1/2 lg:pl-[50px] lg:pt-0"
           >
             <p
-              className="w-full font-display text-black"
+              className="w-full font-display text-[var(--heading)]"
               style={{
                 fontSize: 'clamp(24px, 3vw, 40px)',
                 lineHeight: 1,
@@ -497,50 +450,25 @@ export default function HomePage() {
               &ldquo;Es tan fácil de usar que las cajeras casi no necesitaron capacitación, les mostré cómo se usa y a los 10 minutos ya lo manejaban sin problemas.&rdquo;
             </p>
             <div className="flex w-full flex-col items-start gap-2 leading-[1.4]">
-              <p className="text-[18px] tracking-[-0.09px] text-black">Stan</p>
-              <p className="font-mono text-[14px] tracking-[-0.14px] text-[#485c11]">
+              <p className="text-[18px] tracking-[-0.09px] text-[var(--heading)]">Stan</p>
+              <p className="font-mono text-[14px] tracking-[-0.14px] text-[var(--olive)]">
                 Coffee Times, Caballito
               </p>
             </div>
           </Reveal>
         </section>
 
-        {/* Coming soon */}
-        {/* <section className="flex w-full max-w-[1500px] flex-col items-start pb-[80px] lg:pb-[120px]">
-          <Reveal className="flex w-full flex-col items-center gap-8 rounded-[20px] bg-[#dfecc6] px-6 py-[80px] text-center sm:px-12 sm:py-[120px] lg:px-[240px]">
-            <h2
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Pronto: el primer POS argentino que hace que tus clientes vuelvan solos
-            </h2>
-            <p className="w-full max-w-[540px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Estamos construyendo el primer módulo de fidelización con gamificación para
-              restaurantes argentinos. Puntos, recompensas, desafíos, todo integrado con tu POS.
-              Tus clientes no tienen que bajarse ninguna app.
-            </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-black">
-              Los locales que ya usan Mesanube tienen acceso anticipado.
-            </p>
-            <SoftButton href="/funciones/fidelizacion">Quiero acceso anticipado →</SoftButton>
-          </Reveal>
-        </section> */}
-
         {/* Pricing */}
         <section
           id="precios"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
+          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
         >
           <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
               Precios
             </h2>
             <p
-              className="w-full font-display text-black"
+              className="w-full font-display text-[var(--heading)]"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 60px)',
                 lineHeight: 0.9,
@@ -549,7 +477,7 @@ export default function HomePage() {
             >
               Precios transparentes, sin letra chica
             </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Todos los planes incluyen {process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba gratuita. Sin tarjeta de crédito para
               empezar.
             </p>
@@ -559,20 +487,20 @@ export default function HomePage() {
             {/* Plan Básico */}
             <Reveal
               delay={1}
-              className="flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[#e9e9e9] p-8"
+              className="flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--divider)] p-8"
             >
               <div>
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                   {PLAN_BASIC.name}
                 </p>
                 <p
-                  className="mt-2 font-display leading-none tracking-[-0.02em] text-black"
+                  className="mt-2 font-display leading-none tracking-[-0.02em] text-[var(--heading)]"
                   style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
                 >
                   {PLAN_BASIC.price}
-                  <span className="text-[16px] font-sans font-normal text-[#6f6f6f]">/mes</span>
+                  <span className="text-[16px] font-sans font-normal text-[var(--body)]">/mes</span>
                 </p>
-                <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                   Para cafeterías y locales con mostrador.
                 </p>
               </div>
@@ -580,9 +508,9 @@ export default function HomePage() {
                 {basicFeatures.map((item) => (
                   <li
                     key={item}
-                    className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-black"
+                    className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--heading)]"
                   >
-                    <span className="font-bold text-[#485c11]" aria-hidden="true">
+                    <span className="font-bold text-[var(--olive)]" aria-hidden="true">
                       ✓
                     </span>
                     {item}
@@ -597,13 +525,13 @@ export default function HomePage() {
             {/* Plan Avanzado */}
             <Reveal
               delay={2}
-              className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
+              className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--surface-dark)] bg-[var(--surface-dark)] p-8"
             >
-              <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
+              <span className="absolute right-6 top-6 rounded-full bg-[var(--olive-soft)] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-[var(--heading)]">
                 {PLAN_ADVANCED.popular}
               </span>
               <div>
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#dfecc6]">
+                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive-soft)]">
                   {PLAN_ADVANCED.name}
                 </p>
                 <p
@@ -623,7 +551,7 @@ export default function HomePage() {
                     key={item}
                     className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-white"
                   >
-                    <span className="font-bold text-[#dfecc6]" aria-hidden="true">
+                    <span className="font-bold text-[var(--olive-soft)]" aria-hidden="true">
                       ✓
                     </span>
                     {item}
@@ -639,7 +567,7 @@ export default function HomePage() {
           <div className="flex w-full justify-center">
             <Link
               href="/precios"
-              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[#485c11] underline underline-offset-2 transition-colors hover:text-black"
+              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
             >
               Ver todos los planes →
             </Link>
@@ -652,11 +580,11 @@ export default function HomePage() {
         {/* CTA final */}
         <section
           id="contacto"
-          className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[#e9e9e9] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
+          className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[var(--divider)] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
         >
           <Reveal
             as="h2"
-            className="w-full text-center font-display text-black"
+            className="w-full text-center font-display text-[var(--heading)]"
             style={{
               fontSize: 'clamp(36px, 5.5vw, 60px)',
               lineHeight: 0.9,
@@ -668,7 +596,7 @@ export default function HomePage() {
           <Reveal
             delay={1}
             as="p"
-            className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
+            className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]"
           >
             Probá Mesanube gratis por {process.env.NEXT_PUBLIC_TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia.
           </Reveal>
