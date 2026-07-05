@@ -3,19 +3,9 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
+import { MAIN_NAV as items } from '@/config/nav'
+
 import { TrialButton } from './CtaButtons'
-
-type NavItem = { href: string; label: string }
-
-/**
- * Canonical main navigation — identical on every page. Section anchors that
- * live on the homepage use the `/#id` form so they work from any route.
- */
-const items: NavItem[] = [
-  { href: '/#que-es', label: 'Qué es' },
-  { href: '/funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precios' },
-]
 
 export default function FloatingNav() {
   const [hidden, setHidden] = useState(true)

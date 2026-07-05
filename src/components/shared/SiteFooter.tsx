@@ -1,22 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 
-export type FooterLink = {
-  href: string
-  label: string
-}
-
-const defaultLinks: FooterLink[] = [
-  { href: '/funciones', label: 'Funciones' },
-  { href: '/precios', label: 'Precios' },
-  { href: '/soporte', label: 'Soporte' },
-]
+import { FOOTER_NAV, type NavItem } from '@/config/nav'
 
 type SiteFooterProps = {
-  links?: FooterLink[]
+  links?: NavItem[]
 }
 
-export function SiteFooter({ links = defaultLinks }: SiteFooterProps) {
+export function SiteFooter({ links = FOOTER_NAV }: SiteFooterProps) {
   const year = new Date().getFullYear()
 
   return (
