@@ -187,7 +187,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <Reveal className="relative w-full">
+        <Reveal immediate delay={1} className="relative w-full">
           <div className="relative h-[220px] w-full overflow-visible rounded-[20px] bg-[var(--hero-bg)] sm:h-[280px] sm:rounded-[24px] lg:h-[362px] lg:rounded-[30px]">
             <div
               aria-label="Vista previa del panel de Mesanube mostrando comandas, mesas y reportes"

@@ -6,6 +6,12 @@ type RevealProps = {
   as?: keyof React.JSX.IntrinsicElements
   delay?: 0 | 1 | 2 | 3 | 4
   once?: boolean
+  /**
+   * Fade in on load instead of on scroll. Use for above-the-fold content that
+   * the IntersectionObserver would otherwise leave hidden until the user
+   * scrolls (e.g. a tall hero pushed just below the initial viewport).
+   */
+  immediate?: boolean
   className?: string
   children: React.ReactNode
   style?: React.CSSProperties
@@ -16,6 +22,7 @@ export default function Reveal({
   as: Tag = 'div',
   delay = 0,
   once = true,
+  immediate = false,
   className = '',
   children,
   ...rest
@@ -25,6 +32,12 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    // Reveal on load, no scroll needed.
+    if (immediate) {
+      const id = requestAnimationFrame(() => el.classList.add('is-visible'))
+      return () => cancelAnimationFrame(id)
+    }
 
     // Above-the-fold elements: trigger fade-in on load without waiting for scroll
     // (the 0.15 IntersectionObserver threshold can leave tall hero blocks hidden).
@@ -51,7 +64,7 @@ export default function Reveal({
 
     io.observe(el)
     return () => io.disconnect()
-  }, [once])
+  }, [once, immediate])
 
   const delayClass =
     delay === 1
