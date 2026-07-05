@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { MesanubeLogo } from '@/components/Logo/MesanubeLogo'
+import { WHATSAPP_URL } from '@/config/contact'
 
 const businessLinks = [
   { label: 'Cafeterías', href: '/para/cafeterias' },
@@ -176,7 +177,7 @@ export async function Footer() {
               <br />
 
               <Link
-                href="https://wa.me/5491100000000"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

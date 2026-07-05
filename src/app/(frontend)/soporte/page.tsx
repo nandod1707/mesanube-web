@@ -8,9 +8,9 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { CardGrid, CtaLink, UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_URL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/config/contact'
 
 const TRIAL = process.env.NEXT_PUBLIC_TRIAL_PERIOD
-const WHATSAPP = 'https://wa.me/5491124018983'
 
 export const metadata: Metadata = {
   title: 'Soporte, Mesanube',
@@ -30,15 +30,15 @@ const navItems = [
 const canales = [
   {
     title: 'WhatsApp, la forma más rápida',
-    body: '+54 9 11 2401-8983. Mandanos un mensaje con tu nombre, el nombre de tu local y lo que está pasando. Respondemos en horario de trabajo. Para urgencias operativas, priorizamos.',
+    body: `${WHATSAPP_DISPLAY}. Mandanos un mensaje con tu nombre, el nombre de tu local y lo que está pasando. Respondemos en horario de trabajo. Para urgencias operativas, priorizamos.`,
     cta: 'Escribir por WhatsApp →',
-    href: WHATSAPP,
+    href: WHATSAPP_URL,
   },
   {
     title: 'Email',
     body: 'Para consultas que no son urgentes o que requieren adjuntar archivos, también podés escribirnos por email. Respondemos en el mismo día hábil.',
-    cta: 'soporte@mesanube.ar →',
-    href: 'mailto:soporte@mesanube.ar',
+    cta: `${SUPPORT_EMAIL} →`,
+    href: SUPPORT_EMAIL_URL,
   },
 ]
 
@@ -102,7 +102,7 @@ export default function SoportePage() {
         subtitle="Cuando algo no funciona o tenés una duda, no querés esperar en una cola de tickets ni hablar con un bot. Te entendemos. Por eso el soporte de Mesanube es directo al equipo."
         image={{ src: '/figma/hero-mountains.png', alt: 'Soporte de Mesanube' }}
         cta={
-          <CtaLink href={WHATSAPP} variant="primary" external>
+          <CtaLink href={WHATSAPP_URL} variant="primary" external>
             Escribir por WhatsApp
           </CtaLink>
         }
@@ -192,7 +192,7 @@ export default function SoportePage() {
               Para urgencias durante el servicio, sistema caído o error crítico que impide operar,
               priorizamos independientemente del horario.
             </p>
-            <CtaLink href={WHATSAPP} variant="primary" external>
+            <CtaLink href={WHATSAPP_URL} variant="primary" external>
               Escribir por WhatsApp
             </CtaLink>
           </Reveal>
