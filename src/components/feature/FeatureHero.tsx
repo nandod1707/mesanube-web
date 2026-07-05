@@ -17,6 +17,8 @@ type FeatureHeroProps = {
   ctaLabel?: string
   /** Optional outline "ver cómo funciona" style link. */
   secondary?: { href: string; label: string }
+  /** Optional small text next to the CTA (used instead of a secondary link). */
+  note?: string
 }
 
 /**
@@ -30,6 +32,7 @@ export function FeatureHero({
   image,
   ctaLabel = 'Probá gratis',
   secondary,
+  note,
 }: FeatureHeroProps) {
   return (
     <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
@@ -37,12 +40,15 @@ export function FeatureHero({
         <p className={`mb-5 ${EYEBROW}`}>{eyebrow}</p>
         <HeroHeading text={heading} className="mb-6" />
         <p className={`mb-8 max-w-[520px] ${BODY}`}>{subtitle}</p>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <TrialButton>{ctaLabel}</TrialButton>
           {secondary && (
             <CtaLink href={secondary.href} variant="outline">
               {secondary.label}
             </CtaLink>
+          )}
+          {note && (
+            <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">{note}</p>
           )}
         </div>
       </Reveal>

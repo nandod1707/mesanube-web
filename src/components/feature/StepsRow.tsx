@@ -11,6 +11,8 @@ type StepsRowProps = {
   eyebrow: string
   heading: string
   steps: Step[]
+  /** Optional paragraph under the heading. */
+  subtitle?: string
   /** `grid` = 3-up cards (default); `list` = number-left / text-right rows. */
   layout?: 'grid' | 'list'
 }
@@ -19,7 +21,7 @@ type StepsRowProps = {
  * Feature-page "cómo funciona": stacked header + numbered steps, either as a
  * 3-up grid or a vertical number-left list.
  */
-export function StepsRow({ id, eyebrow, heading, steps, layout = 'grid' }: StepsRowProps) {
+export function StepsRow({ id, eyebrow, heading, steps, subtitle, layout = 'grid' }: StepsRowProps) {
   return (
     <section
       id={id}
@@ -27,9 +29,10 @@ export function StepsRow({ id, eyebrow, heading, steps, layout = 'grid' }: Steps
     >
       <Reveal className="mb-12">
         <p className={`mb-5 ${EYEBROW}`}>{eyebrow}</p>
-        <h2 className={TITLE} style={TITLE_STYLE}>
+        <h2 className={`${subtitle ? 'mb-5 ' : ''}${TITLE}`} style={TITLE_STYLE}>
           {heading}
         </h2>
+        {subtitle && <p className={`${BODY} lg:pr-[400px]`}>{subtitle}</p>}
       </Reveal>
 
       {layout === 'grid' ? (
