@@ -31,16 +31,36 @@ const getPagesSitemap = unstable_cache(
 
     const dateFallback = new Date().toISOString()
 
-    const defaultSitemap = [
-      {
-        loc: `${SITE_URL}/search`,
-        lastmod: dateFallback,
-      },
-      {
-        loc: `${SITE_URL}/posts`,
-        lastmod: dateFallback,
-      },
+    // Hardcoded Next.js marketing routes — these are NOT managed as Payload
+    // `pages`, so they must be listed explicitly. Keep in sync when adding a
+    // marketing page. Payload-managed pages are appended after this.
+    const staticRoutes = [
+      '/',
+      '/funciones',
+      '/funciones/comanda-digital',
+      '/funciones/arqueo-de-caja',
+      '/funciones/carta-qr',
+      '/funciones/monitor-de-cocina',
+      '/funciones/app-para-mozos',
+      '/funciones/reportes-y-analitica',
+      '/funciones/facturacion-electronica-arca',
+      '/funciones/fidelizacion',
+      '/para/cafeterias',
+      '/para/restaurantes',
+      '/para/bares',
+      '/para/pizzerias',
+      '/para/cadenas-multilocal',
+      '/precios',
+      '/soporte',
+      '/landing/comanda-digital-cafeteria',
+      '/posts',
+      '/search',
     ]
+
+    const defaultSitemap = staticRoutes.map((path) => ({
+      loc: path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`,
+      lastmod: dateFallback,
+    }))
 
     const sitemap = results.docs
       ? results.docs
