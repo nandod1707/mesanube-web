@@ -151,17 +151,17 @@
   pointer-events: none;
 }
 
-/* iPad device float */
-@keyframes ipadFloat {
-  0%, 100% { transform: translate(-50%, calc(-50% - 4px)); }
-  50%       { transform: translate(-50%, calc(-50% + 4px)); }
+/* Device preview float — vertical bob only, so the wrapper owns the X/Y position. */
+@keyframes ipadFloatY {
+  0%, 100% { transform: translateY(-4px); }
+  50%       { transform: translateY(4px); }
 }
-.ipad-float { animation: ipadFloat 6s ease-in-out infinite; }
+.ipad-float-y { animation: ipadFloatY 6s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .word-rise > span,
-  .ipad-float {
+  .ipad-float-y {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

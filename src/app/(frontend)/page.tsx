@@ -7,6 +7,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 
@@ -153,62 +154,15 @@ export default function HomePage() {
       </nav>
 
       {/* Hero */}
-      <header className="flex w-full max-w-[1500px] flex-col items-start gap-[80px] overflow-clip sm:gap-[160px] lg:gap-[240px]">
-        <div className="flex w-full flex-col items-center gap-8">
-          <h1
-            className="word-rise w-full text-center font-display text-[var(--heading)]"
-            style={{
-              fontSize: 'clamp(36px, 5.5vw, 60px)',
-              lineHeight: 1.1,
-              letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-            }}
-          >
-            <span>El sistema de gestión para gastronomía</span>
-            <br/>
-            <span>más fácil que vas a probar.</span>
-          </h1>
-
-          <p className="w-full max-w-[600px] text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-            Tomá pedidos, controlá la caja, y organizá tu local. Diseñado para bares, cafeterías
-            y restaurantes. Sin costos ocultos, y sin permanencia mínima.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
-            <DemoLink tone="dark">Agendá una demo →</DemoLink>
-          </div>
-
-          {/* Social proof */}
-          <p className="text-center text-[16px] leading-[1.4] tracking-[-0.09px] text-[var(--caption)]">
-            <em>
-              &ldquo;No pensé que iba a ser tan fácil.&rdquo;
-            </em>{' '}
-            - Minuto Café, Caballito
-          </p>
-        </div>
-
-        <Reveal immediate delay={1} className="relative w-full">
-          <div className="relative h-[220px] w-full overflow-visible rounded-[20px] bg-[var(--hero-bg)] sm:h-[280px] sm:rounded-[24px] lg:h-[362px] lg:rounded-[30px]">
-            <div
-              aria-label="Vista previa del panel de Mesanube mostrando comandas, mesas y reportes"
-              className="ipad-float absolute left-1/2 top-1/2 w-[88%] max-w-[907px] overflow-hidden rounded-[14px] border-x-2 border-t-2 border-white/50 bg-black shadow-[0_-4px_20px_rgba(0,0,0,0.1)] sm:rounded-[18px] lg:rounded-[24px]"
-              style={{ aspectRatio: '907 / 644' }}
-            >
-              <div className="absolute inset-[2%_2%_0_2%] overflow-hidden rounded-[10px] sm:rounded-[14px] lg:rounded-[16px]">
-                <Image
-                  src="/api/media/file/inner-screen-1.webp"
-                  alt="Panel de control de Mesanube"
-                  width={1741}
-                  height={993}
-                  sizes="(max-width: 1024px) 90vw, 870px"
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </header>
+      <ShowcaseHero
+        heading={['El sistema de gestión para gastronomía', 'más fácil que vas a probar.']}
+        subtitle="Tomá pedidos, controlá la caja, y organizá tu local. Diseñado para bares, cafeterías y restaurantes. Sin costos ocultos, y sin permanencia mínima."
+        note={
+          <>
+            <em>&ldquo;No pensé que iba a ser tan fácil.&rdquo;</em> - Minuto Café, Caballito
+          </>
+        }
+      />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Trust bar */}
