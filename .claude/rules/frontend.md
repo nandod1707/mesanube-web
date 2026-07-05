@@ -9,7 +9,7 @@ Rules for all frontend work on this project. Follow these precisely. When in dou
 Apply styles in this order — exhaust each level before moving to the next:
 
 1. **Tailwind utility classes** — for spacing, layout, flex/grid, border-radius, display, overflow, z-index, cursor, transition
-2. **CSS custom properties via Tailwind** — `text-[var(--dark-green)]`, `bg-[var(--cream-bg)]`
+2. **CSS custom properties via Tailwind** — `text-[var(--heading)]`, `bg-[var(--cream-bg)]`
 3. **CSS Modules** — for component-specific rules that Tailwind can't handle cleanly: complex selectors, pseudo-elements, `clip-path`, `animation`, `:hover` with multiple properties, media-query-heavy rules
 4. **`globals.css` `@layer components`** — for reusable patterns that appear across many components (e.g. `.btn-primary`, `.section-eyebrow`)
 5. **Inline `style={{}}`** — **only** for values that are computed at runtime in JavaScript (e.g. a transform derived from scroll position, an animation delay based on array index, a width set from a JS measurement). Never for static values.
@@ -21,7 +21,7 @@ Apply styles in this order — exhaust each level before moving to the next:
 
 ### Good ✅
 ```tsx
-<h2 className="text-[var(--dark-green)] text-[2.5rem] font-medium">
+<h2 className="text-[var(--heading)] text-[2.5rem] font-medium">
 ```
 
 ### Good ✅ (truly dynamic)
@@ -47,12 +47,12 @@ accent** — olive `--olive`. These canonical semantic tokens are the source of 
 | `--body` | `#6f6f6f` | Body / paragraph text |
 | `--caption` | `#929292` | Captions, footnotes, plan-number labels |
 | `--divider` | `#e9e9e9` | Section `border-t` separators, card borders |
-| `--surface-dark` | `rgb(36, 52, 29)` | Dark-green brand panels (Avanzado card, CTA, ComingSoon, hero gradient) |
+| `--surface-dark` | `rgb(36, 52, 29)` | Dark brand panels (Avanzado pricing card, dark CTA panels) |
 | `--hero-bg` | `#8e9c78` | Hero background |
 | `--media-bg` | `#f5f5f0` | Image / media placeholder background |
 | `--cream-bg` | `rgb(255, 254, 252)` | Page / section background |
 | `--warm-white` | `rgb(255, 247, 238)` | Text on dark panels |
-| `--yellow` | `rgb(255, 190, 13)` | Reserved (homepage highlights) |
+| `--yellow` | `rgb(255, 190, 13)` | Reserved (not currently used in the marketing pages) |
 
 In Tailwind: `text-[var(--heading)]`, `text-[var(--body)]`, `text-[var(--olive)]`, `border-[var(--divider)]`, `bg-[var(--surface-dark)]`
 
@@ -60,12 +60,10 @@ In CSS Modules / globals.css: `color: var(--body);`
 
 When adding a new color, add it to `:root` in `globals.css` first — never use a one-off value.
 
-> **Deprecated — do not use in new code:** `--dark-green`, `--medium-green`, `--forest-green`,
-> `--muted-green`, `--pale-green`, `--light-green-bg`. These belong to an older "green" system that
-> was never fully shipped. When migrating a component, replace them:
-> `--dark-green` (text) → `--heading`; `--dark-green` (panel bg) → `--surface-dark`;
+> The old "green" system (`--dark-green`, `--forest-green`, `--medium-green`, `--muted-green`,
+> `--pale-green`, `--light-green-bg`) has been fully removed. If you see any of them in old notes or
+> snippets, the mapping was: `--dark-green` → `--heading` (text) / `--surface-dark` (panel bg);
 > `--forest-green` → `--olive`; `--medium-green` → `--body`; `--pale-green` → `--divider`.
-> They remain defined in `globals.css` only until the migration is complete, then get removed.
 >
 > **Note:** `globals.css` also defines shadcn tokens named `--accent` and `--muted` (HSL, for the
 > Payload admin). Those are **not** the marketing palette — the accent is `--olive`, the muted text
@@ -106,10 +104,6 @@ import { Eyebrow } from '@/components/shared/Eyebrow'
 <Eyebrow>Funciones, Comanda digital</Eyebrow>
 // → font-mono, 14px, uppercase, tracking -0.14px, text-[var(--olive)]
 ```
-
-> The legacy `.eyebrow` class in `globals.css` still uses the old green system (sans, `--forest-green`)
-> and is only consumed by not-yet-migrated homepage sections. Don't use it in new code; it's removed
-> once those sections migrate.
 
 Line heights:
 - Big headings (h1/h2): `0.9`
@@ -162,8 +156,11 @@ src/components/
   feature/       # /funciones/* detail-page sections (FeatureHero, FeatureSplit, StepsRow, FeatureGrid, …)
   usecase/       # /para/* + funciones index sections (UseCaseHero, CardGrid, StepsGrid, LinkCardGrid, …)
   shared/        # cross-cutting: CtaLink, CtaButtons, PricingCards, FaqSection, FloatingNav, Reveal, HeroHeading, SiteFooter
-  Homepage/      # legacy hardcoded homepage sections (green system, pending migration)
 ```
+
+The homepage (`app/(frontend)/page.tsx`) is a single hardcoded file on the canonical tokens — it
+doesn't use a section collection. Keep new marketing pages on the `feature/` or `usecase/`
+collections above.
 
 Each collection has a `styles.ts` with the shared type-scale constants (TITLE_STYLE, EYEBROW,
 BODY, …) so the idiom is defined once. See §6 for which collection to use.
@@ -253,10 +250,10 @@ Example (feature detail page):
 If a page has a genuinely one-off section, write it inline **with tokens** (not a new component) —
 don't force it into a component. A bespoke inline section is fine; duplicated inline markup is not.
 
-### Legacy — do not use in new code
-`Section`, `Container`, `SectionHeading`, `Button` in `shared/` belong to the old **green** system,
-consumed only by the not-yet-migrated `Homepage/*`. They get removed once the home migrates. The
-page-scoped `Bares/*` and `FacturacionArca/*` sets were already deleted after migration.
+### Removed sets
+The old green primitives (`Section`, `Container`, `SectionHeading`, `Button`) and the page-scoped
+`Homepage/*`, `Bares/*` and `FacturacionArca/*` section sets have all been deleted — the whole site
+now runs on the two collections above plus the canonical tokens. Don't recreate them.
 
 ---
 
@@ -329,15 +326,15 @@ export function HeroSection() { /* 200 lines */ }
 ## 9. Hover and focus states
 
 - All interactive elements (links, buttons, cards) must have visible `:hover` and `:focus-visible` states
-- Cards: on hover, increase `border-color` to `var(--forest-green)` and add a subtle `box-shadow`
+- Cards: on hover, increase `border-color` to `var(--olive)` and add a subtle `box-shadow`
 - Buttons: lighten/darken by ~10%, no abrupt color jumps
 - Transitions: `150ms–200ms ease` for colors, `200ms ease` for transforms
-- Never remove `outline` on `:focus-visible` — use `outline: 2px solid var(--forest-green); outline-offset: 2px` as the standard
+- Never remove `outline` on `:focus-visible` — use `outline: 2px solid var(--olive); outline-offset: 2px` as the standard
 
 ```css
 /* In a .module.css */
 .card:hover {
-  border-color: var(--forest-green);
+  border-color: var(--olive);
   box-shadow: 0 4px 16px rgba(36, 52, 29, 0.08);
 }
 ```

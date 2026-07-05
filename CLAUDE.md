@@ -51,8 +51,8 @@ Mesanube is a POS system for Argentine gastronomy businesses. This website serve
 - Domain: mesanube.ar
 
 ### Content structure
-- **Homepage**: hardcoded Next.js page (not managed via Payload). Still on the legacy "green" section
-  components (`components/Homepage/*`) — pending migration to the token system.
+- **Homepage**: single hardcoded Next.js page (`app/(frontend)/page.tsx`, not managed via Payload),
+  on the canonical tokens. It doesn't use a section collection — keep it as one composed file.
 - **Marketing pages** (`/para/*`, `/funciones/*`, `/precios`, `/soporte`, `/landing/*`): hardcoded
   Next.js pages built as **data + composition** using the section-component collections
   (`components/usecase/` and `components/feature/`), **not** Payload blocks. See
@@ -110,8 +110,8 @@ All user-facing text must follow these rules:
   (see `.claude/rules/frontend.md §6`) — don't write section markup inline or redefine local
   `PrimaryButton`/`SoftButton` (use `shared/CtaLink`).
 - **Colors go through the canonical tokens** (`--olive`, `--heading`, `--body`, `--divider`,
-  `--surface-dark`, …) — never raw hex. Don't use the deprecated green vars (`--dark-green`,
-  `--forest-green`, …) or the legacy green `shared/Section|Container|SectionHeading|Button`.
+  `--surface-dark`, …) — never raw hex. The old green system (vars and `shared/` primitives) has
+  been removed.
 - **Don't run `yarn build` while `yarn dev` is running** — the production build overwrites the dev
   server's `.next` and breaks it. Verify with `tsc --noEmit` + `yarn lint`; for a production build,
   stop the dev server first.
@@ -141,7 +141,7 @@ Design tokens and language extracted from the live site. All files live in `dev-
 **Colors** — one palette (olive/black/gray), single accent. Reference by CSS var, never raw hex.
 - Heading `var(--heading)` `#000` · Body `var(--body)` `#6f6f6f` · Caption `var(--caption)` `#929292` · Divider `var(--divider)` `#e9e9e9`
 - Accent `var(--olive)` `#485c11` · Accent hover `var(--olive-dark)` · Accent soft `var(--olive-soft)` `#dfecc6` · Dark panel `var(--surface-dark)` · Hero bg `var(--hero-bg)` `#8e9c78`
-- Deprecated (green system, being removed): `--dark-green` (→ `--heading` text / `--surface-dark` panel), `--forest-green` (→ `--olive`), `--medium-green` (→ `--body`), `--pale-green` (→ `--divider`). Full token table + rules: `.claude/rules/frontend.md §2`.
+- Full token table + rules: `.claude/rules/frontend.md §2`. The old green system has been fully removed.
 - ⚠ `--accent` and `--muted` in `globals.css` are **shadcn HSL tokens for the Payload admin**, not the marketing palette — the accent is `--olive`, the muted text is `--caption`.
 
 **Typography**

@@ -26,14 +26,15 @@ never raw hex.
 | `--body` | `#6f6f6f` | Body / paragraph text |
 | `--caption` | `#929292` | Captions, footnotes, step numbers |
 | `--divider` | `#e9e9e9` | Section `border-t`, card borders |
-| `--surface-dark` | `rgb(36,52,29)` | Dark-green brand panels (Avanzado card, CTA, badges) |
+| `--surface-dark` | `rgb(36,52,29)` | Dark brand panels (Avanzado pricing card, dark CTA panels) |
 | `--hero-bg` | `#8e9c78` | Hero background |
 | `--media-bg` | `#f5f5f0` | Image / media placeholder background |
 | `--cream-bg` | `rgb(255,254,252)` | Page / section background |
 | `--warm-white` | `rgb(255,247,238)` | Text on dark panels |
 
-**Deprecated** (old "green" system, only `Homepage/*` still uses it, being removed): `--dark-green`,
-`--forest-green`, `--medium-green`, `--muted-green`, `--pale-green`, `--light-green-bg`.
+The old "green" system (`--dark-green`, `--forest-green`, `--medium-green`, `--muted-green`,
+`--pale-green`, `--light-green-bg`) and its `shared/` primitives have been fully removed — the whole
+site is on the tokens above.
 
 **Not the marketing palette:** `--accent` and `--muted` in `globals.css` are shadcn HSL tokens for
 the Payload admin. The accent is `--olive`; the muted text is `--caption`.
@@ -108,7 +109,7 @@ is not allowed.
 - Reuse tokens and the section collections; keep the flat material (radius + subtle shadow habits).
 
 **Don't**
-- No raw hex, no deprecated green vars, no legacy green `shared/` primitives.
+- No raw hex — everything through the canonical tokens (the old green system is gone).
 - **No emojis** in copy or as decorative icons (the functional `✓` and `→` are fine).
 - No inline static `style={{}}`, no `!important`, no `px` font sizes below the type scale.
 - Don't hardcode prices — interpolate from `src/config/plans.ts`.
