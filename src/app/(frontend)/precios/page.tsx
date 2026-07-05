@@ -1,41 +1,33 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import React from 'react'
 
-import FloatingNav from '@/components/shared/FloatingNav'
-import Reveal from '@/components/shared/Reveal'
-import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
+import { DemoLink } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
-import { PLAN_BASIC, PLAN_ADVANCED } from '@/components/shared/PricingCards'
+import FloatingNav from '@/components/shared/FloatingNav'
+import { PricingCards } from '@/components/shared/PricingCards'
+import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { HeroHeading } from '@/components/shared/HeroHeading'
+import { CtaLink, UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
+import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 
-/* ─────────────────────────────────────────────
-   SEO Metadata
-───────────────────────────────────────────── */
+const TRIAL = process.env.NEXT_PUBLIC_TRIAL_PERIOD
+
 export const metadata: Metadata = {
   title: 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
   description:
-    `Planes desde ${PLAN_BASIC.price}/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta de crédito.`,
+    `Planes desde ${PLAN_BASIC.price}/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`,
 }
 
 /* ── Static data ── */
 
 const navItems = [
-  { href: '#planes', label: 'Planes' },
+  { href: '#precios', label: 'Planes' },
   { href: '#descuentos', label: 'Descuentos' },
   { href: '#faq', label: 'Preguntas' },
   { href: '#contacto', label: 'Empezá' },
 ]
 
-const { features: basicFeatures } = PLAN_BASIC
-const { features: advancedFeatures } = PLAN_ADVANCED
-
-const comparisonRows: {
-  label: string
-  basic: boolean
-  advanced: boolean
-}[] = [
+const comparisonRows: { label: string; basic: boolean; advanced: boolean }[] = [
   { label: 'Pedidos digitales', basic: true, advanced: true },
   { label: 'Carta QR', basic: true, advanced: true },
   { label: 'Facturación ARCA', basic: true, advanced: true },
@@ -50,24 +42,24 @@ const comparisonRows: {
 
 const faqs = [
   {
-    q: `¿Los ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis son con acceso completo?`,
+    q: `¿Los ${TRIAL} gratis son con acceso completo?`,
     a: 'Sí. Durante el período de prueba tenés acceso completo al plan que elegiste, sin restricciones de funciones ni límite de transacciones.',
   },
   {
     q: '¿Necesito tarjeta de crédito para empezar?',
-    a: `No. Los ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba arrancan sin tarjeta. Cuando se termina el período, elegís si continuás y cómo pagás.`,
+    a: `No. Los ${TRIAL} de prueba arrancan sin tarjeta. Cuando se termina el período, elegís si continuás y cómo pagás.`,
   },
   {
     q: '¿Qué pasa cuando termina el período de prueba?',
-    a: `Te avisamos antes de que termine. Si querés continuar, cargás el método de pago y seguís sin interrupciones. Si decidís no continuar, los datos de tu local quedan guardados por ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} más por si cambiás de idea.`,
+    a: `Te avisamos antes de que termine. Si querés continuar, cargás el método de pago y seguís sin interrupciones. Si decidís no continuar, los datos de tu local quedan guardados por ${TRIAL} más por si cambiás de idea.`,
   },
   {
     q: '¿Puedo cambiar de plan después?',
-    a: 'Sí. Si empezás con el Básico y crecés, pasás al Avanzado en cualquier momento. El cambio es inmediato.',
+    a: `Sí. Si empezás con el Plan ${PLAN_BASIC.name} y crecés, pasás al ${PLAN_ADVANCED.name} en cualquier momento. El cambio es inmediato.`,
   },
   {
     q: '¿Tienen plan para más de un local?',
-    a: 'Si tenés o estás abriendo una segunda o tercera sucursal, contactanos directo. Tenemos una solución para cadenas multilocal que está en desarrollo. Escribinos por WhatsApp y coordinamos.',
+    a: 'Sí. Mesanube tiene gestión multilocal: administrás todas tus sucursales desde un panel unificado, con datos consolidados y carga de menú centralizada. Escribinos por WhatsApp y coordinamos el alta.',
   },
   {
     q: '¿Qué incluye el soporte?',
@@ -83,65 +75,18 @@ const faqs = [
   },
 ]
 
-/* ── Button primitives ── */
-
-function PrimaryButton({
-  children,
-  href = '#contacto',
-  className = '',
-}: {
-  children: React.ReactNode
-  href?: string
-  className?: string
-}) {
-  return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center gap-1.5 rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[#3a4c0d] active:scale-[0.98] ${className}`}
-    >
-      <span>{children}</span>
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 6 7"
-        fill="none"
-        className="translate-y-px transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        aria-hidden="true"
-      >
-        <path
-          d="M0.5 6L5.5 1M5.5 1H1.5M5.5 1V5"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeLinecap="square"
-        />
-      </svg>
-    </Link>
-  )
-}
-
-function SoftButton({ children, href = '#' }: { children: React.ReactNode; href?: string }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex items-center justify-center rounded-full bg-[#dfecc6] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-black transition-[background-color,transform] duration-300 hover:bg-[#d0e1ac] active:scale-[0.98]"
-    >
-      {children}
-    </Link>
-  )
-}
-
-/* ── Checkmark cell ── */
+/* ── Comparison checkmark cell ── */
 
 function Check({ value }: { value: boolean }) {
   if (value) {
     return (
-      <span className="font-bold text-[#485c11]" aria-label="Incluido">
+      <span className="font-bold text-[var(--olive)]" aria-label="Incluido">
         ✓
       </span>
     )
   }
   return (
-    <span className="text-[#929292]" aria-label="No incluido">
+    <span className="text-[var(--caption)]" aria-label="No incluido">
       –
     </span>
   )
@@ -153,151 +98,31 @@ export default function PreciosPage() {
   return (
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav items={navItems} />
+      <UseCaseTopNav />
 
-      {/* Top nav */}
-      <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
-        <Link
-          href="/"
-          className="text-[26px] leading-[1.2] tracking-[-1.2px] text-black sm:text-[30px] sm:tracking-[-1.5px]"
-          style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
-        >
-          mesanube
-        </Link>
-        <TrialButton>Probá gratis</TrialButton>
-      </nav>
-
-      {/* Hero */}
-      <header className="flex w-full max-w-[1500px] flex-col items-start gap-[60px] overflow-clip sm:gap-[100px]">
-        <div className="flex w-full flex-col items-start gap-6">
-          <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-            Precios
-          </p>
-          <HeroHeading text="Precios sin letra chica." className="w-full" />
-          <p className="max-w-[52ch] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-            {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin
-            tarjeta, sin permanencia, sin sorpresas en la factura.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <TrialButton>Empezá tu prueba gratuita</TrialButton>
-            <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Sin tarjeta de crédito. Sin permanencia.
-            </p>
-          </div>
-        </div>
-      </header>
+      <UseCaseHero
+        eyebrow="Precios"
+        heading="Precios sin letra chica."
+        subtitle={`${TRIAL} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin tarjeta, sin permanencia, sin sorpresas en la factura.`}
+        ctaLabel="Empezá tu prueba gratuita"
+      />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Planes */}
-        <section
-          id="planes"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-              Planes
-            </h2>
-            <p
-              className="w-full font-display text-black"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Dos planes, sin módulos de pago separado
-            </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-              Todos los planes incluyen {process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba gratuita. Sin tarjeta de crédito para
-              empezar.
-            </p>
-          </Reveal>
+        <PricingCards
+          variant="both"
+          eyebrow="Planes"
+          heading="Dos planes, sin módulos de pago separado"
+          description={`Todos los planes incluyen ${TRIAL} de prueba gratuita. Sin tarjeta de crédito para empezar.`}
+          ctaText="Empezá tu prueba gratuita"
+          showAllPlansLink={false}
+        />
 
-          <div className="flex w-full flex-col gap-5 lg:flex-row">
-            {/* Plan Básico */}
-            <Reveal
-              delay={1}
-              className="flex flex-1 flex-col items-start gap-8 rounded-[20px] border border-[#e9e9e9] p-8"
-            >
-              <div className="flex w-full flex-col items-start gap-3">
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
-                  Básico
-                </p>
-                <p
-                  className="font-display leading-none tracking-[-0.02em] text-black"
-                  style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
-                >
-                  {PLAN_BASIC.price}
-                  <span className="text-[16px] font-sans font-normal text-[#6f6f6f]">/mes</span>
-                </p>
-                <p className="text-[14px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
-                  Para cafeterías, locales de mostrador y negocios que no tienen salón con mozos.
-                </p>
-              </div>
-              <ul className="flex w-full flex-col gap-3">
-                {basicFeatures.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-black"
-                  >
-                    <span className="mt-[2px] shrink-0 font-bold text-[#485c11]" aria-hidden="true">
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <TrialButton className="w-full">Empezá con el Plan {PLAN_BASIC.name}</TrialButton>
-            </Reveal>
-
-            {/* Plan Avanzado */}
-            <Reveal
-              delay={2}
-              className="relative flex flex-1 flex-col items-start gap-8 rounded-[20px] border border-[var(--dark-green)] bg-[var(--dark-green)] p-8"
-            >
-              <span className="absolute right-6 top-6 rounded-full bg-[#dfecc6] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-black">
-                Más elegido
-              </span>
-              <div className="flex w-full flex-col items-start gap-3">
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#dfecc6]">
-                  Avanzado
-                </p>
-                <p
-                  className="font-display leading-none tracking-[-0.02em] text-white"
-                  style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
-                >
-                  {PLAN_ADVANCED.price}
-                  <span className="text-[16px] font-sans font-normal text-white/60">/mes</span>
-                </p>
-                <p className="text-[14px] leading-[1.4] tracking-[-0.09px] text-white/70">
-                  Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.
-                </p>
-              </div>
-              <ul className="flex w-full flex-col gap-3">
-                {advancedFeatures.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-white"
-                  >
-                    <span
-                      className="mt-[2px] shrink-0 font-bold text-[#dfecc6]"
-                      aria-hidden="true"
-                    >
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <TrialButton className="w-full">Empezá con el Plan {PLAN_ADVANCED.name}</TrialButton>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Comparison table */}
-        <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
+        {/* Comparación */}
+        <section className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
           <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
             <h2
-              className="w-full font-display text-black"
+              className="w-full font-display text-[var(--heading)]"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 60px)',
                 lineHeight: 0.9,
@@ -306,7 +131,7 @@ export default function PreciosPage() {
             >
               ¿Cuál te conviene?
             </h2>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Si tenés dudas sobre cuál te queda mejor, escribinos por WhatsApp y en cinco minutos lo
               resolvemos.
             </p>
@@ -315,30 +140,35 @@ export default function PreciosPage() {
           <Reveal delay={1} className="w-full overflow-x-auto">
             <table className="w-full min-w-[400px] border-collapse text-left text-[18px] leading-[1.4] tracking-[-0.09px]">
               <thead>
-                <tr className="border-b border-[#e9e9e9]">
-                  <th className="pb-4 pr-8 font-sans text-[14px] font-bold text-black" scope="col">
+                <tr className="border-b border-[var(--divider)]">
+                  <th
+                    className="pb-4 pr-8 font-sans text-[14px] font-bold text-[var(--heading)]"
+                    scope="col"
+                  >
                     Función
                   </th>
                   <th
-                    className="pb-4 pr-8 font-mono text-[14px] font-bold tracking-[-0.14px] text-[#485c11]"
+                    className="pb-4 pr-8 font-mono text-[14px] font-bold tracking-[-0.14px] text-[var(--olive)]"
                     scope="col"
                   >
-                    Básico
-                    <span className="ml-1 font-normal text-[#929292]">{PLAN_BASIC.price}</span>
+                    {PLAN_BASIC.name}
+                    <span className="ml-1 font-normal text-[var(--caption)]">{PLAN_BASIC.price}</span>
                   </th>
                   <th
-                    className="pb-4 font-mono text-[14px] font-bold tracking-[-0.14px] text-[#485c11]"
+                    className="pb-4 font-mono text-[14px] font-bold tracking-[-0.14px] text-[var(--olive)]"
                     scope="col"
                   >
-                    Avanzado
-                    <span className="ml-1 font-normal text-[#929292]">{PLAN_ADVANCED.price}</span>
+                    {PLAN_ADVANCED.name}
+                    <span className="ml-1 font-normal text-[var(--caption)]">
+                      {PLAN_ADVANCED.price}
+                    </span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonRows.map((row) => (
-                  <tr key={row.label} className="border-b border-[#e9e9e9]">
-                    <td className="py-4 pr-8 text-black">{row.label}</td>
+                  <tr key={row.label} className="border-b border-[var(--divider)]">
+                    <td className="py-4 pr-8 text-[var(--heading)]">{row.label}</td>
                     <td className="py-4 pr-8 text-center">
                       <Check value={row.basic} />
                     </td>
@@ -355,14 +185,14 @@ export default function PreciosPage() {
         {/* Descuentos */}
         <section
           id="descuentos"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
+          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
         >
           <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
               Descuentos
             </h2>
             <p
-              className="w-full font-display text-black"
+              className="w-full font-display text-[var(--heading)]"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 60px)',
                 lineHeight: 0.9,
@@ -371,7 +201,7 @@ export default function PreciosPage() {
             >
               Pagando por adelantado
             </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Si sabés que Mesanube es para vos, podés ahorrar pagando por adelantado.
             </p>
           </Reveal>
@@ -380,10 +210,10 @@ export default function PreciosPage() {
             <Reveal
               delay={1}
               as="article"
-              className="flex flex-col items-start gap-6 border-t border-[#e9e9e9] py-[40px] pr-5"
+              className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
             >
               <p
-                className="font-display leading-none text-black"
+                className="font-display leading-none text-[var(--heading)]"
                 style={{
                   fontSize: 'clamp(36px, 5.5vw, 60px)',
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
@@ -392,10 +222,10 @@ export default function PreciosPage() {
                 10%
               </p>
               <div className="flex w-full flex-col items-start gap-3">
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                   6 meses por adelantado
                 </p>
-                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                   El descuento se aplica sobre el precio mensual del plan que elijas.
                 </p>
               </div>
@@ -404,10 +234,10 @@ export default function PreciosPage() {
             <Reveal
               delay={2}
               as="article"
-              className="flex flex-col items-start gap-6 border-t border-[#e9e9e9] py-[40px] pr-5"
+              className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
             >
               <p
-                className="font-display leading-none text-black"
+                className="font-display leading-none text-[var(--heading)]"
                 style={{
                   fontSize: 'clamp(36px, 5.5vw, 60px)',
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
@@ -416,10 +246,10 @@ export default function PreciosPage() {
                 25%
               </p>
               <div className="flex w-full flex-col items-start gap-3">
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                   12 meses por adelantado
                 </p>
-                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                   El pago anual en el Plan {PLAN_ADVANCED.name} sale lo mismo que pagar 9 meses al
                   precio de lista.
                 </p>
@@ -429,9 +259,9 @@ export default function PreciosPage() {
 
           <Reveal
             delay={1}
-            className="w-full rounded-[20px] bg-[#dfecc6] px-8 py-[40px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[#485c11]"
+            className="w-full rounded-[20px] bg-[var(--olive-soft)] px-8 py-[40px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--olive)]"
           >
-            Los primeros {process.env.NEXT_PUBLIC_TRIAL_PERIOD} son siempre gratis, independientemente del plan y la frecuencia de
+            Los primeros {TRIAL} son siempre gratis, independientemente del plan y la frecuencia de
             pago.
           </Reveal>
         </section>
@@ -440,41 +270,22 @@ export default function PreciosPage() {
         <FaqSection heading="Lo que más nos preguntan sobre los precios." items={faqs} />
 
         {/* CTA final */}
-        <section
-          id="contacto"
-          className="flex w-full max-w-[1500px] flex-col items-center gap-10 border-t border-[#e9e9e9] px-6 py-[80px] sm:px-24 sm:py-[120px] lg:px-[300px]"
-        >
-          <Reveal
-            as="h2"
-            className="w-full text-center font-display text-black"
-            style={{
-              fontSize: 'clamp(36px, 5.5vw, 60px)',
-              lineHeight: 0.9,
-              letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-            }}
-          >
-            Empezá gratis. {process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta
-          </Reveal>
-          <Reveal
-            delay={1}
-            as="p"
-            className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-          >
-            Si después de los {process.env.NEXT_PUBLIC_TRIAL_PERIOD} decidís que Mesanube no es para tu local, no perdiste nada.
-          </Reveal>
-          <Reveal delay={2} className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <TrialButton>Probá el Plan {PLAN_BASIC.name} gratis</TrialButton>
-            <SoftButton href="#planes">Probá el Plan {PLAN_ADVANCED.name} gratis</SoftButton>
-          </Reveal>
-          <Reveal
-            delay={3}
-            as="p"
-            className="text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]"
-          >
-            ¿Tenés preguntas antes de empezar?{' '}
-            <DemoLink tone="dark">Escribinos por WhatsApp →</DemoLink>
-          </Reveal>
-        </section>
+        <UseCaseCta
+          heading={`Empezá gratis. ${TRIAL} sin tarjeta`}
+          subtitle={`Si después de los ${TRIAL} decidís que Mesanube no es para tu local, no perdiste nada.`}
+          primaryLabel={`Probá el Plan ${PLAN_BASIC.name} gratis`}
+          secondary={
+            <>
+              <CtaLink href="#precios" variant="soft">
+                Probá el Plan {PLAN_ADVANCED.name} gratis
+              </CtaLink>
+              <p className="text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+                ¿Tenés preguntas antes de empezar?{' '}
+                <DemoLink tone="dark">Escribinos por WhatsApp →</DemoLink>
+              </p>
+            </>
+          }
+        />
       </main>
 
       <SiteFooter />
