@@ -12,7 +12,8 @@ type UseCaseHeroProps = {
   heading: string
   /** A single paragraph or several. */
   subtitle: string | string[]
-  image: { src: string; alt: string }
+  /** Optional hero image. Omit for a text-only hero (e.g. the funciones index). */
+  image?: { src: string; alt: string }
   /** Small text next to the CTA. Pass `null` to hide it. */
   note?: string | null
   ctaLabel?: string
@@ -58,16 +59,18 @@ export function UseCaseHero({
         </div>
       </div>
 
-      <Reveal className="zoom-wrap relative h-[220px] w-full overflow-hidden rounded-[20px] sm:h-[320px] lg:h-[420px] lg:rounded-[30px]">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes="(max-width: 1024px) 100vw, 1500px"
-          className="object-cover"
-          priority
-        />
-      </Reveal>
+      {image && (
+        <Reveal className="zoom-wrap relative h-[220px] w-full overflow-hidden rounded-[20px] sm:h-[320px] lg:h-[420px] lg:rounded-[30px]">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 1500px"
+            className="object-cover"
+            priority
+          />
+        </Reveal>
+      )}
     </header>
   )
 }
