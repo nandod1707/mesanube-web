@@ -6,7 +6,6 @@ import Reveal from '@/components/shared/Reveal'
 import { BODY, EYEBROW, TITLE, TITLE_STYLE } from './styles'
 
 type LinkCard = {
-  icon?: string
   title: string
   body: string
   href: string
@@ -48,11 +47,6 @@ export function LinkCardGrid({ id, eyebrow, heading, items }: LinkCardGridProps)
           >
             <div className="flex w-full flex-col items-start gap-5">
               <div className="flex w-full items-center gap-3">
-                {item.icon && (
-                  <span className="text-[22px] leading-none" aria-hidden="true">
-                    {item.icon}
-                  </span>
-                )}
                 <p className="font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
                   {item.title}
                 </p>

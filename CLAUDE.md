@@ -63,6 +63,8 @@ All user-facing text must follow these rules:
 - Be **concrete and direct**: "Pedidos a cocina en 3 segundos" not "Mejorá la eficiencia operativa"
 - Be **empathetic with the business owner**: "Sabemos lo que es cerrar la caja a medianoche"
 - Stay **anti-corporate**: "Sin vueltas, sin letra chica" not "Solución integral end-to-end"
+- **No emojis** in user-facing copy or as decorative UI icons (no 🍕📊⚡ etc.). Functional typographic
+  symbols like the `✓` checkmark in feature lists and the `→` arrow in link labels are fine.
 
 ## Tech Stack
 
