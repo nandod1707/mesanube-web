@@ -78,8 +78,8 @@ export default function PizzeriasPage() {
         eyebrow="Para pizzerías"
         heading="El sistema que aguanta el ritmo de una pizzería."
         subtitle="Salón, mostrador y delivery en simultáneo. Pico del viernes a las 21. La caja al final del turno sin que nadie se quede hasta la medianoche calculando. Mesanube está pensado para eso."
-        background={{ src: '/figma/hero-mountains.png', alt: 'Pizzería organizada con Mesanube' }}
-        align="left"
+        background={{ src: '/photos/salon-ventana-mesa-tarde.jpg', alt: 'Pizzería organizada con Mesanube' }}
+        align="right"
         note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
@@ -106,7 +106,7 @@ export default function PizzeriasPage() {
             'La comanda digital de Mesanube está diseñada para volumen: sin límite de pedidos simultáneos, sin que el sistema se trabe, sin que los mozos tengan que compartir una sola terminal. Cada uno trabaja desde su celular, independiente.',
           ]}
           cta={`Probá gratis ${TRIAL_PERIOD}`}
-          image={{ src: '/figma/columns.png', alt: 'Sistema Mesanube en funcionamiento en una pizzería' }}
+          image={{ src: '/photos/mozo-sirviendo-pizza.jpg', alt: 'Sistema Mesanube en funcionamiento en una pizzería' }}
         />
 
         <CardGrid

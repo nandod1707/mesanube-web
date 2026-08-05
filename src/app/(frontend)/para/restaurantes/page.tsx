@@ -109,7 +109,7 @@ export default function RestaurantesPage() {
         eyebrow="Para restaurantes"
         heading="De la primera comanda al cierre."
         subtitle="Para los que saben lo que es abrir a mediodía y no levantar cabeza hasta medianoche. Mesanube organiza la sala, conecta con cocina y te da los números al final del día."
-        background={{ src: '/figma/hero-mountains.png', alt: 'Restaurante organizado con Mesanube' }}
+        background={{ src: '/photos/cocina-linea-equipo.jpg', alt: 'Restaurante organizado con Mesanube' }}
         align="left"
         note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
@@ -145,7 +145,7 @@ export default function RestaurantesPage() {
             'Cuando la mesa pide la cuenta, la dividís asignando un monto a cada medio de pago y emitís la factura ARCA ahí mismo. Todo queda registrado para el arqueo del cierre, sin rearmar nada de memoria.',
           ]}
           image={{
-            src: '/api/media/file/las-tres-gracias-1.webp',
+            src: '/photos/salon-tarde-cliente-2.jpg',
             alt: 'Salón de un restaurante trabajando con Mesanube',
           }}
           cta="Probá gratis"

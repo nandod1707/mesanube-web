@@ -25,7 +25,7 @@ export default function ContactoPage() {
         eyebrow="Contacto"
         heading="Escribinos, te respondemos nosotros."
         subtitle="¿Tenés una duda, una propuesta o ya sos cliente y necesitás una mano? Completá el formulario o escribinos directo por WhatsApp."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Equipo de Mesanube' }}
+        image={{ src: '/photos/cafeteria-atencion-cliente.jpg', alt: 'Equipo de Mesanube' }}
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

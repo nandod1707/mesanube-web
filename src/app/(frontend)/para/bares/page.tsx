@@ -130,8 +130,8 @@ export default function BaresPage() {
         eyebrow="Para bares"
         heading="Para el bar que no para. Comanda ágil, caja que cierra."
         subtitle="Los viernes a la noche no perdonan errores. Mesanube mantiene el ritmo de tu bar sin que nada se pierda en el camino."
-        background={{ src: '/figma/hero-mountains.png', alt: 'Bar argentino organizado con Mesanube' }}
-        align="left"
+        background={{ src: '/photos/bar-tragos-brindis.jpg', alt: 'Bar argentino organizado con Mesanube' }}
+        align="right"
         note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
@@ -170,7 +170,7 @@ export default function BaresPage() {
             'Al cierre, el arqueo ya está armado con cada medio de pago por separado. Nada de reconstruir la noche a mano cuando cerrás la persiana.',
           ]}
           image={{
-            src: '/figma/landscape.png',
+            src: '/photos/bar-interior-ambiente.jpg',
             alt: 'Bar lleno un viernes a la noche gestionado con Mesanube',
           }}
           cta="Probá gratis"

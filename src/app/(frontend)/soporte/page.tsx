@@ -94,7 +94,7 @@ export default function SoportePage() {
         eyebrow="Soporte"
         heading="El equipo de Mesanube, directo por WhatsApp."
         subtitle="Cuando algo no funciona o tenés una duda, no querés esperar en una cola de tickets ni hablar con un bot. Te entendemos. Por eso el soporte de Mesanube es directo al equipo."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Soporte de Mesanube' }}
+        image={{ src: '/photos/cafeteria-mesa-soporte.jpg', alt: 'Soporte de Mesanube' }}
         cta={
           <CtaLink href={WHATSAPP_URL} variant="primary" external>
             Escribir por WhatsApp
@@ -197,7 +197,7 @@ export default function SoportePage() {
           >
             <div className="relative aspect-[550/624] w-full">
               <Image
-                src="/figma/sphere.png"
+                src="/photos/cafeteria-postre-corazon.jpg"
                 alt="Soporte directo del equipo de Mesanube"
                 fill
                 sizes="(max-width: 1024px) 100vw, 550px"

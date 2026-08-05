@@ -115,7 +115,7 @@ export default function ComandaDigitalCafeteriaPage() {
         eyebrow="Landing, Comanda Digital para Cafeterías"
         heading="Comanda digital para tu cafetería"
         subtitle="Los pedidos anotados a mano se pierden, se leen mal y no llegan a tiempo. Con la comanda digital de Mesanube, cada pedido se imprime directo en la comandera en tres segundos, desde cualquier tablet o celular, sin hardware nuevo."
-        image={{ src: '/figma/landscape.png', alt: 'Comanda digital Mesanube en una cafetería' }}
+        image={{ src: '/photos/cafeteria-barista-espresso.jpg', alt: 'Comanda digital Mesanube en una cafetería' }}
         ctaLabel="Empezá gratis, sin tarjeta"
         secondary={{ href: '#como-funciona', label: 'Cómo funciona' }}
         note={`${TRIAL_PERIOD} de prueba. Sin permanencia mínima. Cancelás cuando querés.`}

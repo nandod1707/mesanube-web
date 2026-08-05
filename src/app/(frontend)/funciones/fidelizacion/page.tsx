@@ -71,7 +71,7 @@ export default function FidelizacionPage() {
             style={{ aspectRatio: '16/7' }}
           >
             <Image
-              src="/figma/landscape.png"
+              src="/photos/cafeteria-vitrina-panes.jpg"
               alt="Módulo de fidelización de Mesanube, próximamente"
               fill
               sizes="(max-width: 1500px) 100vw, 1500px"
@@ -160,7 +160,7 @@ export default function FidelizacionPage() {
           paragraphs={[
             'Comanda digital, app para mozos, monitor de cocina, facturación ARCA, arqueo de caja y reportes. Todo integrado, sin módulos separados, sin costos ocultos.',
           ]}
-          image={{ src: '/figma/columns.png', alt: 'Sistema Mesanube listo para sumar fidelización' }}
+          image={{ src: '/photos/cafeteria-vasos-marca.jpg', alt: 'Sistema Mesanube listo para sumar fidelización' }}
           cta={
             <Link
               href="/funciones"

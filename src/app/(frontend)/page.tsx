@@ -144,8 +144,9 @@ export default function HomePage() {
 
       {/* Hero */}
       <ShowcaseHero
-        heading={['El sistema de gestión para gastronomía', 'más fácil que vas a usar.']}
+        heading={['El sistema de gestión para gastronomía', 'más simple que vas a usar.']}
         subtitle="Tomá pedidos, controlá la caja, y organizá tu local. Diseñado para bares, cafeterías y restaurantes. Sin costos ocultos, y sin permanencia mínima."
+        background={{ src: '/photos/cafeteria-barista-moliendo.jpg', alt: 'Barista preparando café con Mesanube' }}
         note={
           <>
             <em>&ldquo;No pensé que iba a ser tan fácil.&rdquo;</em> - Minuto Café, Caballito

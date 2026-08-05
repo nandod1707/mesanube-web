@@ -103,7 +103,7 @@ export default function CafeteriasPage() {
         eyebrow="Para cafeterías"
         heading="El sistema que tu cafetería necesita, con facturación electrónica incluida."
         subtitle="¿Todavía tomás pedidos en papel y cerrás la caja con calculadora? Hay una mejor forma, y no cuesta lo que creés."
-        background={{ src: '/figma/hero-mountains.png', alt: 'Cafetería organizada con Mesanube' }}
+        background={{ src: '/photos/cafeteria-manos-espresso.jpg', alt: 'Cafetería organizada con Mesanube' }}
         align="left"
         note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
@@ -145,10 +145,10 @@ export default function CafeteriasPage() {
             'Funciona en la computadora que ya tenés en el mostrador. El día que sumás servicio de mesa, activás la app para mozos y empezás a tomar pedidos desde el celu manteniendo el mismo sistema.',
           ]}
           image={{
-            src: '/api/media/file/coffee-times.webp',
+            src: '/photos/cafeteria-pos-reportes.jpg',
             alt: 'Mostrador de una cafetería trabajando con Mesanube',
           }}
-          cta="Probá gratis"
+          cta="Probalo gratis"
         />
 
         <PricingCards
@@ -162,7 +162,7 @@ export default function CafeteriasPage() {
 
         <UseCaseCta
           heading={`Probá Mesanube en tu cafetería. ${TRIAL_PERIOD} gratis.`}
-          subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si tenés alguna duda antes de empezar, escribinos por WhatsApp."
+          subtitle="Sin tarjeta de crédito. Sin permanencia mínima."
         />
       </main>
 

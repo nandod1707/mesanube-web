@@ -73,7 +73,7 @@ export default function CadenasMultilocalPage() {
           'Abriste el segundo local y de golpe todo se duplicó: dos cajas para arquear, doble inventario para controlar, dos veces el trabajo. Y ningún lugar donde ver el negocio completo.',
           'Mesanube es multi-local: consolidá ventas, costos, caja y stock de todas tus sucursales en un tablero actualizado en vivo.',
         ]}
-        background={{ src: '/figma/hero-mountains.png', alt: 'Cadena de locales gestionada con Mesanube' }}
+        background={{ src: '/photos/cocina-linea-equipo.jpg', alt: 'Cadena de locales gestionada con Mesanube' }}
         align="left"
         note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
@@ -105,7 +105,7 @@ export default function CadenasMultilocalPage() {
             'Cargás el menú una vez y lo replicás en todos los locales, con los ajustes de precio que cada uno necesite. Sumar una sucursal nueva es activarla, no montar todo de cero.',
           ]}
           image={{
-            src: '/api/media/file/inner-screen-1.webp',
+            src: '/photos/bar-heladera-vinos-copas.jpg',
             alt: 'Tablero multi-local de Mesanube consolidando varias sucursales',
           }}
           cta="Probá gratis"
