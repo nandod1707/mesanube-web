@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
-  FaqBlock,
   ProseSection,
   SplitFeature,
   StepsGrid,
@@ -191,7 +191,7 @@ export default function BaresPage() {
           description={`Un bar con varios mozos y división de cuentas funciona con el Plan ${PLAN_MEDIUM.name}, todo incluido. Compará los planes y quedate con el que le corresponde a tu local.`}
         />
 
-        <FaqBlock heading="Lo que más nos preguntan" items={faq} />
+        <FaqSection heading="Lo que más nos preguntan" items={faq} />
 
         <UseCaseCta
           heading="Tu bar se merece un sistema a su altura. Probalo gratis."

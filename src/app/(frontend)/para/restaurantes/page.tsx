@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import {
   CardGrid,
-  FaqBlock,
   ProseSection,
   SplitFeature,
   StepsGrid,
@@ -167,7 +167,7 @@ export default function RestaurantesPage() {
           ctaText={`${TRIAL_PERIOD} gratis para verlo en acción`}
         />
 
-        <FaqBlock heading="Lo que más nos preguntan." items={faq} />
+        <FaqSection heading="Lo que más nos preguntan." items={faq} />
 
         <UseCaseCta
           heading={`Organizá tu restaurante. ${TRIAL_PERIOD} gratis.`}

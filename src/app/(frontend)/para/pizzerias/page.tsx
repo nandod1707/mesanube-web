@@ -2,18 +2,12 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
-import {
-  CardGrid,
-  FaqBlock,
-  ProseSection,
-  SplitFeature,
-  UseCaseCta,
-  UseCaseTopNav,
-} from '@/components/usecase'
+import { CardGrid, ProseSection, SplitFeature, UseCaseCta, UseCaseTopNav } from '@/components/usecase'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
@@ -134,7 +128,7 @@ export default function PizzeriasPage() {
           ctaText={`${TRIAL_PERIOD} gratis, sin tarjeta de crédito`}
         />
 
-        <FaqBlock heading="Lo que más nos preguntan." items={faq} />
+        <FaqSection heading="Lo que más nos preguntan." items={faq} />
 
         <UseCaseCta
           heading={`Probá Mesanube en tu pizzería. ${TRIAL_PERIOD} gratis.`}
