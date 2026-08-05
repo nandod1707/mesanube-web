@@ -31,7 +31,7 @@ export function UseCaseHero({
   heading,
   subtitle,
   image,
-  note = 'Sin tarjeta de crédito. Sin permanencia.',
+  note = 'Sin tarjeta de crédito. Sin permanencia mínima.',
   ctaLabel = `Probá gratis ${TRIAL_PERIOD}`,
   cta,
 }: UseCaseHeroProps) {

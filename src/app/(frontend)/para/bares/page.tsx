@@ -132,7 +132,7 @@ export default function BaresPage() {
         subtitle="Los viernes a la noche no perdonan errores. Mesanube mantiene el ritmo de tu bar sin que nada se pierda en el camino."
         background={{ src: '/figma/hero-mountains.png', alt: 'Bar argentino organizado con Mesanube' }}
         align="left"
-        note="Sin tarjeta de crédito. Sin permanencia."
+        note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -195,7 +195,7 @@ export default function BaresPage() {
 
         <UseCaseCta
           heading="Tu bar se merece un sistema a su altura. Probalo gratis."
-          subtitle="Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona en un bar antes de empezar, agendá una demo y te lo mostramos en vivo."
+          subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona en un bar antes de empezar, agendá una demo y te lo mostramos en vivo."
         />
       </main>
 

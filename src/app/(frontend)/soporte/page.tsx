@@ -213,7 +213,7 @@ export default function SoportePage() {
         {/* CTA final */}
         <UseCaseCta
           heading="¿Todavía no usás Mesanube?"
-          subtitle={`Probá gratis ${TRIAL}. Sin tarjeta de crédito. Sin permanencia. O agendá una demo y te mostramos cómo funciona.`}
+          subtitle={`Probá gratis ${TRIAL}. Sin tarjeta de crédito. Sin permanencia mínima. O agendá una demo y te mostramos cómo funciona.`}
           primaryLabel={`Probá gratis ${TRIAL}`}
           demoLabel="Agendá una demo →"
         />

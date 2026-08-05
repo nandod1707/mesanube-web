@@ -80,7 +80,7 @@ export default function PizzeriasPage() {
         subtitle="Salón, mostrador y delivery en simultáneo. Pico del viernes a las 21. La caja al final del turno sin que nadie se quede hasta la medianoche calculando. Mesanube está pensado para eso."
         background={{ src: '/figma/hero-mountains.png', alt: 'Pizzería organizada con Mesanube' }}
         align="left"
-        note="Sin tarjeta de crédito. Sin permanencia."
+        note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -138,7 +138,7 @@ export default function PizzeriasPage() {
 
         <UseCaseCta
           heading={`Probá Mesanube en tu pizzería. ${TRIAL_PERIOD} gratis.`}
-          subtitle="Sin tarjeta de crédito. Sin permanencia. Si querés hablar antes de empezar, escribinos por WhatsApp."
+          subtitle="Sin tarjeta de crédito. Sin permanencia mínima."
         />
       </main>
 

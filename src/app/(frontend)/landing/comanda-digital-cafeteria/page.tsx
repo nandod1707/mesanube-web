@@ -118,7 +118,7 @@ export default function ComandaDigitalCafeteriaPage() {
         image={{ src: '/figma/landscape.png', alt: 'Comanda digital Mesanube en una cafetería' }}
         ctaLabel="Empezá gratis, sin tarjeta"
         secondary={{ href: '#como-funciona', label: 'Cómo funciona' }}
-        note={`${TRIAL_PERIOD} de prueba. Sin permanencia. Cancelás cuando querés.`}
+        note={`${TRIAL_PERIOD} de prueba. Sin permanencia mínima. Cancelás cuando querés.`}
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

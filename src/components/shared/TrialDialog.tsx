@@ -129,7 +129,7 @@ function Modal({ mode, onClose }: { mode: Mode; onClose: () => void }) {
             </h2>
             <p className="mt-3 text-[16px] leading-[1.4] tracking-[-0.08px] text-[#6f6f6f]">
               {isTrial
-                ? 'Sin tarjeta de crédito. Sin permanencia. Te escribimos por WhatsApp para arrancar.'
+                ? 'Sin tarjeta de crédito. Sin permanencia mínima. Te escribimos por WhatsApp para arrancar.'
                 : 'Una llamada de 20 minutos para ver Mesanube en acción y resolver tus dudas.'}
             </p>
           </div>

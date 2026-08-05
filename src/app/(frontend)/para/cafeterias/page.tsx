@@ -105,7 +105,7 @@ export default function CafeteriasPage() {
         subtitle="¿Todavía tomás pedidos en papel y cerrás la caja con calculadora? Hay una mejor forma, y no cuesta lo que creés."
         background={{ src: '/figma/hero-mountains.png', alt: 'Cafetería organizada con Mesanube' }}
         align="left"
-        note="Sin tarjeta de crédito. Sin permanencia."
+        note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -162,7 +162,7 @@ export default function CafeteriasPage() {
 
         <UseCaseCta
           heading={`Probá Mesanube en tu cafetería. ${TRIAL_PERIOD} gratis.`}
-          subtitle="Sin tarjeta de crédito. Sin permanencia. Si tenés alguna duda antes de empezar, escribinos por WhatsApp."
+          subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si tenés alguna duda antes de empezar, escribinos por WhatsApp."
         />
       </main>
 

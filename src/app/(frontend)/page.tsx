@@ -144,7 +144,7 @@ export default function HomePage() {
 
       {/* Hero */}
       <ShowcaseHero
-        heading={['El sistema de gestión para gastronomía', 'más fácil que vas a probar.']}
+        heading={['El sistema de gestión para gastronomía', 'más fácil que vas a usar.']}
         subtitle="Tomá pedidos, controlá la caja, y organizá tu local. Diseñado para bares, cafeterías y restaurantes. Sin costos ocultos, y sin permanencia mínima."
         note={
           <>
@@ -418,7 +418,7 @@ export default function HomePage() {
             as="p"
             className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]"
           >
-            Probá Mesanube gratis por {TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia.
+            Probá Mesanube gratis por {TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia mínima.
           </Reveal>
           <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
             <TrialButton className="w-full">

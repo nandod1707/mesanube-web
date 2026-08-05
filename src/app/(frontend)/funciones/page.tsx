@@ -88,7 +88,7 @@ export default function FuncionesPage() {
 
         <UseCaseCta
           heading={`Probá todas las funciones gratis por ${TRIAL_PERIOD}`}
-          subtitle="Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona en tu tipo de local, agendá una demo."
+          subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona en tu tipo de local, agendá una demo."
           primaryLabel="Empezá tu prueba gratuita"
           secondary={<DemoLink tone="muted">¿Querés verlo en acción? Agendá una demo →</DemoLink>}
         />

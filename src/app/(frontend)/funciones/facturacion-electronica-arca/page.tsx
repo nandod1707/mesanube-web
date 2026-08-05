@@ -55,7 +55,7 @@ export default function FacturacionElectronicaArcaPage() {
         subtitle="Cumplís con ARCA (ex-AFIP) desde el mismo sistema donde tomás el pedido y cerrás la mesa. Sin instalar nada más, sin procesos manuales, sin esperar que alguien se acuerde."
         image={{ src: '/figma/hero-mountains.png', alt: 'Facturación electrónica ARCA integrada en Mesanube' }}
         ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
-        note="Sin tarjeta de crédito. Sin permanencia."
+        note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -204,7 +204,7 @@ export default function FacturacionElectronicaArcaPage() {
 
         <FeatureCta
           heading={`Probá Mesanube con facturación electrónica incluida: ${TRIAL_PERIOD} gratis`}
-          body="Sin tarjeta de crédito. Sin permanencia. Si tenés dudas sobre la configuración con tu situación fiscal específica, escribinos y te orientamos antes de empezar."
+          body="Sin tarjeta de crédito. Sin permanencia mínima. Si tenés dudas sobre la configuración con tu situación fiscal específica, escribinos y te orientamos antes de empezar."
         />
       </main>
 

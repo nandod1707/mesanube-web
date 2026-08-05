@@ -111,7 +111,7 @@ export default function RestaurantesPage() {
         subtitle="Para los que saben lo que es abrir a mediodía y no levantar cabeza hasta medianoche. Mesanube organiza la sala, conecta con cocina y te da los números al final del día."
         background={{ src: '/figma/hero-mountains.png', alt: 'Restaurante organizado con Mesanube' }}
         align="left"
-        note="Sin tarjeta de crédito. Sin permanencia."
+        note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -171,7 +171,7 @@ export default function RestaurantesPage() {
 
         <UseCaseCta
           heading={`Organizá tu restaurante. ${TRIAL_PERIOD} gratis.`}
-          subtitle="Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona antes de empezar, agendá una demo y te lo mostramos en tu local."
+          subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona antes de empezar, agendá una demo y te lo mostramos en tu local."
         />
       </main>
 

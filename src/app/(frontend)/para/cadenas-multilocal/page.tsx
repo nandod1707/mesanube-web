@@ -75,7 +75,7 @@ export default function CadenasMultilocalPage() {
         ]}
         background={{ src: '/figma/hero-mountains.png', alt: 'Cadena de locales gestionada con Mesanube' }}
         align="left"
-        note="Sin tarjeta de crédito. Sin permanencia."
+        note="Sin tarjeta de crédito. Sin permanencia mínima."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -131,7 +131,7 @@ export default function CadenasMultilocalPage() {
 
         <UseCaseCta
           heading="Sumá todos tus locales a Mesanube."
-          subtitle="Probalo gratis en tu primer local y escalá cuando quieras. Sin tarjeta de crédito, sin permanencia. Si ya tenés varios locales, agendá una demo y te mostramos el tablero consolidado en vivo."
+          subtitle="Probalo gratis en tu primer local y escalá cuando quieras. Sin tarjeta de crédito, sin permanencia mínima. Si ya tenés varios locales, agendá una demo y te mostramos el tablero consolidado en vivo."
         />
       </main>
 

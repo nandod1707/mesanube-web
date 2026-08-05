@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: '¿Puedo cancelar en cualquier momento?',
-    a: 'Sí. Sin permanencia mínima, sin penalidades. Si pagaste un período por adelantado y cancelás antes, no hay reintegro del período ya pagado, pero no hay cargo adicional por cancelar.',
+    a: 'Sí. Sin permanencia mínima, sin cargos adicionales. Si pagaste un período por adelantado y cancelás antes, no hay reintegro del período ya pagado, pero no hay cargo adicional por cancelar y vas a mantener el acceso a tu cuenta hasta que finalice el mes.',
   },
 ]
 
@@ -104,7 +104,8 @@ export default function PreciosPage() {
       <UseCaseHero
         eyebrow="Precios"
         heading="Precios sin letra chica."
-        subtitle={`${TRIAL} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin tarjeta, sin permanencia, sin sorpresas en la factura.`}
+        subtitle={`${TRIAL} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin tarjeta, sin permanencia mínima, sin sorpresas en la factura.`}
+        image={{ src: '/figma/sphere.png', alt: 'Planes Mesanube' }}
         ctaLabel="Empezá tu prueba gratuita"
       />
 
