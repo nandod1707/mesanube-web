@@ -85,10 +85,6 @@ export default function ReportesYAnaliticaPage() {
             'No hace falta estar en el local para ver los reportes. Desde tu celular, podés revisar las ventas del día, la semana o el mes en cualquier momento.',
             'Si algo se ve raro, lo sabés antes de que sea tarde.',
           ]}
-          bullets={[
-            'Ventas en tiempo real desde cualquier dispositivo',
-            'Datos unificados en panel multi-local'
-          ]}
           image={{ src: '/photos/cafeteria-pos-reportes.jpg', alt: 'Reportes de Mesanube accesibles desde celular' }}
         />
 
