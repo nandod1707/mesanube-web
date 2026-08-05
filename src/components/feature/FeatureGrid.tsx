@@ -2,7 +2,7 @@ import React from 'react'
 
 import Reveal from '@/components/shared/Reveal'
 
-import { BODY, BOLD_CARD_TITLE, EYEBROW, TITLE, TITLE_STYLE } from './styles'
+import { BODY, CARD_TITLE, EYEBROW, TITLE, TITLE_STYLE } from './styles'
 
 type Card = { title: string; body: React.ReactNode }
 
@@ -56,7 +56,7 @@ export function FeatureGrid({
           >
             {titleVariant === 'bold' ? (
               <div>
-                <h3 className={`mb-2 ${BOLD_CARD_TITLE}`}>{item.title}</h3>
+                <h3 className={`mb-2 ${CARD_TITLE}`}>{item.title}</h3>
                 <p className={BODY}>{item.body}</p>
               </div>
             ) : (

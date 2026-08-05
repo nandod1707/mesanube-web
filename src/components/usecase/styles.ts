@@ -32,5 +32,8 @@ export const QUOTE_STYLE = {
 export const EYEBROW = 'font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]'
 export const TITLE = 'w-full font-display text-[var(--heading)]'
 export const BODY = 'text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]'
+// Bold DM Sans card/step title — matches the home feature grid (the canonical
+// card-title style). Not the serif display face, which is reserved for the big
+// section headings (`TITLE`).
 export const CARD_TITLE =
-  'w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]'
+  'w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]'

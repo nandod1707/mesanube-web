@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { DemoLink } from '@/components/shared/CtaButtons'
@@ -12,7 +13,7 @@ import {
   UseCaseHero,
   UseCaseTopNav,
 } from '@/components/usecase'
-import { PLAN_ADVANCED } from '@/config/plans'
+import { PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
   title: 'Funciones. Todo lo que Incluye el Sistema POS Mesanube | Mesanube',
@@ -23,11 +24,11 @@ export const metadata: Metadata = {
 /* ── Static data ── */
 
 const featureCards = [
-  { title: 'Comanda digital', body: 'El pedido va del celular del mozo a cocina en segundos. Sin papel, sin gritos, sin pedidos que se pierden.', href: '/funciones/comanda-digital', label: 'Ver comanda digital', badge: null },
+  { title: 'Comanda digital', body: 'El pedido va del celular del mozo a cocina en segundos. Sin papelitos escritos a mano, sin gritos, sin pedidos que se pierden.', href: '/funciones/comanda-digital', label: 'Ver comanda digital', badge: null },
   { title: 'Arqueo de caja', body: 'Cerrá el turno con el control exacto del efectivo, las transferencias y los pagos con tarjeta. Sin calculadora, sin diferencias sin explicación.', href: '/funciones/arqueo-de-caja', label: 'Ver arqueo de caja', badge: null },
   { title: 'Carta QR', body: 'Tu menú digital en el celular del cliente. Lo actualizás en segundos y el cambio aparece en todas las mesas al instante.', href: '/funciones/carta-qr', label: 'Ver carta QR', badge: null },
   { title: 'Monitor de cocina', body: 'Los pedidos llegan a la pantalla de cocina en tiempo real, en orden. El cocinero marca "listo" y el mozo lo sabe.', href: '/funciones/monitor-de-cocina', label: 'Ver monitor de cocina', badge: null },
-  { title: 'Reportes y analítica', body: 'Qué vendiste, cuánto, a qué hora y con qué medio de pago. Una pantalla, sin planillas.', href: '/funciones/reportes-y-analitica', label: 'Ver reportes', badge: `Plan ${PLAN_ADVANCED.name}` },
+  { title: 'Reportes y analítica', body: 'Qué vendiste, cuánto, a qué hora y con qué medio de pago. Una pantalla, sin planillas.', href: '/funciones/reportes-y-analitica', label: 'Ver reportes', badge: `Plan ${PLAN_MEDIUM.name}` },
   { title: 'App para mozos', body: 'Tus mozos toman pedidos y ven las cuentas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.', href: '/funciones/app-para-mozos', label: 'Ver app para mozos', badge: null },
   { title: 'Facturación electrónica ARCA', body: 'Facturas A, B y C integradas en el mismo sistema donde tomás el pedido y cerrás la mesa. Sin app separada, sin proceso manual.', href: '/funciones/facturacion-electronica-arca', label: 'Ver facturación ARCA', badge: null },
   { title: 'Fidelización', body: 'El primer módulo de fidelización con gamificación para restaurantes argentinos. Tus clientes acumulan puntos y vuelven solos.', href: '/funciones/fidelizacion', label: 'Quiero acceso anticipado', badge: 'Próximamente' },
@@ -86,7 +87,7 @@ export default function FuncionesPage() {
         </section>
 
         <UseCaseCta
-          heading={`Probá todas las funciones gratis por ${process.env.NEXT_PUBLIC_TRIAL_PERIOD}`}
+          heading={`Probá todas las funciones gratis por ${TRIAL_PERIOD}`}
           subtitle="Sin tarjeta de crédito. Sin permanencia. Si querés ver cómo funciona en tu tipo de local, agendá una demo."
           primaryLabel="Empezá tu prueba gratuita"
           secondary={<DemoLink tone="muted">¿Querés verlo en acción? Agendá una demo →</DemoLink>}

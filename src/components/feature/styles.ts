@@ -25,8 +25,8 @@ export const EYEBROW =
   'font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[var(--olive)]'
 export const TITLE = 'font-display text-[var(--heading)]'
 export const BODY = 'text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]'
+// Bold DM Sans card/step title — matches the home feature grid (the canonical
+// card-title style). The serif display face is reserved for the big section
+// headings (`TITLE`).
 export const CARD_TITLE =
-  'font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]'
-// Bold sans title for "detalles"/feature cards — cleaner than the serif variant.
-export const BOLD_CARD_TITLE =
   'text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]'

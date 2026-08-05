@@ -12,6 +12,7 @@ type FeatureCtaProps = {
   body: string
   primaryLabel?: string
   demoLabel?: string
+  showDemoButton?: boolean,
   /** Optional secondary link row (e.g. "Ver todos los planes"). */
   links?: React.ReactNode
 }
@@ -28,6 +29,7 @@ export function FeatureCta({
   primaryLabel = 'Empezá tu prueba gratuita',
   demoLabel = 'Agendá una demo',
   links,
+  showDemoButton = false
 }: FeatureCtaProps) {
   return (
     <Reveal
@@ -46,7 +48,7 @@ export function FeatureCta({
           <p className={BODY}>{body}</p>
           <div className="flex flex-wrap gap-3">
             <TrialButton>{primaryLabel}</TrialButton>
-            <DemoButton>{demoLabel}</DemoButton>
+            {showDemoButton && <DemoButton>{demoLabel}</DemoButton>}
           </div>
           {links && <div className="flex flex-wrap gap-4 pt-2">{links}</div>}
         </div>

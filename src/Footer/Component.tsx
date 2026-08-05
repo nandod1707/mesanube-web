@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { MesanubeLogo } from '@/components/Logo/MesanubeLogo'
@@ -171,7 +172,7 @@ export async function Footer() {
                   marginBottom: '0.75rem',
                 }}
               >
-                Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis
+                Probá {TRIAL_PERIOD} gratis
               </Link>
 
               <br />

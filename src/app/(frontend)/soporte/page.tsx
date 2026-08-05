@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -10,7 +11,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 import { CardGrid, CtaLink, UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
 import { SUPPORT_EMAIL, SUPPORT_EMAIL_URL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/config/contact'
 
-const TRIAL = process.env.NEXT_PUBLIC_TRIAL_PERIOD
+const TRIAL = TRIAL_PERIOD
 
 export const metadata: Metadata = {
   title: 'Soporte, Mesanube',
@@ -131,7 +132,7 @@ export default function SoportePage() {
                 className="flex flex-col items-start gap-6 border-t border-[var(--divider)] py-[40px] pr-5"
               >
                 <div className="flex w-full flex-col items-start gap-5">
-                  <p className="w-full font-display text-[18px] leading-none tracking-[-0.54px] text-[var(--heading)]">
+                  <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]">
                     {canal.title}
                   </p>
                   <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">

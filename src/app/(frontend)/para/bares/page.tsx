@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import FloatingNav from '@/components/shared/FloatingNav'
@@ -9,17 +10,17 @@ import {
   CardGrid,
   FaqBlock,
   ProseSection,
+  SplitFeature,
   StepsGrid,
-  Testimonial,
   UseCaseCta,
   UseCaseTopNav,
 } from '@/components/usecase'
-import { PLAN_ADVANCED } from '@/config/plans'
+import { PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Bares en Argentina. Comanda Ágil para Múltiples Mozos | Mesanube',
   description:
-    `Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
+    `Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá ${TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */
@@ -35,11 +36,11 @@ const resuelve = [
     body: 'Cada mozo trabaja desde su celular. Los pedidos llegan a la barra y a la cocina en tiempo real, en orden, sin que nadie espere que el otro libere la terminal. No hay cuello de botella ni "esperá que estoy usando la comanda": cada uno trabaja independiente y el sistema consolida todo.',
   },
   {
-    title: 'Las cuentas que se dividen',
-    body: 'Una mesa de ocho que quiere pagar por separado. Un grupo que paga parte en efectivo y parte en tarjeta. Son situaciones normales en cualquier bar. En Mesanube dividís la cuenta, asignás ítems a cada comensal y combinás medios de pago, sin retrabajo ni malabarismo.',
+    title: 'Cuentas que se dividen',
+    body: 'Una mesa de ocho que quiere pagar por separado. Un grupo que paga parte en efectivo y parte en tarjeta. Son situaciones normales en cualquier bar. En Mesanube dividís la cuenta asignando un monto a cada medio de pago, sin retrabajo ni malabarismo.',
   },
   {
-    title: 'El cierre de caja que refleja la realidad',
+    title: 'Cierre de caja que refleja la realidad',
     body: 'Los bares manejan más medios de pago que los restaurantes: efectivo, tarjeta, transferencia, billeteras digitales. El arqueo de Mesanube los registra todos por separado durante todo el turno. Al cierre, el resumen ya está armado.',
   },
 ]
@@ -53,12 +54,12 @@ const pasos = [
   {
     n: '02',
     title: 'Cada mozo trabaja desde su celular',
-    body: 'Toma el pedido, lo manda a la barra o a la cocina según corresponda, ve el estado de sus mesas y saca la precuenta cuando la piden. El encargado ve el panorama completo del salón en su pantalla.',
+    body: 'Toma el pedido, lo manda a la barra o a la cocina según corresponda, ve el estado de sus mesas y consulta la cuenta de cada mesa en su celular. El encargado ve el panorama completo del salón en su pantalla.',
   },
   {
     n: '03',
     title: 'Cuenta lista, factura emitida',
-    body: 'La cuenta está lista. Se divide si es necesario. La factura con ARCA sale en el momento, sin pasar por otra app.',
+    body: 'La cuenta está lista. Se divide si es necesario. La factura se imprime en el momento, sin pasar por otra app.',
   },
   {
     n: '04',
@@ -74,7 +75,7 @@ const funciones = [
   },
   {
     title: 'División de cuentas',
-    body: 'Por ítem, por monto, por porcentaje. Combinación de medios de pago en una misma mesa.',
+    body: 'Dividís la cuenta asignando un monto a cada medio de pago. Efectivo, tarjeta, transferencia o combinación, todo en una misma mesa.',
   },
   {
     title: 'Facturación ARCA',
@@ -82,34 +83,20 @@ const funciones = [
   },
   {
     title: 'Monitor de cocina (KDS)',
-    body: 'Los pedidos de cocina llegan a la pantalla en tiempo real. Los tragos que van a la barra quedan en la app del mozo.',
+    body: 'Los pedidos de cocina llegan a la pantalla, los tragos van a la barra. Todo en tiempo real.',
   },
   {
     title: 'Carta QR',
     body: 'Los clientes ven el menú en su celular. Actualizás los precios y los especiales del día en segundos.',
   },
   {
-    title: 'Arqueo multimedios',
+    title: 'Arqueo de caja',
     body: 'Efectivo, tarjeta, transferencia y billeteras: cada uno separado durante todo el turno, resumen al cierre.',
-  },
-  {
-    title: 'Reseñas en Google',
-    body: 'Al cerrar la cuenta, la app le sugiere al mozo pedirle al cliente una reseña en Google. Impacto directo en tu visibilidad online.',
   },
   {
     title: 'Reportes del día',
     body: 'Qué se vendió, cuánto entró, por qué medio pagaron. Una pantalla, un vistazo, sin planillas.',
   },
-]
-
-const precioItems = [
-  'App para mozos sin límite de usuarios',
-  'División de cuentas y multimedios de pago',
-  'Monitor de cocina (KDS)',
-  'Facturación ARCA (facturas A, B y C)',
-  'Carta QR actualizable',
-  'Arqueo de caja por turno',
-  'Reportes completos',
 ]
 
 const faq = [
@@ -119,11 +106,11 @@ const faq = [
   },
   {
     q: '¿Puedo ver en tiempo real qué mesa está siendo atendida y cuál no?',
-    a: 'Sí. El encargado tiene una vista completa del salón: estado de cada mesa, pedidos activos, tiempo de espera desde el último pedido.',
+    a: 'Sí. El encargado tiene una vista completa del salón: estado de cada mesa, pedidos activos, y mesas cerradas y cobradas.',
   },
   {
     q: '¿Funciona con impresora de tickets en la barra?',
-    a: 'Sí. Mesanube es compatible con impresoras térmicas estándar (58mm y 80mm) vía Bluetooth o WiFi para imprimir comandas, precuentas y facturas en la barra.',
+    a: 'Sí. Mesanube es compatible con impresoras térmicas estándar (58mm y 80mm) para imprimir comandas, control de mesa y facturas.',
   },
   {
     q: '¿Cómo funciona la facturación ARCA en un bar con muchos clientes?',
@@ -173,14 +160,20 @@ export default function BaresPage() {
           eyebrow="Funciones"
           heading="Funciones clave para bares."
           items={funciones}
-          image={{ src: '/figma/columns.png', alt: 'Panel de funciones de Mesanube para bares' }}
         />
 
-        <Testimonial
-          quote="Tenemos seis mozos los fines de semana. Antes teníamos una sola tablet y era un caos: uno esperaba que el otro terminara. Ahora cada uno trabaja desde su celular y los pedidos llegan todos a la barra en orden. Mejoró todo: el servicio, el tiempo de espera, y la gente nota que funciona bien."
-          author="Juliana M."
-          role="Bar El Patio, Chacarita"
-          image={{ src: '/figma/sphere.png', alt: 'Bar con Mesanube' }}
+        <SplitFeature
+          eyebrow="El viernes a la noche"
+          heading="Varios mozos a la vez, una cuenta que cierra clara."
+          paragraphs={[
+            'Cada mozo trabaja desde su celular, sin esperar alrededor de la terminal. Los pedidos entran en orden a la barra y a la cocina, y la mesa de ocho que quiere pagar por separado divide la cuenta en segundos.',
+            'Al cierre, el arqueo ya está armado con cada medio de pago por separado. Nada de reconstruir la noche a mano cuando cerrás la persiana.',
+          ]}
+          image={{
+            src: '/figma/landscape.png',
+            alt: 'Bar lleno un viernes a la noche gestionado con Mesanube',
+          }}
+          cta="Probá gratis"
         />
 
         <ProseSection
@@ -188,18 +181,14 @@ export default function BaresPage() {
           heading="No hay peor momento para que algo falle que el viernes con el bar lleno."
           paragraphs={[
             'Con Mesanube sabés que si algo sale mal y escribís por WhatsApp, te responde el equipo que conoce el sistema de adentro. Sin call center, sin bot, sin "esperá al próximo turno disponible".',
-            'Gente del rubro que entiende lo que significa tener el bar lleno y el sistema parado. Eso no lo puede prometer ningún competidor con soporte corporativo.',
+            'Gente del rubro que entiende lo que significa tener el bar lleno y el sistema parado. Eso no lo puede prometer ningún competidor con soporte automatizado.',
           ]}
         />
 
         <PricingCards
-          variant="advanced"
-          eyebrow="Precio"
-          heading={`Plan ${PLAN_ADVANCED.name}: para bares que no paran`}
-          description="Para bares con múltiples mozos: app para todo el equipo de salón, división de cuentas, comanda ágil, facturación ARCA y reportes. Todo incluido."
-          advancedDescription={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis. Sin tarjeta de crédito, sin compromiso.`}
-          features={precioItems}
-          allPlansLinkText="Ver todos los planes →"
+          eyebrow="Precios"
+          heading="Elegí el plan de tu bar"
+          description={`Un bar con varios mozos y división de cuentas funciona con el Plan ${PLAN_MEDIUM.name}, todo incluido. Compará los planes y quedate con el que le corresponde a tu local.`}
         />
 
         <FaqBlock heading="Lo que más nos preguntan" items={faq} />

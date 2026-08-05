@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { DemoLink } from '@/components/shared/CtaButtons'
@@ -8,29 +9,36 @@ import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { CtaLink, UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
-import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
+import { PLANS, PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
-const TRIAL = process.env.NEXT_PUBLIC_TRIAL_PERIOD
+const TRIAL = TRIAL_PERIOD
 
 export const metadata: Metadata = {
   title: 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
   description:
-    `Planes desde ${PLAN_BASIC.price}/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`,
+    `Planes desde ${PLAN_SMALL.price}/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`,
 }
 
 /* ── Static data ── */
 
-const comparisonRows: { label: string; basic: boolean; advanced: boolean }[] = [
-  { label: 'Pedidos digitales', basic: true, advanced: true },
-  { label: 'Carta QR', basic: true, advanced: true },
-  { label: 'Facturación ARCA', basic: true, advanced: true },
-  { label: 'Arqueo de caja', basic: true, advanced: true },
-  { label: 'Soporte por WhatsApp', basic: true, advanced: true },
-  { label: 'App para mozos', basic: false, advanced: true },
-  { label: 'Monitor de cocina', basic: false, advanced: true },
-  { label: 'Reportes', basic: false, advanced: true },
-  { label: 'Control de stock', basic: false, advanced: true },
-  { label: 'Recetas y márgenes', basic: false, advanced: true },
+// Plans are strictly tiered (each includes everything from the plans below it),
+// so a feature is expressed as the index of the first PLANS entry that has it.
+// A plan at index `i` includes the row when `i >= from` — this scales to any
+// number of plans automatically.
+const comparisonRows: { label: string; from: number }[] = [
+  { label: 'Pedidos digitales', from: 0 },
+  { label: 'Carta QR', from: 0 },
+  { label: 'Facturación ARCA', from: 0 },
+  { label: 'Arqueo de caja', from: 0 },
+  { label: 'Soporte por WhatsApp', from: 0 },
+  { label: 'App para mozos', from: 1 },
+  { label: 'Monitor de cocina', from: 1 },
+  { label: 'Reportes', from: 1 },
+  { label: 'Control de stock', from: 1 },
+  { label: 'Recetas y márgenes', from: 1 },
+  { label: 'Multi-sucursal', from: 2 },
+  { label: 'Reportes consolidados entre locales', from: 2 },
+  { label: 'Soporte prioritario', from: 2 },
 ]
 
 const faqs = [
@@ -48,7 +56,7 @@ const faqs = [
   },
   {
     q: '¿Puedo cambiar de plan después?',
-    a: `Sí. Si empezás con el Plan ${PLAN_BASIC.name} y crecés, pasás al ${PLAN_ADVANCED.name} en cualquier momento. El cambio es inmediato.`,
+    a: `Sí. Si empezás con el Plan ${PLAN_SMALL.name} y crecés, pasás al ${PLAN_MEDIUM.name} en cualquier momento. El cambio es inmediato.`,
   },
   {
     q: '¿Tienen plan para más de un local?',
@@ -103,9 +111,8 @@ export default function PreciosPage() {
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         {/* Planes */}
         <PricingCards
-          variant="both"
           eyebrow="Planes"
-          heading="Dos planes, sin módulos de pago separado"
+          heading="Planes claros, sin módulos de pago separado"
           description={`Todos los planes incluyen ${TRIAL} de prueba gratuita. Sin tarjeta de crédito para empezar.`}
           ctaText="Empezá tu prueba gratuita"
           showAllPlansLink={false}
@@ -131,7 +138,7 @@ export default function PreciosPage() {
           </Reveal>
 
           <Reveal delay={1} className="w-full overflow-x-auto">
-            <table className="w-full min-w-[400px] border-collapse text-left text-[18px] leading-[1.4] tracking-[-0.09px]">
+            <table className="w-full min-w-[520px] border-collapse text-left text-[18px] leading-[1.4] tracking-[-0.09px]">
               <thead>
                 <tr className="border-b border-[var(--divider)]">
                   <th
@@ -140,34 +147,32 @@ export default function PreciosPage() {
                   >
                     Función
                   </th>
-                  <th
-                    className="pb-4 pr-8 font-mono text-[14px] font-bold tracking-[-0.14px] text-[var(--olive)]"
-                    scope="col"
-                  >
-                    {PLAN_BASIC.name}
-                    <span className="ml-1 font-normal text-[var(--caption)]">{PLAN_BASIC.price}</span>
-                  </th>
-                  <th
-                    className="pb-4 font-mono text-[14px] font-bold tracking-[-0.14px] text-[var(--olive)]"
-                    scope="col"
-                  >
-                    {PLAN_ADVANCED.name}
-                    <span className="ml-1 font-normal text-[var(--caption)]">
-                      {PLAN_ADVANCED.price}
-                    </span>
-                  </th>
+                  {PLANS.map((plan) => (
+                    <th
+                      key={plan.name}
+                      className="pb-4 pr-8 font-mono text-[14px] font-bold tracking-[-0.14px] text-[var(--olive)] last:pr-0"
+                      scope="col"
+                    >
+                      {plan.name}
+                      <span className="ml-1 font-normal text-[var(--caption)]">{plan.price}</span>
+                      {plan.placeholder && (
+                        <span className="ml-1 font-normal text-[11px] uppercase text-[var(--caption)]">
+                          (preliminar)
+                        </span>
+                      )}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 {comparisonRows.map((row) => (
                   <tr key={row.label} className="border-b border-[var(--divider)]">
                     <td className="py-4 pr-8 text-[var(--heading)]">{row.label}</td>
-                    <td className="py-4 pr-8 text-center">
-                      <Check value={row.basic} />
-                    </td>
-                    <td className="py-4 text-center">
-                      <Check value={row.advanced} />
-                    </td>
+                    {PLANS.map((plan, i) => (
+                      <td key={plan.name} className="py-4 pr-8 text-center last:pr-0">
+                        <Check value={i >= row.from} />
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -243,7 +248,7 @@ export default function PreciosPage() {
                   12 meses por adelantado
                 </p>
                 <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-                  El pago anual en el Plan {PLAN_ADVANCED.name} sale lo mismo que pagar 9 meses al
+                  El pago anual en el Plan {PLAN_MEDIUM.name} sale lo mismo que pagar 9 meses al
                   precio de lista.
                 </p>
               </div>
@@ -266,11 +271,11 @@ export default function PreciosPage() {
         <UseCaseCta
           heading={`Empezá gratis. ${TRIAL} sin tarjeta`}
           subtitle={`Si después de los ${TRIAL} decidís que Mesanube no es para tu local, no perdiste nada.`}
-          primaryLabel={`Probá el Plan ${PLAN_BASIC.name} gratis`}
+          primaryLabel={`Probá el Plan ${PLAN_SMALL.name} gratis`}
           secondary={
             <>
               <CtaLink href="#precios" variant="soft">
-                Probá el Plan {PLAN_ADVANCED.name} gratis
+                Probá el Plan {PLAN_MEDIUM.name} gratis
               </CtaLink>
               <p className="text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 ¿Tenés preguntas antes de empezar?{' '}

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import {
   FeatureCta,
   FeatureHero,
-  FeatureTestimonial,
   FeatureTopNav,
   StepsRow,
 } from '@/components/feature'
@@ -12,12 +12,12 @@ import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { PLAN_BASIC } from '@/config/plans'
+import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
   title: 'Comanda Digital para Cafeterías en Argentina. Sistema de Pedidos sin Papel | Mesanube',
   description:
-    `Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
+    `Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá ${TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */
@@ -33,7 +33,7 @@ const benefitCards = [
     number: '02',
     title: 'La cocina recibe los pedidos al instante',
     description:
-      'No hay papelito que viaje del mostrador a la cocina. No hay "pasame la comanda". El pedido aparece en el monitor de cocina en tiempo real, en el momento en que lo tomás.',
+      'No hay papelito escrito a mano que viaje del mostrador a la cocina. No hay "pasame la comanda". El pedido se imprime en la comandera al instante, en el momento en que lo tomás.',
   },
   {
     number: '03',
@@ -66,13 +66,13 @@ const steps = [
     number: '02',
     title: 'Tu equipo toma pedidos desde el celular o tablet',
     description:
-      'Desde el mostrador o desde las mesas, cada pedido se toca en la pantalla y se envía. No hay papel, no hay gritos, no hay transcripción.',
+      'Desde el mostrador o desde las mesas, cada pedido se toca en la pantalla y se envía. No hay papel escrito a mano, no hay gritos, no hay transcripción.',
   },
   {
     number: '03',
     title: 'La cocina recibe y vos tenés el control',
     description:
-      'Los pedidos aparecen en el monitor de cocina en tiempo real. Ves el resumen del día desde tu pantalla. Al cierre, el arqueo ya está armado.',
+      'Los pedidos se imprimen en la comandera al instante. Ves el resumen del día desde tu pantalla. Al cierre, el arqueo ya está armado.',
   },
 ]
 
@@ -95,11 +95,11 @@ const faqItems = [
   },
   {
     q: '¿La comanda digital incluye facturación ARCA?',
-    a: `Sí. El Plan ${PLAN_BASIC.name} de Mesanube incluye comanda digital y facturación ARCA en el mismo sistema, desde ${PLAN_BASIC.price}/mes. No son módulos separados.`,
+    a: `Sí. El Plan ${PLAN_SMALL.name} de Mesanube incluye comanda digital y facturación ARCA en el mismo sistema, desde ${PLAN_SMALL.price}/mes. No son módulos separados.`,
   },
   {
     q: '¿Puedo cancelar si no me convence?',
-    a: `Sí. Sin permanencia mínima, sin cargos de cancelación. Los ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba son gratis sin tarjeta de crédito.`,
+    a: `Sí. Sin permanencia mínima, sin cargos de cancelación. Los ${TRIAL_PERIOD} de prueba son gratis sin ingresar tu tarjeta.`,
   },
 ]
 
@@ -114,11 +114,11 @@ export default function ComandaDigitalCafeteriaPage() {
       <FeatureHero
         eyebrow="Landing, Comanda Digital para Cafeterías"
         heading="Comanda digital para tu cafetería"
-        subtitle="Los pedidos en papel se pierden, se leen mal y no llegan a tiempo. Con la comanda digital de Mesanube, cada pedido va directo a cocina en tres segundos, desde cualquier tablet o celular, sin hardware nuevo."
+        subtitle="Los pedidos anotados a mano se pierden, se leen mal y no llegan a tiempo. Con la comanda digital de Mesanube, cada pedido se imprime directo en la comandera en tres segundos, desde cualquier tablet o celular, sin hardware nuevo."
         image={{ src: '/figma/landscape.png', alt: 'Comanda digital Mesanube en una cafetería' }}
         ctaLabel="Empezá gratis, sin tarjeta"
         secondary={{ href: '#como-funciona', label: 'Cómo funciona' }}
-        note={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba. Sin permanencia. Cancelás cuando querés.`}
+        note={`${TRIAL_PERIOD} de prueba. Sin permanencia. Cancelás cuando querés.`}
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -138,34 +138,10 @@ export default function ComandaDigitalCafeteriaPage() {
           layout="list"
         />
 
-        <FeatureTestimonial
-          quote="Tardé una tarde en cargar todo el menú y al día siguiente ya estábamos usando la comanda. Lo que más me sorprendió fue que la chica del mostrador la aprendió a usar sola. No tuve que explicarle nada, es muy intuitiva."
-          author="Fernanda A., Cafetería Detrás del Espejo, Colegiales"
-        />
-
         <PricingCards
-          variant="basic"
-          compact
-          compactLabel="Precio"
-          description={
-            <>
-              <p>Plan {PLAN_BASIC.name} para cafeterías</p>
-              <p className="mt-1 text-sm text-[var(--caption)]">
-                Para ponerlo en perspectiva: son aproximadamente 6 cafés con leche por día. O lo
-                que perdés en una semana con errores de pedido que terminan en reposición o
-                descuentos.
-              </p>
-            </>
-          }
-          features={[
-            'Comanda digital desde cualquier celular o tablet',
-            'Carta QR actualizable en tiempo real',
-            'Facturación electrónica ARCA incluida',
-            'Arqueo de caja por turno',
-            'Soporte directo por WhatsApp',
-          ]}
-          showAllPlansLink
-          allPlansLinkText="Ver todos los planes →"
+          eyebrow="Precios"
+          heading="Elegí el plan de tu cafetería"
+          description={`La mayoría de las cafeterías arranca con el Plan ${PLAN_SMALL.name}. Si tenés mesas con servicio, el ${PLAN_MEDIUM.name} suma app para mozos y monitor de cocina. Sin módulos adicionales.`}
         />
 
         <FaqSection heading="Lo que nos preguntan antes de empezar" items={faqItems} />

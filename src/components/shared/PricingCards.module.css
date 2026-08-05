@@ -1,0 +1,12 @@
+/* Plan grid: always fills the full width of its container (the section is
+   `items-start`, which would otherwise let a single column collapse to the
+   card's content width and leave empty space to the right).
+
+   `auto-fit` + `minmax` gives a fluid column count — 3 wide, 2 on tablets, 1 on
+   phones — without hardcoded breakpoints, and a 4th plan flows in automatically. */
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}

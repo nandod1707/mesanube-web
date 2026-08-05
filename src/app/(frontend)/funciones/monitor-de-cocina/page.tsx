@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { CtaLink } from '@/components/shared/CtaLink'
@@ -11,11 +12,10 @@ import {
   FeatureHero,
   FeatureMedia,
   FeatureSplit,
-  FeatureTestimonial,
   FeatureTopNav,
   StepsRow,
 } from '@/components/feature'
-import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
+import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
   title: 'Monitor de Cocina (KDS) para Restaurantes. Pedidos en Pantalla en Tiempo Real | Mesanube',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const steps = [
   { number: '01', title: 'El mozo toma el pedido', description: 'Desde su celular, selecciona los productos y toca "Enviar". El pedido parte.' },
-  { number: '02', title: 'Llega al monitor al instante', description: 'En la pantalla de la cocina aparece el pedido: número de mesa, productos, modificaciones, hora de entrada. En texto claro, sin ambigüedad.' },
+  { number: '02', title: 'Llega al monitor al instante', description: 'En la pantalla de la cocina aparece el pedido: número de mesa, productos, modificaciones, notas. En texto claro y sin ambigüedades.' },
   { number: '03', title: 'El cocinero trabaja en orden', description: 'Los pedidos se muestran por orden de llegada. Si hay varios activos, el cocinero los ve todos en pantalla y trabaja de acuerdo a la prioridad.' },
   { number: '04', title: 'Marca "listo" desde el monitor', description: 'Cuando el pedido está preparado, el cocinero lo marca desde la propia pantalla de cocina. No grita. No busca al mozo. Lo marca y sigue.' },
   { number: '05', title: 'El mozo sabe que el pedido está', description: 'La app del mozo le muestra que su pedido está listo. Va a buscar los platos en el momento correcto, sin dar vueltas en vano.' },
@@ -37,9 +37,9 @@ const faqItems = [
   { q: '¿Qué es un monitor de cocina (KDS) y para qué sirve?', a: 'Un monitor de cocina, también conocido como KDS (Kitchen Display System), es una pantalla en la cocina que muestra los pedidos en tiempo real. Reemplaza las comandas en papel: el pedido llega en digital, el cocinero lo trabaja y lo marca como listo desde la pantalla. Elimina la comunicación verbal y el riesgo de perder o malinterpretar una comanda.' },
   { q: '¿El monitor de cocina necesita hardware especial?', a: 'No. Funciona en cualquier tablet o celular. Una tablet Android básica montada en la cocina es suficiente.' },
   { q: '¿El cocinero puede marcar el pedido como "listo" desde el monitor?', a: 'Sí. Esa es la función principal del monitor: el cocinero toca el pedido para marcarlo como listo y el mozo recibe la notificación en su app.' },
-  { q: '¿Los pedidos aparecen en orden de llegada?', a: 'Sí. Los pedidos se muestran en la pantalla de cocina ordenados por hora de entrada. Si el encargado necesita cambiar una prioridad, puede hacerlo desde el panel.' },
+  { q: '¿Los pedidos aparecen en orden de llegada?', a: 'Sí. Los pedidos se muestran en la pantalla de cocina ordenados por orden de llegada.' },
   { q: '¿Qué pasa si la cocina no tiene buena conexión a internet?', a: 'El monitor necesita conectividad para recibir los pedidos en tiempo real. Recomendamos WiFi estable en el área de cocina. Si el local es grande, un repetidor de señal resuelve el problema.' },
-  { q: '¿Está incluido en todos los planes?', a: `El monitor de cocina está incluido en el Plan ${PLAN_ADVANCED.name} (${PLAN_ADVANCED.price}/mes). El Plan ${PLAN_BASIC.name} no lo incluye porque está pensado para locales sin cocina separada.` },
+  { q: '¿Está incluido en todos los planes?', a: `El monitor de cocina está incluido en el Plan ${PLAN_MEDIUM.name} (${PLAN_MEDIUM.price}/mes).` },
 ]
 
 /* ── Page ── */
@@ -55,7 +55,7 @@ export default function MonitorDeCocinaPage() {
         heading="Monitor de cocina. Los pedidos en pantalla, en orden, en tiempo real"
         subtitle="El cocinero no espera el papelito. El mozo no tiene que gritar. Los pedidos llegan solos a la pantalla de cocina en el momento en que se toman. Y cuando el plato está listo, el cocinero lo marca desde la pantalla."
         image={{ src: '/figma/hero-mountains.png', alt: 'Monitor de cocina de Mesanube mostrando pedidos en tiempo real' }}
-        ctaLabel={`Incluido en el Plan ${PLAN_ADVANCED.name}. Probá gratis`}
+        ctaLabel={`Incluido en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}
         secondary={{ href: '#como-funciona', label: 'Ver cómo funciona' }}
       />
 
@@ -63,9 +63,9 @@ export default function MonitorDeCocinaPage() {
         <FeatureSplit
           id="problema"
           eyebrow="El problema"
-          heading="Lo que pasa cuando la comunicación entre sala y cocina falla"
+          heading="Lo que pasa cuando la comunicación entre salón y cocina falla"
           paragraphs={[
-            'Papelitos que se pierden. Pedidos que se gritan de una punta a la otra del local. El mozo que pasa la comanda a mano y la cocina que no puede leer la letra. El orden de los pedidos que se confunde cuando llegan todos juntos.',
+            'Papelitos que se pierden. Pedidos que se gritan de una punta a otra del local. El mozo que pasa la comanda a mano y la cocina que no puede leer la letra. El orden de los pedidos que se confunde cuando llegan todos juntos.',
             'El monitor de cocina elimina esos puntos de falla. No es un lujo para restaurantes grandes: es la solución a un problema que cualquier local con cocina separada conoce bien.',
           ]}
         />
@@ -94,7 +94,7 @@ export default function MonitorDeCocinaPage() {
 
         <FeatureMedia
           eyebrow="Integración total"
-          heading="Sala y cocina sincronizadas en tiempo real"
+          heading="Salón y cocina sincronizados"
           paragraphs={[
             'El monitor de cocina no es una pantalla independiente: es parte del sistema. Cuando el mozo modifica un pedido, el monitor se actualiza solo. Cuando la cocina marca un ítem como listo, la app del mozo lo refleja al instante.',
             'No hay nada que configurar manualmente para que los datos estén sincronizados. Es automático desde el primer pedido.',
@@ -102,38 +102,18 @@ export default function MonitorDeCocinaPage() {
           image={{ src: '/figma/columns.png', alt: 'Integración sala y cocina en Mesanube' }}
         />
 
-        <FeatureTestimonial
-          quote="Antes mi cocinero y yo nos pasábamos el turno entero gritándonos los pedidos. Con el monitor, cada uno sabe lo que tiene que hacer sin decir una palabra."
-          author="Sebastián M., Restaurante El Rincón, Villa Crespo"
-        />
-
         <PricingCards
-          variant="advanced"
-          compact
-          compactLabel={`Incluido en el Plan ${PLAN_ADVANCED.name}`}
-          description="Monitor de cocina, app para mozos, control de stock, recetas, facturación ARCA y reportes completos. Sin módulos adicionales."
-          features={[
-            'Pedidos en tiempo real a la pantalla de cocina',
-            'Marcado de pedidos listo desde el monitor',
-            'Notificación al mozo cuando el pedido está',
-            'Sin hardware especial, cualquier tablet sirve',
-            'Soporte directo por WhatsApp',
-          ]}
+          eyebrow="Precios"
+          heading="Elegí el plan para tu local"
+          description={`El monitor de cocina está incluido desde el Plan ${PLAN_MEDIUM.name}. Compará los planes y quedate con el que le corresponde a tu local. Sin módulos adicionales.`}
         />
 
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
 
         <FeatureCta
           heading="Conectá tu sala con tu cocina. Probalo gratis"
-          body={`Plan ${PLAN_ADVANCED.name}. ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta de crédito. Si querés ver el monitor de cocina en acción antes de empezar, agendá una demo.`}
-          links={
-            <>
-              <CtaLink href="/precios">Ver todos los planes</CtaLink>
-              <CtaLink href="/funciones" variant="outline">
-                Ver todas las funciones
-              </CtaLink>
-            </>
-          }
+          body={`Plan ${PLAN_MEDIUM.name}. ${TRIAL_PERIOD} sin ingresar tu tarjeta.`}
+          showDemoButton={false}
         />
       </main>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
@@ -7,7 +8,7 @@ import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { FeatureCta, FeatureHero, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/feature'
-import { PLAN_BASIC } from '@/config/plans'
+import { PLAN_SMALL } from '@/config/plans'
 
 export const metadata: Metadata = {
   title:
@@ -20,35 +21,24 @@ export const metadata: Metadata = {
 
 const steps = [
   { number: '01', title: 'Configurás tu CUIT y datos fiscales en el sistema', description: 'Los datos van una sola vez, en la pantalla de configuración. Nombre del negocio, CUIT, condición ante ARCA.' },
-  { number: '02', title: 'Vinculás Mesanube con tu cuenta de ARCA', description: 'El proceso usa el sistema de delegación oficial de ARCA, el mismo que usaría tu contador. No le das la contraseña de ARCA a nadie: le das permiso a Mesanube para emitir en tu nombre.' },
+  { number: '02', title: 'Vinculás Mesanube con tu cuenta de ARCA', description: 'El proceso usa el sistema de delegación oficial de ARCA, el mismo que usaría tu contador. No le das la contraseña de ARCA a nadie: le das permiso a Mesanube para facturar a tu nombre.' },
   { number: '03', title: 'Probás con una factura de prueba', description: 'Antes de abrir, emitís un comprobante de prueba para verificar que todo funciona. Si algo no está bien, soporte te ayuda a resolverlo en el momento.' },
-  { number: '04', title: 'Empezás a facturar desde el primer pedido', description: 'A partir de ahí, cada venta tiene su comprobante disponible. Cerrás la venta, elegís el tipo de comprobante, y el ticket sale impreso o se manda por email al cliente.' },
+  { number: '04', title: 'Empezás a facturar desde el primer pedido', description: 'A partir de ahí, cada venta tiene su comprobante disponible. Cerrás la venta, elegís el tipo de comprobante, y el ticket sale impreso por la comandera de siempre.' },
 ]
 
 const comprobantes = [
   { tipo: 'B', label: 'Factura B', description: 'Para consumidores finales. La más común en el día a día de un restaurante o cafetería.' },
-  { tipo: 'A', label: 'Factura A', description: 'Para clientes con CUIT que necesitan discriminar el IVA. Para empresas que comen en tu local.' },
-  { tipo: 'C', label: 'Factura C', description: 'Para emisores monotributistas. Si tu local está bajo el régimen simplificado, emitís facturas C.' },
-]
-
-const basicFeatures = ['Facturación ARCA nativa (A, B y C)', 'Pedidos digitales', 'Carta QR', 'Arqueo de caja']
-const advancedFeatures = [
-  `Todo lo del Plan ${PLAN_BASIC.name}`,
-  'App para mozos (sin límite de usuarios)',
-  'Monitor de cocina (KDS)',
-  'Control de stock',
-  'Reportes avanzados',
+  { tipo: 'A', label: 'Factura A', description: 'Para clientes con CUIT que necesitan discriminar el IVA. Para empresas que consumen en tu local.' },
+  { tipo: 'C', label: 'Factura C', description: 'Para emisores monotributistas. Si tu local está bajo el régimen simplificado, emitís factura C.' },
 ]
 
 const faqItems = [
-  { q: '¿Qué es ARCA y cómo afecta a los restaurantes en Argentina?', a: 'ARCA (antes AFIP) es el organismo tributario argentino que exige la emisión de comprobantes electrónicos en cada venta. Para restaurantes, cafeterías y bares, esto significa que cada consumición debe generar una factura B, A o C según la condición del cliente. En Mesanube, este proceso está integrado en el POS, no requiere una app aparte.' },
+  { q: '¿Qué es ARCA y cómo afecta a los restaurantes en Argentina?', a: 'ARCA (antes AFIP) es el organismo tributario argentino que exige la emisión de comprobantes electrónicos en cada venta. Para restaurantes, cafeterías y bares, esto significa que cada consumición debe generar una factura A, B o C según la condición del cliente. En Mesanube, este proceso está integrado en el POS, no requiere una app aparte.' },
   { q: '¿Qué diferencia hay entre AFIP y ARCA?', a: 'ARCA es el nuevo nombre de AFIP desde 2024. La normativa de facturación electrónica y los sistemas de emisión de comprobantes son los mismos, solo cambió el nombre del organismo. En Mesanube la documentación y el sistema usan el nombre actual (ARCA), pero si buscaste "facturación AFIP para restaurantes", llegaste al lugar correcto.' },
   { q: '¿Qué pasa si soy monotributista?', a: 'Podés emitir facturas C desde Mesanube. El sistema detecta tu condición tributaria cuando configurás los datos fiscales y te muestra los tipos de comprobante disponibles.' },
   { q: '¿Necesito que mi contador configure algo?', a: 'La vinculación con ARCA la podés hacer vos solo siguiendo el paso a paso. Si preferís que lo haga tu contador, también puede. En cualquier caso, el soporte de Mesanube está disponible para acompañarte en ese proceso.' },
-  { q: '¿Qué pasa si ARCA tiene un problema técnico?', a: 'ARCA tiene sus propias caídas ocasionales, independientemente del sistema que uses. En esos casos, el comprobante queda en estado pendiente y se emite automáticamente cuando el servicio de ARCA vuelve. La venta ya se registró, no perdés nada.' },
   { q: '¿Las facturas se guardan en el sistema?', a: 'Sí. Todos los comprobantes emitidos quedan en el historial de Mesanube. Podés consultar cualquier factura por fecha, por número de comprobante, o por CUIT del cliente.' },
-  { q: '¿Tiene algún costo adicional la facturación ARCA?', a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_BASIC.name} (${PLAN_BASIC.price}/mes). Sin módulo de facturación separado, sin costo por comprobante.` },
-  { q: '¿Funciona si cambia la normativa de ARCA?', a: 'Las actualizaciones de normativa ARCA se reflejan en el sistema. Es responsabilidad de Mesanube mantener la compatibilidad, no la tuya.' },
+  { q: '¿Tiene algún costo adicional la facturación ARCA?', a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_SMALL.name} (${PLAN_SMALL.price}/mes). Sin módulo de facturación separado, sin costo por comprobante.` }
 ]
 
 /* ── Page ── */
@@ -64,22 +54,19 @@ export default function FacturacionElectronicaArcaPage() {
         heading="Facturación ARCA incluida, sin vueltas y sin apps adicionales"
         subtitle="Cumplís con ARCA (ex-AFIP) desde el mismo sistema donde tomás el pedido y cerrás la mesa. Sin instalar nada más, sin procesos manuales, sin esperar que alguien se acuerde."
         image={{ src: '/figma/hero-mountains.png', alt: 'Facturación electrónica ARCA integrada en Mesanube' }}
-        ctaLabel={`Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis`}
+        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
         note="Sin tarjeta de crédito. Sin permanencia."
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
         <FeatureSplit
           id="como-funciona"
-          eyebrow="Qué es la facturación ARCA"
+          eyebrow="Qué es la facturación electrónica"
           heading="La obligación fiscal que muchos locales siguen gestionando mal"
           paragraphs={[
-            'ARCA (Administración Federal de Ingresos Públicos, anteriormente AFIP) es el organismo que regula la emisión de comprobantes fiscales electrónicos en Argentina. Todo negocio gastronómico está obligado a emitir facturas electrónicas por cada venta: cafetería, bar, restaurante, pizzería.',
+            'En Argentina, ARCA (antes AFIP) exige que los comercios gastronómicos emitan un comprobante fiscal por cada venta. En la mayoría de los casos, esto se hace mediante factura electrónica.',
             'El problema no es la obligación en sí. Es la forma en que la mayoría de los locales la cumple: una app separada del POS, un proceso manual que depende de que alguien se acuerde, o una integración frágil que se rompe con cada actualización. El resultado es un sistema doble donde la factura cuesta diez minutos y tres pantallas distintas.',
-            <span key="e" className="font-medium text-[var(--heading)]">
-              Mesanube integra la facturación ARCA en el mismo flujo del POS. No hay sistema doble.
-              Cuando cerrás una venta, el comprobante sale solo.
-            </span>,
+            'Mesanube integra la facturación electrónica con ARCA en el mismo flujo del POS. No hay sistema doble. Cuando cerrás una venta, sacás el comprobante en dos clicks.'
           ]}
         />
 
@@ -109,12 +96,12 @@ export default function FacturacionElectronicaArcaPage() {
             </Reveal>
             <Reveal delay={1} className="border-t-2 border-[var(--olive)] pt-8">
               <h3 className="mb-3 text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-[var(--heading)]">
-                Facturación ARCA nativa en Mesanube
+                Facturación electrónica ARCA nativa en Mesanube
               </h3>
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-                La facturación es parte del POS desde su arquitectura. No hay dos sistemas, hay uno
+                La facturación es parte del POS, no hay dos sistemas, hay uno
                 solo. Cuando cerrás una mesa o una venta en mostrador, la emisión del comprobante
-                electrónico es parte del mismo flujo. En dos toques. Sin salir a otra pantalla.
+                electrónico es parte del mismo flujo. En dos toques, y sin salir a otra pantalla.
               </p>
             </Reveal>
           </div>
@@ -184,13 +171,12 @@ export default function FacturacionElectronicaArcaPage() {
                 className="font-display text-[var(--heading)]"
                 style={{ fontSize: 'clamp(24px, 3vw, 40px)', lineHeight: 1.1, letterSpacing: '-0.5px' }}
               >
-                &ldquo;El tema de ARCA siempre me generó ansiedad. Antes tenía que acordarme de subir
-                las ventas a la aplicación de AFIP al final del día, y alguna vez se me pasó. Con
+                &ldquo;El tema de ARCA siempre me generó contratiempos. Antes tenía que acordarme de cargar las ventas a la web de AFIP al final del día, y alguna vez se me pasó. Con
                 Mesanube cada factura sale en el momento, sin que yo tenga que hacer nada especial.
                 Eso solo ya valió el cambio.&rdquo;
               </p>
               <footer className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--caption)]">
-                — Roberto S., Restaurante El Fondito, Boedo
+                Doris - Minuto Café, Caballito
               </footer>
             </blockquote>
             <aside className="flex flex-col gap-4 border-l-2 border-[var(--divider)] pl-8">
@@ -202,8 +188,7 @@ export default function FacturacionElectronicaArcaPage() {
               </h3>
               <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 Mesanube es compatible con impresoras térmicas de ticket estándar (58mm y 80mm). No
-                necesitás impresora de oficina, no necesitás tóner. Los comprobantes también se pueden
-                enviar por email al cliente, sin imprimir nada.
+                necesitás impresora de oficina, no necesitás tóner.
               </p>
             </aside>
           </div>
@@ -213,16 +198,12 @@ export default function FacturacionElectronicaArcaPage() {
           eyebrow="Precios"
           heading="La facturación ARCA está incluida en todos los planes"
           description="Sin módulo de facturación separado. Sin costo por comprobante. Sin sorpresas."
-          basicDescription="Para cafeterías y locales con mostrador."
-          advancedDescription="Para bares y restaurantes con salón."
-          basicFeatures={basicFeatures}
-          advancedFeatures={advancedFeatures}
         />
 
         <FaqSection heading="Todo lo que necesitás saber sobre ARCA y Mesanube" items={faqItems} />
 
         <FeatureCta
-          heading={`Probá la facturación ARCA de Mesanube: ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis`}
+          heading={`Probá Mesanube con facturación electrónica incluida: ${TRIAL_PERIOD} gratis`}
           body="Sin tarjeta de crédito. Sin permanencia. Si tenés dudas sobre la configuración con tu situación fiscal específica, escribinos y te orientamos antes de empezar."
         />
       </main>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -149,7 +150,7 @@ export default function FidelizacionPage() {
             'Si todavía no usás Mesanube, el mejor momento para empezar es ahora. Cuando salga la fidelización, ya vas a tener el sistema configurado, el historial de ventas cargado y el equipo funcionando con la comanda digital.',
             'Los locales que ya están en Mesanube tienen acceso automático a las funciones nuevas sin costo adicional, desde el primer día que salen.',
           ]}
-          cta={<TrialButton>Probá Mesanube gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>}
+          cta={<TrialButton>Probá Mesanube gratis {TRIAL_PERIOD}</TrialButton>}
         />
 
         <FeatureMedia

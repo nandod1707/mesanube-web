@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
@@ -11,11 +12,10 @@ import {
   FeatureGrid,
   FeatureHero,
   FeatureSplit,
-  FeatureTestimonial,
   FeatureTopNav,
   StepsRow,
 } from '@/components/feature'
-import { PLAN_BASIC } from '@/config/plans'
+import { PLAN_SMALL } from '@/config/plans'
 
 export const metadata: Metadata = {
   title: 'Carta QR para Restaurantes y Cafeterías. Menú Digital que se Actualiza Solo | Mesanube',
@@ -41,11 +41,11 @@ const usageItems = [
 const faqItems = [
   { q: '¿Qué es una carta QR y cómo funciona en un restaurante?', a: 'Una carta QR es un menú digital que los clientes acceden escaneando un código con la cámara del teléfono. No requieren descargar ninguna app. En Mesanube, la carta QR está sincronizada con el sistema POS: cuando cambiás algo en el menú interno, el QR se actualiza automáticamente.' },
   { q: '¿El cliente necesita bajarse alguna app para ver la carta?', a: 'No. Cualquier teléfono moderno puede escanear el QR con la cámara nativa. El menú se abre en el navegador, sin apps, sin cuentas.' },
-  { q: '¿Cómo actualizo la carta?', a: 'Cambiás el precio, el nombre o la descripción del producto en el sistema de Mesanube, como lo hacés normalmente. El QR refleja el cambio al instante. No hay proceso separado para "actualizar la carta QR".' },
+  { q: '¿Cómo actualizo la carta?', a: 'Cambiás el precio, el nombre o la descripción del producto en el sistema de Mesanube, como lo hacés normalmente. El QR refleja el cambio al instante.' },
   { q: '¿Puedo poner fotos en el menú?', a: 'Sí. Podés subir una imagen por producto. Las fotos aparecen en la vista del cliente en el QR.' },
   { q: '¿El cliente puede hacer el pedido desde el QR?', a: 'Hoy la carta QR es solo de consulta. El pedido lo toma el mozo desde la app o el encargado desde el mostrador. Próximamente vamos a habilitar que el cliente pueda pedir desde la carta. Si querés ser de los primeros, anotate en la sección de acceso anticipado.' },
   { q: '¿Cuántas cartas QR puedo tener?', a: 'Cada local tiene su QR único. Si tenés varias sucursales, cada una tiene el suyo.' },
-  { q: '¿La carta QR tiene costo adicional?', a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_BASIC.name}.` },
+  { q: '¿La carta QR tiene costo adicional?', a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_SMALL.name}.` },
 ]
 
 /* ── Page ── */
@@ -61,7 +61,7 @@ export default function CartaQrPage() {
         heading="El menú que siempre está actualizado"
         subtitle="Tu cliente escanea el código en la mesa y ve el menú en tiempo real, en su teléfono. Sin cartas impresas que desactualizar, sin precios tachados a mano, sin que nadie se tenga que acordar de cambiar nada."
         image={{ src: '/figma/hero-mountains.png', alt: 'Carta QR de Mesanube siendo escaneada en una mesa de restaurante' }}
-        ctaLabel={`Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis`}
+        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
         secondary={{ href: '#como-funciona', label: 'Ver cómo funciona' }}
       />
 
@@ -70,9 +70,8 @@ export default function CartaQrPage() {
           eyebrow="El problema"
           heading="La carta desactualizada es inevitable. Hasta que no lo es."
           paragraphs={[
-            'Si cambiás precios y tenés cartas impresas, hay tres opciones: reimprimir todo (caro, lento), tachar y escribir a mano (poco prolijo), o dejar el precio viejo y corregirlo en el momento (incómodo para todos).',
-            'Ninguna de las tres funciona bien.',
-            'La carta QR de Mesanube está vinculada al menú interno del sistema. Cuando cambiás el precio del café con leche, el cambio aparece en el QR en segundos. Sin imprimir nada, sin avisarle a nadie.',
+            'Si cambiás precios y tenés cartas impresas, hay tres opciones: reimprimir todo, tachar y escribir a mano, o dejar el precio viejo y corregirlo en el momento. Ninguna de las tres funciona bien.',
+            'La carta QR de Mesanube está vinculada a tu menú en el sistema. Cuando cambiás el precio del café con leche, el cambio aparece en el QR en segundos. Sin imprimir nada, sin avisarle a nadie.',
           ]}
         />
 
@@ -102,16 +101,11 @@ export default function CartaQrPage() {
           cta={<TrialButton variant="soft">Quiero acceso anticipado →</TrialButton>}
         />
 
-        <FeatureTestimonial
-          quote="Cambiamos los precios tres veces en los últimos meses. Antes significaba reimprimir 40 cartas. Ahora es un cambio en el sistema y en dos minutos el QR ya tiene el precio nuevo."
-          author="Martina V., Cafetería Rincón Verde, Palermo"
-        />
-
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
 
         <FeatureCta
           heading="Menú digital actualizado en tiempo real. Probalo gratis"
-          body={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta de crédito. La carta QR está incluida en todos los planes.`}
+          body={`${TRIAL_PERIOD} sin ingresar tu tarjeta. La carta QR está incluida en todos los planes.`}
         />
       </main>
 

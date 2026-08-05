@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
@@ -10,7 +11,6 @@ import {
   FeatureHero,
   FeatureMedia,
   FeatureSplit,
-  FeatureTestimonial,
   FeatureTopNav,
   StepsRow,
 } from '@/components/feature'
@@ -51,7 +51,7 @@ export default function ArqueoDeCajaPage() {
         heading="Cerrá el turno con los números que corresponden"
         subtitle="Sin calculadora. Sin cuentas a mano. Sin diferencias que no podés explicar a las 2 de la madrugada. El arqueo de Mesanube lleva el control durante todo el turno y te da el resumen listo al cierre."
         image={{ src: '/figma/hero-mountains.png', alt: 'Arqueo de caja de Mesanube en el panel de administración' }}
-        ctaLabel={`Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis`}
+        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
         secondary={{ href: '#cierre', label: 'Ver el cierre de turno' }}
       />
 
@@ -107,16 +107,11 @@ export default function ArqueoDeCajaPage() {
           image={{ src: '/figma/columns.png', alt: 'Historial de arqueos de caja en Mesanube' }}
         />
 
-        <FeatureTestimonial
-          quote="Antes cerrábamos la caja a las 2 de la mañana y siempre había algo que no cerraba. Ahora en cinco minutos tenemos todo. Y si hay diferencia, el sistema ya te dice dónde mirar."
-          author="Claudia M., Bar La Querencia, San Telmo"
-        />
-
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
 
         <FeatureCta
           heading="Cerrá la caja sin estrés. Probalo gratis"
-          body={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} sin tarjeta de crédito. El arqueo está incluido en todos los planes.`}
+          body={`${TRIAL_PERIOD} sin ingresar tu tarjeta. El arqueo está incluido en todos los planes.`}
         />
       </main>
 

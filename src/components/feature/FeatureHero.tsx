@@ -1,29 +1,27 @@
-import Image from 'next/image'
 import React from 'react'
 
-import { TrialButton } from '@/components/shared/CtaButtons'
+import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
-import { HeroHeading } from '@/components/shared/HeroHeading'
-import Reveal from '@/components/shared/Reveal'
-
-import { BODY, EYEBROW } from './styles'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 
 type FeatureHeroProps = {
   eyebrow: string
   heading: string
   subtitle: string
+  /** Panel background photo (same treatment as the /para heroes). */
   image: { src: string; alt: string }
   /** Primary trial CTA label. */
   ctaLabel?: string
-  /** Optional outline "ver cómo funciona" style link. */
+  /** Optional outline "ver cómo funciona" link shown next to the trial CTA. */
   secondary?: { href: string; label: string }
-  /** Optional small text next to the CTA (used instead of a secondary link). */
+  /** Small line under the CTAs. */
   note?: string
 }
 
 /**
- * Feature-page hero: uppercase eyebrow, serif headline, subtitle, CTA row and
- * a 16/7 rounded image below.
+ * Feature-page hero. Uses the same showcase treatment as the /para pages: a wide
+ * panel with the product screenshot floating over a background photo. Thin
+ * adapter over {@link ShowcaseHero} so every /funciones page shares one hero.
  */
 export function FeatureHero({
   eyebrow,
@@ -35,39 +33,24 @@ export function FeatureHero({
   note,
 }: FeatureHeroProps) {
   return (
-    <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
-      <Reveal>
-        <p className={`mb-5 ${EYEBROW}`}>{eyebrow}</p>
-        <HeroHeading text={heading} className="mb-6" />
-        <p className={`mb-8 max-w-[520px] ${BODY}`}>{subtitle}</p>
-        <div className="flex flex-wrap items-center gap-3">
+    <ShowcaseHero
+      eyebrow={eyebrow}
+      heading={heading}
+      subtitle={subtitle}
+      background={image}
+      note={note}
+      cta={
+        <>
           <TrialButton>{ctaLabel}</TrialButton>
-          {secondary && (
+          {secondary ? (
             <CtaLink href={secondary.href} variant="outline">
               {secondary.label}
             </CtaLink>
+          ) : (
+            <DemoLink tone="dark">Agendá una demo →</DemoLink>
           )}
-          {note && (
-            <p className="text-[13px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">{note}</p>
-          )}
-        </div>
-      </Reveal>
-
-      <Reveal delay={1} className="mt-12 w-full">
-        <div
-          className="zoom-wrap relative w-full overflow-hidden rounded-[20px] bg-[var(--media-bg)]"
-          style={{ aspectRatio: '16/7' }}
-        >
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            sizes="(max-width: 1500px) 100vw, 1500px"
-            className="object-cover"
-            priority
-          />
-        </div>
-      </Reveal>
-    </header>
+        </>
+      }
+    />
   )
 }

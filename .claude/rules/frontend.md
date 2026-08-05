@@ -191,7 +191,7 @@ compact pricing, two-column CTA.
 | Component | Purpose |
 |---|---|
 | `<FeatureTopNav cta?>` | Top nav (22px wordmark + trial CTA) |
-| `<FeatureHero eyebrow heading subtitle image ctaLabel? secondary? note?>` | Hero + 16/7 image |
+| `<FeatureHero eyebrow heading subtitle image ctaLabel? secondary? note?>` | Showcase hero (adapter over `shared/ShowcaseHero`): `image` is the panel background + the product screenshot floats over it — same treatment as the /para heroes |
 | `<FeatureSplit eyebrow heading paragraphs bullets? cta?>` | Two-column text section |
 | `<FeatureGrid eyebrow heading items columns? titleVariant?>` | Card grid (bold-sans title, or `label`) |
 | `<FeatureMedia eyebrow heading paragraphs image reversed? bullets? cta?>` | Text + image |

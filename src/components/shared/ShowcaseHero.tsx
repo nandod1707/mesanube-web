@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
@@ -92,7 +93,7 @@ export function ShowcaseHero({
         <div className="flex flex-wrap items-center justify-center gap-3">
           {cta ?? (
             <>
-              <TrialButton>Probá {process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis</TrialButton>
+              <TrialButton>Probá {TRIAL_PERIOD} gratis</TrialButton>
               <DemoLink tone="dark">Agendá una demo →</DemoLink>
             </>
           )}

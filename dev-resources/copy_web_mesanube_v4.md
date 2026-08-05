@@ -306,7 +306,7 @@ Cuando el pedido queda en papel o de memoria, los errores son inevitables. Con M
 Cerrar la caja y que los números no cierren es una de las sensaciones más frustrantes del rubro. El arqueo de Mesanube lleva el conteo durante todo el turno: ingresos, egresos, propinas, pagos por transferencia. Cuando llegás a fin del día, el número está, sin hacer nada a mano.
 
 **La facturación ARCA**
-Emitir facturas A, B y C es obligatorio y hay que hacerlo bien. En Mesanube la facturación electrónica va integrada en el mismo sistema donde tomás el pedido y cerrás la mesa. Sin app separada. Sin proceso manual. Sin que dependa de que el contador mande el certificado esta semana.
+Emitir facturas A, B y C es obligatorio y hay que hacerlo bien. En Mesanube la facturación electrónica va integrada en el mismo sistema donde tomás el pedido y cerrás la mesa. Sin que dependa de que el contador mande el certificado esta semana.
 
 **La carta que nunca está actualizada**
 Cambió el precio del café, agregaste un combo nuevo, sacaste el sándwich que no rotaba. Si actualizarlo significa imprimir cartas nuevas o acordarte de decírselo a cada uno, el menú siempre va a estar desactualizado. Con la carta QR de Mesanube, cambiás el precio en el sistema y en tres segundos todos los clientes ven la versión nueva en su teléfono.

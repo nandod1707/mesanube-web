@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -7,9 +8,10 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
+import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
@@ -17,7 +19,7 @@ import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
 export const metadata: Metadata = {
   title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías',
   description:
-    `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta.`,
+    `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
 }
 
 /* ── Static data ── */
@@ -65,7 +67,7 @@ const businessTypes = [
 const features = [
   {
     title: 'Comanda digital',
-    body: 'Tomá pedidos desde cualquier celular o tablet. Llegan a cocina al instante, sin papel, sin gritos, sin pedidos que se pierden.',
+    body: 'Tomá pedidos desde cualquier celular o tablet. Llegan a cocina al instante, sin papelitos escritos a mano, sin gritos, sin pedidos que se pierden.',
     href: '/funciones/comanda-digital',
   },
   {
@@ -95,20 +97,7 @@ const features = [
   },
 ]
 
-const basicFeatures = [
-  'Comanda digital',
-  'Carta QR',
-  'Facturación ARCA',
-  'Arqueo de caja',
-]
 
-const advancedFeatures = [
-  `Todo el plan ${PLAN_BASIC.name}`,
-  'App para mozos',
-  'Monitor de cocina',
-  'Control de stock',
-  'Recetas',
-]
 
 const faqs = [
   {
@@ -121,7 +110,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta un sistema de gestión para gastronomía?',
-    a: `Mesanube arranca desde ${PLAN_BASIC.price}/mes para cafeterías y locales de mostrador (Plan ${PLAN_BASIC.name}) y ${PLAN_ADVANCED.price}/mes para bares y restaurantes con salón (Plan ${PLAN_ADVANCED.name}). Los primeros ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} son gratis, sin tarjeta de crédito.`,
+    a: `Mesanube arranca desde ${PLAN_SMALL.price}/mes para cafeterías y locales de mostrador (Plan ${PLAN_SMALL.name}) y ${PLAN_MEDIUM.price}/mes para bares y restaurantes con salón (Plan ${PLAN_MEDIUM.name}). Los primeros ${TRIAL_PERIOD} son gratis, sin ingresar tu tarjeta.`,
   },
   {
     q: '¿Necesito comprar hardware especial para usar Mesanube?',
@@ -204,7 +193,7 @@ export default function HomePage() {
           >
             <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Mesanube es el POS que usan cafeterías, bares y restaurantes argentinos para tomar
-              pedidos sin papel, emitir facturas ARCA y cerrar la caja sin diferencias. Funciona en
+              pedidos sin anotar nada a mano, emitir facturas ARCA y cerrar la caja sin diferencias. Funciona en
               cualquier tablet o celular, o computadora con Windows. No necesitás hardware especial.
             </p>
           </Reveal>
@@ -398,120 +387,12 @@ export default function HomePage() {
         </section>
 
         {/* Pricing */}
-        <section
-          id="precios"
-          className="flex w-full max-w-[1500px] flex-col items-start gap-[40px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
-        >
-          <Reveal className="flex w-full flex-col items-start gap-[30px] lg:pr-[400px]">
-            <h2 className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
-              Precios
-            </h2>
-            <p
-              className="w-full font-display text-[var(--heading)]"
-              style={{
-                fontSize: 'clamp(36px, 5.5vw, 60px)',
-                lineHeight: 0.9,
-                letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
-              }}
-            >
-              Precios transparentes, sin letra chica
-            </p>
-            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-              Todos los planes incluyen {process.env.NEXT_PUBLIC_TRIAL_PERIOD} de prueba gratuita. Sin tarjeta de crédito para
-              empezar.
-            </p>
-          </Reveal>
-
-          <div className="flex w-full flex-col gap-5 md:flex-row">
-            {/* Plan Básico */}
-            <Reveal
-              delay={1}
-              className="flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--divider)] p-8"
-            >
-              <div>
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
-                  {PLAN_BASIC.name}
-                </p>
-                <p
-                  className="mt-2 font-display leading-none tracking-[-0.02em] text-[var(--heading)]"
-                  style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
-                >
-                  {PLAN_BASIC.price}
-                  <span className="text-[16px] font-sans font-normal text-[var(--body)]">/mes</span>
-                </p>
-                <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-                  Para cafeterías y locales con mostrador.
-                </p>
-              </div>
-              <ul className="flex w-full flex-col gap-3">
-                {basicFeatures.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--heading)]"
-                  >
-                    <span className="font-bold text-[var(--olive)]" aria-hidden="true">
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <TrialButton className="w-full">
-                Empezar gratis
-              </TrialButton>
-            </Reveal>
-
-            {/* Plan Avanzado */}
-            <Reveal
-              delay={2}
-              className="relative flex flex-1 flex-col items-start gap-6 rounded-[20px] border border-[var(--surface-dark)] bg-[var(--surface-dark)] p-8"
-            >
-              <span className="absolute right-6 top-6 rounded-full bg-[var(--olive-soft)] px-3 py-1 font-mono text-[11px] font-bold tracking-[-0.14px] text-[var(--heading)]">
-                {PLAN_ADVANCED.popular}
-              </span>
-              <div>
-                <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive-soft)]">
-                  {PLAN_ADVANCED.name}
-                </p>
-                <p
-                  className="mt-2 font-display leading-none tracking-[-0.02em] text-white"
-                  style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
-                >
-                  {PLAN_ADVANCED.price}
-                  <span className="text-[16px] font-sans font-normal text-white/60">/mes</span>
-                </p>
-                <p className="mt-2 text-[14px] leading-[1.4] tracking-[-0.09px] text-white/70">
-                  Para bares y restaurantes con salón.
-                </p>
-              </div>
-              <ul className="flex w-full flex-col gap-3">
-                {advancedFeatures.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-2 text-[18px] leading-[1.4] tracking-[-0.09px] text-white"
-                  >
-                    <span className="font-bold text-[var(--olive-soft)]" aria-hidden="true">
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <TrialButton className="w-full">
-                Empezar gratis
-              </TrialButton>
-            </Reveal>
-          </div>
-
-          <div className="flex w-full justify-center">
-            <Link
-              href="/precios"
-              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
-            >
-              Ver todos los planes →
-            </Link>
-          </div>
-        </section>
+        <PricingCards
+          eyebrow="Precios"
+          heading="Precios transparentes, sin letra chica"
+          description={`Todos los planes incluyen ${TRIAL_PERIOD} de prueba gratuita. Sin tarjeta de crédito para empezar.`}
+          allPlansLinkText="Ver todos los planes →"
+        />
 
         {/* FAQ */}
         <FaqSection heading="Preguntas frecuentes" eyebrow={null} items={faqs} />
@@ -537,7 +418,7 @@ export default function HomePage() {
             as="p"
             className="w-full text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]"
           >
-            Probá Mesanube gratis por {process.env.NEXT_PUBLIC_TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia.
+            Probá Mesanube gratis por {TRIAL_PERIOD}. Sin tarjeta de crédito. Sin permanencia.
           </Reveal>
           <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
             <TrialButton className="w-full">

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import FloatingNav from '@/components/shared/FloatingNav'
@@ -10,22 +11,21 @@ import {
   FaqBlock,
   ProseSection,
   SplitFeature,
-  Testimonial,
   UseCaseCta,
   UseCaseTopNav,
 } from '@/components/usecase'
-import { PLAN_BASIC, PLAN_ADVANCED } from '@/config/plans'
+import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
   title: 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube',
   description:
-    `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación ARCA y arqueo de caja incluidos. Probá ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`,
+    `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación ARCA y arqueo de caja incluidos. Probá ${TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */
 
 const problema = [
-  'Una pizzería no es un restaurante donde se sirve pizza. Es una operación distinta. En el mismo turno hay mesas del salón, clientes que llevan para pedir en el mostrador y pedidos de delivery propio que hay que coordinar con la cocina. Todo al mismo tiempo, con el mismo equipo.',
+  'Una pizzería no es un restaurante donde se sirve pizza. Es una operación distinta. En el mismo turno hay mesas del salón, clientes que piden para llevar en el mostrador y pedidos de delivery propio que hay que coordinar con la cocina. Todo al mismo tiempo, con el mismo equipo.',
   'En el pico del viernes, la cocina no para. El ritmo es otro. Y si el sistema no acompaña ese ritmo, se convierte en un problema más.',
   'Mesanube no tiene features específicos solo para pizzerías, pero tiene todo lo que una pizzería necesita, y está probado con el ritmo de trabajo que conocés.',
 ]
@@ -33,11 +33,11 @@ const problema = [
 const resuelve = [
   {
     title: 'Salón',
-    body: 'Los mozos toman pedidos desde el celular. Los pedidos van directo al monitor de cocina: tabla, cantidad, aclaraciones. Sin papelitos que se pierden en el calor de la cocina. El mozo sabe cuándo el pedido está listo porque el cocinero lo marca desde la pantalla.',
+    body: 'Los mozos toman pedidos desde el celular. Cada pedido se imprime directo en la comandera: mesa, productos, y aclaraciones. Sin papelitos escritos a mano que se pierdan en el calor de la cocina.',
   },
   {
     title: 'Mostrador',
-    body: 'El encargado toma el pedido del cliente que está enfrente, lo carga en segundos y lo manda a cocina. La caja registra la venta en el momento. Si el cliente pide factura, sale al instante.',
+    body: 'El encargado toma el pedido del cliente que está enfrente, lo carga en segundos y lo manda a cocina. La caja registra la venta en el momento. Si el cliente pide factura, sale en dos clicks.',
   },
   {
     title: 'Delivery propio',
@@ -52,27 +52,18 @@ const resuelve = [
 const funciones = [
   { title: 'Comanda digital', body: 'Salón y mostrador en el mismo sistema, pedidos que van a cocina al instante.' },
   { title: 'Monitor de cocina', body: 'Los pedidos en pantalla, en orden. El cocinero los marca como listos desde la pantalla.' },
-  { title: 'Arqueo de caja', body: 'Efectivo, tarjeta, transferencia por turno, con registro de egresos y pagos a proveedores.' },
-  { title: 'Facturación ARCA', body: 'Facturas A, B y C en el momento, sin proceso separado y sin módulo adicional.' },
-  { title: 'Carta QR', body: 'El menú del salón en el teléfono del cliente. Sin cartas impresas, sin precios desactualizados.' },
-  { title: 'App para mozos', body: `Cada mozo desde su celular, sin terminal compartida, sin esperas. Plan ${PLAN_ADVANCED.name}.` },
-]
-
-const precioItems = [
-  'App para mozos',
-  'Monitor de cocina',
-  'Arqueo de caja',
-  'Facturación ARCA',
-  'Reportes del día',
-  'Soporte por WhatsApp incluido',
+  { title: 'Arqueo de caja', body: 'Efectivo, tarjeta, transferencia, todo con registro de egresos y pagos a proveedores por turno.' },
+  { title: 'Facturación electrónica ARCA', body: 'Facturas A, B y C en el momento, sin proceso separado y sin módulo adicional.' },
+  { title: 'Carta QR', body: 'El menú del salón en el teléfono del cliente. Sin cartas impresas, y sin precios desactualizados.' },
+  { title: 'App para mozos', body: `Cada mozo desde su celular, sin terminal compartida, sin esperas.` },
 ]
 
 const faq = [
   { q: '¿Mesanube se integra con PedidosYa o Rappi?', a: 'No, hoy Mesanube no tiene integración con plataformas de delivery de terceros. Para delivery propio, el que coordinás directamente con tus clientes por teléfono o redes, funciona perfectamente: cargás el pedido en el sistema, va a cocina, la caja lo registra.' },
-  { q: '¿Puedo manejar mostrador y salón desde el mismo sistema?', a: 'Sí. El encargado del mostrador trabaja desde la tablet del mostrador; los mozos del salón trabajan desde sus celulares. Los pedidos de ambos van al mismo monitor de cocina y al mismo sistema de caja.' },
+  { q: '¿Puedo manejar mostrador y salón desde el mismo sistema?', a: 'Sí. Los pedidos de mostrador y de salón se pueden tomar desde la caja; los mozos del salón pueden trabajar con sus celulares. Los pedidos de ambos van a la misma comandera o monitor de cocina.' },
   { q: '¿Cuántos mozos pueden usar la app al mismo tiempo?', a: 'Sin límite. En un pico de viernes, todos los mozos pueden estar tomando pedidos en simultáneo desde sus propios celulares.' },
-  { q: '¿El arqueo distingue efectivo del salón vs. del mostrador?', a: 'El arqueo registra todos los medios de pago del turno de forma consolidada. Los pedidos tienen su origen (mesa, mostrador) registrado en el sistema para trazabilidad, pero el arqueo de caja es por turno total.' },
-  { q: '¿Cuánto tiempo lleva poner en marcha el sistema en una pizzería?', a: 'Cargar el menú para una pizzería estándar lleva entre una y dos horas. El soporte acompaña la configuración inicial.' },
+  { q: '¿El arqueo distingue efectivo del salón vs. delivery?', a: 'El arqueo registra todos los medios de pago del turno de forma consolidada. Los pedidos tienen su origen (mesa, mostrador) registrado en el sistema para trazabilidad, pero el arqueo de caja es por turno total.' },
+  { q: '¿Cuánto tiempo lleva poner en marcha el sistema en una pizzería?', a: 'Cargar el menú para una pizzería estándar lleva entre una y dos horas. Nuestro soporte te acompaña en la configuración inicial.' },
 ]
 
 /* ── Page ── */
@@ -105,7 +96,6 @@ export default function PizzeriasPage() {
           heading="Salón, mostrador y delivery en el mismo sistema."
           items={resuelve}
           columns={4}
-          footnote="Mesanube no se integra con PedidosYa ni Rappi. Para delivery propio, el que coordinás vos directamente con tus clientes, funciona perfectamente."
         />
 
         <SplitFeature
@@ -115,50 +105,39 @@ export default function PizzeriasPage() {
             'El pico del viernes en una pizzería es otra categoría. Los pedidos se acumulan, la cocina trabaja sin parar, los clientes del salón esperan, los del mostrador también. En esas condiciones, cualquier fricción en el sistema se multiplica.',
             'La comanda digital de Mesanube está diseñada para volumen: sin límite de pedidos simultáneos, sin que el sistema se trabe, sin que los mozos tengan que compartir una sola terminal. Cada uno trabaja desde su celular, independiente.',
           ]}
-          cta={`Probá gratis ${process.env.NEXT_PUBLIC_TRIAL_PERIOD}`}
+          cta={`Probá gratis ${TRIAL_PERIOD}`}
           image={{ src: '/figma/columns.png', alt: 'Sistema Mesanube en funcionamiento en una pizzería' }}
         />
 
         <CardGrid
           id="funciones"
           eyebrow="Funciones"
-          heading="Funciones que una pizzería usa."
+          heading="Funciones que hacen el trabajo en la pizzería más fácil."
           items={funciones}
         />
 
-        <Testimonial
-          quote="La pizzería tiene tres frentes todo el fin de semana: el salón, el mostrador y los pedidos por teléfono. Antes era un caos de papelitos y yo terminaba el sábado a la noche sin saber exactamente cuánto había entrado. Con Mesanube el cierre de caja me lleva diez minutos y siempre cierra."
-          author="Sebastián O."
-          role="Pizzería El Horno, Villa del Parque"
-          image={{ src: '/figma/sphere.png', alt: 'Pizzería con Mesanube' }}
-        />
-
         <PricingCards
-          variant="advanced"
-          eyebrow="Precio"
-          heading={`Plan ${PLAN_ADVANCED.name}, ${PLAN_ADVANCED.price}/mes.`}
+          eyebrow="Precios"
+          heading="Elegí el plan para tu pizzería"
           description={
             <>
               <p>
-                Para pizzerías con salón y delivery: app para mozos, monitor de cocina, arqueo de
-                caja, facturación ARCA y reportes. Todo incluido.
+                Para pizzerías con salón y delivery, el Plan {PLAN_MEDIUM.name} trae app para mozos,
+                monitor de cocina y reportes. Todo incluido.
               </p>
               <p className="mt-3">
-                Si tu pizzería es solo mostrador y delivery sin salón, el Plan {PLAN_BASIC.name} ({PLAN_BASIC.price}/mes)
-                puede ser suficiente. Escribinos y te orientamos.
+                Si tu pizzería es solo mostrador y delivery sin salón, el Plan {PLAN_SMALL.name} puede
+                ser suficiente. Escribinos y te orientamos.
               </p>
             </>
           }
-          advancedDescription="Para pizzerías con salón y delivery"
-          features={precioItems}
-          ctaText={`${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis, sin tarjeta de crédito`}
-          allPlansLinkText="Ver todos los planes →"
+          ctaText={`${TRIAL_PERIOD} gratis, sin tarjeta de crédito`}
         />
 
         <FaqBlock heading="Lo que más nos preguntan." items={faq} />
 
         <UseCaseCta
-          heading={`Probá Mesanube en tu pizzería. ${process.env.NEXT_PUBLIC_TRIAL_PERIOD} gratis.`}
+          heading={`Probá Mesanube en tu pizzería. ${TRIAL_PERIOD} gratis.`}
           subtitle="Sin tarjeta de crédito. Sin permanencia. Si querés hablar antes de empezar, escribinos por WhatsApp."
         />
       </main>

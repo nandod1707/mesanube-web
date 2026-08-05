@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
@@ -31,7 +32,7 @@ export function UseCaseHero({
   subtitle,
   image,
   note = 'Sin tarjeta de crédito. Sin permanencia.',
-  ctaLabel = `Probá gratis ${process.env.NEXT_PUBLIC_TRIAL_PERIOD}`,
+  ctaLabel = `Probá gratis ${TRIAL_PERIOD}`,
   cta,
 }: UseCaseHeroProps) {
   const subtitles = Array.isArray(subtitle) ? subtitle : [subtitle]

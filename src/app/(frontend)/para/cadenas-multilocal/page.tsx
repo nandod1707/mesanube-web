@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
@@ -9,6 +10,7 @@ import {
   CardGrid,
   CtaLink,
   ProseSection,
+  SplitFeature,
   UseCaseCta,
   UseCaseTopNav,
 } from '@/components/usecase'
@@ -48,7 +50,7 @@ const features = [
   },
   {
     title: 'Stock y alertas por local',
-    body: 'Control de stock por sucursal con alertas de reposición, y el reporte Real vs Teórico que te muestra la merma en pesos, local por local.',
+    body: 'Control de stock por sucursal con alertas de reposición, historial de conteo de inventario exportable, local por local.',
   },
   {
     title: 'Gastos por local',
@@ -68,8 +70,8 @@ export default function CadenasMultilocalPage() {
         eyebrow="Para cadenas multilocal"
         heading="Todos tus locales en una sola pantalla, en tiempo real."
         subtitle={[
-          'Abriste el segundo local y de golpe todo se duplicó: dos cajas para arquear, dos stocks para controlar, dos veces el trabajo. Y ningún lugar donde ver el negocio completo.',
-          'Mesanube es multi-local de base: consolidá ventas, costos, caja y stock de todas tus sucursales en un tablero, actualizado en vivo.',
+          'Abriste el segundo local y de golpe todo se duplicó: dos cajas para arquear, doble inventario para controlar, dos veces el trabajo. Y ningún lugar donde ver el negocio completo.',
+          'Mesanube es multi-local: consolidá ventas, costos, caja y stock de todas tus sucursales en un tablero actualizado en vivo.',
         ]}
         background={{ src: '/figma/hero-mountains.png', alt: 'Cadena de locales gestionada con Mesanube' }}
         align="left"
@@ -83,8 +85,8 @@ export default function CadenasMultilocalPage() {
           heading="Crecer no debería significar perder el control."
           paragraphs={[
             'Con un local, los números los tenés en la cabeza. Con dos, empieza el rompecabezas: cada sucursal con su caja, su stock y sus números por separado, y vos armando planillas a fin de mes para entender si te fue bien.',
-            'Los sistemas pensados para un solo local te obligan a entrar y salir de cuentas distintas. Los corporativos son caros y están hechos para cadenas de cientos de sucursales, no para el que tiene dos o tres.',
-            'Mesanube está en el medio, para el dueño que está creciendo, con el control centralizado que necesitás y sin la complejidad que no.',
+            'Los sistemas pensados para un solo local te obligan a entrar y salir de cuentas distintas. Los conocidos de siempre te piden tener 3 aplicaciones distintas para tener el mismo nivel de control.',
+            'Mesanube está esta pensado para el dueño que está creciendo, con el control centralizado que necesitás pero sin la complejidad.',
           ]}
         />
 
@@ -93,10 +95,20 @@ export default function CadenasMultilocalPage() {
           eyebrow="Qué incluye"
           heading="Control centralizado, local por local."
           items={features}
+        />
+
+        <SplitFeature
+          eyebrow="Todos tus locales, un panel"
+          heading="Una sola cuenta, todas tus sucursales."
+          paragraphs={[
+            'No entrás y salís de un sistema por local. Desde un mismo tablero ves las ventas, las cajas y el stock de cada sucursal, consolidados y actualizados en el momento.',
+            'Cargás el menú una vez y lo replicás en todos los locales, con los ajustes de precio que cada uno necesite. Sumar una sucursal nueva es activarla, no montar todo de cero.',
+          ]}
           image={{
-            src: '/figma/columns.png',
+            src: '/api/media/file/inner-screen-1.webp',
             alt: 'Tablero multi-local de Mesanube consolidando varias sucursales',
           }}
+          cta="Probá gratis"
         />
 
         <ProseSection
@@ -104,12 +116,12 @@ export default function CadenasMultilocalPage() {
           eyebrow="En tiempo real"
           heading="Un pedido en Palermo, una caja en Belgrano: lo ves en el momento."
           paragraphs={[
-            'No hay que exportar, refrescar ni esperar a fin de día. Cada venta, cada cierre de caja y cada alerta de stock aparece en tu tablero apenas pasa, en todas tus pantallas a la vez.',
-            'Cada local trabaja aislado y seguro —sus datos, sus usuarios, su facturación— pero vos ves todo junto. Si tus sucursales facturan con CUIT distintos, cada una emite ante ARCA con su propio perfil fiscal.',
+            'No hay que exportar, refrescar ni esperar a fin de día. Cada venta, cada cierre de caja y cada alerta de stock aparece en tu tablero al instante, en todas tus pantallas a la vez.',
+            'Cada local trabaja aislado y seguro —sus datos, sus usuarios, su facturación— pero vos ves todo junto. Si tus sucursales facturan con CUIT distintos, cada una emite ante ARCA con su propia identidad fiscal.',
           ]}
           cta={
             <>
-              <TrialButton>Probá gratis {process.env.NEXT_PUBLIC_TRIAL_PERIOD}</TrialButton>
+              <TrialButton>Probá gratis {TRIAL_PERIOD}</TrialButton>
               <CtaLink href="/precios" variant="soft">
                 Ver planes y precios →
               </CtaLink>

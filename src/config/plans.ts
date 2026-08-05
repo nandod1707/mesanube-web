@@ -2,6 +2,9 @@
 // Edit prices, names and features here — every page and component picks them up
 // automatically. Prices are stored as raw numbers (ARS) so we can format them
 // consistently and run calculations (annual totals, discounts) from one place.
+//
+// The whole marketing UI loops over `PLANS`, so adding a fourth plan here (and
+// pushing it into the array) makes it appear everywhere automatically.
 
 /** Format a number as Argentine pesos: 19000 → "$19.000". */
 export function formatARS(amount: number): string {
@@ -9,7 +12,7 @@ export function formatARS(amount: number): string {
 }
 
 export type Plan = {
-  /** Display name without the "Plan " prefix, e.g. "Básico". */
+  /** Display name without the "Plan " prefix, e.g. "Chico". */
   name: string
   /** Monthly price in ARS as a raw number, e.g. 19000. */
   priceMonthly: number
@@ -19,9 +22,16 @@ export type Plan = {
   features: string[]
   /** Badge label for the highlighted plan, e.g. "Más popular". */
   popular?: string
+  /** Renders the plan as the dark, featured card. */
+  highlighted?: boolean
+  /**
+   * Marks the plan as not-yet-final: the UI shows a "Datos preliminares" note so
+   * placeholder prices are never mistaken for the real thing.
+   */
+  placeholder?: boolean
 }
 
-export const PLAN_BASIC: Plan = {
+export const PLAN_SMALL: Plan = {
   name: 'Chico',
   priceMonthly: 24000,
   price: formatARS(24000),
@@ -30,61 +40,64 @@ export const PLAN_BASIC: Plan = {
     'Impresión de comandas',
     'Gestión de menú (categorías, productos, precios)',
     'Carta QR para tus clientes',
-    'Facturación electrónica ARCA (facturas A, B y C)',
+    'Facturación electrónica ARCA',
     'Arqueo de caja por turno',
     'Soporte por WhatsApp',
     'Actualizaciones incluidas',
+    'Reportes de ventas por período, producto y medio de pago',
   ],
 }
 
-export const PLAN_ADVANCED: Plan = {
+export const PLAN_MEDIUM: Plan = {
   name: 'Mediano',
   priceMonthly: 38000,
   price: formatARS(38000),
   description: 'Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.',
   popular: 'Más popular',
+  highlighted: true,
   features: [
-    `Todo el plan ${PLAN_BASIC.name}`,
+    `Todo el plan ${PLAN_SMALL.name}`,
     'App para mozos (sin límite de usuarios simultáneos)',
     'Monitor de cocina (pedidos a pantalla en tiempo real)',
-    'Reportes de ventas por período, producto y medio de pago',
     'Control de stock con alertas de reposición',
     'Recetas y cálculo de márgenes por plato',
-    'División de cuentas',
+    'Pago con múltiples medios de pago'
   ],
 }
 
+// TODO(grande): Placeholder plan — the price, description and extra features are
+// provisional. Replace them with the real Grande data (and drop `placeholder`)
+// before this plan is promoted. Until then the UI shows a "Datos preliminares"
+// note so the invented price is never read as final.
 export const PLAN_LARGE: Plan = {
   name: 'Grande',
-  priceMonthly: 38000,
-  price: formatARS(38000),
-  description: 'Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.',
-  popular: 'Más popular',
+  priceMonthly: 62000,
+  price: formatARS(62000),
+  description: 'Para locales de alto volumen o cadenas con varias sucursales.',
   features: [
-    `Todo el plan ${PLAN_BASIC.name}`,
-    'App para mozos (sin límite de usuarios simultáneos)',
-    'Monitor de cocina (pedidos a pantalla en tiempo real)',
-    'Reportes de ventas por período, producto y medio de pago',
-    'Control de stock con alertas de reposición',
-    'Recetas y cálculo de márgenes por plato',
-    'División de cuentas',
+    `Todo el plan ${PLAN_MEDIUM.name}`,
+    'Control centralizado de sucursales',
+    'Armado de reportes personalizados',
+    'Reportes exportables en XLSX',
+    'Control de gastos'
   ],
 }
 
-export const PLANS = {
-  basic: PLAN_BASIC,
-  advanced: PLAN_ADVANCED,
-} as const
+/**
+ * Ordered list of every plan, cheapest → most complete. The marketing UI loops
+ * over this array, so a new plan added here shows up automatically everywhere.
+ */
+export const PLANS: Plan[] = [PLAN_SMALL, PLAN_MEDIUM, PLAN_LARGE]
 
 // ─── Convenience accessors for prose interpolation ────────────────────────────
 // Use these in copy so prices/names live in one place:
-//   `desde ${BASIC_PRICE}/mes`  ·  `(${PLAN_BASIC.name})`
+//   `desde ${SMALL_PRICE}/mes`  ·  `(${PLAN_SMALL.name})`
 
-/** "$19.000" */
-export const BASIC_PRICE = PLAN_BASIC.price
-/** "$34.000" */
-export const ADVANCED_PRICE = PLAN_ADVANCED.price
-/** "$19.000/mes" */
-export const BASIC_PRICE_MONTHLY = `${PLAN_BASIC.price}/mes`
-/** "$34.000/mes" */
-export const ADVANCED_PRICE_MONTHLY = `${PLAN_ADVANCED.price}/mes`
+/** "$24.000" */
+export const SMALL_PRICE = PLAN_SMALL.price
+/** "$38.000" */
+export const MEDIUM_PRICE = PLAN_MEDIUM.price
+/** "$24.000/mes" */
+export const SMALL_PRICE_MONTHLY = `${PLAN_SMALL.price}/mes`
+/** "$38.000/mes" */
+export const MEDIUM_PRICE_MONTHLY = `${PLAN_MEDIUM.price}/mes`
