@@ -86,6 +86,7 @@ export default function ReportesYAnaliticaPage() {
             'Si algo se ve raro, lo sabés antes de que sea tarde.',
           ]}
           image={{ src: '/photos/cafeteria-pos-reportes.jpg', alt: 'Reportes de Mesanube accesibles desde celular' }}
+          cta={`Probalo ${TRIAL_PERIOD} gratis`}
         />
 
         <PricingCards
