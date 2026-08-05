@@ -2,18 +2,20 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { CtaLink } from '@/components/shared/CtaLink'
+import { TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import {
   FeatureChecklists,
   FeatureCta,
-  FeatureHero,
-  FeatureMedia,
   FeatureSplit,
   FeatureTopNav,
   StepsRow,
 } from '@/components/feature'
+import { SplitFeature } from '@/components/usecase'
 
 export const metadata: Metadata = {
   title: 'Arqueo de Caja para Restaurantes. Control de Efectivo por Turno | Mesanube',
@@ -46,13 +48,20 @@ export default function ArqueoDeCajaPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones, Arqueo de caja"
         heading="Cerrá el turno con los números que corresponden"
         subtitle="Sin calculadora. Sin cuentas a mano. Sin diferencias que no podés explicar a las 2 de la madrugada. El arqueo de Mesanube lleva el control durante todo el turno y te da el resumen listo al cierre."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Arqueo de caja de Mesanube en el panel de administración' }}
-        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
-        secondary={{ href: '#cierre', label: 'Ver el cierre de turno' }}
+        background={{ src: '/photos/pos-facturacion-pantalla.jpg', alt: 'Arqueo de caja de Mesanube en el panel de administración' }}
+        align='right'
+        cta={
+          <>
+            <TrialButton>{`Probá ${TRIAL_PERIOD} gratis`}</TrialButton>
+            <CtaLink href="#cierre" variant="outline">
+              Ver el cierre de turno
+            </CtaLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -97,14 +106,15 @@ export default function ArqueoDeCajaPage() {
           layout="list"
         />
 
-        <FeatureMedia
+        <SplitFeature
           eyebrow="Para el dueño que no siempre está"
           heading="Control sin estar presente"
           paragraphs={[
             'Si no estás en el local todos los turnos, el arqueo de Mesanube te permite revisar el cierre desde tu celular. Ves el historial de cierres, los montos por turno, y si hubo diferencias sin tener que preguntarle a nadie.',
             'No reemplaza la confianza en tu equipo. Pero agrega información donde antes no había ninguna.',
           ]}
-          image={{ src: '/figma/columns.png', alt: 'Historial de arqueos de caja en Mesanube' }}
+          image={{ src: '/photos/bar-interior-ambiente.jpg', alt: 'Historial de arqueos de caja en Mesanube' }}
+          cta={`Probá ${TRIAL_PERIOD} gratis`}
         />
 
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />

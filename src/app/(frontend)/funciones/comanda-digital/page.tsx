@@ -2,14 +2,16 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { TrialButton } from '@/components/shared/CtaButtons'
+import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
-import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
+import { SiteFooter } from '@/components/shared/SiteFooter'
 import {
   FeatureCta,
   FeatureGrid,
-  FeatureHero,
   FeatureSplit,
   FeatureTopNav,
   StepsRow,
@@ -56,13 +58,19 @@ export default function ComandaDigitalPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones, Comanda digital"
         heading="Del celular del mozo a la cocina en segundos"
         subtitle='Sin papelitos escritos a mano. Sin pedidos que se pierden. Sin "¿qué dijo que quería?". El pedido se imprime en la comandera al instante, en el momento en que lo tomás.'
-        image={{ src: '/figma/hero-mountains.png', alt: 'Comanda digital de Mesanube en funcionamiento' }}
-        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
-        secondary={{ href: '#flujo', label: 'Ver cómo funciona' }}
+        background={{ src: '/photos/cocina-linea-equipo.jpg', alt: 'Comanda digital de Mesanube en funcionamiento' }}
+        cta={
+          <>
+            <TrialButton>{`Probá ${TRIAL_PERIOD} gratis`}</TrialButton>
+            <CtaLink href="#flujo" variant="outline">
+              Ver cómo funciona
+            </CtaLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

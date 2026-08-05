@@ -2,20 +2,16 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import {
-  FeatureCta,
-  FeatureHero,
-  FeatureMedia,
-  FeatureSplit,
-  FeatureTopNav,
-  StepsRow,
-} from '@/components/feature'
-import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
+import { FeatureCta, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/feature'
+import { PLAN_MEDIUM } from '@/config/plans'
+import { SplitFeature } from '@/components/usecase'
 
 export const metadata: Metadata = {
   title: 'Monitor de Cocina (KDS) para Restaurantes. Pedidos en Pantalla en Tiempo Real | Mesanube',
@@ -50,13 +46,19 @@ export default function MonitorDeCocinaPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones, Monitor de cocina"
         heading="Monitor de cocina. Los pedidos en pantalla, en orden, en tiempo real"
         subtitle="El cocinero no espera el papelito. El mozo no tiene que gritar. Los pedidos llegan solos a la pantalla de cocina en el momento en que se toman. Y cuando el plato está listo, el cocinero lo marca desde la pantalla."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Monitor de cocina de Mesanube mostrando pedidos en tiempo real' }}
-        ctaLabel={`Incluido en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}
-        secondary={{ href: '#como-funciona', label: 'Ver cómo funciona' }}
+        background={{ src: '/photos/cocina-linea-equipo.jpg', alt: 'Monitor de cocina de Mesanube mostrando pedidos en tiempo real' }}
+        cta={
+          <>
+            <TrialButton>{`Incluido en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}</TrialButton>
+            <CtaLink href="#como-funciona" variant="outline">
+              Ver cómo funciona
+            </CtaLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -92,14 +94,15 @@ export default function MonitorDeCocinaPage() {
           ]}
         />
 
-        <FeatureMedia
+        <SplitFeature
           eyebrow="Integración total"
           heading="Salón y cocina sincronizados"
           paragraphs={[
             'El monitor de cocina no es una pantalla independiente: es parte del sistema. Cuando el mozo modifica un pedido, el monitor se actualiza solo. Cuando la cocina marca un ítem como listo, la app del mozo lo refleja al instante.',
             'No hay nada que configurar manualmente para que los datos estén sincronizados. Es automático desde el primer pedido.',
           ]}
-          image={{ src: '/figma/columns.png', alt: 'Integración sala y cocina en Mesanube' }}
+          cta={`Probalo ${TRIAL_PERIOD} gratis`}
+          image={{ src: '/photos/cocina-amasado-pizza.jpg', alt: 'Integración sala y cocina en Mesanube' }}
         />
 
         <PricingCards

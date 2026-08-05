@@ -2,17 +2,14 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { TrialButton } from '@/components/shared/CtaButtons'
+import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import {
-  FeatureCta,
-  FeatureGrid,
-  FeatureHero,
-  FeatureSplit,
-  FeatureTopNav,
-} from '@/components/feature'
+import { FeatureCta, FeatureGrid, FeatureSplit, FeatureTopNav } from '@/components/feature'
 import { PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
@@ -55,13 +52,20 @@ export default function AppParaMozosPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones, App para mozos"
         heading="La app para mozos que simplifica el servicio"
         subtitle="Tus mozos trabajan con el celular que ya tienen en el bolsillo. Toman pedidos, ven las cuentas y cierran las mesas, sin terminales ni hardware nuevo."
-        image={{ src: '/figma/hero-mountains.png', alt: 'App para mozos de Mesanube en acción' }}
-        ctaLabel={`Incluida en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}
-        secondary={{ href: '#funciones', label: 'Ver funciones' }}
+        background={{ src: '/photos/bar-barra-tragos.jpg', alt: 'App para mozos de Mesanube en acción' }}
+        align='right'
+        cta={
+          <>
+            <TrialButton>{`Incluida en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}</TrialButton>
+            <CtaLink href="#funciones" variant="outline">
+              Ver funciones
+            </CtaLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">

@@ -2,12 +2,14 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { FeatureCta, FeatureHero, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/feature'
+import { FeatureCta, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/feature'
 import { PLAN_SMALL } from '@/config/plans'
 
 export const metadata: Metadata = {
@@ -49,13 +51,19 @@ export default function FacturacionElectronicaArcaPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones / Facturación electrónica ARCA"
         heading="Facturación ARCA incluida, sin vueltas y sin apps adicionales"
         subtitle="Cumplís con ARCA (ex-AFIP) desde el mismo sistema donde tomás el pedido y cerrás la mesa. Sin instalar nada más, sin procesos manuales, sin esperar que alguien se acuerde."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Facturación electrónica ARCA integrada en Mesanube' }}
-        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
+        background={{ src: '/photos/pos-facturacion-pantalla.jpg', alt: 'Facturación electrónica ARCA integrada en Mesanube' }}
         note="Sin tarjeta de crédito. Sin permanencia mínima."
+        align='right'
+        cta={
+          <>
+            <TrialButton>{`Probá ${TRIAL_PERIOD} gratis`}</TrialButton>
+            <DemoLink tone="dark">Agendá una demo →</DemoLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -171,9 +179,7 @@ export default function FacturacionElectronicaArcaPage() {
                 className="font-display text-[var(--heading)]"
                 style={{ fontSize: 'clamp(24px, 3vw, 40px)', lineHeight: 1.1, letterSpacing: '-0.5px' }}
               >
-                &ldquo;El tema de ARCA siempre me generó contratiempos. Antes tenía que acordarme de cargar las ventas a la web de AFIP al final del día, y alguna vez se me pasó. Con
-                Mesanube cada factura sale en el momento, sin que yo tenga que hacer nada especial.
-                Eso solo ya valió el cambio.&rdquo;
+                &ldquo;El tema de ARCA siempre me generó contratiempos. Antes tenía que acordarme de cargar las ventas al facturador web al final del día, y alguna vez se me pasó. Con Mesanube cada factura sale en el momento, sin que yo tenga que hacer nada especial. Eso solo ya valió el cambio.&rdquo;
               </p>
               <footer className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--caption)]">
                 Doris - Minuto Café, Caballito

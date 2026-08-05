@@ -2,20 +2,16 @@ import type { Metadata } from 'next'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
+import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import {
-  FeatureCta,
-  FeatureGrid,
-  FeatureHero,
-  FeatureMedia,
-  FeatureSplit,
-  FeatureTopNav,
-} from '@/components/feature'
+import { FeatureCta, FeatureGrid, FeatureSplit, FeatureTopNav } from '@/components/feature'
 import { PLAN_MEDIUM } from '@/config/plans'
+import { SplitFeature } from '@/components/usecase'
 
 export const metadata: Metadata = {
   title: 'Reportes y Analítica para Restaurantes. Ventas en Tiempo Real | Mesanube',
@@ -48,13 +44,20 @@ export default function ReportesYAnaliticaPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones, Reportes y analítica"
         heading="Reportes. Lo que vendiste, sin planillas de Excel"
         subtitle="¿Cuál es tu plato más rentable? ¿A qué hora vendés más? ¿Qué medio de pago usan tus clientes? Con los reportes de Mesanube lo sabés al instante, sin armar nada a mano."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Panel de reportes de Mesanube mostrando ventas y analítica' }}
-        ctaLabel={`Probalo gratis`}
-        secondary={{ href: '#que-muestran', label: 'Ver los reportes' }}
+        background={{ src: '/photos/pos-facturacion-pantalla.jpg', alt: 'Panel de reportes de Mesanube mostrando ventas y analítica' }}
+        align='right'
+        cta={
+          <>
+            <TrialButton>Probalo gratis</TrialButton>
+            <CtaLink href="#que-muestran" variant="outline">
+              Ver los reportes
+            </CtaLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
@@ -75,8 +78,7 @@ export default function ReportesYAnaliticaPage() {
           columns={2}
         />
 
-        <FeatureMedia
-          id="desde-el-celular"
+        <SplitFeature
           eyebrow="Para el dueño que revisa desde el celular"
           heading="Los datos donde estés"
           paragraphs={[
@@ -87,7 +89,7 @@ export default function ReportesYAnaliticaPage() {
             'Ventas en tiempo real desde cualquier dispositivo',
             'Datos unificados en panel multi-local'
           ]}
-          image={{ src: '/figma/columns.png', alt: 'Reportes de Mesanube accesibles desde celular' }}
+          image={{ src: '/photos/cafeteria-pos-reportes.jpg', alt: 'Reportes de Mesanube accesibles desde celular' }}
         />
 
         <PricingCards

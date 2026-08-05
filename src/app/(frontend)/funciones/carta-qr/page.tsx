@@ -3,14 +3,15 @@ import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
+import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import FloatingNav from '@/components/shared/FloatingNav'
+import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import {
   FeatureCallout,
   FeatureCta,
   FeatureGrid,
-  FeatureHero,
   FeatureSplit,
   FeatureTopNav,
   StepsRow,
@@ -56,13 +57,20 @@ export default function CartaQrPage() {
       <FloatingNav />
       <FeatureTopNav />
 
-      <FeatureHero
+      <ShowcaseHero
         eyebrow="Funciones, Carta QR"
         heading="El menú que siempre está actualizado"
         subtitle="Tu cliente escanea el código en la mesa y ve el menú en tiempo real, en su teléfono. Sin cartas impresas que desactualizar, sin precios tachados a mano, sin que nadie se tenga que acordar de cambiar nada."
-        image={{ src: '/figma/hero-mountains.png', alt: 'Carta QR de Mesanube siendo escaneada en una mesa de restaurante' }}
-        ctaLabel={`Probá ${TRIAL_PERIOD} gratis`}
-        secondary={{ href: '#como-funciona', label: 'Ver cómo funciona' }}
+        background={{ src: '/photos/bar-maquina-espresso-vapor.jpg', alt: 'Carta QR de Mesanube siendo escaneada en una mesa de restaurante' }}
+        align='right'
+        cta={
+          <>
+            <TrialButton>{`Probá ${TRIAL_PERIOD} gratis`}</TrialButton>
+            <CtaLink href="#como-funciona" variant="outline">
+              Ver cómo funciona
+            </CtaLink>
+          </>
+        }
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
