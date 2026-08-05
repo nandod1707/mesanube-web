@@ -8,7 +8,7 @@ import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
-import { CtaLink, UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
+import { UseCaseCta, UseCaseHero, UseCaseTopNav } from '@/components/usecase'
 import { PLANS, PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 const TRIAL = TRIAL_PERIOD
@@ -38,6 +38,7 @@ const comparisonRows: { label: string; from: number }[] = [
   { label: 'Recetas y márgenes', from: 1 },
   { label: 'Multi-sucursal', from: 2 },
   { label: 'Reportes consolidados entre locales', from: 2 },
+  { label: 'Control de gastos y comprobantes', from: 2 },
   { label: 'Soporte prioritario', from: 2 },
 ]
 
@@ -60,7 +61,7 @@ const faqs = [
   },
   {
     q: '¿Tienen plan para más de un local?',
-    a: 'Sí. Mesanube tiene gestión multilocal: administrás todas tus sucursales desde un panel unificado, con datos consolidados y carga de menú centralizada. Escribinos por WhatsApp y coordinamos el alta.',
+    a: 'Sí. Mesanube tiene gestión multilocal: administrás todas tus sucursales desde un panel unificado, con datos consolidados y carga de menú centralizada.',
   },
   {
     q: '¿Qué incluye el soporte?',
@@ -105,7 +106,7 @@ export default function PreciosPage() {
         eyebrow="Precios"
         heading="Precios sin letra chica."
         subtitle={`${TRIAL} gratis para probarlo. Después elegís el plan que le corresponde a tu local. Sin tarjeta, sin permanencia mínima, sin sorpresas en la factura.`}
-        image={{ src: '/figma/sphere.png', alt: 'Planes Mesanube' }}
+        image={{ src: '/photos/cafeteria-manos-espresso.jpg', alt: 'Planes Mesanube' }}
         ctaLabel="Empezá tu prueba gratuita"
       />
 
@@ -133,8 +134,7 @@ export default function PreciosPage() {
               ¿Cuál te conviene?
             </h2>
             <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-              Si tenés dudas sobre cuál te queda mejor, escribinos por WhatsApp y en cinco minutos lo
-              resolvemos.
+              Si tenés dudas sobre cuál te queda mejor, escribinos con tu consulta y en cinco minutos lo resolvemos.
             </p>
           </Reveal>
 
@@ -224,9 +224,6 @@ export default function PreciosPage() {
                 <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                   6 meses por adelantado
                 </p>
-                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-                  El descuento se aplica sobre el precio mensual del plan que elijas.
-                </p>
               </div>
             </Reveal>
 
@@ -242,15 +239,11 @@ export default function PreciosPage() {
                   letterSpacing: 'clamp(-1px, -0.2vw, -1.8px)',
                 }}
               >
-                25%
+                15%
               </p>
               <div className="flex w-full flex-col items-start gap-3">
                 <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
                   12 meses por adelantado
-                </p>
-                <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
-                  El pago anual en el Plan {PLAN_MEDIUM.name} sale lo mismo que pagar 9 meses al
-                  precio de lista.
                 </p>
               </div>
             </Reveal>
@@ -272,17 +265,12 @@ export default function PreciosPage() {
         <UseCaseCta
           heading={`Empezá gratis. ${TRIAL} sin tarjeta`}
           subtitle={`Si después de los ${TRIAL} decidís que Mesanube no es para tu local, no perdiste nada.`}
-          primaryLabel={`Probá el Plan ${PLAN_SMALL.name} gratis`}
+          primaryLabel={`Probalo gratis`}
           secondary={
-            <>
-              <CtaLink href="#precios" variant="soft">
-                Probá el Plan {PLAN_MEDIUM.name} gratis
-              </CtaLink>
               <p className="text-center text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 ¿Tenés preguntas antes de empezar?{' '}
-                <DemoLink tone="dark">Escribinos por WhatsApp →</DemoLink>
+                <DemoLink tone="dark">Escribinos →</DemoLink>
               </p>
-            </>
           }
         />
       </main>
