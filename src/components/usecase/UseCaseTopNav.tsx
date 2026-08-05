@@ -1,15 +1,16 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { TrialButton } from '@/components/shared/CtaButtons'
+import { APP_LOGIN_URL, APP_REGISTER_URL } from '@/config/app'
+import { CtaLink } from '@/components/shared/CtaLink'
 
 /**
  * Top navigation bar shared by every /para/* use-case page:
- * wordmark on the left, trial CTA on the right.
+ * wordmark on the left, login/register CTAs on the right.
  */
-export function UseCaseTopNav({ cta = 'Probá gratis' }: { cta?: string }) {
+export function UseCaseTopNav({ cta = 'Creá tu cuenta' }: { cta?: string }) {
   return (
-    <nav className="flex w-full max-w-[1500px] items-center justify-between pt-5 pb-10 sm:pt-5 sm:pb-20">
+    <nav className="flex w-full max-w-[1500px] items-center justify-between py-5">
       <Link
         href="/"
         className="text-[26px] leading-[1.2] tracking-[-1.2px] text-[var(--heading)] sm:text-[30px] sm:tracking-[-1.5px]"
@@ -17,8 +18,15 @@ export function UseCaseTopNav({ cta = 'Probá gratis' }: { cta?: string }) {
       >
         mesanube
       </Link>
-      {/* Hidden on mobile — the CTA lives inside the FloatingNav hamburger menu there. */}
-      <TrialButton className="hidden lg:inline-flex">{cta}</TrialButton>
+      {/* Hidden on mobile — these CTAs live inside the FloatingNav hamburger menu there. */}
+      <div className="hidden items-center gap-3 lg:flex">
+        <CtaLink href={APP_LOGIN_URL} variant="outline">
+          Ingresar
+        </CtaLink>
+        <CtaLink href={APP_REGISTER_URL} variant="primary">
+          {cta}
+        </CtaLink>
+      </div>
     </nav>
   )
 }

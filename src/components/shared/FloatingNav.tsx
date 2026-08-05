@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
+import { APP_LOGIN_URL, APP_REGISTER_URL } from '@/config/app'
 import { MAIN_NAV as items } from '@/config/nav'
 
-import { TrialButton } from './CtaButtons'
+import { CtaLink } from './CtaLink'
 
 export default function FloatingNav() {
   const [hidden, setHidden] = useState(true)
@@ -135,8 +136,13 @@ export default function FloatingNav() {
             ))}
           </nav>
 
-          <div className="mt-auto px-6 pb-10 pt-8">
-            <TrialButton className="w-full">Probá gratis</TrialButton>
+          <div className="mt-auto flex flex-col gap-3 px-6 pb-10 pt-8">
+            <CtaLink href={APP_LOGIN_URL} variant="outline" className="w-full">
+              Ingresar
+            </CtaLink>
+            <CtaLink href={APP_REGISTER_URL} variant="primary" className="w-full">
+              Creá tu cuenta
+            </CtaLink>
           </div>
         </div>
       )}

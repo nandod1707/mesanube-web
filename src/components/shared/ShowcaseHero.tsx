@@ -58,7 +58,7 @@ export function ShowcaseHero({
   const subtitles = Array.isArray(subtitle) ? subtitle : [subtitle]
 
   return (
-    <header className="flex w-full max-w-[1500px] flex-col items-start gap-[80px] overflow-clip sm:gap-[160px] lg:gap-[240px]">
+    <header className="flex w-full max-w-[1500px] flex-col items-start gap-[80px] overflow-clip pt-8 sm:gap-[160px] lg:gap-[240px]">
       <div className="flex w-full flex-col items-center gap-8">
         {eyebrow && (
           <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
