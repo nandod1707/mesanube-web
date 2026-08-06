@@ -11,6 +11,8 @@ import {
   type ReactNode,
 } from 'react'
 
+import { pushDataLayerEvent } from '@/utilities/gtm'
+
 type DialogState = {
   open: boolean
   openDemo: () => void
@@ -73,10 +75,12 @@ function Modal({ onClose }: { onClose: () => void }) {
         })
         if (!res.ok && res.status !== 404) throw new Error('submit failed')
         setSubmitted(true)
+        pushDataLayerEvent('demo_request', { business_type: data.type })
       } catch {
         // Even if /api/contact isn't wired yet, accept submission so the UX works.
         // Replace this with real handling once the endpoint is connected.
         setSubmitted(true)
+        pushDataLayerEvent('demo_request', { business_type: data.type })
       }
     })
   }

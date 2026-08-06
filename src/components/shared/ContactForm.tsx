@@ -2,6 +2,8 @@
 
 import { useState, useTransition, type FormEvent } from 'react'
 
+import { pushDataLayerEvent } from '@/utilities/gtm'
+
 /**
  * Inline contact form for /contacto — same fields/visual language as the
  * TrialDialog form, but rendered on the page instead of in a modal. Submits
@@ -27,6 +29,7 @@ export function ContactForm() {
         })
         if (!res.ok) throw new Error('submit failed')
         setSubmitted(true)
+        pushDataLayerEvent('contact_request')
       } catch {
         setError('No pudimos enviar tu mensaje. Probá de nuevo o escribinos por WhatsApp.')
       }
