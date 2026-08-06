@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: 'Sistema POS Multilocal en Argentina. Tablero Consolidado de Sucursales | Mesanube',
   description:
-    'Gestión centralizada para cafeterías y restaurantes con más de una sucursal: tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Probá gratis.',
+    'Gestión centralizada para cafeterías y restaurantes con más de una sucursal: tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Probalo gratis.',
 }
 
 /* ── Static data ── */
@@ -108,7 +108,7 @@ export default function CadenasMultilocalPage() {
             src: '/photos/bar-heladera-vinos-copas.jpg',
             alt: 'Tablero multi-local de Mesanube consolidando varias sucursales',
           }}
-          cta="Probá gratis"
+          cta="Probalo gratis"
         />
 
         <ProseSection
@@ -121,7 +121,7 @@ export default function CadenasMultilocalPage() {
           ]}
           cta={
             <>
-              <TrialButton>Probá gratis {TRIAL_PERIOD}</TrialButton>
+              <TrialButton>Probalo gratis {TRIAL_PERIOD}</TrialButton>
               <CtaLink href="/precios" variant="soft">
                 Ver planes y precios →
               </CtaLink>

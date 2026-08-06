@@ -148,7 +148,7 @@ export default function RestaurantesPage() {
             src: '/photos/salon-tarde-cliente-2.jpg',
             alt: 'Salón de un restaurante trabajando con Mesanube',
           }}
-          cta="Probá gratis"
+          cta="Probalo gratis"
         />
 
         <ProseSection

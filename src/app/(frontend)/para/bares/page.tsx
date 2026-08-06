@@ -173,7 +173,7 @@ export default function BaresPage() {
             src: '/photos/bar-interior-ambiente.jpg',
             alt: 'Bar lleno un viernes a la noche gestionado con Mesanube',
           }}
-          cta="Probá gratis"
+          cta="Probalo gratis"
         />
 
         <ProseSection

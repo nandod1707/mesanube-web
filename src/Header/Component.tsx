@@ -82,7 +82,7 @@ export async function Header() {
 
           {/* CTA — always visible */}
           <NavLink href="/registro" variant="cta">
-            Probá gratis
+            Probalo gratis
           </NavLink>
         </div>
       </nav>

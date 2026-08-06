@@ -60,7 +60,7 @@ export default function AppParaMozosPage() {
         align='right'
         cta={
           <>
-            <TrialButton>{`Incluida en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}</TrialButton>
+            <TrialButton>{`Incluida en el Plan ${PLAN_MEDIUM.name}. Probalo gratis`}</TrialButton>
             <CtaLink href="#funciones" variant="outline">
               Ver funciones
             </CtaLink>

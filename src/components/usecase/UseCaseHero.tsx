@@ -32,7 +32,7 @@ export function UseCaseHero({
   subtitle,
   image,
   note = 'Sin tarjeta de crédito. Sin permanencia mínima.',
-  ctaLabel = `Probá gratis ${TRIAL_PERIOD}`,
+  ctaLabel = `Probalo gratis ${TRIAL_PERIOD}`,
   cta,
 }: UseCaseHeroProps) {
   const subtitles = Array.isArray(subtitle) ? subtitle : [subtitle]

@@ -53,7 +53,7 @@ export default function MonitorDeCocinaPage() {
         background={{ src: '/photos/cocina-linea-equipo.jpg', alt: 'Monitor de cocina de Mesanube mostrando pedidos en tiempo real' }}
         cta={
           <>
-            <TrialButton>{`Incluido en el Plan ${PLAN_MEDIUM.name}. Probá gratis`}</TrialButton>
+            <TrialButton>{`Incluido en el Plan ${PLAN_MEDIUM.name}. Probalo gratis`}</TrialButton>
             <CtaLink href="#como-funciona" variant="outline">
               Ver cómo funciona
             </CtaLink>

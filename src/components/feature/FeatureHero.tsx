@@ -28,7 +28,7 @@ export function FeatureHero({
   heading,
   subtitle,
   image,
-  ctaLabel = 'Probá gratis',
+  ctaLabel = 'Probalo gratis',
   secondary,
   note,
 }: FeatureHeroProps) {

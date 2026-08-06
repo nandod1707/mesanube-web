@@ -99,7 +99,7 @@ export default function PizzeriasPage() {
             'El pico del viernes en una pizzería es otra categoría. Los pedidos se acumulan, la cocina trabaja sin parar, los clientes del salón esperan, los del mostrador también. En esas condiciones, cualquier fricción en el sistema se multiplica.',
             'La comanda digital de Mesanube está diseñada para volumen: sin límite de pedidos simultáneos, sin que el sistema se trabe, sin que los mozos tengan que compartir una sola terminal. Cada uno trabaja desde su celular, independiente.',
           ]}
-          cta={`Probá gratis ${TRIAL_PERIOD}`}
+          cta={`Probalo gratis ${TRIAL_PERIOD}`}
           image={{ src: '/photos/mozo-sirviendo-pizza.jpg', alt: 'Sistema Mesanube en funcionamiento en una pizzería' }}
         />
 
