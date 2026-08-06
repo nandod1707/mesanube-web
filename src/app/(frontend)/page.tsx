@@ -7,10 +7,12 @@ import React from 'react'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
+import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
+import { APP_LOGIN_URL, APP_REGISTER_URL } from '@/config/app'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 /* ─────────────────────────────────────────────
@@ -138,8 +140,15 @@ export default function HomePage() {
         >
           mesanube
         </Link>
-        {/* Hidden on mobile — the CTA lives inside the FloatingNav hamburger menu there. */}
-        <TrialButton className="hidden lg:inline-flex">Probá gratis</TrialButton>
+        {/* Hidden on mobile — these CTAs live inside the FloatingNav hamburger menu there. */}
+        <div className="hidden items-center gap-3 lg:flex">
+          <CtaLink href={APP_LOGIN_URL} variant="outline">
+            Ingresar
+          </CtaLink>
+          <CtaLink href={APP_REGISTER_URL} variant="primary">
+            Creá tu cuenta
+          </CtaLink>
+        </div>
       </nav>
 
       {/* Hero */}

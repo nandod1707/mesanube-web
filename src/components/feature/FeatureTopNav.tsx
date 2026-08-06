@@ -10,7 +10,7 @@ export function FeatureTopNav({ cta = 'Creá tu cuenta' }: { cta?: string }) {
     <nav className="flex w-full max-w-[1500px] items-center justify-between py-5">
       <Link
         href="/"
-        className="text-[22px] leading-[1.2] tracking-[-1px] text-[var(--heading)] sm:text-[28px]"
+        className="text-[26px] leading-[1.2] tracking-[-1.2px] text-[var(--heading)] sm:text-[30px] sm:tracking-[-1.5px]"
         style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 500 }}
       >
         mesanube
