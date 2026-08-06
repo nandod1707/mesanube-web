@@ -9,6 +9,8 @@ import Reveal from '@/components/shared/Reveal'
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -405,8 +407,8 @@ export default function HomePage() {
         />
 
         {/* FAQ */}
+        <JsonLd data={buildFaqSchema(faqs)} />
         <FaqSection heading="Preguntas frecuentes" eyebrow={null} items={faqs} />
-
         {/* CTA final */}
         <section
           id="contacto"

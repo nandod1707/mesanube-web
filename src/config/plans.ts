@@ -65,10 +65,6 @@ export const PLAN_MEDIUM: Plan = {
   ],
 }
 
-// TODO(grande): Placeholder plan — the price, description and extra features are
-// provisional. Replace them with the real Grande data (and drop `placeholder`)
-// before this plan is promoted. Until then the UI shows a "Datos preliminares"
-// note so the invented price is never read as final.
 export const PLAN_LARGE: Plan = {
   name: 'Grande',
   priceMonthly: 62000,

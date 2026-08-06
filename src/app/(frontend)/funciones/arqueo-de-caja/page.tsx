@@ -5,6 +5,8 @@ import React from 'react'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -117,8 +119,8 @@ export default function ArqueoDeCajaPage() {
           cta={`Probá ${TRIAL_PERIOD} gratis`}
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
-
         <FeatureCta
           heading="Cerrá la caja sin estrés. Probalo gratis"
           body={`${TRIAL_PERIOD} sin ingresar tu tarjeta. El arqueo está incluido en todos los planes.`}

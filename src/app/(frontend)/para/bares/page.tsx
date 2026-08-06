@@ -3,6 +3,8 @@ import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -191,8 +193,8 @@ export default function BaresPage() {
           description={`Un bar con varios mozos y división de cuentas funciona con el Plan ${PLAN_MEDIUM.name}, todo incluido. Compará los planes y quedate con el que le corresponde a tu local.`}
         />
 
+        <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan" items={faq} />
-
         <UseCaseCta
           heading="Tu bar se merece un sistema a su altura. Probalo gratis."
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona en un bar antes de empezar, agendá una demo y te lo mostramos en vivo."

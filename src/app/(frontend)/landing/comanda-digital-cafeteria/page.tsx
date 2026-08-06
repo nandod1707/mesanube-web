@@ -9,6 +9,8 @@ import {
   StepsRow,
 } from '@/components/feature'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -144,8 +146,8 @@ export default function ComandaDigitalCafeteriaPage() {
           description={`La mayoría de las cafeterías arranca con el Plan ${PLAN_SMALL.name}. Si tenés mesas con servicio, el ${PLAN_MEDIUM.name} suma app para mozos y monitor de cocina. Sin módulos adicionales.`}
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Lo que nos preguntan antes de empezar" items={faqItems} />
-
         <FeatureCta
           heading="Empezá a usar la comanda digital en tu cafetería"
           body="Sin tarjeta de crédito. Sin compromiso. Si preferís ver cómo funciona antes de empezar, agendá una demo corta y te la mostramos en tu pantalla."

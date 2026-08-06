@@ -5,6 +5,8 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -95,8 +97,8 @@ export default function ReportesYAnaliticaPage() {
           description={`Los reportes están disponibles desde el Plan ${PLAN_MEDIUM.name}. Compará los planes y quedate con el que le corresponde a tu local. Sin módulos adicionales.`}
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
-
         <FeatureCta
           heading={`Empezá a tomar decisiones con datos. ${TRIAL_PERIOD} gratis.`}
           body={`Los reportes están en el Plan ${PLAN_MEDIUM.name}, empezá hoy sin ingresar tu tarjeta.`}

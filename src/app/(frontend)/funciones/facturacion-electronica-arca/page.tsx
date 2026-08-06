@@ -4,6 +4,8 @@ import React from 'react'
 
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
@@ -206,8 +208,8 @@ export default function FacturacionElectronicaArcaPage() {
           description="Sin módulo de facturación separado. Sin costo por comprobante. Sin sorpresas."
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Todo lo que necesitás saber sobre ARCA y Mesanube" items={faqItems} />
-
         <FeatureCta
           heading={`Probá Mesanube con facturación electrónica incluida: ${TRIAL_PERIOD} gratis`}
           body="Sin tarjeta de crédito. Sin permanencia mínima. Si tenés dudas sobre la configuración con tu situación fiscal específica, escribinos y te orientamos antes de empezar."

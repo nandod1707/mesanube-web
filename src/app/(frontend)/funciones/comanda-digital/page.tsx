@@ -5,6 +5,8 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -104,8 +106,8 @@ export default function ComandaDigitalPage() {
           description="Sin módulo adicional, sin límite de dispositivos. Elegí el plan que le va a tu local."
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
-
         <FeatureCta
           heading="Terminá con los pedidos que se pierden. Probalo gratis"
           body={`${TRIAL_PERIOD} sin tarjeta de crédito. El setup lleva menos de una hora.`}

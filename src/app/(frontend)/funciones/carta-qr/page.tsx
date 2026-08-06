@@ -5,6 +5,8 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -109,8 +111,8 @@ export default function CartaQrPage() {
           cta={<TrialButton variant="soft">Quiero acceso anticipado →</TrialButton>}
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
-
         <FeatureCta
           heading="Menú digital actualizado en tiempo real. Probalo gratis"
           body={`${TRIAL_PERIOD} sin ingresar tu tarjeta. La carta QR está incluida en todos los planes.`}

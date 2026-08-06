@@ -3,6 +3,8 @@ import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -167,8 +169,8 @@ export default function RestaurantesPage() {
           ctaText={`${TRIAL_PERIOD} gratis para verlo en acción`}
         />
 
+        <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan." items={faq} />
-
         <UseCaseCta
           heading={`Organizá tu restaurante. ${TRIAL_PERIOD} gratis.`}
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona antes de empezar, agendá una demo y te lo mostramos en tu local."

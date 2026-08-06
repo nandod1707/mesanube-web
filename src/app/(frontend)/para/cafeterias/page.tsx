@@ -3,6 +3,8 @@ import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -158,8 +160,8 @@ export default function CafeteriasPage() {
           ctaText={`${TRIAL_PERIOD} gratis, sin tarjeta de crédito`}
         />
 
+        <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan." items={faq} />
-
         <UseCaseCta
           heading={`Probá Mesanube en tu cafetería. ${TRIAL_PERIOD} gratis.`}
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima."

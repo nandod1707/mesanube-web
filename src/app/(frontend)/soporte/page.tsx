@@ -5,6 +5,8 @@ import Link from 'next/link'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -208,8 +210,8 @@ export default function SoportePage() {
         </section>
 
         {/* FAQ */}
+        <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan sobre el soporte." items={faq} />
-
         {/* CTA final */}
         <UseCaseCta
           heading="¿Todavía no usás Mesanube?"

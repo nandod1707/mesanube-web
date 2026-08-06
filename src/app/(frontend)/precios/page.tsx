@@ -4,6 +4,8 @@ import React from 'react'
 
 import { DemoLink } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema, buildPricingSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
@@ -111,6 +113,7 @@ export default function PreciosPage() {
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
+        <JsonLd data={buildPricingSchema()} />
         {/* Planes */}
         <PricingCards
           eyebrow="Planes"
@@ -259,8 +262,8 @@ export default function PreciosPage() {
         </section>
 
         {/* FAQ */}
+        <JsonLd data={buildFaqSchema(faqs)} />
         <FaqSection heading="Lo que más nos preguntan sobre los precios." items={faqs} />
-
         {/* CTA final */}
         <UseCaseCta
           heading={`Empezá gratis. ${TRIAL} sin tarjeta`}

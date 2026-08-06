@@ -5,6 +5,8 @@ import React from 'react'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -112,8 +114,8 @@ export default function AppParaMozosPage() {
           description={`La app para mozos está incluida desde el Plan ${PLAN_MEDIUM.name}, sin límite de usuarios. Compará los planes y quedate con el que le corresponde a tu local.`}
         />
 
+        <JsonLd data={buildFaqSchema(faqItems)} />
         <FaqSection heading="Lo que nos preguntan seguido" items={faqItems} />
-
         <FeatureCta
           heading="Probá la app para mozos de Mesanube"
           body={`Incluida en el Plan ${PLAN_MEDIUM.name}. ${TRIAL_PERIOD} gratis, sin tarjeta de crédito. Si querés ver la app en acción antes de empezar, agendá una demo.`}
