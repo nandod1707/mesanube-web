@@ -21,13 +21,13 @@ import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 export const metadata: Metadata = {
   title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías',
   description:
-    `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación ARCA, control de caja y app para mozos. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
+    `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación electrónica ARCA, control de caja y app para mozos. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
 }
 
 /* ── Static data ── */
 
 const trustItems = [
-  'Facturación ARCA incluida',
+  'Facturación electrónica ARCA incluida',
   'Sin costos ocultos',
   'Cancelás cuando querés',
   'Soporte directo por WhatsApp',
@@ -104,7 +104,7 @@ const features = [
 const faqs = [
   {
     q: '¿Qué es un sistema POS para restaurantes?',
-    a: 'Un sistema POS (punto de venta) para restaurantes es el software que unifica la toma de pedidos, la emisión de facturas, el control de caja y los reportes de venta en un solo lugar. Mesanube es un POS diseñado específicamente para el mercado gastronómico, con facturación ARCA incluida.',
+    a: 'Un sistema POS (punto de venta) para restaurantes es el software que unifica la toma de pedidos, la emisión de facturas, el control de caja y los reportes de venta en un solo lugar. Mesanube es un POS diseñado específicamente para el mercado gastronómico, con facturación electrónica ARCA incluida.',
   },
   {
     q: '¿Mesanube es compatible con ARCA (ex-AFIP)?',
@@ -120,7 +120,7 @@ const faqs = [
   },
   {
     q: '¿Cuál es la diferencia entre Mesanube y otros sistemas como Fudo o Maxirest?',
-    a: 'Mesanube incluye facturación ARCA y app para mozos sin cobrar módulos por separado. Está hecho en Argentina para locales de entre 1 y 10 empleados, con soporte directo del equipo que desarrolla el producto.',
+    a: 'Mesanube incluye facturación electrónica ARCA y app para mozos sin cobrar módulos por separado. Está hecho en Argentina para locales de entre 1 y 10 empleados, con soporte directo del equipo que desarrolla el producto.',
   },
 ]
 
@@ -286,7 +286,7 @@ export default function HomePage() {
               href="/funciones/facturacion-electronica-arca"
               className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
             >
-              Ver cómo funciona la facturación ARCA →
+              Ver cómo funciona la facturación electrónica ARCA →
             </Link>
           </Reveal>
 

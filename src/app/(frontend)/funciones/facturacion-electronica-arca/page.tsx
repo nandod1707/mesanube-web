@@ -40,7 +40,7 @@ const faqItems = [
   { q: '¿Qué pasa si soy monotributista?', a: 'Podés emitir facturas C desde Mesanube. El sistema detecta tu condición tributaria cuando configurás los datos fiscales y te muestra los tipos de comprobante disponibles.' },
   { q: '¿Necesito que mi contador configure algo?', a: 'La vinculación con ARCA la podés hacer vos solo siguiendo el paso a paso. Si preferís que lo haga tu contador, también puede. En cualquier caso, el soporte de Mesanube está disponible para acompañarte en ese proceso.' },
   { q: '¿Las facturas se guardan en el sistema?', a: 'Sí. Todos los comprobantes emitidos quedan en el historial de Mesanube. Podés consultar cualquier factura por fecha, por número de comprobante, o por CUIT del cliente.' },
-  { q: '¿Tiene algún costo adicional la facturación ARCA?', a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_SMALL.name} (${PLAN_SMALL.price}/mes). Sin módulo de facturación separado, sin costo por comprobante.` }
+  { q: '¿Tiene algún costo adicional la facturación electrónica ARCA?', a: `No. Está incluida en todos los planes de Mesanube, desde el Plan ${PLAN_SMALL.name} (${PLAN_SMALL.price}/mes). Sin módulo de facturación separado, sin costo por comprobante.` }
 ]
 
 /* ── Page ── */
@@ -53,7 +53,7 @@ export default function FacturacionElectronicaArcaPage() {
 
       <ShowcaseHero
         eyebrow="Funciones / Facturación electrónica ARCA"
-        heading="Facturación ARCA incluida, sin vueltas y sin apps adicionales"
+        heading="Facturación electrónica ARCA incluida, sin vueltas y sin apps adicionales"
         subtitle="Cumplís con ARCA (ex-AFIP) desde el mismo sistema donde tomás el pedido y cerrás la mesa. Sin instalar nada más, sin procesos manuales, sin esperar que alguien se acuerde."
         background={{ src: '/photos/pos-facturacion-pantalla.jpg', alt: 'Facturación electrónica ARCA integrada en Mesanube' }}
         note="Sin tarjeta de crédito. Sin permanencia mínima."
@@ -202,7 +202,7 @@ export default function FacturacionElectronicaArcaPage() {
 
         <PricingCards
           eyebrow="Precios"
-          heading="La facturación ARCA está incluida en todos los planes"
+          heading="La facturación electrónica ARCA está incluida en todos los planes"
           description="Sin módulo de facturación separado. Sin costo por comprobante. Sin sorpresas."
         />
 

@@ -20,7 +20,7 @@ import { PLAN_MEDIUM } from '@/config/plans'
 export const metadata: Metadata = {
   title: 'Sistema POS para Bares en Argentina. Comanda Ágil para Múltiples Mozos | Mesanube',
   description:
-    `Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación ARCA. Probá ${TRIAL_PERIOD} gratis.`,
+    `Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación electrónica ARCA. Probá ${TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */
@@ -78,7 +78,7 @@ const funciones = [
     body: 'Dividís la cuenta asignando un monto a cada medio de pago. Efectivo, tarjeta, transferencia o combinación, todo en una misma mesa.',
   },
   {
-    title: 'Facturación ARCA',
+    title: 'Facturación electrónica ARCA',
     body: 'Facturas A, B y C en el momento, desde el mismo sistema donde tomaste el pedido.',
   },
   {
@@ -113,7 +113,7 @@ const faq = [
     a: 'Sí. Mesanube es compatible con impresoras térmicas estándar (58mm y 80mm) para imprimir comandas, control de mesa y facturas.',
   },
   {
-    q: '¿Cómo funciona la facturación ARCA en un bar con muchos clientes?',
+    q: '¿Cómo funciona la facturación electrónica ARCA en un bar con muchos clientes?',
     a: 'El comprobante se emite en el mismo flujo de cierre de cuenta, sin pasos adicionales ni salir a otra app. En ambientes de alta rotación como bares, esto es clave: facturar no frena la operación.',
   },
 ]

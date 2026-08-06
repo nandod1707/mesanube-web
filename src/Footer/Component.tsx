@@ -15,7 +15,7 @@ const businessLinks = [
 
 const featureLinks = [
   { label: 'Comanda digital', href: '/funciones/comanda-digital' },
-  { label: 'Facturación ARCA', href: '/funciones/facturacion-electronica-arca' },
+  { label: 'Facturación electrónica ARCA', href: '/funciones/facturacion-electronica-arca' },
   { label: 'App para mozos', href: '/funciones/app-para-mozos' },
   { label: 'Reportes', href: '/funciones/reportes-y-analitica' },
   { label: 'Carta QR', href: '/funciones/carta-qr' },

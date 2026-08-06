@@ -94,8 +94,8 @@ const faqItems = [
     a: 'La carga del menú para una cafetería estándar lleva entre 30 minutos y una hora. Después de eso, podés estar tomando pedidos. El soporte acompaña la configuración inicial si necesitás ayuda.',
   },
   {
-    q: '¿La comanda digital incluye facturación ARCA?',
-    a: `Sí. El Plan ${PLAN_SMALL.name} de Mesanube incluye comanda digital y facturación ARCA en el mismo sistema, desde ${PLAN_SMALL.price}/mes. No son módulos separados.`,
+    q: '¿La comanda digital incluye facturación electrónica ARCA?',
+    a: `Sí. El Plan ${PLAN_SMALL.name} de Mesanube incluye comanda digital y facturación electrónica ARCA en el mismo sistema, desde ${PLAN_SMALL.price}/mes. No son módulos separados.`,
   },
   {
     q: '¿Puedo cancelar si no me convence?',

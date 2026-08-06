@@ -13,7 +13,7 @@ import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 export const metadata: Metadata = {
   title: 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube',
   description:
-    `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación ARCA y arqueo de caja incluidos. Probá ${TRIAL_PERIOD} gratis.`,
+    `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación electrónica ARCA y arqueo de caja incluidos. Probá ${TRIAL_PERIOD} gratis.`,
 }
 
 /* ── Static data ── */

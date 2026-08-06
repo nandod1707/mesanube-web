@@ -158,7 +158,7 @@ export default function FidelizacionPage() {
           eyebrow="Hoy disponible"
           heading="Un POS completo mientras llega la fidelización"
           paragraphs={[
-            'Comanda digital, app para mozos, monitor de cocina, facturación ARCA, arqueo de caja y reportes. Todo integrado, sin módulos separados, sin costos ocultos.',
+            'Comanda digital, app para mozos, monitor de cocina, facturación electrónica ARCA, arqueo de caja y reportes. Todo integrado, sin módulos separados, sin costos ocultos.',
           ]}
           image={{ src: '/photos/cafeteria-vasos-marca.jpg', alt: 'Sistema Mesanube listo para sumar fidelización' }}
           cta={

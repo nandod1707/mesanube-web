@@ -18,9 +18,9 @@ import {
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 export const metadata: Metadata = {
-  title: 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación ARCA | Mesanube',
+  title: 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación electrónica ARCA | Mesanube',
   description:
-    `Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación ARCA desde ${PLAN_SMALL.price}/mes. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
+    `Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación electrónica ARCA desde ${PLAN_SMALL.price}/mes. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
 }
 
 /* ── Static data ── */
@@ -40,7 +40,7 @@ const resuelve = [
     body: 'Cerrar la caja y que los números no cierren es una de las sensaciones más frustrantes del rubro. El arqueo de Mesanube lleva el conteo durante todo el turno: ingresos, egresos, pagos por transferencia. Cuando llegás a fin del día, el número está.',
   },
   {
-    title: 'La facturación ARCA',
+    title: 'La facturación electrónica ARCA',
     body: 'Emitir facturas A, B y C es obligatorio y hay que hacerlo bien. En Mesanube la facturación electrónica va integrada en el mismo sistema donde tomás el pedido y cerrás la mesa.',
   },
   {
@@ -76,16 +76,16 @@ const funciones = [
   { title: 'Comanda desde mostrador', body: 'Diseñada para el ritmo de una barra: tocás el producto, sumás la cantidad, enviás. Sin menús complicados ni pasos de más.' },
   { title: 'Carta QR', body: 'Tus clientes escanean el código en la mesa y ven el menú actualizado en su teléfono.' },
   { title: 'Arqueo de caja', body: 'Seguimiento del efectivo por turno. Diferencias marcadas automáticamente. Historial de cada cierre.' },
-  { title: 'Facturación ARCA nativa', body: 'Facturas A, B y C con factura electrónica. Todo desde el mismo sistema.' },
+  { title: 'Facturación electrónica ARCA nativa', body: 'Facturas A, B y C con factura electrónica. Todo desde el mismo sistema.' },
   { title: 'Reportes del día', body: 'Qué productos se vendieron, cuánto entró, por qué medio pagaron. Una pantalla, un vistazo.' },
   { title: 'App para mozos', body: `Si tu cafetería tiene mesas con servicio, los mozos toman pedidos desde su celular. Los pedidos llegan a cocina al instante.` },
 ]
 
 const faq = [
-  { q: '¿Qué sistema POS es mejor para una cafetería pequeña en Argentina?', a: `Para cafeterías de 1 a 10 empleados en Argentina, lo más importante es que el sistema incluya facturación ARCA sin módulo adicional, funcione en hardware que ya tenés (tablet, celular o computadora), y tenga soporte local. Mesanube cumple los tres criterios desde el Plan ${PLAN_SMALL.name} a ${PLAN_SMALL.price}/mes.` },
+  { q: '¿Qué sistema POS es mejor para una cafetería pequeña en Argentina?', a: `Para cafeterías de 1 a 10 empleados en Argentina, lo más importante es que el sistema incluya facturación electrónica ARCA sin módulo adicional, funcione en hardware que ya tenés (tablet, celular o computadora), y tenga soporte local. Mesanube cumple los tres criterios desde el Plan ${PLAN_SMALL.name} a ${PLAN_SMALL.price}/mes.` },
   { q: '¿Necesito hardware especial para usar una comanda digital en mi cafetería?', a: 'No. Mesanube funciona en cualquier tablet o celular Android o iOS. Si ya tenés una tablet en el mostrador, ya tenés el hardware necesario. Para imprimir tickets, es compatible con impresoras térmicas estándar de 58mm y 80mm.' },
   { q: '¿Cuánto tiempo lleva poner en marcha el sistema en una cafetería?', a: 'El mismo día que decidís empezar podés estar tomando pedidos con Mesanube. La carga del menú para una cafetería estándar lleva menos de una hora. Nuestro soporte acompaña el proceso si necesitás ayuda.' },
-  { q: '¿La facturación ARCA tiene costo adicional?', a: `No. Está incluida en el Plan ${PLAN_SMALL.name} desde ${PLAN_SMALL.price}/mes. Sin módulo de facturación separado, sin costo por comprobante.` },
+  { q: '¿La facturación electrónica ARCA tiene costo adicional?', a: `No. Está incluida en el Plan ${PLAN_SMALL.name} desde ${PLAN_SMALL.price}/mes. Sin módulo de facturación separado, sin costo por comprobante.` },
   { q: '¿Funciona si soy monotributista?', a: 'Sí. Mesanube emite facturas C para monotributistas, además de A y B para responsables inscriptos. El sistema detecta tu condición cuando configurás los datos fiscales.' },
   { q: '¿Puedo cancelar cuando quiero?', a: 'Sí. Sin permanencia mínima, sin cargos de cancelación, sin formularios. Si decidís que no es para vos, cancelás y listo.' },
   { q: '¿El soporte tiene algún costo adicional?', a: 'No. Nuestro soporte por WhatsApp está incluido en todos los planes. Sin niveles ni ticketing: te responde el equipo de Mesanube directo.' },

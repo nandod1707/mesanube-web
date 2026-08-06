@@ -16,7 +16,7 @@ const TRIAL = TRIAL_PERIOD
 export const metadata: Metadata = {
   title: 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
   description:
-    `Planes desde ${PLAN_SMALL.price}/mes. Comanda digital, facturación ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`,
+    `Planes desde ${PLAN_SMALL.price}/mes. Comanda digital, facturación electrónica ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`,
 }
 
 /* ── Static data ── */
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const comparisonRows: { label: string; from: number }[] = [
   { label: 'Pedidos digitales', from: 0 },
   { label: 'Carta QR', from: 0 },
-  { label: 'Facturación ARCA', from: 0 },
+  { label: 'Facturación electrónica ARCA', from: 0 },
   { label: 'Arqueo de caja', from: 0 },
   { label: 'Soporte por WhatsApp', from: 0 },
   { label: 'App para mozos', from: 1 },

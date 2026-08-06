@@ -30,7 +30,7 @@ const featureCards = [
   { title: 'Monitor de cocina', body: 'Los pedidos llegan a la pantalla de cocina en tiempo real, en orden. El cocinero marca "listo" y el mozo lo sabe.', href: '/funciones/monitor-de-cocina', label: 'Ver monitor de cocina', badge: `Plan ${PLAN_MEDIUM.name}` },
   { title: 'Reportes y analítica', body: 'Qué vendiste, cuánto, a qué hora y con qué medio de pago. Una pantalla, sin planillas.', href: '/funciones/reportes-y-analitica', label: 'Ver reportes', badge: `Plan ${PLAN_MEDIUM.name}` },
   { title: 'App para mozos', body: 'Tus mozos toman pedidos y ven las cuentas desde el celular que ya tienen en el bolsillo. Sin hardware nuevo.', href: '/funciones/app-para-mozos', label: 'Ver app para mozos', badge: null },
-  { title: 'Facturación electrónica ARCA', body: 'Facturas A, B y C integradas en el mismo sistema donde tomás el pedido y cerrás la mesa. Sin app separada, sin proceso manual.', href: '/funciones/facturacion-electronica-arca', label: 'Ver facturación ARCA', badge: null }
+  { title: 'Facturación electrónica ARCA', body: 'Facturas A, B y C integradas en el mismo sistema donde tomás el pedido y cerrás la mesa. Sin app separada, sin proceso manual.', href: '/funciones/facturacion-electronica-arca', label: 'Ver facturación electrónica ARCA', badge: null }
 ]
 
 /* ── Page ── */
