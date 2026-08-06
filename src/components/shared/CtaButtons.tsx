@@ -1,7 +1,9 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import Link from 'next/link'
 
+import { APP_REGISTER_URL } from '@/config/app'
 import { useTrialDialog } from './TrialDialog'
 
 type Variant = 'primary' | 'soft'
@@ -53,8 +55,49 @@ function BaseButton({
   )
 }
 
+function BaseLink({
+  variant,
+  children,
+  className = '',
+  withArrow = false,
+}: {
+  variant: Variant
+  children: ReactNode
+  className?: string
+  withArrow?: boolean
+}) {
+  return (
+    <Link
+      href={APP_REGISTER_URL}
+      className={`group inline-flex items-center justify-center gap-1.5 rounded-full px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] transition-[background-color,transform] duration-300 active:scale-[0.98] ${VARIANT_CLASS[variant]} ${className}`}
+    >
+      <span>{children}</span>
+      {withArrow && (
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 6 7"
+          fill="none"
+          className="translate-y-px transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          aria-hidden="true"
+        >
+          <path
+            d="M0.5 6L5.5 1M5.5 1H1.5M5.5 1V5"
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeLinecap="square"
+          />
+        </svg>
+      )}
+    </Link>
+  )
+}
+
+/**
+ * Links straight to the app's registration page — does not open the trial dialog.
+ */
 export function TrialButton({
-  children = 'Probá gratis',
+  children = 'Probalo gratis',
   variant = 'primary',
   className = '',
 }: {
@@ -62,16 +105,10 @@ export function TrialButton({
   variant?: Variant
   className?: string
 }) {
-  const { openTrial } = useTrialDialog()
   return (
-    <BaseButton
-      variant={variant}
-      onClick={openTrial}
-      className={className}
-      withArrow={variant === 'primary'}
-    >
+    <BaseLink variant={variant} className={className} withArrow={variant === 'primary'}>
       {children}
-    </BaseButton>
+    </BaseLink>
   )
 }
 
@@ -126,10 +163,11 @@ export function DemoLink({
 }
 
 /**
- * Underlined-link version of the trial CTA — same shape as DemoLink.
+ * Underlined-link version of the trial CTA — same shape as DemoLink. Links
+ * straight to the app's registration page — does not open the trial dialog.
  */
 export function TrialLink({
-  children = 'Probá gratis →',
+  children = 'Probalo gratis →',
   tone = 'dark',
   className = '',
 }: {
@@ -137,18 +175,16 @@ export function TrialLink({
   tone?: 'dark' | 'muted'
   className?: string
 }) {
-  const { openTrial } = useTrialDialog()
   const color =
     tone === 'muted'
       ? 'text-[#6f6f6f] hover:text-black'
       : 'text-black hover:text-[#485c11]'
   return (
-    <button
-      type="button"
-      onClick={openTrial}
+    <Link
+      href={APP_REGISTER_URL}
       className={`text-[14px] font-bold leading-[1.4] tracking-[-0.35px] underline underline-offset-2 transition-colors ${color} ${className}`}
     >
       {children}
-    </button>
+    </Link>
   )
 }

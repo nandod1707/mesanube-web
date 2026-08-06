@@ -279,4 +279,14 @@ html {
   .animate-marquee {
     animation: marquee var(--marquee-duration, 30s) linear infinite;
   }
+
+  /* ── Hide scrollbar while keeping the element scrollable ── */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
