@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -19,10 +20,20 @@ import {
 } from '@/components/usecase'
 import { PLAN_MEDIUM } from '@/config/plans'
 
+const title = 'Sistema POS para Restaurantes en Argentina. Gestión Completa con ARCA | Mesanube'
+const description = `Sistema de gestión para restaurantes argentinos. Comanda digital, app para mozos, monitor de cocina, ARCA y control de stock. Probá ${TRIAL_PERIOD} gratis.`
+
 export const metadata: Metadata = {
-  title: 'Sistema POS para Restaurantes en Argentina. Gestión Completa con ARCA | Mesanube',
-  description:
-    `Sistema de gestión para restaurantes argentinos. Comanda digital, app para mozos, monitor de cocina, ARCA y control de stock. Probá ${TRIAL_PERIOD} gratis.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/para/restaurantes',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/para/restaurantes',
+  }),
 }
 
 /* ── Static data ── */
@@ -106,6 +117,12 @@ export default function RestaurantesPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <UseCaseTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Restaurantes', path: '/para/restaurantes' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Para restaurantes"

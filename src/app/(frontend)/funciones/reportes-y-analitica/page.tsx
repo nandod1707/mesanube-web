@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -6,7 +7,7 @@ import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -15,10 +16,20 @@ import { FeatureCta, FeatureGrid, FeatureSplit, FeatureTopNav } from '@/componen
 import { PLAN_MEDIUM } from '@/config/plans'
 import { SplitFeature } from '@/components/usecase'
 
+const title = 'Reportes y Analítica para Restaurantes. Ventas en Tiempo Real | Mesanube'
+const description = 'Reportes integrados al POS. Ventas por período, producto, mozo y medio de pago, en tiempo real y desde el celular. Para restaurantes y bares argentinos.'
+
 export const metadata: Metadata = {
-  title: 'Reportes y Analítica para Restaurantes. Ventas en Tiempo Real | Mesanube',
-  description:
-    'Reportes integrados al POS. Ventas por período, producto, mozo y medio de pago, en tiempo real y desde el celular. Para restaurantes y bares argentinos.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/reportes-y-analitica',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/reportes-y-analitica',
+  }),
 }
 
 /* ── Static data ── */
@@ -45,6 +56,13 @@ export default function ReportesYAnaliticaPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Reportes y analítica', path: '/funciones/reportes-y-analitica' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones, Reportes y analítica"

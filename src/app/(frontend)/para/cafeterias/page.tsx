@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -19,10 +20,20 @@ import {
 } from '@/components/usecase'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
+const title = 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación electrónica ARCA | Mesanube'
+const description = `Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación electrónica ARCA desde ${PLAN_SMALL.price}/mes. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`
+
 export const metadata: Metadata = {
-  title: 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación electrónica ARCA | Mesanube',
-  description:
-    `Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación electrónica ARCA desde ${PLAN_SMALL.price}/mes. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/para/cafeterias',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/para/cafeterias',
+  }),
 }
 
 /* ── Static data ── */
@@ -100,6 +111,12 @@ export default function CafeteriasPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <UseCaseTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Cafeterías', path: '/para/cafeterias' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Para cafeterías"

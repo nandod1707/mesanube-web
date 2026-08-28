@@ -44,19 +44,23 @@ export function buildWebSiteSchema() {
 }
 
 /**
- * Product schema for `/precios` — one Offer per plan, sourced straight from
- * `PLANS` (`src/config/plans.ts`) so schema pricing can never drift from what's
- * shown on the page. Placeholder plans (e.g. Grande, pending real pricing) are
- * excluded — same rule the UI follows by showing a "Datos preliminares" note.
+ * SoftwareApplication schema for `/precios` — one Offer per plan, sourced
+ * straight from `PLANS` (`src/config/plans.ts`) so schema pricing can never
+ * drift from what's shown on the page. Placeholder plans (e.g. Grande,
+ * pending real pricing) are excluded — same rule the UI follows by showing a
+ * "Datos preliminares" note. `SoftwareApplication` (not `Product`) is the
+ * correct schema.org type for a SaaS — `Product` implies a tangible good.
  */
 export function buildPricingSchema() {
   const url = getServerSideURL()
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'SoftwareApplication',
     name: `${SITE_NAME} POS`,
     description: 'Sistema de punto de venta para restaurantes, cafés y bares en Argentina.',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, Android, iOS',
     url: `${url}/precios`,
     offers: PLANS.filter((plan) => !plan.placeholder).map((plan) => ({
       '@type': 'Offer',
@@ -71,6 +75,26 @@ export function buildPricingSchema() {
         priceCurrency: 'ARS',
         unitText: 'MONTH',
       },
+    })),
+  }
+}
+
+/**
+ * BreadcrumbList schema — pass the page's trail as `[{ name, path }]`,
+ * root-relative paths without the domain (e.g. `/funciones`). Helps both
+ * Google rich results and AI crawlers place a page in the site hierarchy.
+ */
+export function buildBreadcrumbSchema(items: { name: string; path: string }[]) {
+  const url = getServerSideURL()
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: `${url}${item.path}`,
     })),
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -6,7 +7,7 @@ import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -15,10 +16,20 @@ import { FeatureCta, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/
 import { PLAN_MEDIUM } from '@/config/plans'
 import { SplitFeature } from '@/components/usecase'
 
+const title = 'Monitor de Cocina (KDS) para Restaurantes. Pedidos en Pantalla en Tiempo Real | Mesanube'
+const description = 'Monitor de cocina integrado al POS. Los pedidos llegan en tiempo real a la pantalla de cocina, el cocinero los marca como listos y el mozo lo sabe al instante. Para restaurantes argentinos.'
+
 export const metadata: Metadata = {
-  title: 'Monitor de Cocina (KDS) para Restaurantes. Pedidos en Pantalla en Tiempo Real | Mesanube',
-  description:
-    'Monitor de cocina integrado al POS. Los pedidos llegan en tiempo real a la pantalla de cocina, el cocinero los marca como listos y el mozo lo sabe al instante. Para restaurantes argentinos.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/monitor-de-cocina',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/monitor-de-cocina',
+  }),
 }
 
 /* ── Static data ── */
@@ -47,6 +58,13 @@ export default function MonitorDeCocinaPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Monitor de cocina', path: '/funciones/monitor-de-cocina' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones, Monitor de cocina"

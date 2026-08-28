@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -12,10 +13,20 @@ import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { CardGrid, ProseSection, SplitFeature, UseCaseCta, UseCaseTopNav } from '@/components/usecase'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
+const title = 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube'
+const description = `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación electrónica ARCA y arqueo de caja incluidos. Probá ${TRIAL_PERIOD} gratis.`
+
 export const metadata: Metadata = {
-  title: 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube',
-  description:
-    `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación electrónica ARCA y arqueo de caja incluidos. Probá ${TRIAL_PERIOD} gratis.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/para/pizzerias',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/para/pizzerias',
+  }),
 }
 
 /* ── Static data ── */
@@ -69,6 +80,12 @@ export default function PizzeriasPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <UseCaseTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Pizzerías', path: '/para/pizzerias' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Para pizzerías"

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -6,7 +7,7 @@ import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -20,10 +21,20 @@ import {
 } from '@/components/feature'
 import { PLAN_SMALL } from '@/config/plans'
 
+const title = 'Carta QR para Restaurantes y Cafeterías. Menú Digital que se Actualiza Solo | Mesanube'
+const description = 'Carta QR integrada al sistema POS. Tus clientes escanean y ven el menú en tiempo real desde su teléfono. Sin imprimir cartas, sin precios desactualizados. Para locales argentinos.'
+
 export const metadata: Metadata = {
-  title: 'Carta QR para Restaurantes y Cafeterías. Menú Digital que se Actualiza Solo | Mesanube',
-  description:
-    'Carta QR integrada al sistema POS. Tus clientes escanean y ven el menú en tiempo real desde su teléfono. Sin imprimir cartas, sin precios desactualizados. Para locales argentinos.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/carta-qr',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/carta-qr',
+  }),
 }
 
 /* ── Static data ── */
@@ -58,6 +69,13 @@ export default function CartaQrPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Carta QR', path: '/funciones/carta-qr' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones, Carta QR"

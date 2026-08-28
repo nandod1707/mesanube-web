@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -6,7 +7,7 @@ import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -19,10 +20,20 @@ import {
   StepsRow,
 } from '@/components/feature'
 
+const title = 'Comanda Digital para Restaurantes y Cafeterías. Pedidos desde Celular | Mesanube'
+const description = `Comanda digital integrada al POS. Pedidos desde cualquier celular o tablet, llegan a cocina en tiempo real. Para restaurantes y cafeterías argentinas. Probá ${TRIAL_PERIOD} gratis.`
+
 export const metadata: Metadata = {
-  title: 'Comanda Digital para Restaurantes y Cafeterías. Pedidos desde Celular | Mesanube',
-  description:
-    `Comanda digital integrada al POS. Pedidos desde cualquier celular o tablet, llegan a cocina en tiempo real. Para restaurantes y cafeterías argentinas. Probá ${TRIAL_PERIOD} gratis.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/comanda-digital',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/comanda-digital',
+  }),
 }
 
 /* ── Static data ── */
@@ -59,6 +70,13 @@ export default function ComandaDigitalPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Comanda digital', path: '/funciones/comanda-digital' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones, Comanda digital"

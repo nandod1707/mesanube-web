@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,11 +12,23 @@ import { HeroHeading } from '@/components/shared/HeroHeading'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { FeatureCallout, FeatureMedia, FeatureSplit, FeatureTopNav } from '@/components/feature'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildBreadcrumbSchema } from '@/utilities/schema'
+
+const title = 'Fidelización para Restaurantes. Próximamente en Mesanube | Mesanube'
+const description = 'El primer módulo de fidelización con gamificación para restaurantes argentinos. Puntos, recompensas y desafíos integrados al POS. Anotate para acceso anticipado.'
 
 export const metadata: Metadata = {
-  title: 'Fidelización para Restaurantes. Próximamente en Mesanube | Mesanube',
-  description:
-    'El primer módulo de fidelización con gamificación para restaurantes argentinos. Puntos, recompensas y desafíos integrados al POS. Anotate para acceso anticipado.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/fidelizacion',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/fidelizacion',
+  }),
 }
 
 /* ── Static data ── */
@@ -42,6 +55,13 @@ export default function FidelizacionPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Fidelización', path: '/funciones/fidelizacion' },
+        ])}
+      />
 
       {/* Hero (bespoke: coming-soon badge + image overlay) */}
       <header className="w-full max-w-[1500px] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]">
