@@ -27,7 +27,7 @@ type ShowcaseHeroProps = {
 }
 
 const DEFAULT_PREVIEW = {
-  src: '/media/inner-screen-1.webp',
+  src: '/assets/inner-screen-1.webp',
   alt: 'Panel de control de Mesanube',
   width: 1741,
   height: 993,

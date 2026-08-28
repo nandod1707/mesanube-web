@@ -19,7 +19,7 @@ export function buildOrganizationSchema() {
     '@type': 'Organization',
     name: SITE_NAME,
     url,
-    logo: `${url}/media/logo.svg`,
+    logo: `${url}/assets/logo.svg`,
     email: SUPPORT_EMAIL,
     contactPoint: {
       '@type': 'ContactPoint',
