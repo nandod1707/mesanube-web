@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -16,10 +17,20 @@ import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
+const title = 'Comanda Digital para Cafeterías en Argentina. Sistema de Pedidos sin Papel | Mesanube'
+const description = `Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá ${TRIAL_PERIOD} gratis.`
+
 export const metadata: Metadata = {
-  title: 'Comanda Digital para Cafeterías en Argentina. Sistema de Pedidos sin Papel | Mesanube',
-  description:
-    `Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá ${TRIAL_PERIOD} gratis.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/landing/comanda-digital-cafeteria',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/landing/comanda-digital-cafeteria',
+  }),
 }
 
 /* ── Static data ── */

@@ -8,11 +8,22 @@ import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { UseCaseHero, UseCaseTopNav } from '@/components/usecase'
 import { SUPPORT_EMAIL, SUPPORT_EMAIL_URL, WHATSAPP_URL } from '@/config/contact'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+
+const title = 'Contacto, Mesanube'
+const description = 'Escribinos si tenés dudas sobre Mesanube, querés una demo o ya sos cliente y necesitás ayuda. Te respondemos por email o WhatsApp.'
 
 export const metadata: Metadata = {
-  title: 'Contacto, Mesanube',
-  description:
-    'Escribinos si tenés dudas sobre Mesanube, querés una demo o ya sos cliente y necesitás ayuda. Te respondemos por email o WhatsApp.',
+  title,
+  description,
+  alternates: {
+    canonical: '/contacto',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/contacto',
+  }),
 }
 
 export default function ContactoPage() {

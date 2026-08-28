@@ -16,14 +16,25 @@ import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { APP_LOGIN_URL, APP_REGISTER_URL } from '@/config/app'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
+const title = 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías'
+const description = `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación electrónica ARCA, control de caja y app para mozos. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`
+
 export const metadata: Metadata = {
-  title: 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías',
-  description:
-    `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación electrónica ARCA, control de caja y app para mozos. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/',
+  }),
 }
 
 /* ── Static data ── */
