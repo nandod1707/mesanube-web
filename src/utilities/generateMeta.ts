@@ -21,15 +21,21 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 
 export const generateMeta = async (args: {
   doc: Partial<Page> | Partial<Post> | null
+  /** Canonical path override — required for collections not mounted at the site root (e.g. posts live under `/posts/:slug`). */
+  path?: string
 }): Promise<Metadata> => {
-  const { doc } = args
+  const { doc, path: pathOverride } = args
 
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title ? doc?.meta?.title + ' | Mesanube' : 'Mesanube'
+  const path = pathOverride || (doc?.slug ? (doc.slug === 'home' ? '/' : `/${doc.slug}`) : '/')
 
   return {
     description: doc?.meta?.description,
+    alternates: {
+      canonical: path,
+    },
     openGraph: mergeOpenGraph({
       description: doc?.meta?.description || '',
       images: ogImage

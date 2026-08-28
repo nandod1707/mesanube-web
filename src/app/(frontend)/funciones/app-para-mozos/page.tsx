@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -6,7 +7,7 @@ import { TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
@@ -14,10 +15,20 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 import { FeatureCta, FeatureGrid, FeatureSplit, FeatureTopNav } from '@/components/feature'
 import { PLAN_MEDIUM } from '@/config/plans'
 
+const title = 'App para Mozos. Tomá Pedidos desde el Celular | Mesanube'
+const description = 'App para mozos integrada al POS. Cada mozo toma pedidos desde su celular, sin terminales compartidas. Pedidos a cocina en tiempo real, división de cuentas y cierre de mesa.'
+
 export const metadata: Metadata = {
-  title: 'App para Mozos. Tomá Pedidos desde el Celular | Mesanube',
-  description:
-    'App para mozos integrada al POS. Cada mozo toma pedidos desde su celular, sin terminales compartidas. Pedidos a cocina en tiempo real, división de cuentas y cierre de mesa.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/app-para-mozos',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/app-para-mozos',
+  }),
 }
 
 /* ── Static data ── */
@@ -53,6 +64,13 @@ export default function AppParaMozosPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'App para mozos', path: '/funciones/app-para-mozos' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones, App para mozos"

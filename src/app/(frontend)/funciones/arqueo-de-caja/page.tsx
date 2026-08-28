@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -6,7 +7,7 @@ import { CtaLink } from '@/components/shared/CtaLink'
 import { TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -19,10 +20,20 @@ import {
 } from '@/components/feature'
 import { SplitFeature } from '@/components/usecase'
 
+const title = 'Arqueo de Caja para Restaurantes. Control de Efectivo por Turno | Mesanube'
+const description = 'Arqueo de caja integrado al POS. Controlá efectivo, transferencias y tarjetas por turno. Diferencias marcadas automáticamente. Para restaurantes y cafeterías argentinas.'
+
 export const metadata: Metadata = {
-  title: 'Arqueo de Caja para Restaurantes. Control de Efectivo por Turno | Mesanube',
-  description:
-    'Arqueo de caja integrado al POS. Controlá efectivo, transferencias y tarjetas por turno. Diferencias marcadas automáticamente. Para restaurantes y cafeterías argentinas.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/arqueo-de-caja',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/arqueo-de-caja',
+  }),
 }
 
 /* ── Static data ── */
@@ -49,6 +60,13 @@ export default function ArqueoDeCajaPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Arqueo de caja', path: '/funciones/arqueo-de-caja' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones, Arqueo de caja"

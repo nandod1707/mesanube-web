@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utilities/schema'
 import FloatingNav from '@/components/shared/FloatingNav'
 import { PricingCards } from '@/components/shared/PricingCards'
 import Reveal from '@/components/shared/Reveal'
@@ -14,11 +15,20 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 import { FeatureCta, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/feature'
 import { PLAN_SMALL } from '@/config/plans'
 
+const title = 'Facturación Electrónica ARCA para Restaurantes. Facturas A, B y C desde el POS | Mesanube'
+const description = 'Emití facturas electrónicas A, B y C directamente desde tu POS. Compatible con ARCA (ex-AFIP). Sin apps adicionales. Para restaurantes y cafeterías en Argentina.'
+
 export const metadata: Metadata = {
-  title:
-    'Facturación Electrónica ARCA para Restaurantes. Facturas A, B y C desde el POS | Mesanube',
-  description:
-    'Emití facturas electrónicas A, B y C directamente desde tu POS. Compatible con ARCA (ex-AFIP). Sin apps adicionales. Para restaurantes y cafeterías en Argentina.',
+  title,
+  description,
+  alternates: {
+    canonical: '/funciones/facturacion-electronica-arca',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/funciones/facturacion-electronica-arca',
+  }),
 }
 
 /* ── Static data ── */
@@ -52,6 +62,13 @@ export default function FacturacionElectronicaArcaPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <FeatureTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Funciones', path: '/funciones' },
+          { name: 'Facturación electrónica ARCA', path: '/funciones/facturacion-electronica-arca' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Funciones / Facturación electrónica ARCA"

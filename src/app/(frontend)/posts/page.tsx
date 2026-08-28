@@ -32,7 +32,7 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+          <h1>Blog</h1>
         </div>
       </div>
 
@@ -58,6 +58,11 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Posts`,
+    title: 'Blog de Mesanube. Gestión Gastronómica y Facturación ARCA',
+    description:
+      'Artículos sobre gestión de restaurantes, cafeterías y bares en Argentina: facturación electrónica ARCA, comanda digital, control de caja y buenas prácticas de operación.',
+    alternates: {
+      canonical: '/posts',
+    },
   }
 }

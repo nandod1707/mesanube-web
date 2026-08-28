@@ -51,10 +51,9 @@ const getPagesSitemap = unstable_cache(
       '/para/pizzerias',
       '/para/cadenas-multilocal',
       '/precios',
-      '/soporte',
+      '/contacto',
       '/landing/comanda-digital-cafeteria',
       '/posts',
-      '/search',
     ]
 
     const defaultSitemap = staticRoutes.map((path) => ({

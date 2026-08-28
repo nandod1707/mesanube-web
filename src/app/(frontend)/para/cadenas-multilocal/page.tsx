@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
 import { TrialButton } from '@/components/shared/CtaButtons'
 import FloatingNav from '@/components/shared/FloatingNav'
+import { JsonLd } from '@/components/shared/JsonLd'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
+import { buildBreadcrumbSchema } from '@/utilities/schema'
 import {
   CardGrid,
   CtaLink,
@@ -15,10 +18,20 @@ import {
   UseCaseTopNav,
 } from '@/components/usecase'
 
+const title = 'Sistema POS Multilocal en Argentina. Tablero Consolidado de Sucursales | Mesanube'
+const description = 'Gestión centralizada para cafeterías y restaurantes con más de una sucursal: tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Probalo gratis.'
+
 export const metadata: Metadata = {
-  title: 'Sistema POS Multilocal en Argentina. Tablero Consolidado de Sucursales | Mesanube',
-  description:
-    'Gestión centralizada para cafeterías y restaurantes con más de una sucursal: tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Probalo gratis.',
+  title,
+  description,
+  alternates: {
+    canonical: '/para/cadenas-multilocal',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/para/cadenas-multilocal',
+  }),
 }
 
 /* ── Static data ── */
@@ -65,6 +78,12 @@ export default function CadenasMultilocalPage() {
     <div className="relative flex flex-col items-center px-4 pb-5 sm:px-6 lg:px-10">
       <FloatingNav />
       <UseCaseTopNav />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Cadenas multilocal', path: '/para/cadenas-multilocal' },
+        ])}
+      />
 
       <ShowcaseHero
         eyebrow="Para cadenas multilocal"

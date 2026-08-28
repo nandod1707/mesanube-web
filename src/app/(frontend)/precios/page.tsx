@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
 
@@ -15,10 +16,20 @@ import { PLANS, PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 const TRIAL = TRIAL_PERIOD
 
+const title = 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube'
+const description = `Planes desde ${PLAN_SMALL.price}/mes. Comanda digital, facturación electrónica ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`
+
 export const metadata: Metadata = {
-  title: 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube',
-  description:
-    `Planes desde ${PLAN_SMALL.price}/mes. Comanda digital, facturación electrónica ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`,
+  title,
+  description,
+  alternates: {
+    canonical: '/precios',
+  },
+  openGraph: mergeOpenGraph({
+    title,
+    description,
+    url: '/precios',
+  }),
 }
 
 /* ── Static data ── */
