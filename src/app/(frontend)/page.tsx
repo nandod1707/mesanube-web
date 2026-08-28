@@ -40,7 +40,7 @@ const businessTypes = [
     name: 'Cafeterías',
     body: 'Pedidos rápidos desde el mostrador, carta QR y ARCA sin vueltas.',
     href: '/para/cafeterias',
-    label: 'Sistema POS para cafeterías',
+    label: 'Sistema para cafeterías',
   },
   {
     name: 'Restaurantes',

@@ -1,9 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import { APP_LOGIN_URL, APP_REGISTER_URL } from '@/config/app'
+import { WHATSAPP_URL } from '@/config/contact'
 import { MAIN_NAV as items } from '@/config/nav'
 
 import { CtaLink } from './CtaLink'
@@ -93,6 +95,17 @@ export default function FloatingNav() {
           <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
         </svg>
       </button>
+
+      {/* WhatsApp FAB: bottom-right, same glass treatment as the header nav pill. */}
+      <Link
+        href={`${WHATSAPP_URL}?text="Hola! Me gustaría recibir más información de Mesanube para mi local."`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Escribinos por WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex size-16 items-center justify-center rounded-full border border-black/5 bg-white/55 shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105"
+      >
+        <Image src="/media/logo-whatsapp.svg" alt="" width={28} height={28} aria-hidden="true" />
+      </Link>
 
       {/* Mobile full-screen menu overlay. z-[60] sits above the nav (z-50). */}
       {open && (
