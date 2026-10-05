@@ -13,6 +13,10 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
+import { isAdmin } from '@/access/roles'
+
+// Plugin collections are editor-only: the support-sync API user must not write them.
+const adminWrites = { create: isAdmin, update: isAdmin, delete: isAdmin }
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Mesanube` : 'Mesanube'
@@ -28,6 +32,7 @@ export const plugins: Plugin[] = [
   redirectsPlugin({
     collections: ['pages', 'posts'],
     overrides: {
+      access: { read: () => true, ...adminWrites },
       // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
@@ -59,7 +64,12 @@ export const plugins: Plugin[] = [
     fields: {
       payment: false,
     },
+    formSubmissionOverrides: {
+      // Visitors submit forms publicly; only admins can read or change submissions.
+      access: { create: () => true, read: isAdmin, update: isAdmin, delete: isAdmin },
+    },
     formOverrides: {
+      access: { read: () => true, ...adminWrites },
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
           if ('name' in field && field.name === 'confirmationMessage') {
@@ -85,6 +95,7 @@ export const plugins: Plugin[] = [
     collections: ['posts'],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
+      access: { read: () => true, ...adminWrites },
       fields: ({ defaultFields }) => {
         return [...defaultFields, ...searchFields]
       },

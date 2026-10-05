@@ -419,8 +419,15 @@ export interface Category {
 export interface User {
   id: string;
   name?: string | null;
+  /**
+   * Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.
+   */
+  role?: ('admin' | 'support-sync') | null;
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
@@ -1337,8 +1344,12 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
   email?: T;
   resetPasswordToken?: T;
   resetPasswordExpiration?: T;
