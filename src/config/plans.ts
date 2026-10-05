@@ -33,8 +33,8 @@ export type Plan = {
 
 export const PLAN_SMALL: Plan = {
   name: 'Chico',
-  priceMonthly: 24000,
-  price: formatARS(24000),
+  priceMonthly: 28000,
+  price: formatARS(28000),
   description: 'Para cafeterías, locales de mostrador y negocios que no tienen salón con mozos.',
   features: [
     'Impresión de comandas',
@@ -50,8 +50,8 @@ export const PLAN_SMALL: Plan = {
 
 export const PLAN_MEDIUM: Plan = {
   name: 'Mediano',
-  priceMonthly: 38000,
-  price: formatARS(38000),
+  priceMonthly: 42000,
+  price: formatARS(42000),
   description: 'Para bares, restaurantes y cafeterías con equipo de salón y cocina separada.',
   popular: 'Más popular',
   highlighted: true,
@@ -67,8 +67,8 @@ export const PLAN_MEDIUM: Plan = {
 
 export const PLAN_LARGE: Plan = {
   name: 'Grande',
-  priceMonthly: 62000,
-  price: formatARS(62000),
+  priceMonthly: 68000,
+  price: formatARS(68000),
   description: 'Para locales de alto volumen o cadenas con varias sucursales.',
   features: [
     `Todo el plan ${PLAN_MEDIUM.name}`,
