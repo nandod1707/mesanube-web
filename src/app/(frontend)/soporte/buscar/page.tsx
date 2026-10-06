@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import React from 'react'
 
-import { ArticleLinkList } from '@/components/support/ArticleLinkList'
+import { ArticleRows } from '@/components/support/ArticleRows'
+import { SupportBreadcrumb } from '@/components/support/SupportBreadcrumb'
 import { ContactCta } from '@/components/support/ContactCta'
 import { SearchBox } from '@/components/support/SearchBox'
-import { SupportHeader } from '@/components/support/SupportHeader'
 import { SupportShell } from '@/components/support/SupportShell'
+import { BODY, TITLE, TITLE_STYLE } from '@/components/usecase/styles'
 import { searchSupportArticles } from '@/utilities/support'
 
 export const metadata: Metadata = {
@@ -29,21 +30,20 @@ export default async function SupportSearchPage({ searchParams }: Args) {
 
   return (
     <SupportShell>
-      <SupportHeader
-        eyebrow="Centro de ayuda"
-        heading={heading}
-        subtitle={query && !results.length ? 'Probá con otras palabras o escribinos.' : undefined}
-      >
+      <header className="flex flex-col items-start gap-5">
+        <SupportBreadcrumb items={[{ label: 'Centro de ayuda', href: '/soporte' }, { label: 'Búsqueda' }]} />
+        <h1 className={TITLE} style={TITLE_STYLE}>
+          {heading}
+        </h1>
+        {query && !results.length && <p className={BODY}>Probá con otras palabras o escribinos.</p>}
         <SearchBox defaultValue={query} />
-      </SupportHeader>
-      <div className="flex w-full max-w-[1500px] flex-col gap-[60px] pb-[80px]">
-        {results.length > 0 && (
-          <div className="max-w-[760px]">
-            <ArticleLinkList articles={results} showSummary />
-          </div>
-        )}
-        <ContactCta />
-      </div>
+      </header>
+      {results.length > 0 && (
+        <div className="max-w-[820px]">
+          <ArticleRows articles={results} showSummary />
+        </div>
+      )}
+      <ContactCta />
     </SupportShell>
   )
 }

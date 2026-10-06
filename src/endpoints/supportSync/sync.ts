@@ -38,7 +38,10 @@ export const syncSection = async (req: PayloadRequest, path: string, content: st
     return { path, status: 'created', id: doc.id }
   }
   const unchanged =
-    current.title === data.title && current.description === data.description && current.order === data.order
+    current.title === data.title &&
+    current.description === data.description &&
+    current.order === data.order &&
+    current.icon === data.icon
   if (unchanged) return { path, status: 'unchanged', id: current.id }
   await payload.update({ collection: 'support-sections', id: current.id, data, ...asUser(req) })
   return { path, status: 'updated', id: current.id }

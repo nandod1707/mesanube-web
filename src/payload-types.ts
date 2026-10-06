@@ -807,6 +807,26 @@ export interface SupportSection {
   slug: string;
   description: string;
   /**
+   * Ícono de la tarjeta en la portada de /soporte.
+   */
+  icon?:
+    | (
+        | 'libro'
+        | 'inicio'
+        | 'caja'
+        | 'facturacion'
+        | 'comandas'
+        | 'mesas'
+        | 'cocina'
+        | 'impresoras'
+        | 'productos'
+        | 'usuarios'
+        | 'reportes'
+        | 'cuenta'
+        | 'integraciones'
+      )
+    | null;
+  /**
    * Posición en la portada de /soporte (1 = primera).
    */
   order: number;
@@ -1508,6 +1528,7 @@ export interface SupportSectionsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  icon?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

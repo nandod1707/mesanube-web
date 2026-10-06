@@ -4,9 +4,9 @@ import React from 'react'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { ContactCta } from '@/components/support/ContactCta'
 import { SearchBox } from '@/components/support/SearchBox'
-import { SectionDirectory } from '@/components/support/SectionDirectory'
-import { SupportHeader } from '@/components/support/SupportHeader'
+import { SectionCardGrid } from '@/components/support/SectionCardGrid'
 import { SupportShell } from '@/components/support/SupportShell'
+import { BODY, TITLE, TITLE_STYLE } from '@/components/usecase/styles'
 import { buildBreadcrumbSchema } from '@/utilities/schema'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { getSupportDirectory } from '@/utilities/support'
@@ -32,23 +32,21 @@ export default async function SoportePage() {
           { name: 'Soporte', path: '/soporte' },
         ])}
       />
-      <SupportHeader
-        eyebrow="Centro de ayuda"
-        heading="¿En qué te ayudamos?"
-        subtitle="Guías cortas para resolver lo del día a día en tu local, paso a paso."
-      >
-        <SearchBox />
-      </SupportHeader>
-      {sections.length > 0 ? (
-        <SectionDirectory sections={sections} />
-      ) : (
-        <p className="w-full max-w-[1500px] pb-[60px] text-[18px] text-[var(--body)]">
-          Estamos cargando las primeras guías. Mientras tanto, escribinos.
+      <header className="flex flex-col items-start gap-6">
+        <h1 className={TITLE} style={TITLE_STYLE}>
+          Hola, ¿en qué te ayudamos?
+        </h1>
+        <p className={`max-w-[52ch] ${BODY}`}>
+          Guías cortas para resolver lo del día a día en tu local, paso a paso.
         </p>
+        <SearchBox />
+      </header>
+      {sections.length > 0 ? (
+        <SectionCardGrid sections={sections} />
+      ) : (
+        <p className={BODY}>Estamos cargando las primeras guías. Mientras tanto, escribinos.</p>
       )}
-      <div className="w-full max-w-[1500px] pb-[80px]">
-        <ContactCta />
-      </div>
+      <ContactCta />
     </SupportShell>
   )
 }

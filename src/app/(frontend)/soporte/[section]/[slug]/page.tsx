@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound, permanentRedirect } from 'next/navigation'
 import React from 'react'
 
@@ -8,7 +7,8 @@ import { ArticleBody } from '@/components/support/ArticleBody'
 import { ContactCta } from '@/components/support/ContactCta'
 import { HelpfulVote } from '@/components/support/HelpfulVote'
 import { SupportShell } from '@/components/support/SupportShell'
-import { EYEBROW, TITLE, TITLE_STYLE } from '@/components/usecase/styles'
+import { SupportBreadcrumb } from '@/components/support/SupportBreadcrumb'
+import { TITLE, TITLE_STYLE } from '@/components/usecase/styles'
 import { buildBreadcrumbSchema } from '@/utilities/schema'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { getSupportArticle, getSupportDirectory, supportArticlePath } from '@/utilities/support'
@@ -48,7 +48,7 @@ export default async function SupportArticlePage({ params }: Args) {
   if (sectionSlug !== section.slug) permanentRedirect(path)
 
   return (
-    <SupportShell>
+    <SupportShell activeSection={section.slug} activeArticle={article.slug}>
       <JsonLd
         data={buildBreadcrumbSchema([
           { name: 'Inicio', path: '/' },
@@ -57,16 +57,14 @@ export default async function SupportArticlePage({ params }: Args) {
           { name: article.title, path },
         ])}
       />
-      <article className="flex w-full max-w-[760px] flex-col gap-8 pt-[40px] pb-[60px] sm:pt-[60px]">
-        <nav aria-label="Ruta" className={EYEBROW}>
-          <Link href="/soporte" className="hover:text-[var(--heading)]">
-            Soporte
-          </Link>
-          {' / '}
-          <Link href={`/soporte/${section.slug}`} className="hover:text-[var(--heading)]">
-            {section.title}
-          </Link>
-        </nav>
+      <article className="flex w-full max-w-[760px] flex-col gap-8">
+        <SupportBreadcrumb
+          items={[
+            { label: 'Centro de ayuda', href: '/soporte' },
+            { label: section.title, href: `/soporte/${section.slug}` },
+            { label: article.title },
+          ]}
+        />
         <header className="flex flex-col gap-4">
           <h1 className={TITLE} style={TITLE_STYLE}>
             {article.title}

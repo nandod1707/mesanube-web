@@ -113,6 +113,15 @@ describe('parseSectionFile', () => {
     expect(result.ok).toBe(true)
   })
 
+  it('defaults the icon and rejects an unknown one', () => {
+    const fields = { title: 'Caja', slug: 'caja', description: 'd', order: 1 }
+    const ok = parseSectionFile('caja/_seccion.md', frontmatter(fields))
+    expect(ok.ok && ok.section.icon).toBe('libro')
+    const custom = parseSectionFile('caja/_seccion.md', frontmatter({ ...fields, icon: 'caja' }))
+    expect(custom.ok && custom.section.icon).toBe('caja')
+    expect(parseSectionFile('caja/_seccion.md', frontmatter({ ...fields, icon: 'pizza' })).ok).toBe(false)
+  })
+
   it('rejects the reserved "buscar" slug', () => {
     const result = parseSectionFile(
       'buscar/_seccion.md',

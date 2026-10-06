@@ -1,6 +1,13 @@
 import { parse as parseYaml } from 'yaml'
 
-import { RESERVED_SECTION_SLUGS, SLUG_PATTERN, SUPPORT_IMAGE_FILE } from '@/collections/Support/shared'
+import {
+  DEFAULT_SECTION_ICON,
+  RESERVED_SECTION_SLUGS,
+  SLUG_PATTERN,
+  SUPPORT_IMAGE_FILE,
+  SUPPORT_SECTION_ICONS,
+  type SupportSectionIcon,
+} from '@/collections/Support/shared'
 
 // Enforces the source contract in docs/support-article-guidelines.md. Every error message is in
 // Spanish because it is shown to whoever writes the article in the POS repo.
@@ -28,6 +35,7 @@ export type ParsedSection = {
   slug: string
   description: string
   order: number
+  icon: SupportSectionIcon
 }
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/
@@ -195,13 +203,20 @@ export const parseSectionFile = (path: string, content: string): ParseResult<{ s
   const slug = fields.string('slug')
   const description = fields.string('description')
   const order = fields.number('order')
+  const icon = fields.string('icon', { required: false }) ?? DEFAULT_SECTION_ICON
   const errors = fields.errors
+  if (!SUPPORT_SECTION_ICONS.includes(icon as SupportSectionIcon)) {
+    errors.push(`"icon" tiene que ser uno de: ${SUPPORT_SECTION_ICONS.join(', ')}. Recibido: "${icon}".`)
+  }
   if (slug && slug !== file.folder) errors.push(`"slug" (${slug}) tiene que ser igual a la carpeta (${file.folder}).`)
   if (slug && RESERVED_SECTION_SLUGS.includes(slug)) errors.push(`"${slug}" está reservado: usá otro nombre de carpeta.`)
   if (slug && !SLUG_PATTERN.test(slug)) errors.push(`"slug" tiene que ser minúsculas con guiones: "${slug}".`)
 
   if (errors.length) return { ok: false, errors }
-  return { ok: true, section: { title: title!, slug: slug!, description: description!, order: order! } }
+  return {
+    ok: true,
+    section: { title: title!, slug: slug!, description: description!, order: order!, icon: icon as SupportSectionIcon },
+  }
 }
 
 // Image paths arrive as "<section>/images/<file>"; the stored key drops the images/ segment.

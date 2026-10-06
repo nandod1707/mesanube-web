@@ -49,3 +49,23 @@ export const SUPPORT_ADMIN_GROUP = 'Soporte'
 // for the query.
 export const normalizeForSearch = (text: string) =>
   text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+
+// Icons a section can pick in its _seccion.md (`icon:`). Keys are what writers type; the public
+// pages map each one to a product icon. Kept as a fixed list so the help center stays consistent.
+export const SUPPORT_SECTION_ICONS = [
+  'libro',
+  'inicio',
+  'caja',
+  'facturacion',
+  'comandas',
+  'mesas',
+  'cocina',
+  'impresoras',
+  'productos',
+  'usuarios',
+  'reportes',
+  'cuenta',
+  'integraciones',
+] as const
+export type SupportSectionIcon = (typeof SUPPORT_SECTION_ICONS)[number]
+export const DEFAULT_SECTION_ICON: SupportSectionIcon = 'libro'

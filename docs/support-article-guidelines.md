@@ -35,6 +35,7 @@ title: Facturación ARCA
 slug: facturacion-arca
 description: Configurá tu punto de venta, emití y anulá comprobantes electrónicos.
 order: 2
+icon: facturacion
 ---
 ```
 
@@ -44,6 +45,7 @@ order: 2
 | `slug` | sí | Igual al nombre de la carpeta. **No cambiarlo nunca**, porque es la URL. `buscar` está reservado |
 | `description` | sí | Una línea, aparece en la portada de `/soporte` |
 | `order` | sí | Posición en la portada (1 = primera) |
+| `icon` | no | Ícono de la tarjeta: `libro` (por defecto), `inicio`, `caja`, `facturacion`, `comandas`, `mesas`, `cocina`, `impresoras`, `productos`, `usuarios`, `reportes`, `cuenta` o `integraciones` |
 
 ## 3. Frontmatter del artículo
 
