@@ -108,6 +108,7 @@ export const plugins: Plugin[] = [
       // Files are served through Payload's own route on our domain (proxy mode),
       // keeping the R2 bucket private — bare R2 object URLs are not publicly accessible.
       media: true,
+      'support-media': true,
     },
     bucket: process.env.R2_BUCKET || '',
     // Upload directly from the browser to R2, bypassing Vercel's 4.5MB request body limit.
