@@ -10,6 +10,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { supportSyncEndpoints } from './endpoints/supportSync'
 import { SupportArticles, SupportMedia, SupportSections } from './collections/Support'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -62,6 +63,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
+  endpoints: [...supportSyncEndpoints],
   collections: [Pages, Posts, Media, Categories, Users, SupportSections, SupportArticles, SupportMedia],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
