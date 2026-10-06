@@ -36,7 +36,7 @@ All endpoints are `PUT` and idempotent. Each one handles **one file** and return
 
 ### `PUT /api/support-sync/sections`
 
-JSON body: `{ "path": "<section>/_seccion.md", "content": "<raw file>" }`
+JSON body: `{ "path": "<section>/_section.md", "content": "<raw file>" }`
 
 ### `PUT /api/support-sync/images`
 
@@ -78,18 +78,19 @@ Sections and images are still matched by slug / path.
 
 ## Order of calls
 
-Run on every push to the default branch that touches `soporte/**`, only for the files that
-changed in that push (`git diff --name-status <before> <after> -- soporte/`):
+Each PR in the POS repo carries a change manifest, `soporte/.changes/<branch>.json`, with entries like
+`{ "type": "article", "action": "create" | "update" | "delete", "id"?: "…", "path": "…" }`. The `id`
+is present on `update` and `delete` and absent on `create`. A rename is an `update` with the new
+path. On merge to the default branch, the Action:
 
-1. Added/modified `soporte/*/_seccion.md` → `PUT sections`
-2. Added/modified `soporte/*/images/*` → `PUT images`
-3. Added/modified articles (`soporte/*/*.md` except `_seccion.md`) → `PUT articles`
-4. Deleted articles → `DELETE articles` with the `id` from the file's last version. A rename (`R`)
-   is just a `PUT` of the new path: the `id` keeps it the same article.
-5. Write the `id` of every `created` article back into its file and commit (`[skip ci]`).
+1. Sends section entries to `PUT sections`, then image entries to `PUT images`.
+2. Sends article `create`/`update` entries to `PUT articles`.
+3. Sends article `delete` entries to `DELETE articles` with their `id`.
+4. Writes the `id` of every `created` article back into its file, deletes the processed manifests and
+   commits both (`[skip ci]`). If any call failed, it keeps the manifests so the run can be retried.
 
-PUTs are idempotent (unchanged files report `unchanged`), so re-running the whole folder is a safe
-full resync if a run ever fails half-way.
+PUTs are idempotent (unchanged files report `unchanged`), so a manual full resync of the whole
+folder is always safe.
 
 Send paths **relative to the `soporte/` folder** (`facturacion-arca/anular-una-factura.md`).
 Fail the job if any response is not 2xx, printing each file's `errors`.

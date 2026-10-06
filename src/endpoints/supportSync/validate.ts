@@ -197,7 +197,7 @@ export const parseArticleFile = (path: string, content: string): ParseResult<{ a
 
 export const parseSectionFile = (path: string, content: string): ParseResult<{ section: ParsedSection }> => {
   const file = splitPath(path)
-  if (file.name !== '_seccion') return { ok: false, errors: [`El archivo de sección se llama _seccion.md, no "${path}".`] }
+  if (file.name !== '_section') return { ok: false, errors: [`El archivo de sección se llama _section.md, no "${path}".`] }
   const split = splitFile(content)
   if (!split) return { ok: false, errors: ['Falta el frontmatter (bloque --- al principio) o no es YAML válido.'] }
 

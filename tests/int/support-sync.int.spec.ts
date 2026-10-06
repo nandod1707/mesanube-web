@@ -22,7 +22,7 @@ const reqAs = async (user: User | null): Promise<PayloadRequest> => {
   return req
 }
 
-const SECTION_PATH = 'facturacion-arca/_seccion.md'
+const SECTION_PATH = 'facturacion-arca/_section.md'
 const SECTION = `---
 title: Facturación ARCA
 slug: facturacion-arca

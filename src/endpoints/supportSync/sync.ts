@@ -157,7 +157,7 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     return {
       path,
       status: 'error',
-      errors: [`La sección "${article.section}" no existe: subí primero ${article.section}/_seccion.md.`],
+      errors: [`La sección "${article.section}" no existe: subí primero ${article.section}/_section.md.`],
     }
   }
 

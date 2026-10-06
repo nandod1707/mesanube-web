@@ -11,12 +11,12 @@ Si un archivo no respeta este formato, el sync lo rechaza.
 ```
 soporte/
 ├── primeros-pasos/
-│   ├── _seccion.md
+│   ├── _section.md
 │   ├── crear-tu-cuenta.md
 │   └── images/
 │       └── crear-tu-cuenta-1.png
 ├── facturacion-arca/
-│   ├── _seccion.md
+│   ├── _section.md
 │   ├── anular-una-factura.md
 │   └── images/
 └── ...
@@ -27,7 +27,7 @@ soporte/
 - **Las imágenes van en `images/`, dentro de la carpeta de la sección.**
 - Escribí los nombres de carpetas y archivos en minúsculas, sin acentos y con guiones: `anular-una-factura.md`.
 
-## 2. Archivo de sección (`_seccion.md`)
+## 2. Archivo de sección (`_section.md`)
 
 ```markdown
 ---

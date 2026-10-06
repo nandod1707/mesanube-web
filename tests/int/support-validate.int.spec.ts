@@ -107,7 +107,7 @@ describe('parseArticleFile', () => {
 describe('parseSectionFile', () => {
   it('accepts a valid section file', () => {
     const result = parseSectionFile(
-      'facturacion-arca/_seccion.md',
+      'facturacion-arca/_section.md',
       frontmatter({ title: 'Facturación ARCA', slug: 'facturacion-arca', description: 'd', order: 2 }),
     )
     expect(result.ok).toBe(true)
@@ -115,16 +115,16 @@ describe('parseSectionFile', () => {
 
   it('defaults the icon and rejects an unknown one', () => {
     const fields = { title: 'Caja', slug: 'caja', description: 'd', order: 1 }
-    const ok = parseSectionFile('caja/_seccion.md', frontmatter(fields))
+    const ok = parseSectionFile('caja/_section.md', frontmatter(fields))
     expect(ok.ok && ok.section.icon).toBe('libro')
-    const custom = parseSectionFile('caja/_seccion.md', frontmatter({ ...fields, icon: 'caja' }))
+    const custom = parseSectionFile('caja/_section.md', frontmatter({ ...fields, icon: 'caja' }))
     expect(custom.ok && custom.section.icon).toBe('caja')
-    expect(parseSectionFile('caja/_seccion.md', frontmatter({ ...fields, icon: 'pizza' })).ok).toBe(false)
+    expect(parseSectionFile('caja/_section.md', frontmatter({ ...fields, icon: 'pizza' })).ok).toBe(false)
   })
 
   it('rejects the reserved "buscar" slug', () => {
     const result = parseSectionFile(
-      'buscar/_seccion.md',
+      'buscar/_section.md',
       frontmatter({ title: 'Buscar', slug: 'buscar', description: 'd', order: 1 }),
     )
     expect(result.ok).toBe(false)
@@ -136,7 +136,7 @@ describe('parseSectionFile', () => {
 
   it('rejects a slug that does not match the folder', () => {
     const result = parseSectionFile(
-      'caja/_seccion.md',
+      'caja/_section.md',
       frontmatter({ title: 'Facturación ARCA', slug: 'facturacion-arca', description: 'd', order: 2 }),
     )
     expect(result.ok).toBe(false)

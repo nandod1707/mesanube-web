@@ -50,7 +50,7 @@ export const SUPPORT_ADMIN_GROUP = 'Soporte'
 export const normalizeForSearch = (text: string) =>
   text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
 
-// Icons a section can pick in its _seccion.md (`icon:`). Keys are what writers type; the public
+// Icons a section can pick in its _section.md (`icon:`). Keys are what writers type; the public
 // pages map each one to a product icon. Kept as a fixed list so the help center stays consistent.
 export const SUPPORT_SECTION_ICONS = [
   'libro',
