@@ -20,3 +20,8 @@ export const supportSlugField: Field = {
 }
 
 export const SUPPORT_ADMIN_GROUP = 'Soporte'
+
+// Lowercased, accent-free text so "credito" finds "crédito". Used for the stored search text and
+// for the query.
+export const normalizeForSearch = (text: string) =>
+  text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()

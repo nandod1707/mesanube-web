@@ -9,11 +9,10 @@ import {
 
 import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { isAdminOrSupportSync } from '@/access/roles'
+import { supportVoteEndpoint } from '@/endpoints/supportVote'
 import { supportEditor } from './editor'
 import { revalidateSupport, revalidateSupportDelete } from './hooks/revalidateSupport'
 import { SUPPORT_ADMIN_GROUP, supportSlugField } from './shared'
-
-const readOnlySidebar = { position: 'sidebar' as const, readOnly: true }
 
 export const SupportArticles: CollectionConfig<'support-articles'> = {
   slug: 'support-articles',
@@ -33,7 +32,7 @@ export const SupportArticles: CollectionConfig<'support-articles'> = {
   admin: {
     group: SUPPORT_ADMIN_GROUP,
     useAsTitle: 'title',
-    defaultColumns: ['title', 'section', 'helpfulYes', 'helpfulNo', 'updated'],
+    defaultColumns: ['title', 'section', 'updated', '_status'],
     description:
       'Estos artículos se sincronizan desde el repo del POS. Una edición hecha acá se pisa en el próximo sync: corregí el archivo .md en el repo.',
   },
@@ -81,14 +80,13 @@ export const SupportArticles: CollectionConfig<'support-articles'> = {
       required: true,
       admin: { position: 'sidebar', date: { pickerAppearance: 'dayOnly' } },
     },
-    { name: 'helpfulYes', label: '¿Te sirvió? Sí', type: 'number', defaultValue: 0, admin: readOnlySidebar },
-    { name: 'helpfulNo', label: '¿Te sirvió? No', type: 'number', defaultValue: 0, admin: readOnlySidebar },
     // Sync bookkeeping: the original Markdown, its plain text for search, and a hash so unchanged
     // re-syncs are skipped.
     { name: 'sourceMarkdown', type: 'textarea', admin: { hidden: true } },
     { name: 'plainText', type: 'textarea', admin: { hidden: true } },
     { name: 'contentHash', type: 'text', admin: { hidden: true } },
   ],
+  endpoints: [supportVoteEndpoint],
   hooks: {
     afterChange: [revalidateSupport],
     afterDelete: [revalidateSupportDelete],

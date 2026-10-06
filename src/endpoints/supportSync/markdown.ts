@@ -7,7 +7,12 @@ import type { SupportArticle } from '@/payload-types'
 import { randomBytes } from 'crypto'
 
 import { supportEditorFeatures } from '@/collections/Support/editor'
+import { normalizeForSearch } from '@/collections/Support/shared'
 import { IMAGE_LINE } from './validate'
+
+// The Lexical Markdown import drops the line break between wrapped "> " lines without adding a
+// space ("la\n> emitas" → "laemitas"), so wrapped quote lines are joined into one first.
+const joinQuoteLines = (markdown: string) => markdown.replace(/^(>.*)\n>\s?(?=\S)/gm, '$1 ')
 
 type Segment = { kind: 'markdown'; text: string } | { kind: 'image'; file: string }
 
@@ -20,7 +25,7 @@ const segment = (markdown: string): Segment[] => {
     if (buffer.join('\n').trim()) segments.push({ kind: 'markdown', text: buffer.join('\n') })
     buffer = []
   }
-  for (const line of markdown.split('\n')) {
+  for (const line of joinQuoteLines(markdown).split('\n')) {
     const image = line.trim().match(IMAGE_LINE)
     if (image) {
       flush()
@@ -71,8 +76,12 @@ export const markdownToLexical = async ({
   } as SupportArticle['content']
 }
 
-// Plain text used for search: drops Markdown syntax but keeps every word.
-export const markdownToPlainText = (markdown: string) =>
+// Search text: title, summary and body without Markdown syntax, normalized for accent-insensitive
+// matching. Never rendered.
+export const buildSearchText = (title: string, summary: string, markdown: string) =>
+  normalizeForSearch(`${title} ${summary} ${markdownToPlainText(markdown)}`)
+
+const markdownToPlainText = (markdown: string) =>
   markdown
     .replace(/^!\[([^\]]*)\]\([^)]*\)$/gm, '$1')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')

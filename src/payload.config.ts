@@ -11,7 +11,7 @@ import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { supportSyncEndpoints } from './endpoints/supportSync'
-import { SupportArticles, SupportMedia, SupportSections } from './collections/Support'
+import { SupportArticles, SupportFeedback, SupportMedia, SupportSections } from './collections/Support'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -64,7 +64,7 @@ export default buildConfig({
     url: process.env.DATABASE_URL || '',
   }),
   endpoints: [...supportSyncEndpoints],
-  collections: [Pages, Posts, Media, Categories, Users, SupportSections, SupportArticles, SupportMedia],
+  collections: [Pages, Posts, Media, Categories, Users, SupportSections, SupportArticles, SupportMedia, SupportFeedback],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins,

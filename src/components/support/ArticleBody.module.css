@@ -1,0 +1,96 @@
+/* Reading styles for support articles, on the canonical tokens. Scoped here because the Lexical
+   renderer emits plain h2/p/ol/blockquote elements we can't put utility classes on. */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: -0.09px;
+  color: var(--body);
+}
+
+.body h2 {
+  margin-top: 1.5rem;
+  font-family: var(--font-crimson);
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  color: var(--heading);
+}
+
+.body h3 {
+  margin-top: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--heading);
+}
+
+.body strong {
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.body ol,
+.body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.body ol {
+  list-style: decimal;
+}
+
+.body ul {
+  list-style: disc;
+}
+
+.body li::marker {
+  color: var(--olive);
+  font-weight: 700;
+}
+
+.body a {
+  color: var(--olive);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 150ms ease;
+}
+
+.body a:hover {
+  color: var(--heading);
+}
+
+.body a:focus-visible {
+  outline: 2px solid var(--olive);
+  outline-offset: 2px;
+}
+
+.body code {
+  border-radius: 0.375rem;
+  background: var(--media-bg);
+  padding: 0.1rem 0.4rem;
+  font-family: var(--font-roboto-mono);
+  font-size: 0.9em;
+  color: var(--heading);
+}
+
+.body blockquote {
+  border-left: 3px solid var(--olive);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: var(--olive-soft);
+  padding: 1rem 1.25rem;
+  color: var(--heading);
+}
+
+.screenshot {
+  height: auto;
+  max-width: 100%;
+  border: 1px solid var(--divider);
+  border-radius: 1rem;
+}

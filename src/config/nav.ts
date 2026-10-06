@@ -25,5 +25,6 @@ export const MAIN_NAV: NavItem[] = [
 export const FOOTER_NAV: NavItem[] = [
   { href: '/funciones', label: 'Funciones' },
   { href: '/precios', label: 'Precios' },
+  { href: '/soporte', label: 'Soporte' },
   { href: '/contacto', label: 'Contacto' },
 ]

@@ -105,6 +105,13 @@ describe('Support sync', () => {
     expect(doc.sourceMarkdown).toContain('## Pasos')
   })
 
+  it('keeps a space where a quote wraps onto a second > line', async () => {
+    await syncAll(BODY.replace('> **Importante:** no la emitas dos veces.', '> **Importante:** no la\n> emitas dos veces.'))
+    const doc = (await payload.find({ collection: 'support-articles', where: { slug: { equals: 'anular-una-factura' } }, depth: 0 })).docs[0]
+    const quote = doc.content.root.children.at(-1) as unknown as { children: { text?: string }[] }
+    expect(quote.children.map((child) => child.text ?? '').join('')).toContain('no la emitas')
+  })
+
   it('stores a draft article as unpublished', async () => {
     await syncAll(BODY, 'draft')
     const anonymous = await payload.find({

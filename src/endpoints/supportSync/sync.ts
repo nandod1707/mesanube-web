@@ -2,7 +2,7 @@ import type { PayloadRequest } from 'payload'
 
 import { createHash } from 'crypto'
 
-import { markdownToLexical, markdownToPlainText } from './markdown'
+import { buildSearchText, markdownToLexical } from './markdown'
 import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 
 // Core of the support sync. Each function handles one file from the POS repo and reports what
@@ -168,7 +168,7 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     }),
     meta: { title: article.seoTitle ?? null, description: article.seoDescription ?? null },
     sourceMarkdown: article.markdown,
-    plainText: markdownToPlainText(article.markdown),
+    plainText: buildSearchText(article.title, article.summary, article.markdown),
     contentHash,
     _status: article.status,
   }

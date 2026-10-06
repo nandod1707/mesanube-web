@@ -4,7 +4,7 @@ import type { Payload } from 'payload'
 export const noRevalidate = { disableRevalidate: true }
 
 export const resetSupport = async (payload: Payload) => {
-  for (const collection of ['support-articles', 'support-sections', 'support-media'] as const) {
+  for (const collection of ['support-feedback', 'support-articles', 'support-sections', 'support-media'] as const) {
     await payload.delete({ collection, where: { id: { exists: true } }, context: noRevalidate })
   }
 }
