@@ -51,6 +51,7 @@ icon: facturacion
 
 ```markdown
 ---
+id: 6702f1c4a9e3b2d1c0f4e8a7
 title: Cómo anular una factura
 slug: anular-una-factura
 section: facturacion-arca
@@ -65,8 +66,9 @@ seoDescription: Paso a paso para anular una factura desde el POS de Mesanube emi
 
 | Campo | Obligatorio | Regla |
 |---|---|---|
+| `id` | — | **No lo escribas a mano.** Lo agrega el sync al publicar el artículo por primera vez. Es la identidad del artículo: no lo borres ni lo copies a otro archivo |
 | `title` | sí | Tarea o pregunta del usuario. Ver §4 |
-| `slug` | sí | Igual al nombre del archivo. **Es la identidad del artículo: no cambiarlo nunca.** Cambiarlo crea un artículo nuevo y rompe la URL vieja |
+| `slug` | sí | Igual al nombre del archivo. Es la URL del artículo. Para cambiarlo, renombrá el archivo (`git mv`) y actualizá el `slug`; el `id` hace que siga siendo el mismo artículo. La URL vieja deja de funcionar (pedí un redirect si estaba linkeada afuera) |
 | `section` | sí | `slug` de la sección. Tiene que coincidir con la carpeta |
 | `summary` | sí | 1 oración, máximo 160 caracteres. Aparece en listados y búsqueda |
 | `order` | no | Orden dentro de la sección. Sin `order`, va al final por título |

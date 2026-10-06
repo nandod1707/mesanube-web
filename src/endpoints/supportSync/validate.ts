@@ -17,6 +17,7 @@ export type ParseResult<T> = { ok: true } & T | { ok: false; errors: string[] }
 export type ArticleImage = { alt: string; key: string }
 
 export type ParsedArticle = {
+  id?: string
   title: string
   slug: string
   section: string
@@ -148,6 +149,7 @@ export const parseArticleFile = (path: string, content: string): ParseResult<{ a
   if (!split) return { ok: false, errors: ['Falta el frontmatter (bloque --- al principio) o no es YAML válido.'] }
 
   const fields = new FieldReader(split.data)
+  const id = fields.string('id', { required: false })
   const title = fields.string('title')
   const slug = fields.string('slug')
   const section = fields.string('section')
@@ -177,6 +179,7 @@ export const parseArticleFile = (path: string, content: string): ParseResult<{ a
   return {
     ok: true,
     article: {
+      id,
       title: title!,
       slug: slug!,
       section: section!,

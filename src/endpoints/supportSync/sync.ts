@@ -1,5 +1,7 @@
 import type { PayloadRequest } from 'payload'
 
+import type { SupportArticle } from '@/payload-types'
+
 import { createHash } from 'crypto'
 
 import { SUPPORT_IMAGE_MAX_BYTES, SUPPORT_IMAGE_TYPES } from '@/collections/Support/shared'
@@ -13,6 +15,8 @@ import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 export type SyncResult =
   | { path: string; status: 'created' | 'updated' | 'unchanged'; id: string }
   | { path: string; status: 'error'; errors: string[] }
+
+export type DeleteResult = { id: string; status: 'deleted' | 'not_found' }
 
 const sha256 = (data: string | Buffer) => createHash('sha256').update(data).digest('hex')
 
@@ -98,6 +102,44 @@ export const syncImage = async (
   return { path, status: 'updated', id: current.id }
 }
 
+// The frontmatter `id` is the article's identity, so the slug (and file) can be renamed. A file
+// without `id` is new: it is created, and the Action writes the returned id back into the file. If an
+// article with that slug already exists (an earlier run created it but the id write-back failed), it
+// is adopted instead of duplicated.
+const findArticle = async (
+  req: PayloadRequest,
+  id: string | undefined,
+  slug: string,
+): Promise<{ doc?: SupportArticle } | { errors: string[] }> => {
+  const { payload } = req
+  const bySlug = await payload.find({
+    collection: 'support-articles',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    draft: true,
+    depth: 0,
+    ...asUser(req),
+  })
+  const slugOwner = bySlug.docs[0]
+  if (!id) return { doc: slugOwner }
+
+  const doc = await payload.findByID({
+    collection: 'support-articles',
+    id,
+    draft: true,
+    depth: 0,
+    disableErrors: true,
+    ...asUser(req),
+  })
+  if (!doc) {
+    return { errors: [`No existe un artículo con id "${id}". Si se borró, sacá el "id" del frontmatter para crearlo de nuevo.`] }
+  }
+  if (slugOwner && slugOwner.id !== doc.id) {
+    return { errors: [`El slug "${slug}" ya lo usa otro artículo (id ${slugOwner.id}).`] }
+  }
+  return { doc }
+}
+
 export const syncArticle = async (req: PayloadRequest, path: string, content: string): Promise<SyncResult> => {
   const parsed = parseArticleFile(path, content)
   if (!parsed.ok) return { path, status: 'error', errors: parsed.errors }
@@ -144,14 +186,9 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
   const contentHash = sha256(
     JSON.stringify({ content, section: section.id, images: [...imageIds.entries()].sort() }),
   )
-  const existing = await payload.find({
-    collection: 'support-articles',
-    where: { slug: { equals: article.slug } },
-    limit: 1,
-    draft: true,
-    ...asUser(req),
-  })
-  const current = existing.docs[0]
+  const found = await findArticle(req, article.id, article.slug)
+  if ('errors' in found) return { path, status: 'error', errors: found.errors }
+  const current = found.doc
   if (current?.contentHash === contentHash) return { path, status: 'unchanged', id: current.id }
 
   const data = {
@@ -187,4 +224,22 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     ...asUser(req),
   })
   return { path, status: 'updated', id: current.id }
+}
+
+// Deletes the article whose file was removed. The Action reads the `id` from the file's last version
+// in git. Idempotent: an article that is already gone reports not_found instead of failing the run.
+export const deleteArticle = async (req: PayloadRequest, id: string): Promise<DeleteResult> => {
+  const { payload } = req
+  const current = await payload.findByID({
+    collection: 'support-articles',
+    id,
+    draft: true,
+    depth: 0,
+    disableErrors: true,
+    ...asUser(req),
+  })
+  if (!current) return { id, status: 'not_found' }
+
+  await payload.delete({ collection: 'support-articles', id: current.id, ...asUser(req) })
+  return { id, status: 'deleted' }
 }

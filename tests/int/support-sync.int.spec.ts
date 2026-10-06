@@ -7,7 +7,7 @@ import { describe, it, beforeAll, beforeEach, afterAll, expect } from 'vitest'
 
 import type { User } from '@/payload-types'
 import { supportSyncEndpoints } from '@/endpoints/supportSync'
-import { syncArticle, syncImage, syncSection } from '@/endpoints/supportSync/sync'
+import { deleteArticle, syncArticle, syncImage, syncSection } from '@/endpoints/supportSync/sync'
 import { noRevalidate, resetSupport } from './helpers/support'
 
 let payload: Payload
@@ -182,7 +182,7 @@ describe('Support sync', () => {
     expect(first.status).toBe('created')
     expect(again.status).toBe('unchanged')
     expect(changed.status).toBe('updated')
-    if (first.status !== 'error' && changed.status !== 'error') expect(changed.id).toBe(first.id)
+    if ('id' in first && 'id' in changed) expect(changed.id).toBe(first.id)
     expect((await payload.count({ collection: 'support-media' })).totalDocs).toBe(1)
   })
 
@@ -242,5 +242,63 @@ describe('Support sync', () => {
     req.json = async () => ({ nope: true })
     const response = await endpoint.handler(req)
     expect(response.status).toBe(400)
+  })
+
+  it('updates by frontmatter id, allowing the slug to change', async () => {
+    const created = await syncAll()
+    if (created.status !== 'created') throw new Error('setup failed')
+    const req = await reqAs(syncUser)
+    const renamed = article(BODY)
+      .replace('---\n', `---\nid: ${created.id}\n`)
+      .replace('slug: anular-una-factura', 'slug: anular-factura')
+    const result = await syncArticle(req, 'facturacion-arca/anular-factura.md', renamed)
+    expect(result).toMatchObject({ status: 'updated', id: created.id })
+    expect((await payload.count({ collection: 'support-articles' })).totalDocs).toBe(1)
+  })
+
+  it('adopts an existing article by slug when the file has no id yet', async () => {
+    const created = await syncAll()
+    const again = await syncAll('Otro texto.')
+    expect(again.status).toBe('updated')
+    if ('id' in created && 'id' in again) expect(again.id).toBe(created.id)
+  })
+
+  it('rejects an unknown id and a slug owned by another article', async () => {
+    const created = await syncAll()
+    if (created.status !== 'created') throw new Error('setup failed')
+    const req = await reqAs(syncUser)
+    const withId = (id: string) => article('Texto.').replace('---\n', `---\nid: ${id}\n`)
+    expect((await syncArticle(req, ARTICLE_PATH, withId('000000000000000000000000'))).status).toBe('error')
+
+    const other = await syncArticle(
+      req,
+      'facturacion-arca/otro.md',
+      article('Texto.').replace('slug: anular-una-factura', 'slug: otro'),
+    )
+    if (other.status !== 'created') throw new Error('setup failed')
+    expect((await syncArticle(req, ARTICLE_PATH, withId(other.id))).status).toBe('error')
+  })
+
+  it('deletes an article by id, then reports not_found on a repeat', async () => {
+    const created = await syncAll()
+    if (created.status !== 'created') throw new Error('setup failed')
+    const req = await reqAs(syncUser)
+    expect(await deleteArticle(req, created.id)).toEqual({ status: 'deleted', id: created.id })
+    expect((await deleteArticle(req, created.id)).status).toBe('not_found')
+  })
+
+  it('maps delete results to 200, 400 and 401 on the endpoint', async () => {
+    const endpoint = supportSyncEndpoints.find((e) => e.path === '/support-sync/articles' && e.method === 'delete')!
+    const call = async (user: User | null, id: unknown) => {
+      const req = await reqAs(user)
+      req.json = async () => ({ id })
+      return (await endpoint.handler(req)).status
+    }
+    const created = await syncAll()
+    if (created.status !== 'created') throw new Error('setup failed')
+    expect(await call(null, created.id)).toBe(401)
+    expect(await call(syncUser, created.id)).toBe(200)
+    expect(await call(syncUser, created.id)).toBe(200)
+    expect(await call(syncUser, 42)).toBe(400)
   })
 })

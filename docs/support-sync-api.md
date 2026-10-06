@@ -53,21 +53,51 @@ JSON body: `{ "path": "<section>/<slug>.md", "content": "<raw file>" }`
 
 The section and every referenced image must already be synced.
 
+### `DELETE /api/support-sync/articles`
+
+JSON body: `{ "id": "<article id>" }` — the `id` from the deleted file's frontmatter (read it from the
+last version in git: `git show <before>:soporte/<path>`).
+
+Deletes the article. Responses:
+- `200 { status: "deleted", id }`
+- `200 { status: "not_found", id }` — already gone; safe to retry
+
+### Article identity: the `id` in the frontmatter
+
+Articles are identified by the `id` field in their frontmatter, not by the slug:
+
+- **New file (no `id`)** → the article is created and the response carries its `id`. The Action must
+  write it back into the file (`id: <id>` as the first frontmatter line) and commit it. If the
+  write-back fails, the next run adopts the existing article by slug instead of duplicating it.
+- **File with `id`** → that article is updated, including its slug. Renaming a file is just a
+  `PUT` with the new path; the old URL stops working (add a redirect in the admin if needed).
+- **Unknown `id`** → `422`. If the article was deleted in the admin, remove `id` to recreate it.
+- **Slug already used by another article** → `422`.
+
+Sections and images are still matched by slug / path.
+
 ## Order of calls
 
-Run on every push to the default branch that touches `soporte/**`:
+Run on every push to the default branch that touches `soporte/**`, only for the files that
+changed in that push (`git diff --name-status <before> <after> -- soporte/`):
 
-1. Every `soporte/*/_seccion.md` → `sections`
-2. Every `soporte/*/images/*` → `images`
-3. Every `soporte/*/*.md` except `_seccion.md` → `articles`
+1. Added/modified `soporte/*/_seccion.md` → `PUT sections`
+2. Added/modified `soporte/*/images/*` → `PUT images`
+3. Added/modified articles (`soporte/*/*.md` except `_seccion.md`) → `PUT articles`
+4. Deleted articles → `DELETE articles` with the `id` from the file's last version. A rename (`R`)
+   is just a `PUT` of the new path: the `id` keeps it the same article.
+5. Write the `id` of every `created` article back into its file and commit (`[skip ci]`).
+
+PUTs are idempotent (unchanged files report `unchanged`), so re-running the whole folder is a safe
+full resync if a run ever fails half-way.
 
 Send paths **relative to the `soporte/` folder** (`facturacion-arca/anular-una-factura.md`).
 Fail the job if any response is not 2xx, printing each file's `errors`.
 
 ## What the sync never does
 
-- It never deletes or unpublishes. To remove an article, unpublish it in the admin
-  (or set `status: draft` in its file).
+- It never deletes sections or images. Only articles are deleted, and only when the Action calls
+  `DELETE`. To hide an article temporarily, set `status: draft` in its file instead.
 - Edits made in the admin are overwritten the next time that file changes in the repo.
 
 ## Example

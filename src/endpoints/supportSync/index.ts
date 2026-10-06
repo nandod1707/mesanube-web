@@ -1,7 +1,7 @@
 import type { Endpoint, PayloadHandler, PayloadRequest } from 'payload'
 
 import { isAdminOrSupportSync } from '@/access/roles'
-import { syncArticle, syncImage, syncSection, type SyncResult } from './sync'
+import { deleteArticle, syncArticle, syncImage, syncSection, type SyncResult } from './sync'
 
 // Endpoints the POS repo's GitHub Action calls to publish support content. Contract and examples:
 // docs/support-sync-api.md. Auth: `Authorization: users API-Key <key>` of a support-sync user.
@@ -41,8 +41,18 @@ const imageHandler: PayloadHandler = async (req) => {
   return respond(await syncImage(req, path, buffer, typeof alt === 'string' ? alt : undefined))
 }
 
+const deleteHandler: PayloadHandler = async (req) => {
+  if (!isAdminOrSupportSync({ req })) return unauthorized()
+  const body = (await req.json?.().catch(() => null)) as { id?: unknown } | null
+  if (typeof body?.id !== 'string' || !body.id) {
+    return Response.json({ status: 'error', errors: ['El body tiene que ser JSON { "id": string }.'] }, { status: 400 })
+  }
+  return Response.json(await deleteArticle(req, body.id))
+}
+
 export const supportSyncEndpoints: Endpoint[] = [
   { path: '/support-sync/sections', method: 'put', handler: fileHandler(syncSection) },
   { path: '/support-sync/images', method: 'put', handler: imageHandler },
   { path: '/support-sync/articles', method: 'put', handler: fileHandler(syncArticle) },
+  { path: '/support-sync/articles', method: 'delete', handler: deleteHandler },
 ]
