@@ -41,7 +41,7 @@ src/
 
 ## Project Context
 
-Mesanube is a POS system for Argentine gastronomy businesses. This website serves as the marketing/content site — the POS product itself is a separate application. See `dev-resources/Mesanube_Arquitectura_Web_2026.md` for the full content architecture and SEO strategy.
+Mesanube is a POS system for Argentine gastronomy businesses. This website serves as the marketing/content site — the POS product itself is a separate application.
 
 ### Key business details
 - Target market: restaurants, cafés, bars, pizzerias, parrillas, dark kitchens in Argentina
@@ -124,17 +124,7 @@ All user-facing text must follow these rules:
 
 ## Design System
 
-Design tokens and language extracted from the live site. All files live in `dev-resources/design/`.
-
-| File | When to read |
-|---|---|
-| `DESIGN.md` | Building any new component or page — compact token + component summary |
-| `design-language.md` | Full type scale, color inventory, spacing details |
-| `motion-tokens.json` | Adding animations, transitions, or scroll effects |
-| `design-tokens.json` | Precise W3C token values for any property |
-| `figma-variables.json` | Figma handoff or syncing tokens with a design file |
-| `variables.css` | Adding or auditing CSS custom properties |
-| `shadcn-theme.css` | Configuring or extending the shadcn/ui theme |
+The canonical tokens live in `src/app/(frontend)/globals.css` (`:root`); usage rules are in `.claude/rules/frontend.md` (§2 colors, §3 typography, §6 section components).
 
 ### Quick-reference tokens
 
