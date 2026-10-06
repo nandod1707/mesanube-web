@@ -3,13 +3,12 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
 
+import { getServerSideURL } from '@/utilities/getURL'
+
 const getPagesSitemap = unstable_cache(
   async () => {
     const payload = await getPayload({ config })
-    const SITE_URL =
-      process.env.NEXT_PUBLIC_SERVER_URL ||
-      process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-      'https://example.com'
+    const SITE_URL = getServerSideURL()
 
     const results = await payload.find({
       collection: 'pages',
@@ -53,12 +52,10 @@ const getPagesSitemap = unstable_cache(
       '/precios',
       '/contacto',
       '/landing/comanda-digital-cafeteria',
-      '/posts',
     ]
 
     const defaultSitemap = staticRoutes.map((path) => ({
       loc: path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`,
-      lastmod: dateFallback,
     }))
 
     const sitemap = results.docs

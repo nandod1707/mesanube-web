@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import styles from './HeroHeading.module.css'
 
 type HeroHeadingProps = {
@@ -16,11 +18,15 @@ export function HeroHeading({ text, className }: HeroHeadingProps) {
   return (
     <h1 className={`${styles.heading} font-display text-black ${className ?? ''}`.trim()}>
       {text.split(' ').map((word, i) => (
-        <span key={i} className={styles.word}>
-          <span className={styles.inner} style={{ animationDelay: `${i * 60}ms` }}>
-            {word}
+        <Fragment key={i}>
+          {/* Real space for screen readers, crawlers and copy/paste; the visual gap is the CSS margin. */}
+          {i > 0 && <span className="sr-only"> </span>}
+          <span className={styles.word}>
+            <span className={styles.inner} style={{ animationDelay: `${i * 60}ms` }}>
+              {word}
+            </span>
           </span>
-        </span>
+        </Fragment>
       ))}
     </h1>
   )
