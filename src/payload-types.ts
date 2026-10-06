@@ -72,6 +72,9 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    'support-sections': SupportSection;
+    'support-articles': SupportArticle;
+    'support-media': SupportMedia;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -94,6 +97,9 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'support-sections': SupportSectionsSelect<false> | SupportSectionsSelect<true>;
+    'support-articles': SupportArticlesSelect<false> | SupportArticlesSelect<true>;
+    'support-media': SupportMediaSelect<false> | SupportMediaSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -419,8 +425,15 @@ export interface Category {
 export interface User {
   id: string;
   name?: string | null;
+  /**
+   * Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.
+   */
+  role: 'admin' | 'support-sync';
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
@@ -781,6 +794,125 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "support-sections".
+ */
+export interface SupportSection {
+  id: string;
+  title: string;
+  /**
+   * Identidad del sync. No cambiarlo: cambia la URL y crea un documento nuevo.
+   */
+  slug: string;
+  description: string;
+  /**
+   * Ícono de la tarjeta en la portada de /soporte.
+   */
+  icon?:
+    | (
+        | 'libro'
+        | 'inicio'
+        | 'caja'
+        | 'facturacion'
+        | 'comandas'
+        | 'mesas'
+        | 'cocina'
+        | 'impresoras'
+        | 'productos'
+        | 'usuarios'
+        | 'reportes'
+        | 'cuenta'
+        | 'integraciones'
+      )
+    | null;
+  /**
+   * Posición en la portada de /soporte (1 = primera).
+   */
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Estos artículos se sincronizan desde el repo del POS. Una edición hecha acá se pisa en el próximo sync: corregí el archivo .md en el repo.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "support-articles".
+ */
+export interface SupportArticle {
+  id: string;
+  title: string;
+  summary: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * Identidad del sync. No cambiarlo: cambia la URL y crea un documento nuevo.
+   */
+  slug: string;
+  section: string | SupportSection;
+  /**
+   * Orden dentro de la sección. Vacío = al final.
+   */
+  order?: number | null;
+  updated: string;
+  sourceMarkdown?: string | null;
+  plainText?: string | null;
+  contentHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "support-media".
+ */
+export interface SupportMedia {
+  id: string;
+  /**
+   * <seccion>/<archivo>, tal como está en el repo del POS.
+   */
+  key: string;
+  alt?: string | null;
+  sha256?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -988,6 +1120,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'support-sections';
+        value: string | SupportSection;
+      } | null)
+    | ({
+        relationTo: 'support-articles';
+        value: string | SupportArticle;
+      } | null)
+    | ({
+        relationTo: 'support-media';
+        value: string | SupportMedia;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1337,8 +1481,12 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
   email?: T;
   resetPasswordToken?: T;
   resetPasswordExpiration?: T;
@@ -1352,6 +1500,78 @@ export interface UsersSelect<T extends boolean = true> {
         id?: T;
         createdAt?: T;
         expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "support-sections_select".
+ */
+export interface SupportSectionsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  icon?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "support-articles_select".
+ */
+export interface SupportArticlesSelect<T extends boolean = true> {
+  title?: T;
+  summary?: T;
+  content?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  slug?: T;
+  section?: T;
+  order?: T;
+  updated?: T;
+  sourceMarkdown?: T;
+  plainText?: T;
+  contentHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "support-media_select".
+ */
+export interface SupportMediaSelect<T extends boolean = true> {
+  key?: T;
+  alt?: T;
+  sha256?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
       };
 }
 /**
