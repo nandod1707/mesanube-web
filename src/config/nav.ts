@@ -19,6 +19,7 @@ export const MAIN_NAV: NavItem[] = [
   { href: '/#que-es', label: 'Qué es' },
   { href: '/funciones', label: 'Funciones' },
   { href: '/precios', label: 'Precios' },
+  { href: '/soporte', label: 'Ayuda' },
 ]
 
 /** Footer navigation. */
