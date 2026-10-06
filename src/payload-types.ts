@@ -75,7 +75,6 @@ export interface Config {
     'support-sections': SupportSection;
     'support-articles': SupportArticle;
     'support-media': SupportMedia;
-    'support-feedback': SupportFeedback;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -101,7 +100,6 @@ export interface Config {
     'support-sections': SupportSectionsSelect<false> | SupportSectionsSelect<true>;
     'support-articles': SupportArticlesSelect<false> | SupportArticlesSelect<true>;
     'support-media': SupportMediaSelect<false> | SupportMediaSelect<true>;
-    'support-feedback': SupportFeedbackSelect<false> | SupportFeedbackSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -915,18 +913,6 @@ export interface SupportMedia {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "support-feedback".
- */
-export interface SupportFeedback {
-  id: string;
-  article: string | SupportArticle;
-  helpfulYes?: number | null;
-  helpfulNo?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1146,10 +1132,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'support-media';
         value: string | SupportMedia;
-      } | null)
-    | ({
-        relationTo: 'support-feedback';
-        value: string | SupportFeedback;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1591,17 +1573,6 @@ export interface SupportMediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "support-feedback_select".
- */
-export interface SupportFeedbackSelect<T extends boolean = true> {
-  article?: T;
-  helpfulYes?: T;
-  helpfulNo?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

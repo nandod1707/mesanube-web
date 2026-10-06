@@ -50,7 +50,7 @@ A help center for Mesanube customers that also ranks in search for prospects. Fl
 - R10. Search finds published support articles by title and content, independently of blog search.
 - R11. Article pages are indexable: they appear in the sitemap and have a canonical URL, Open Graph tags and breadcrumbs, following the existing detail-page SEO patterns.
 - R12. Only published articles are publicly visible.
-- R13. Each article ends with a "¿Te sirvió?" yes/no vote. The team can see per-article results in the admin.
+- R13. ~~Each article ends with a "¿Te sirvió?" yes/no vote.~~ **Dropped (2026-10-06):** an anonymous vote can't be protected from abuse. Revisit (with comments) once the help center can tell a logged-in Mesanube customer apart; the removed code is in this branch's history.
 - R14. Each article and the search results end with a "¿No encontraste lo que buscabas?" CTA that uses the contacts in `src/config/contact.ts`.
 - R15. Pages follow the canonical tokens and copy rules (voseo, no emojis).
 

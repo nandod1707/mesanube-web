@@ -9,7 +9,6 @@ import {
 
 import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { isAdminOrSupportSync } from '@/access/roles'
-import { supportVoteEndpoint } from '@/endpoints/supportVote'
 import { supportEditor } from './editor'
 import { revalidateSupport, revalidateSupportDelete } from './hooks/revalidateSupport'
 import { SUPPORT_ADMIN_GROUP, supportSlugField } from './shared'
@@ -86,7 +85,6 @@ export const SupportArticles: CollectionConfig<'support-articles'> = {
     { name: 'plainText', type: 'textarea', admin: { hidden: true } },
     { name: 'contentHash', type: 'text', admin: { hidden: true } },
   ],
-  endpoints: [supportVoteEndpoint],
   hooks: {
     afterChange: [revalidateSupport],
     afterDelete: [revalidateSupportDelete],

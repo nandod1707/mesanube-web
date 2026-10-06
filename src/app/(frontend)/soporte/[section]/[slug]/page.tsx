@@ -5,7 +5,6 @@ import React from 'react'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { ArticleBody } from '@/components/support/ArticleBody'
 import { ContactCta } from '@/components/support/ContactCta'
-import { HelpfulVote } from '@/components/support/HelpfulVote'
 import { SupportShell } from '@/components/support/SupportShell'
 import { SupportBreadcrumb } from '@/components/support/SupportBreadcrumb'
 import { TITLE, TITLE_STYLE } from '@/components/usecase/styles'
@@ -74,7 +73,6 @@ export default async function SupportArticlePage({ params }: Args) {
           </p>
         </header>
         <ArticleBody content={article.content} />
-        <HelpfulVote articleId={article.id} />
         <ContactCta />
       </article>
     </SupportShell>
