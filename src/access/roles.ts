@@ -1,4 +1,4 @@
-import type { Access, AccessArgs } from 'payload'
+import type { AccessArgs } from 'payload'
 
 import type { User } from '@/payload-types'
 
@@ -16,9 +16,4 @@ export const isAdmin = ({ req: { user } }: AccessArgs<User>): boolean => roleOf(
 export const isAdminOrSupportSync = ({ req: { user } }: AccessArgs<User>): boolean => {
   const role = roleOf(user)
   return role === 'admin' || role === 'support-sync'
-}
-
-export const adminOrPublished: Access = ({ req: { user } }) => {
-  if (roleOf(user as User | null) === 'admin') return true
-  return { _status: { equals: 'published' } }
 }

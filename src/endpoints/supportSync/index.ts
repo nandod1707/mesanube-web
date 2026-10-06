@@ -1,15 +1,10 @@
 import type { Endpoint, PayloadHandler, PayloadRequest } from 'payload'
 
-import { roleOf } from '@/access/roles'
+import { isAdminOrSupportSync } from '@/access/roles'
 import { syncArticle, syncImage, syncSection, type SyncResult } from './sync'
 
 // Endpoints the POS repo's GitHub Action calls to publish support content. Contract and examples:
 // docs/support-sync-api.md. Auth: `Authorization: users API-Key <key>` of a support-sync user.
-
-const isSyncCaller = (req: PayloadRequest) => {
-  const role = roleOf(req.user)
-  return role === 'support-sync' || role === 'admin'
-}
 
 const respond = (result: SyncResult) =>
   Response.json(result, { status: result.status === 'error' ? 422 : result.status === 'created' ? 201 : 200 })
@@ -19,7 +14,7 @@ const unauthorized = () => Response.json({ status: 'error', errors: ['No autoriz
 const fileHandler =
   (sync: (req: PayloadRequest, path: string, content: string) => Promise<SyncResult>): PayloadHandler =>
   async (req) => {
-    if (!isSyncCaller(req)) return unauthorized()
+    if (!isAdminOrSupportSync({ req })) return unauthorized()
     const body = (await req.json?.().catch(() => null)) as { path?: unknown; content?: unknown } | null
     if (typeof body?.path !== 'string' || typeof body?.content !== 'string') {
       return Response.json(
@@ -31,7 +26,7 @@ const fileHandler =
   }
 
 const imageHandler: PayloadHandler = async (req) => {
-  if (!isSyncCaller(req)) return unauthorized()
+  if (!isAdminOrSupportSync({ req })) return unauthorized()
   const form = await req.formData?.().catch(() => null)
   const path = form?.get('path')
   const file = form?.get('file')

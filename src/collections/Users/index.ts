@@ -1,12 +1,12 @@
 import type { CollectionConfig } from 'payload'
 
-import { isAdmin, roleOf } from '@/access/roles'
+import { isAdmin } from '@/access/roles'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   access: {
     // The support-sync integration user authenticates by API key only; it never uses the admin panel.
-    admin: ({ req: { user } }) => roleOf(user) === 'admin',
+    admin: isAdmin,
     create: isAdmin,
     delete: isAdmin,
     read: isAdmin,
@@ -27,7 +27,10 @@ export const Users: CollectionConfig = {
     {
       name: 'role',
       type: 'select',
-      defaultValue: 'admin',
+      // Required with no default: an API-key user created without picking a role must not silently
+      // become a full admin. Accounts created before roles existed have no value and still read as
+      // admin (see roleOf).
+      required: true,
       options: [
         { label: 'Admin', value: 'admin' },
         { label: 'Sync de soporte (API)', value: 'support-sync' },

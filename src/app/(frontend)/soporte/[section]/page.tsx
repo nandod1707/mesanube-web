@@ -46,7 +46,7 @@ export default async function SupportSectionPage({ params }: Args) {
       <SupportHeader eyebrow="Centro de ayuda" heading={section.title} subtitle={section.description} />
       <div className="flex w-full max-w-[1500px] flex-col gap-[60px] pb-[80px]">
         <div className="max-w-[760px]">
-          <ArticleLinkList section={section.slug} articles={section.articles} showSummary />
+          <ArticleLinkList articles={section.articles} showSummary />
         </div>
         <ContactCta />
       </div>

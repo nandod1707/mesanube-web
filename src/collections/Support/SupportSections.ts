@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { anyone } from '@/access/anyone'
 import { isAdminOrSupportSync } from '@/access/roles'
 import { revalidateSupport, revalidateSupportDelete } from './hooks/revalidateSupport'
-import { SUPPORT_ADMIN_GROUP, supportSlugField } from './shared'
+import { SUPPORT_ADMIN_GROUP, supportSectionSlugField } from './shared'
 
 export const SupportSections: CollectionConfig<'support-sections'> = {
   slug: 'support-sections',
@@ -22,7 +22,7 @@ export const SupportSections: CollectionConfig<'support-sections'> = {
   },
   fields: [
     { name: 'title', type: 'text', required: true },
-    supportSlugField,
+    supportSectionSlugField,
     { name: 'description', type: 'textarea', required: true },
     {
       name: 'order',

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 
 import { anyone } from '@/access/anyone'
 import { isAdminOrSupportSync } from '@/access/roles'
-import { SUPPORT_ADMIN_GROUP } from './shared'
+import { SUPPORT_ADMIN_GROUP, SUPPORT_IMAGE_TYPES } from './shared'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -38,7 +38,7 @@ export const SupportMedia: CollectionConfig<'support-media'> = {
   ],
   upload: {
     staticDir: path.resolve(dirname, '../../../public/support-media'),
-    mimeTypes: ['image/png', 'image/webp', 'image/jpeg'],
+    mimeTypes: [...new Set(Object.values(SUPPORT_IMAGE_TYPES))],
     adminThumbnail: 'thumbnail',
     imageSizes: [{ name: 'thumbnail', width: 300 }],
   },

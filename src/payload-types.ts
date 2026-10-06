@@ -430,7 +430,7 @@ export interface User {
   /**
    * Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.
    */
-  role?: ('admin' | 'support-sync') | null;
+  role: 'admin' | 'support-sync';
   updatedAt: string;
   createdAt: string;
   enableAPIKey?: boolean | null;

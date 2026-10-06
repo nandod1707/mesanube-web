@@ -15,7 +15,7 @@ describe('Access roles', () => {
     await payload.delete({ collection: 'users', where: { email: { like: '@access.test' } } })
     legacyUser = await payload.create({
       collection: 'users',
-      data: { email: 'legacy@access.test', password: 'test-password' },
+      data: { email: 'legacy@access.test', password: 'test-password', role: 'admin' },
     })
     // Simulate an account created before roles existed (no role stored).
     await payload.db.updateOne({
@@ -64,6 +64,29 @@ describe('Access roles', () => {
         user: syncUser,
         overrideAccess: false,
       }),
+    ).rejects.toThrow()
+  })
+
+  it('requires a role when creating a user', async () => {
+    await expect(
+      payload.create({
+        collection: 'users',
+        data: { email: 'norole@access.test', password: 'test-password' } as never,
+      }),
+    ).rejects.toThrow()
+  })
+
+  it('blocks the support-sync role from writing plugin collections and globals', async () => {
+    await expect(
+      payload.create({
+        collection: 'redirects',
+        data: { from: '/x', to: { type: 'custom', url: '/y' } },
+        user: syncUser,
+        overrideAccess: false,
+      }),
+    ).rejects.toThrow()
+    await expect(
+      payload.updateGlobal({ slug: 'header', data: { navItems: [] }, user: syncUser, overrideAccess: false }),
     ).rejects.toThrow()
   })
 

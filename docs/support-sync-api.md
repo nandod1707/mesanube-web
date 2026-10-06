@@ -6,6 +6,7 @@ Contract for the GitHub Action in the POS repo that publishes support articles t
 ## Authentication
 
 1. In the Payload admin, create a user with role **Sync de soporte (API)** and enable its API key.
+   The role is required; never give the integration key to an **Admin** user.
 2. Store the key as the GitHub Actions secret `MESANUBE_SUPPORT_API_KEY`.
 3. Send it on every request:
 

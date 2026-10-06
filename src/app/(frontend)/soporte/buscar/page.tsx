@@ -39,7 +39,7 @@ export default async function SupportSearchPage({ searchParams }: Args) {
       <div className="flex w-full max-w-[1500px] flex-col gap-[60px] pb-[80px]">
         {results.length > 0 && (
           <div className="max-w-[760px]">
-            <ArticleLinkList section="" articles={results} showSummary />
+            <ArticleLinkList articles={results} showSummary />
           </div>
         )}
         <ContactCta />

@@ -122,6 +122,35 @@ describe('Support sync', () => {
     expect(anonymous.docs).toHaveLength(0)
   })
 
+  const anonymousCount = async () =>
+    (
+      await payload.find({
+        collection: 'support-articles',
+        where: { slug: { equals: 'anular-una-factura' } },
+        overrideAccess: false,
+      })
+    ).docs.length
+
+  it('unpublishes a published article when its file switches to draft', async () => {
+    await syncAll(BODY, 'published')
+    expect(await anonymousCount()).toBe(1)
+    expect((await syncAll(BODY, 'draft')).status).toBe('updated')
+    expect(await anonymousCount()).toBe(0)
+  })
+
+  it('publishes a draft article when its file switches to published', async () => {
+    await syncAll(BODY, 'draft')
+    expect((await syncAll(BODY, 'published')).status).toBe('updated')
+    expect(await anonymousCount()).toBe(1)
+  })
+
+  it('re-links articles when their section is deleted and recreated', async () => {
+    await syncAll()
+    await payload.delete({ collection: 'support-sections', where: { slug: { equals: 'facturacion-arca' } }, context: noRevalidate })
+    const result = await syncAll()
+    expect(result.status).toBe('updated')
+  })
+
   it('rejects an article whose section does not exist', async () => {
     const req = await reqAs(syncUser)
     const result = await syncArticle(req, ARTICLE_PATH, article('Texto.'))
@@ -169,6 +198,42 @@ describe('Support sync', () => {
     req.json = async () => ({ path: ARTICLE_PATH, content: article(BODY) })
     const response = await endpoint.handler(req)
     expect(response.status).toBe(401)
+  })
+
+  it('reports a changed section as updated', async () => {
+    const req = await reqAs(syncUser)
+    expect((await syncSection(req, SECTION_PATH, SECTION)).status).toBe('created')
+    expect((await syncSection(req, SECTION_PATH, SECTION)).status).toBe('unchanged')
+    const changed = await syncSection(req, SECTION_PATH, SECTION.replace('order: 2', 'order: 5'))
+    expect(changed.status).toBe('updated')
+  })
+
+  it('maps results to 201, 200 and 422 on the articles endpoint', async () => {
+    const endpoint = supportSyncEndpoints.find((e) => e.path === '/support-sync/articles')!
+    const call = async (content: string) => {
+      const req = await reqAs(syncUser)
+      req.json = async () => ({ path: ARTICLE_PATH, content })
+      return (await endpoint.handler(req)).status
+    }
+    const req = await reqAs(syncUser)
+    await syncSection(req, SECTION_PATH, SECTION)
+    expect(await call(article('Texto.'))).toBe(201)
+    expect(await call(article('Texto.'))).toBe(200)
+    expect(await call(article('<div>x</div>'))).toBe(422)
+  })
+
+  it('accepts a multipart upload on the images endpoint', async () => {
+    const endpoint = supportSyncEndpoints.find((e) => e.path === '/support-sync/images')!
+    const form = new FormData()
+    form.set('path', 'facturacion-arca/images/a.png')
+    form.set('file', new Blob([await png({ r: 1, g: 2, b: 3 })], { type: 'image/png' }), 'a.png')
+    const req = await reqAs(syncUser)
+    req.formData = async () => form
+    expect((await endpoint.handler(req)).status).toBe(201)
+
+    const missing = await reqAs(syncUser)
+    missing.formData = async () => new FormData()
+    expect((await endpoint.handler(missing)).status).toBe(400)
   })
 
   it('returns 400 from the endpoints for a malformed body', async () => {

@@ -30,7 +30,7 @@ export function SectionDirectory({ sections }: { sections: SupportSectionWithArt
             </Link>
           </h2>
           <p className={BODY}>{section.description}</p>
-          <ArticleLinkList section={section.slug} articles={section.articles.slice(0, PREVIEW_COUNT)} />
+          <ArticleLinkList articles={section.articles.slice(0, PREVIEW_COUNT)} />
           {section.articles.length > PREVIEW_COUNT && (
             <Link
               href={`/soporte/${section.slug}`}

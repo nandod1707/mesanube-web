@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import { parseArticleFile, parseSectionFile } from '@/endpoints/supportSync/validate'
+import { parseArticleFile, parseImagePath, parseSectionFile } from '@/endpoints/supportSync/validate'
 
 const frontmatter = (fields: Record<string, string | number>) =>
   `---\n${Object.entries(fields)
@@ -68,6 +68,32 @@ describe('parseArticleFile', () => {
     expect(result.errors.join(' ')).toMatch(/línea \d+/)
   })
 
+  it.each([
+    ['a javascript: link', '[clic](javascript:alert(1))'],
+    ['a relative link', '[otro](otro-articulo)'],
+  ])('rejects %s', (_label, line) => {
+    expect(parseArticleFile(PATH, frontmatter(validFields) + `${line}\n`).ok).toBe(false)
+  })
+
+  it('accepts https, mailto, site and anchor links', () => {
+    const body = '[a](https://arca.gob.ar) [b](mailto:soporte@mesanube.ar) [c](/soporte/caja/x) [d](#pasos)\n'
+    expect(parseArticleFile(PATH, frontmatter(validFields) + body).ok).toBe(true)
+  })
+
+  it.each([
+    ['a bad date', { updated: '05/10/2026' }],
+    ['an unknown status', { status: 'archived' }],
+    ['a non-integer order', { order: 'primero' }],
+    ['a seoTitle over 60 characters', { seoTitle: 'x'.repeat(61) }],
+    ['a seoDescription over 160 characters', { seoDescription: 'x'.repeat(161) }],
+  ])('rejects %s', (_label, override) => {
+    expect(parseArticleFile(PATH, frontmatter({ ...validFields, ...override }) + body).ok).toBe(false)
+  })
+
+  it('rejects a non-.md file', () => {
+    expect(parseArticleFile('facturacion-arca/anular-una-factura.txt', frontmatter(validFields) + body).ok).toBe(false)
+  })
+
   it('allows angle brackets inside inline code', () => {
     const result = parseArticleFile(PATH, frontmatter(validFields) + 'Escribí `<CUIT>` sin guiones.\n')
     expect(result.ok).toBe(true)
@@ -87,6 +113,18 @@ describe('parseSectionFile', () => {
     expect(result.ok).toBe(true)
   })
 
+  it('rejects the reserved "buscar" slug', () => {
+    const result = parseSectionFile(
+      'buscar/_seccion.md',
+      frontmatter({ title: 'Buscar', slug: 'buscar', description: 'd', order: 1 }),
+    )
+    expect(result.ok).toBe(false)
+  })
+
+  it('rejects a section file with another name', () => {
+    expect(parseSectionFile('caja/seccion.md', frontmatter({ title: 'Caja', slug: 'caja', description: 'd', order: 1 })).ok).toBe(false)
+  })
+
   it('rejects a slug that does not match the folder', () => {
     const result = parseSectionFile(
       'caja/_seccion.md',
@@ -94,4 +132,17 @@ describe('parseSectionFile', () => {
     )
     expect(result.ok).toBe(false)
   })
+})
+
+describe('parseImagePath', () => {
+  it('maps <section>/images/<file> to its key', () => {
+    expect(parseImagePath('caja/images/cierre-1.webp')).toEqual({ ok: true, key: 'caja/cierre-1.webp' })
+  })
+
+  it.each(['caja/cierre-1.png', 'caja/images/cierre.gif', 'caja/images/Cierre.png', '../images/a.png'])(
+    'rejects %s',
+    (path) => {
+      expect(parseImagePath(path).ok).toBe(false)
+    },
+  )
 })

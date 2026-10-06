@@ -2,6 +2,8 @@ import type { PayloadRequest } from 'payload'
 
 import { createHash } from 'crypto'
 
+import { SUPPORT_IMAGE_MAX_BYTES, SUPPORT_IMAGE_TYPES } from '@/collections/Support/shared'
+
 import { buildSearchText, markdownToLexical } from './markdown'
 import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 
@@ -42,13 +44,6 @@ export const syncSection = async (req: PayloadRequest, path: string, content: st
   return { path, status: 'updated', id: current.id }
 }
 
-const MAX_IMAGE_BYTES = 500 * 1024
-const IMAGE_MIME: Record<string, string> = {
-  png: 'image/png',
-  webp: 'image/webp',
-  jpg: 'image/jpeg',
-  jpeg: 'image/jpeg',
-}
 
 export const syncImage = async (
   req: PayloadRequest,
@@ -58,7 +53,7 @@ export const syncImage = async (
 ): Promise<SyncResult> => {
   const parsed = parseImagePath(path)
   if (!parsed.ok) return { path, status: 'error', errors: parsed.errors }
-  if (file.byteLength > MAX_IMAGE_BYTES) {
+  if (file.byteLength > SUPPORT_IMAGE_MAX_BYTES) {
     return { path, status: 'error', errors: [`La imagen pesa ${Math.round(file.byteLength / 1024)} KB; el máximo es 500 KB.`] }
   }
   const { payload } = req
@@ -66,7 +61,7 @@ export const syncImage = async (
   const name = parsed.key.split('/').pop()!
   const upload = {
     data: file,
-    mimetype: IMAGE_MIME[name.split('.').pop()!],
+    mimetype: SUPPORT_IMAGE_TYPES[name.split('.').pop() as keyof typeof SUPPORT_IMAGE_TYPES],
     name: parsed.key.replace('/', '--'),
     size: file.byteLength,
   }
@@ -141,8 +136,11 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     }
   }
 
-  // Image ids are part of the hash so a re-uploaded (new id) image re-renders the article.
-  const contentHash = sha256(JSON.stringify({ content, images: [...imageIds.entries()].sort() }))
+  // Image and section ids are part of the hash so a recreated image or section (new id) re-links the
+  // article instead of being skipped as unchanged.
+  const contentHash = sha256(
+    JSON.stringify({ content, section: section.id, images: [...imageIds.entries()].sort() }),
+  )
   const existing = await payload.find({
     collection: 'support-articles',
     where: { slug: { equals: article.slug } },
@@ -172,12 +170,18 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     contentHash,
     _status: article.status,
   }
-  const draft = article.status === 'draft'
-
+  // Always write the main document (draft: false) and let `_status` decide visibility. Payload's
+  // `draft: true` would only save a draft version and leave an already-published article live.
   if (!current) {
-    const doc = await payload.create({ collection: 'support-articles', data, draft, ...asUser(req) })
+    const doc = await payload.create({ collection: 'support-articles', data, draft: false, ...asUser(req) })
     return { path, status: 'created', id: doc.id }
   }
-  await payload.update({ collection: 'support-articles', id: current.id, data, draft, ...asUser(req) })
+  await payload.update({
+    collection: 'support-articles',
+    id: current.id,
+    data,
+    draft: false,
+    ...asUser(req),
+  })
   return { path, status: 'updated', id: current.id }
 }

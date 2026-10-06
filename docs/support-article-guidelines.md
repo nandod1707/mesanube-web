@@ -41,7 +41,7 @@ order: 2
 | Campo | Obligatorio | Qué es |
 |---|---|---|
 | `title` | sí | Nombre visible de la sección |
-| `slug` | sí | Igual al nombre de la carpeta. **No cambiarlo nunca**, porque es la URL |
+| `slug` | sí | Igual al nombre de la carpeta. **No cambiarlo nunca**, porque es la URL. `buscar` está reservado |
 | `description` | sí | Una línea, aparece en la portada de `/soporte` |
 | `order` | sí | Posición en la portada (1 = primera) |
 
@@ -133,7 +133,8 @@ Usá solo esto, porque es lo que se convierte bien al editor del sitio:
 - Encabezados `##` y `###`. **Nunca `#`**: el título ya es el H1. No saltees niveles.
 - Párrafos, **negrita** e _itálica_.
 - Listas numeradas (pasos) y con viñetas (requisitos, opciones).
-- Links: `[texto](url)`. Para links a otros artículos, usá `/soporte/<seccion>/<slug>`.
+- Links: `[texto](url)`. Solo se aceptan links que empiecen con `https://`, `mailto:`, `/` o `#`.
+  Para links a otros artículos, usá `/soporte/<seccion>/<slug>`.
 - Imágenes: `![alt descriptivo](./images/archivo.png)`.
 - Avisos como cita que empieza con `**Importante:**`, `**Tip:**` o `**Atención:**`.
 - Código en línea con backticks para valores literales: `20-12345678-9`.

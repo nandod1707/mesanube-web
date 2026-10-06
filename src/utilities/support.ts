@@ -9,7 +9,9 @@ import type { SupportArticle, SupportSection } from '@/payload-types'
 // so drafts never leak (R12). Wrapped in React `cache` to dedupe generateMetadata + page queries.
 
 export type SupportArticleSummary = Pick<SupportArticle, 'id' | 'title' | 'slug' | 'summary' | 'order'>
-export type SupportSectionWithArticles = SupportSection & { articles: SupportArticleSummary[] }
+export type SupportSectionWithArticles = SupportSection & {
+  articles: (SupportArticleSummary & { sectionSlug: string })[]
+}
 
 const publicQuery = { overrideAccess: false, draft: false } as const
 
@@ -36,7 +38,10 @@ export const getSupportDirectory = cache(async (): Promise<SupportSectionWithArt
   return sections.docs
     .map((section) => ({
       ...section,
-      articles: articles.docs.filter((article) => article.section === section.id).sort(byOrderThenTitle),
+      articles: articles.docs
+        .filter((article) => article.section === section.id)
+        .sort(byOrderThenTitle)
+        .map((article) => ({ ...article, sectionSlug: section.slug })),
     }))
     .filter((section) => section.articles.length > 0)
 })

@@ -1,6 +1,6 @@
 import { parse as parseYaml } from 'yaml'
 
-import { SLUG_PATTERN } from '@/collections/Support/shared'
+import { RESERVED_SECTION_SLUGS, SLUG_PATTERN, SUPPORT_IMAGE_FILE } from '@/collections/Support/shared'
 
 // Enforces the source contract in docs/support-article-guidelines.md. Every error message is in
 // Spanish because it is shown to whoever writes the article in the POS repo.
@@ -33,7 +33,7 @@ export type ParsedSection = {
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/
 const DATE = /^\d{4}-\d{2}-\d{2}$/
 // An image must sit alone on its line: ![alt](./images/file.ext)
-export const IMAGE_LINE = /^!\[([^\]]*)\]\(\.\/images\/([a-z0-9][a-z0-9._-]*\.(?:png|webp|jpe?g))\)$/
+export const IMAGE_LINE = new RegExp(`^!\\[([^\\]]*)\\]\\(\\./images/(${SUPPORT_IMAGE_FILE})\\)$`)
 
 type Frontmatter = Record<string, unknown>
 
@@ -99,6 +99,14 @@ const BODY_RULES: { test: (line: string) => boolean; message: string }[] = [
   { test: (l) => /^\s*\|/.test(l), message: 'no se permiten tablas.' },
   { test: (l) => /<\/?[a-zA-Z][^>]*>/.test(stripInlineCode(l)), message: 'no se permite HTML.' },
   { test: (l) => /\[\^[^\]]+\]/.test(l), message: 'no se permiten notas al pie.' },
+  {
+    // Links may only point to the web, a mail address, a site path or an anchor.
+    test: (l) =>
+      [...stripInlineCode(l).matchAll(/(?<!!)\[[^\]]*\]\(([^)\s]*)/g)].some(
+        ([, href]) => !/^(?:https?:\/\/|mailto:|\/|#)/i.test(href),
+      ),
+    message: 'los links tienen que empezar con https://, mailto:, / o #.',
+  },
 ]
 
 const validateBody = (body: string, bodyStartLine: number, section: string | undefined) => {
@@ -189,6 +197,7 @@ export const parseSectionFile = (path: string, content: string): ParseResult<{ s
   const order = fields.number('order')
   const errors = fields.errors
   if (slug && slug !== file.folder) errors.push(`"slug" (${slug}) tiene que ser igual a la carpeta (${file.folder}).`)
+  if (slug && RESERVED_SECTION_SLUGS.includes(slug)) errors.push(`"${slug}" está reservado: usá otro nombre de carpeta.`)
   if (slug && !SLUG_PATTERN.test(slug)) errors.push(`"slug" tiene que ser minúsculas con guiones: "${slug}".`)
 
   if (errors.length) return { ok: false, errors }
@@ -197,7 +206,7 @@ export const parseSectionFile = (path: string, content: string): ParseResult<{ s
 
 // Image paths arrive as "<section>/images/<file>"; the stored key drops the images/ segment.
 export const parseImagePath = (path: string): ParseResult<{ key: string }> => {
-  const match = path.replace(/\\/g, '/').match(/^([a-z0-9-]+)\/images\/([a-z0-9][a-z0-9._-]*\.(?:png|webp|jpe?g))$/)
+  const match = path.replace(/\\/g, '/').match(new RegExp(`^([a-z0-9-]+)/images/(${SUPPORT_IMAGE_FILE})$`))
   if (!match) {
     return { ok: false, errors: [`Ruta de imagen inválida "${path}": se espera <seccion>/images/<archivo>.png|webp|jpg.`] }
   }

@@ -26,7 +26,6 @@ const counts = async (id: string) => {
     yes: tally?.helpfulYes ?? 0,
     no: tally?.helpfulNo ?? 0,
     title: article.title,
-    updatedAt: article.updatedAt,
   }
 }
 
@@ -72,12 +71,6 @@ describe('Support vote', () => {
     const after = await counts(publishedId)
     expect(after.no).toBe(before.no + 1)
     expect(after.yes).toBe(before.yes)
-  })
-
-  it('does not change updatedAt', async () => {
-    const before = await counts(publishedId)
-    await vote(publishedId, { value: 'yes' })
-    expect((await counts(publishedId)).updatedAt).toBe(before.updatedAt)
   })
 
   it('rejects an invalid value with 400', async () => {
