@@ -52,7 +52,7 @@ const getSupportSitemap = unstable_cache(
         lastmod: section.updatedAt || dateFallback,
       }))
 
-    return [{ loc: `${SITE_URL}/soporte`, lastmod: dateFallback }, ...sectionEntries, ...articleEntries]
+    return [{ loc: `${SITE_URL}/soporte` }, ...sectionEntries, ...articleEntries]
   },
   ['support-sitemap'],
   {
