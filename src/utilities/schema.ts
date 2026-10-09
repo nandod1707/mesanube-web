@@ -10,6 +10,12 @@ import type { FaqItem } from '@/components/shared/FaqSection'
 
 const SITE_NAME = 'Mesanube'
 
+// Stable entity IDs so Organization, WebSite and SoftwareApplication link to each
+// other across pages instead of being read as unrelated, duplicate entities.
+const orgId = (url: string) => `${url}/#organization`
+const websiteId = (url: string) => `${url}/#website`
+const softwareId = (url: string) => `${url}/#software`
+
 /** Organization schema — identifies the business. Rendered once, in the root layout. */
 export function buildOrganizationSchema() {
   const url = getServerSideURL()
@@ -17,9 +23,11 @@ export function buildOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': orgId(url),
     name: SITE_NAME,
     url,
-    logo: `${url}/assets/logo.svg`,
+    // Google requires a raster logo of at least 112x112px (SVG isn't accepted).
+    logo: `${url}/android-chrome-512x512.png`,
     email: SUPPORT_EMAIL,
     contactPoint: {
       '@type': 'ContactPoint',
@@ -38,36 +46,53 @@ export function buildWebSiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': websiteId(url),
     name: SITE_NAME,
     url,
+    inLanguage: 'es-AR',
+    publisher: { '@id': orgId(url) },
   }
 }
 
 /**
- * SoftwareApplication schema for `/precios` — one Offer per plan, sourced
- * straight from `PLANS` (`src/config/plans.ts`) so schema pricing can never
- * drift from what's shown on the page. Placeholder plans (e.g. Grande,
- * pending real pricing) are excluded — same rule the UI follows by showing a
- * "Datos preliminares" note. `SoftwareApplication` (not `Product`) is the
- * correct schema.org type for a SaaS — `Product` implies a tangible good.
+ * SoftwareApplication schema — the product entity, shared by `@id` across pages.
+ * `SoftwareApplication` (not `Product`) is the correct schema.org type for a
+ * SaaS — `Product` implies a tangible good.
  */
-export function buildPricingSchema() {
+export function buildSoftwareSchema() {
   const url = getServerSideURL()
 
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
+    '@id': softwareId(url),
     name: `${SITE_NAME} POS`,
     description: 'Sistema de punto de venta para restaurantes, cafés y bares en Argentina.',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web, Android, iOS',
-    url: `${url}/precios`,
+    url,
+    publisher: { '@id': orgId(url) },
+  }
+}
+
+/**
+ * SoftwareApplication schema for `/precios` — the shared product entity plus one
+ * Offer per plan, sourced straight from `PLANS` (`src/config/plans.ts`) so schema
+ * pricing can never drift from what's shown on the page. Plans flagged
+ * `placeholder` are excluded, same rule the UI follows.
+ */
+export function buildPricingSchema() {
+  const url = getServerSideURL()
+
+  return {
+    ...buildSoftwareSchema(),
     offers: PLANS.filter((plan) => !plan.placeholder).map((plan) => ({
       '@type': 'Offer',
       name: `Plan ${plan.name}`,
       description: plan.description,
       price: plan.priceMonthly,
       priceCurrency: 'ARS',
+      availability: 'https://schema.org/InStock',
       url: `${url}/precios`,
       priceSpecification: {
         '@type': 'UnitPriceSpecification',

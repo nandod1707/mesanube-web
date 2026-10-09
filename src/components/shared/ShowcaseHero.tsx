@@ -75,7 +75,12 @@ export function ShowcaseHero({
         >
           {lines.map((line, i) => (
             <React.Fragment key={i}>
-              {i > 0 && <br />}
+              {i > 0 && (
+                <>
+                  {/* Real space so the h1 text reads correctly for crawlers and screen readers. */}{' '}
+                  <br />
+                </>
+              )}
               <span>{line}</span>
             </React.Fragment>
           ))}

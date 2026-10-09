@@ -1,0 +1,25 @@
+# Mesanube
+
+> Sistema de punto de venta (POS) para gastronomía en Argentina: restaurantes, cafeterías, bares, pizzerías y cadenas. Comanda digital, app para mozos, monitor de cocina, carta QR, arqueo de caja, reportes y facturación electrónica ARCA integrada.
+
+## Producto
+- [Funciones](https://mesanube.ar/funciones): todas las funciones del sistema
+- [Comanda digital](https://mesanube.ar/funciones/comanda-digital)
+- [App para mozos](https://mesanube.ar/funciones/app-para-mozos)
+- [Monitor de cocina](https://mesanube.ar/funciones/monitor-de-cocina)
+- [Carta QR](https://mesanube.ar/funciones/carta-qr)
+- [Arqueo de caja](https://mesanube.ar/funciones/arqueo-de-caja)
+- [Reportes y analítica](https://mesanube.ar/funciones/reportes-y-analitica)
+- [Facturación electrónica ARCA](https://mesanube.ar/funciones/facturacion-electronica-arca)
+- [Precios](https://mesanube.ar/precios): planes mensuales en pesos argentinos, con prueba gratis
+
+## Por tipo de negocio
+- [Restaurantes](https://mesanube.ar/para/restaurantes)
+- [Cafeterías](https://mesanube.ar/para/cafeterias)
+- [Bares](https://mesanube.ar/para/bares)
+- [Pizzerías](https://mesanube.ar/para/pizzerias)
+- [Cadenas multilocal](https://mesanube.ar/para/cadenas-multilocal)
+
+## Ayuda
+- [Centro de ayuda](https://mesanube.ar/soporte): guías paso a paso
+- [Contacto](https://mesanube.ar/contacto)

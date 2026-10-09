@@ -20,8 +20,8 @@ import {
 } from '@/components/feature'
 import { SplitFeature } from '@/components/usecase'
 
-const title = 'Arqueo de Caja para Restaurantes. Control de Efectivo por Turno | Mesanube'
-const description = 'Arqueo de caja integrado al POS. Controlá efectivo, transferencias y tarjetas por turno. Diferencias marcadas automáticamente. Para restaurantes y cafeterías argentinas.'
+const title = 'Arqueo de caja para restaurantes | Mesanube'
+const description = 'Controlá efectivo, transferencias y tarjetas por turno, con las diferencias marcadas solas. Arqueo integrado al POS para gastronomía argentina.'
 
 export const metadata: Metadata = {
   title,

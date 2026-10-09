@@ -20,7 +20,7 @@ import {
 } from '@/components/usecase'
 import { PLAN_MEDIUM } from '@/config/plans'
 
-const title = 'Sistema POS para Bares en Argentina. Comanda Ágil para Múltiples Mozos | Mesanube'
+const title = 'Sistema POS para bares en Argentina | Mesanube'
 const description = `Sistema de gestión para bares argentinos. Comanda digital para múltiples mozos, división de cuentas y facturación electrónica ARCA. Probá ${TRIAL_PERIOD} gratis.`
 
 export const metadata: Metadata = {

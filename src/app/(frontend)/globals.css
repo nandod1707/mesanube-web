@@ -151,6 +151,20 @@
   pointer-events: none;
 }
 
+/* WhatsApp FAB: mirrors .nav-pill but slides down. Uses the standalone `translate`
+   property so it composes with the hover `scale` (Tailwind's transform). */
+.fab-pill {
+  transition:
+    translate 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 400ms ease,
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fab-pill[data-hidden='true'] {
+  translate: 0 140%;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Device preview float — vertical bob only, so the wrapper owns the X/Y position. */
 @keyframes ipadFloatY {
   0%, 100% { transform: translateY(-4px); }

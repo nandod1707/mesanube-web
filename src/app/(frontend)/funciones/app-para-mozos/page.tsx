@@ -16,7 +16,7 @@ import { FeatureCta, FeatureGrid, FeatureSplit, FeatureTopNav } from '@/componen
 import { PLAN_MEDIUM } from '@/config/plans'
 
 const title = 'App para Mozos. Tomá Pedidos desde el Celular | Mesanube'
-const description = 'App para mozos integrada al POS. Cada mozo toma pedidos desde su celular, sin terminales compartidas. Pedidos a cocina en tiempo real, división de cuentas y cierre de mesa.'
+const description = 'Cada mozo toma pedidos desde su celular y van directo a cocina. División de cuentas y cierre de mesa, integrados al POS.'
 
 export const metadata: Metadata = {
   title,

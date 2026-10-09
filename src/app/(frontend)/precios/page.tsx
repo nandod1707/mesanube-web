@@ -16,7 +16,7 @@ import { PLANS, PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
 const TRIAL = TRIAL_PERIOD
 
-const title = 'Precios. Sistema POS para Restaurantes y Cafeterías en Argentina | Mesanube'
+const title = 'Precios del sistema POS para gastronomía | Mesanube'
 const description = `Planes desde ${PLAN_SMALL.price}/mes. Comanda digital, facturación electrónica ARCA y soporte por WhatsApp incluidos. ${TRIAL} gratis, sin tarjeta de crédito.`
 
 export const metadata: Metadata = {

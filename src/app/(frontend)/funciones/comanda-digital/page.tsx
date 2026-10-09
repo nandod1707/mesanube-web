@@ -20,8 +20,8 @@ import {
   StepsRow,
 } from '@/components/feature'
 
-const title = 'Comanda Digital para Restaurantes y Cafeterías. Pedidos desde Celular | Mesanube'
-const description = `Comanda digital integrada al POS. Pedidos desde cualquier celular o tablet, llegan a cocina en tiempo real. Para restaurantes y cafeterías argentinas. Probá ${TRIAL_PERIOD} gratis.`
+const title = 'Comanda digital para restaurantes | Mesanube'
+const description = `Pedidos del celular del mozo a cocina en segundos, integrados al POS. Para restaurantes y cafeterías argentinas. Probá ${TRIAL_PERIOD} gratis.`
 
 export const metadata: Metadata = {
   title,

@@ -13,8 +13,8 @@ import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { CardGrid, ProseSection, SplitFeature, UseCaseCta, UseCaseTopNav } from '@/components/usecase'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
-const title = 'Sistema POS para Pizzerías en Argentina. Delivery, Mostrador y Salón | Mesanube'
-const description = `Sistema de gestión para pizzerías argentinas. Comanda digital para delivery, mostrador y salón en un solo sistema. Facturación electrónica ARCA y arqueo de caja incluidos. Probá ${TRIAL_PERIOD} gratis.`
+const title = 'Sistema POS para pizzerías en Argentina | Mesanube'
+const description = `Delivery, mostrador y salón en un solo sistema, con facturación ARCA y arqueo de caja incluidos. Para pizzerías argentinas. Probá ${TRIAL_PERIOD} gratis.`
 
 export const metadata: Metadata = {
   title,

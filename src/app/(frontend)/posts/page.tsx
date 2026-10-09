@@ -56,8 +56,13 @@ export default async function Page() {
   )
 }
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise })
+  const { totalDocs } = await payload.count({ collection: 'posts', overrideAccess: false })
+
   return {
+    // An empty archive is thin content: keep it out of the index until the first post ships.
+    ...(totalDocs === 0 && { robots: { index: false, follow: true } }),
     title: 'Blog de Mesanube. Gestión Gastronómica y Facturación ARCA',
     description:
       'Artículos sobre gestión de restaurantes, cafeterías y bares en Argentina: facturación electrónica ARCA, comanda digital, control de caja y buenas prácticas de operación.',

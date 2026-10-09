@@ -10,7 +10,7 @@ import { DemoLink, TrialButton } from '@/components/shared/CtaButtons'
 import { CtaLink } from '@/components/shared/CtaLink'
 import { FaqSection } from '@/components/shared/FaqSection'
 import { JsonLd } from '@/components/shared/JsonLd'
-import { buildFaqSchema } from '@/utilities/schema'
+import { buildFaqSchema, buildSoftwareSchema } from '@/utilities/schema'
 import { PricingCards } from '@/components/shared/PricingCards'
 import { ShowcaseHero } from '@/components/shared/ShowcaseHero'
 import { SiteFooter } from '@/components/shared/SiteFooter'
@@ -21,8 +21,8 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 /* ─────────────────────────────────────────────
    SEO Metadata
 ───────────────────────────────────────────── */
-const title = 'Mesanube. Sistema POS y Comanda Digital para Restaurantes y Cafeterías'
-const description = `Sistema de gestión gastronómica para restaurantes, bares, cafeterías. Comanda digital, facturación electrónica ARCA, control de caja y app para mozos. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`
+const title = 'Mesanube | Sistema POS para restaurantes y cafeterías'
+const description = `Sistema de gestión para restaurantes, bares y cafeterías: comanda digital, app para mozos, caja y facturación ARCA. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`
 
 export const metadata: Metadata = {
   title,
@@ -418,6 +418,7 @@ export default function HomePage() {
         />
 
         {/* FAQ */}
+        <JsonLd data={buildSoftwareSchema()} />
         <JsonLd data={buildFaqSchema(faqs)} />
         <FaqSection heading="Preguntas frecuentes" eyebrow={null} items={faqs} />
         {/* CTA final */}
