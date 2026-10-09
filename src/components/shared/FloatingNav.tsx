@@ -96,13 +96,15 @@ export default function FloatingNav() {
         </svg>
       </button>
 
-      {/* WhatsApp FAB: bottom-right, same glass treatment as the header nav pill. */}
+      {/* WhatsApp FAB: bottom-right, same glass treatment as the header nav pill.
+          Shares the nav's scroll state but slides out downward. */}
       <Link
         href={`${WHATSAPP_URL}?text="Hola! Me gustaría recibir más información de Mesanube para mi local."`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Escribinos por WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex size-16 items-center justify-center rounded-full border border-black/5 bg-white/55 shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105"
+        data-hidden={hidden}
+        className="fab-pill fixed bottom-6 right-6 z-50 flex size-16 items-center justify-center rounded-full border border-black/5 bg-white/55 shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg hover:scale-105"
       >
         <Image src="/assets/logo-whatsapp.svg" alt="" width={28} height={28} aria-hidden="true" />
       </Link>
