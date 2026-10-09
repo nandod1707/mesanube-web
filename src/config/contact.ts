@@ -16,3 +16,6 @@ export const SUPPORT_EMAIL = 'soporte@mesanube.ar'
 
 /** mailto: link for the support email. */
 export const SUPPORT_EMAIL_URL = `mailto:${SUPPORT_EMAIL}`
+
+/** Official Instagram profile. Also listed as `sameAs` in the Organization schema. */
+export const INSTAGRAM_URL = 'https://www.instagram.com/mesanube/'
