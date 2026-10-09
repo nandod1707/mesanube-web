@@ -4,7 +4,6 @@
 
 /**
  * Length of the free trial, interpolated into copy across the site
- * (e.g. "15 días gratis"). Falls back to `NEXT_PUBLIC_TRIAL_PERIOD` when set, so
- * the env var can still override this without touching the code.
+ * (e.g. "15 días gratis"). This is the single source of truth: no env var.
  */
 export const TRIAL_PERIOD = '15 días'
