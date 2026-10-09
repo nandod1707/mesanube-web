@@ -284,6 +284,14 @@ html {
 }
 
 @layer components {
+  /* Grows a text link's hit area to ~44px tall (WCAG 2.5.8 / Lighthouse tap targets)
+     without moving it: the vertical padding is cancelled by an equal negative margin. */
+  .tap-target {
+    display: inline-block;
+    padding-block: 13px;
+    margin-block: -13px;
+  }
+
   /* ── Animation utilities ── */
   .animate-rotate {
     animation: rotate 20s linear infinite;

@@ -21,7 +21,7 @@ export function SiteFooter({ links = FOOTER_NAV }: SiteFooterProps) {
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors duration-150 hover:text-[#485c11]"
+              className="tap-target transition-colors duration-150 hover:text-[var(--olive)]"
             >
               {link.label}
             </Link>

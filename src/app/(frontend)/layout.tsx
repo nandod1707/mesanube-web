@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import { Crimson_Text, DM_Sans, Roboto_Mono } from 'next/font/google'
 import Script from 'next/script'
@@ -79,6 +79,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </body>
     </html>
   )
+}
+
+// Tints the mobile browser chrome with the brand olive (--olive). Next needs a literal
+// color here; keep it in sync with --olive in globals.css and theme_color in site.webmanifest.
+export const viewport: Viewport = {
+  themeColor: '#485c11',
 }
 
 export const metadata: Metadata = {

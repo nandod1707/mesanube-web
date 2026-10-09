@@ -155,7 +155,7 @@ export function DemoLink({
     <button
       type="button"
       onClick={openDemo}
-      className={`text-[14px] font-bold leading-[1.4] tracking-[-0.35px] underline underline-offset-2 transition-colors ${color} ${className}`}
+      className={`tap-target text-[14px] font-bold leading-[1.4] tracking-[-0.35px] underline underline-offset-2 transition-colors ${color} ${className}`}
     >
       {children}
     </button>

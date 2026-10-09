@@ -264,7 +264,7 @@ export default function HomePage() {
                   </p>
                   <Link
                     href={bt.href}
-                    className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
+                    className="tap-target text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
                   >
                     {bt.label} →
                   </Link>
@@ -297,7 +297,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/funciones/facturacion-electronica-arca"
-              className="text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
+              className="tap-target text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
             >
               Ver cómo funciona la facturación electrónica ARCA →
             </Link>
@@ -360,7 +360,7 @@ export default function HomePage() {
                   </div>
                   <Link
                     href={f.href}
-                    className="text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
+                    className="tap-target text-[13px] font-bold leading-[1.4] tracking-[-0.14px] text-[var(--olive)] underline underline-offset-2 transition-colors hover:text-[var(--heading)]"
                   >
                     Ver cómo funciona →
                   </Link>

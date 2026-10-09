@@ -20,3 +20,12 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
+# SEO audit reports and drift baselines (local only; the repo is public)
+seo-reports/
+
+# Parked work notes (local only; the repo is public)
+tasks/

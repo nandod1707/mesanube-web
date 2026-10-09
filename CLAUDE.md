@@ -60,6 +60,10 @@ Mesanube is a POS system for Argentine gastronomy businesses. This website serve
 - **Blog/posts**: managed entirely through Payload admin panel by editors (these use Payload blocks).
 - **Language**: Spanish only (Argentine voseo — "vos/probá/organizá", never "tú/prueba/organiza")
 
+### Pending work
+`tasks/` (local only, gitignored) holds parked work waiting on content, data or access (one file
+per topic, e.g. `tasks/seo-pendientes.md`). Check it when picking up a topic, and tick off items as they ship.
+
 ## Content & Copy Rules
 
 All user-facing text must follow these rules:

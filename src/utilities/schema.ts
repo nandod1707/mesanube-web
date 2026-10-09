@@ -4,7 +4,7 @@
 // hardcoded per page. Render the result with `<JsonLd data={...} />`.
 
 import { getServerSideURL } from './getURL'
-import { SUPPORT_EMAIL, WHATSAPP_NUMBER } from '@/config/contact'
+import { INSTAGRAM_URL, SUPPORT_EMAIL, WHATSAPP_NUMBER } from '@/config/contact'
 import { PLANS } from '@/config/plans'
 import type { FaqItem } from '@/components/shared/FaqSection'
 
@@ -29,6 +29,8 @@ export function buildOrganizationSchema() {
     // Google requires a raster logo of at least 112x112px (SVG isn't accepted).
     logo: `${url}/android-chrome-512x512.png`,
     email: SUPPORT_EMAIL,
+    // Official profiles that confirm the brand entity (helps Google and AI search).
+    sameAs: [INSTAGRAM_URL],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',

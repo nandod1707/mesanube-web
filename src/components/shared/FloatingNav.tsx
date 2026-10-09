@@ -89,7 +89,7 @@ export default function FloatingNav() {
         aria-expanded={open}
         data-hidden={hidden}
         onClick={() => setOpen(true)}
-        className="fixed right-4 top-4 z-50 flex size-12 items-center justify-center rounded-full border border-black/5 bg-white/55 text-black shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[hidden=true]:pointer-events-none data-[hidden=true]:-translate-y-[150%] data-[hidden=true]:opacity-0 lg:hidden"
+        className="fixed right-4 top-4 z-50 flex size-12 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-black/5 bg-white/55 text-black shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[hidden=true]:pointer-events-none data-[hidden=true]:-translate-y-[150%] data-[hidden=true]:opacity-0 lg:hidden"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
