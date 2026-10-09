@@ -24,7 +24,7 @@ y es lo que mantiene bajo el puntaje de Contenido (~60).
 ## Medición y accesos
 - [ ] Verificar el dominio en Bing Webmaster Tools (Google Search Console ya está).
 - [x] API key de Google Cloud (PageSpeed Insights + CrUX), en `GOOGLE_API_KEY` del `.env`. CrUX todavía no tiene datos de campo: falta tráfico de Chrome.
-- [ ] Baseline de drift SEO para detectar regresiones (`/seo drift baseline https://mesanube.ar`).
+- [x] Baseline de drift SEO (2026-10-09) de home, /precios, /funciones, /para/restaurantes y /funciones/comanda-digital. Resumen en `seo-reports/drift/` (local, gitignoreado). Comparar con `/seo drift compare <url>`.
 
 ## Técnico opcional
 - [ ] CSP (Content Security Policy): arrancar en modo report-only, revisar qué bloquearía (GTM, Payload admin) y recién después activarlo.

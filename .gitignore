@@ -23,3 +23,6 @@ node_modules/
 
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
+
+# SEO audit reports and drift baselines (local only; the repo is public)
+seo-reports/
