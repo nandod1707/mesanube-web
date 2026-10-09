@@ -23,7 +23,7 @@ y es lo que mantiene bajo el puntaje de Contenido (~60).
 
 ## Medición y accesos
 - [ ] Verificar el dominio en Bing Webmaster Tools (Google Search Console ya está).
-- [ ] API key de Google Cloud con PageSpeed Insights API y Chrome UX Report API habilitadas, para datos de campo de Core Web Vitals.
+- [x] API key de Google Cloud (PageSpeed Insights + CrUX), en `GOOGLE_API_KEY` del `.env`. CrUX todavía no tiene datos de campo: falta tráfico de Chrome.
 - [ ] Baseline de drift SEO para detectar regresiones (`/seo drift baseline https://mesanube.ar`).
 
 ## Técnico opcional
