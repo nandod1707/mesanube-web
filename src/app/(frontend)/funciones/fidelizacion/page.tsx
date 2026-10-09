@@ -15,8 +15,8 @@ import { FeatureCallout, FeatureMedia, FeatureSplit, FeatureTopNav } from '@/com
 import { JsonLd } from '@/components/shared/JsonLd'
 import { buildBreadcrumbSchema } from '@/utilities/schema'
 
-const title = 'Fidelización para Restaurantes. Próximamente en Mesanube | Mesanube'
-const description = 'El primer módulo de fidelización con gamificación para restaurantes argentinos. Puntos, recompensas y desafíos integrados al POS. Anotate para acceso anticipado.'
+const title = 'Fidelización para restaurantes (próximamente) | Mesanube'
+const description = 'Puntos, recompensas y desafíos integrados al POS: fidelización con gamificación para restaurantes argentinos. Anotate para acceso anticipado.'
 
 export const metadata: Metadata = {
   title,

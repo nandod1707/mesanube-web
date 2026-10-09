@@ -15,8 +15,8 @@ import { SiteFooter } from '@/components/shared/SiteFooter'
 import { FeatureCta, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/feature'
 import { PLAN_SMALL } from '@/config/plans'
 
-const title = 'Facturación Electrónica ARCA para Restaurantes. Facturas A, B y C desde el POS | Mesanube'
-const description = 'Emití facturas electrónicas A, B y C directamente desde tu POS. Compatible con ARCA (ex-AFIP). Sin apps adicionales. Para restaurantes y cafeterías en Argentina.'
+const title = 'Facturación electrónica ARCA para restaurantes | Mesanube'
+const description = 'Emití facturas A, B y C desde tu POS, conectado a ARCA (ex-AFIP). Sin apps aparte. Para restaurantes y cafeterías en Argentina.'
 
 export const metadata: Metadata = {
   title,

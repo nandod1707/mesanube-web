@@ -18,8 +18,8 @@ import {
   UseCaseTopNav,
 } from '@/components/usecase'
 
-const title = 'Sistema POS Multilocal en Argentina. Tablero Consolidado de Sucursales | Mesanube'
-const description = 'Gestión centralizada para cafeterías y restaurantes con más de una sucursal: tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Probalo gratis.'
+const title = 'Sistema POS multilocal para cadenas | Mesanube'
+const description = 'Tablero consolidado en tiempo real, catálogo compartido, facturación multi-CUIT ante ARCA y caja por local. Para cadenas gastronómicas.'
 
 export const metadata: Metadata = {
   title,

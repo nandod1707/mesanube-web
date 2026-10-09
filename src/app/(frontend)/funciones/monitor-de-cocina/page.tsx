@@ -16,8 +16,8 @@ import { FeatureCta, FeatureSplit, FeatureTopNav, StepsRow } from '@/components/
 import { PLAN_MEDIUM } from '@/config/plans'
 import { SplitFeature } from '@/components/usecase'
 
-const title = 'Monitor de Cocina (KDS) para Restaurantes. Pedidos en Pantalla en Tiempo Real | Mesanube'
-const description = 'Monitor de cocina integrado al POS. Los pedidos llegan en tiempo real a la pantalla de cocina, el cocinero los marca como listos y el mozo lo sabe al instante. Para restaurantes argentinos.'
+const title = 'Monitor de cocina (KDS) para restaurantes | Mesanube'
+const description = 'Los pedidos llegan a la pantalla de cocina en tiempo real; el cocinero marca listo y el mozo se entera al instante. Integrado al POS.'
 
 export const metadata: Metadata = {
   title,

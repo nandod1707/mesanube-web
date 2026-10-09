@@ -21,8 +21,8 @@ import {
 } from '@/components/feature'
 import { PLAN_SMALL } from '@/config/plans'
 
-const title = 'Carta QR para Restaurantes y Cafeterías. Menú Digital que se Actualiza Solo | Mesanube'
-const description = 'Carta QR integrada al sistema POS. Tus clientes escanean y ven el menú en tiempo real desde su teléfono. Sin imprimir cartas, sin precios desactualizados. Para locales argentinos.'
+const title = 'Carta QR para restaurantes y cafeterías | Mesanube'
+const description = 'Tus clientes escanean y ven el menú actualizado en su teléfono. Sin reimprimir cartas ni precios viejos. Carta QR integrada al POS.'
 
 export const metadata: Metadata = {
   title,

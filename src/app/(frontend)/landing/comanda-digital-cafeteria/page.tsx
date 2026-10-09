@@ -17,7 +17,7 @@ import { PricingCards } from '@/components/shared/PricingCards'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
-const title = 'Comanda Digital para Cafeterías en Argentina. Sistema de Pedidos sin Papel | Mesanube'
+const title = 'Comanda digital para cafeterías | Mesanube'
 const description = `Comanda digital para cafeterías argentinas. Tomá pedidos desde tablet o celular, enviá directo a cocina y cerrá cuentas en segundos. Probá ${TRIAL_PERIOD} gratis.`
 
 export const metadata: Metadata = {

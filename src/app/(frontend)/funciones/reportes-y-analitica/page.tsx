@@ -16,7 +16,7 @@ import { FeatureCta, FeatureGrid, FeatureSplit, FeatureTopNav } from '@/componen
 import { PLAN_MEDIUM } from '@/config/plans'
 import { SplitFeature } from '@/components/usecase'
 
-const title = 'Reportes y Analítica para Restaurantes. Ventas en Tiempo Real | Mesanube'
+const title = 'Reportes de ventas para restaurantes | Mesanube'
 const description = 'Reportes integrados al POS. Ventas por período, producto, mozo y medio de pago, en tiempo real y desde el celular. Para restaurantes y bares argentinos.'
 
 export const metadata: Metadata = {

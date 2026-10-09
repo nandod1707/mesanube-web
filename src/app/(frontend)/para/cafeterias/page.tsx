@@ -20,8 +20,8 @@ import {
 } from '@/components/usecase'
 import { PLAN_SMALL, PLAN_MEDIUM } from '@/config/plans'
 
-const title = 'Sistema POS para Cafeterías en Argentina. Comanda Digital y Facturación electrónica ARCA | Mesanube'
-const description = `Sistema de gestión para cafeterías argentinas. Comanda digital, carta QR, arqueo de caja y facturación electrónica ARCA desde ${PLAN_SMALL.price}/mes. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`
+const title = 'Sistema POS para cafeterías en Argentina | Mesanube'
+const description = `Comanda digital, carta QR, caja y facturación ARCA para cafeterías desde ${PLAN_SMALL.price}/mes. Probá ${TRIAL_PERIOD} gratis, sin tarjeta.`
 
 export const metadata: Metadata = {
   title,
