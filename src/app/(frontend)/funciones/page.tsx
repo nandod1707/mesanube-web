@@ -5,6 +5,8 @@ import React from 'react'
 
 import { DemoLink } from '@/components/shared/CtaButtons'
 import FloatingNav from '@/components/shared/FloatingNav'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { buildBreadcrumbSchema } from '@/utilities/schema'
 import Reveal from '@/components/shared/Reveal'
 import { SiteFooter } from '@/components/shared/SiteFooter'
 import {
@@ -16,7 +18,7 @@ import {
 } from '@/components/usecase'
 import { PLAN_MEDIUM } from '@/config/plans'
 
-const title = 'Funciones. Todo lo que Incluye el Sistema POS Mesanube | Mesanube'
+const title = 'Funciones del sistema POS gastronómico | Mesanube'
 const description = 'Comanda digital, arqueo de caja, carta QR, monitor de cocina, reportes y fidelización. Sistema POS completo para restaurantes y cafeterías argentinas.'
 
 export const metadata: Metadata = {
@@ -59,6 +61,12 @@ export default function FuncionesPage() {
       />
 
       <main className="mx-auto flex w-full max-w-[1500px] flex-col items-start">
+        <JsonLd
+          data={buildBreadcrumbSchema([
+            { name: 'Inicio', path: '/' },
+            { name: 'Funciones', path: '/funciones' },
+          ])}
+        />
         <LinkCardGrid
           id="funciones"
           eyebrow="Las funciones de Mesanube"

@@ -20,7 +20,7 @@ import {
 } from '@/components/usecase'
 import { PLAN_MEDIUM } from '@/config/plans'
 
-const title = 'Sistema POS para Restaurantes en Argentina. Gestión Completa con ARCA | Mesanube'
+const title = 'Sistema para restaurantes en Argentina | Mesanube'
 const description = `Sistema de gestión para restaurantes argentinos. Comanda digital, app para mozos, monitor de cocina, ARCA y control de stock. Probá ${TRIAL_PERIOD} gratis.`
 
 export const metadata: Metadata = {
@@ -105,7 +105,7 @@ const faq = [
   { q: '¿Qué es un sistema de gestión gastronómica?', a: 'Un sistema de gestión gastronómica (o sistema POS para restaurantes) es el software que centraliza la operación de un restaurante: pedidos, cocina, caja y facturación. Reemplaza el papel, las planillas y las apps separadas por una sola herramienta conectada.' },
   { q: '¿Cuántos mozos pueden usar la app al mismo tiempo?', a: 'Sin límite por cantidad de usuarios. Todos tus mozos pueden estar trabajando en simultáneo desde sus celulares sin interferir entre sí, sin necesidad de terminales compartidas.' },
   { q: '¿Necesito impresora para las facturas?', a: 'Mesanube es compatible con impresoras térmicas estándar. Si ya tenés una impresora en el local, probablemente sea compatible. Si no tenés, te orientamos sobre qué modelo comprar.' },
-  { q: '¿Qué pasa si no tengo internet por un momento?', a: 'El sistema trabaja online. Para un servicio continuo recomendamos WiFi estable en el salón..' },
+  { q: '¿Qué pasa si no tengo internet por un momento?', a: 'El sistema trabaja online. Para un servicio continuo recomendamos WiFi estable en el salón.' },
   { q: '¿Puedo empezar solo con algunas funciones e ir sumando?', a: 'Sí. El setup inicial puede ser tan simple como cargar el menú y empezar a tomar pedidos. El resto de las funciones las vas activando a tu ritmo.' },
   { q: '¿Cuánto tiempo lleva la configuración inicial?', a: 'Para un restaurante estándar, la carga del menú y la configuración inicial llevan alrededor de 1 hora. El equipo de Mesanube acompaña el proceso por WhatsApp.' },
 ]
