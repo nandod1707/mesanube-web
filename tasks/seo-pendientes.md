@@ -29,3 +29,9 @@ y es lo que mantiene bajo el puntaje de Contenido (~60).
 ## Técnico opcional
 - [ ] CSP (Content Security Policy): arrancar en modo report-only, revisar qué bloquearía (GTM, Payload admin) y recién después activarlo.
 - [ ] Barra de admin de Payload: hoy se carga para todos los visitantes y pide `/api/users/me` en cada visita. Se puede limitar al modo preview.
+
+## Hallazgos de PageSpeed Insights (home, mobile: Performance 76, Accessibility 96)
+- [ ] Contraste insuficiente entre texto y fondo en algún elemento (lo único que resta en accesibilidad). Identificar cuál con Lighthouse y ajustar con los tokens existentes.
+- [ ] Errores en la consola del navegador en la home: revisar qué los genera.
+- [ ] Recursos que bloquean el render (~450 ms de ahorro estimado): revisar CSS y fuentes del `<head>`.
+- [ ] Bloqueo del hilo principal en mobile (TBT ~940 ms). Casi todo es React/Next; ver junto con el ítem de la barra de admin de Payload.
