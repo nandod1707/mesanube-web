@@ -33,7 +33,7 @@ export const SupportArticles: CollectionConfig<'support-articles'> = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'section', 'updated', '_status'],
     description:
-      'Estos artículos se sincronizan desde el repo del POS. Una edición hecha acá se pisa en el próximo sync: corregí el archivo .md en el repo.',
+      'Estos artículos se sincronizan desde el repo del POS. Una edición hecha acá no se pisa: el sync la frena hasta que se traiga al repo con yarn support-docs:pull.',
   },
   fields: [
     { name: 'title', type: 'text', required: true },
@@ -79,11 +79,13 @@ export const SupportArticles: CollectionConfig<'support-articles'> = {
       required: true,
       admin: { position: 'sidebar', date: { pickerAppearance: 'dayOnly' } },
     },
-    // Sync bookkeeping: the original Markdown, its plain text for search, and a hash so unchanged
-    // re-syncs are skipped.
+    // Sync bookkeeping: the original Markdown, its plain text for search, a hash so unchanged
+    // re-syncs are skipped, and the hash of the article as exported right after the sync, which
+    // tells admin edits apart (src/endpoints/supportSync/export.ts).
     { name: 'sourceMarkdown', type: 'textarea', admin: { hidden: true } },
     { name: 'plainText', type: 'textarea', admin: { hidden: true } },
     { name: 'contentHash', type: 'text', admin: { hidden: true } },
+    { name: 'exportHash', type: 'text', admin: { hidden: true } },
   ],
   hooks: {
     afterChange: [revalidateSupport],

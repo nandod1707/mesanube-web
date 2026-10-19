@@ -6,7 +6,8 @@ import { createHash } from 'crypto'
 
 import { SUPPORT_IMAGE_MAX_BYTES, SUPPORT_IMAGE_TYPES } from '@/collections/Support/shared'
 
-import { buildSearchText, markdownToLexical } from './markdown'
+import { exportArticle, fileExportHash, hasAdminEdits } from './export'
+import { buildSearchText, CONVERTER_VERSION, markdownToLexical } from './markdown'
 import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 
 // Core of the support sync. Each function handles one file from the POS repo and reports what
@@ -15,6 +16,7 @@ import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 export type SyncResult =
   | { path: string; status: 'created' | 'updated' | 'unchanged'; id: string }
   | { path: string; status: 'error'; errors: string[] }
+  | { path: string; status: 'conflict'; id: string; errors: string[] }
 
 export type DeleteResult = { id: string; status: 'deleted' | 'not_found' }
 
@@ -182,14 +184,32 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
   }
 
   // Image and section ids are part of the hash so a recreated image or section (new id) re-links the
-  // article instead of being skipped as unchanged.
+  // article instead of being skipped as unchanged; the converter version, so a conversion fix
+  // reaches articles whose file did not change.
   const contentHash = sha256(
-    JSON.stringify({ content, section: section.id, images: [...imageIds.entries()].sort() }),
+    JSON.stringify({ content, section: section.id, images: [...imageIds.entries()].sort(), converter: CONVERTER_VERSION }),
   )
   const found = await findArticle(req, article.id, article.slug)
   if ('errors' in found) return { path, status: 'error', errors: found.errors }
   const current = found.doc
   if (current?.contentHash === contentHash) return { path, status: 'unchanged', id: current.id }
+
+  // Never overwrite an edit made in the admin. The one file allowed through is the admin version
+  // itself (pulled into the repo and merged), which is how the conflict gets resolved.
+  const exportHash = await fileExportHash(payload.config, article)
+  if (current) {
+    const exported = await exportArticle(req, current)
+    if (exported.hash !== exportHash && (await hasAdminEdits(req, current, exported))) {
+      return {
+        path,
+        status: 'conflict',
+        id: current.id,
+        errors: [
+          `Este artículo se editó en el admin y el archivo del repo no incluye esa edición. Traé la versión del admin (yarn support-docs:pull ${exported.path}), revisala y volvé a mergear.`,
+        ],
+      }
+    }
+  }
 
   const data = {
     title: article.title,
@@ -208,6 +228,7 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     sourceMarkdown: article.markdown,
     plainText: buildSearchText(article.title, article.summary, article.markdown),
     contentHash,
+    exportHash,
     _status: article.status,
   }
   // Always write the main document (draft: false) and let `_status` decide visibility. Payload's

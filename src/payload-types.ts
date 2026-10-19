@@ -832,7 +832,7 @@ export interface SupportSection {
   createdAt: string;
 }
 /**
- * Estos artículos se sincronizan desde el repo del POS. Una edición hecha acá se pisa en el próximo sync: corregí el archivo .md en el repo.
+ * Estos artículos se sincronizan desde el repo del POS. Una edición hecha acá no se pisa: el sync la frena hasta que se traiga al repo con yarn support-docs:pull.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "support-articles".
@@ -873,6 +873,7 @@ export interface SupportArticle {
   sourceMarkdown?: string | null;
   plainText?: string | null;
   contentHash?: string | null;
+  exportHash?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1536,6 +1537,7 @@ export interface SupportArticlesSelect<T extends boolean = true> {
   sourceMarkdown?: T;
   plainText?: T;
   contentHash?: T;
+  exportHash?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
