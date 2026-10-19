@@ -6,6 +6,7 @@ import { createHash } from 'crypto'
 
 import { SUPPORT_IMAGE_MAX_BYTES, SUPPORT_IMAGE_TYPES } from '@/collections/Support/shared'
 
+import { exportArticle, fileExportHash, hasAdminEdits } from './export'
 import { buildSearchText, markdownToLexical } from './markdown'
 import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 
@@ -15,6 +16,7 @@ import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 export type SyncResult =
   | { path: string; status: 'created' | 'updated' | 'unchanged'; id: string }
   | { path: string; status: 'error'; errors: string[] }
+  | { path: string; status: 'conflict'; id: string; errors: string[] }
 
 export type DeleteResult = { id: string; status: 'deleted' | 'not_found' }
 
@@ -191,6 +193,23 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
   const current = found.doc
   if (current?.contentHash === contentHash) return { path, status: 'unchanged', id: current.id }
 
+  // Never overwrite an edit made in the admin. The one file allowed through is the admin version
+  // itself (pulled into the repo and merged), which is how the conflict gets resolved.
+  const exportHash = await fileExportHash(payload.config, article)
+  if (current) {
+    const exported = await exportArticle(req, current)
+    if (exported.hash !== exportHash && (await hasAdminEdits(req, current, exported))) {
+      return {
+        path,
+        status: 'conflict',
+        id: current.id,
+        errors: [
+          `Este artículo se editó en el admin y el archivo del repo no incluye esa edición. Traé la versión del admin (yarn support-docs:pull ${exported.path}), revisala y volvé a mergear.`,
+        ],
+      }
+    }
+  }
+
   const data = {
     title: article.title,
     slug: article.slug,
@@ -208,6 +227,7 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
     sourceMarkdown: article.markdown,
     plainText: buildSearchText(article.title, article.summary, article.markdown),
     contentHash,
+    exportHash,
     _status: article.status,
   }
   // Always write the main document (draft: false) and let `_status` decide visibility. Payload's

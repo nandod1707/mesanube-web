@@ -31,6 +31,7 @@ All endpoints are `PUT` and idempotent. Each one handles **one file** and return
 | `created` | 201 |
 | `updated` / `unchanged` | 200 |
 | `error` (file breaks the guidelines) | 422 |
+| `conflict` (article edited in the admin, see below) | 409 |
 | malformed request | 400 |
 | missing/invalid key | 401 |
 
@@ -95,11 +96,30 @@ folder is always safe.
 Send paths **relative to the `soporte/` folder** (`facturacion-arca/anular-una-factura.md`).
 Fail the job if any response is not 2xx, printing each file's `errors`.
 
+### Admin edits: `409` and `GET /api/support-sync/articles/admin-edits`
+
+After writing an article, the sync stores the hash of the article as it would export back to a repo
+file (`exportHash`). An article whose export no longer matches was edited in the admin since, drafts
+included. Bodies are compared in the form they take after a trip through Lexical, because the
+converters do not keep formatting details (blank lines after headings, nested list indentation).
+
+- `PUT articles` on an article edited in the admin returns `409 { status: "conflict", id, errors }`
+  and writes nothing, unless the incoming file is the admin version itself (what a pull exports).
+  That one goes through and makes the article clean again. An identical re-sync still reports
+  `unchanged` and keeps the edit.
+- `GET /api/support-sync/articles/admin-edits?ids=<id>,<id>` returns the articles edited in the admin
+  as repo files: `200 { "articles": [{ "id", "path", "content" }] }`. Without `ids` it checks every
+  article. Articles without admin edits are left out. `content` is the full `.md` with frontmatter
+  (`id` first), ready to write to `<path>`.
+
+Articles synced before `exportHash` existed are compared by body only, against the last synced
+Markdown.
+
 ## What the sync never does
 
 - It never deletes sections or images. Only articles are deleted, and only when the Action calls
   `DELETE`. To hide an article temporarily, set `status: draft` in its file instead.
-- Edits made in the admin are overwritten the next time that file changes in the repo.
+- It never overwrites an edit made in the admin (see above).
 
 ## Example
 

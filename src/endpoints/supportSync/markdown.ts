@@ -1,6 +1,6 @@
 import type { SanitizedConfig } from 'payload'
 
-import { convertMarkdownToLexical, editorConfigFactory } from '@payloadcms/richtext-lexical'
+import { convertLexicalToMarkdown, convertMarkdownToLexical, editorConfigFactory } from '@payloadcms/richtext-lexical'
 import type { SerializedLexicalNode } from '@payloadcms/richtext-lexical/lexical'
 
 import type { SupportArticle } from '@/payload-types'
@@ -14,7 +14,7 @@ import { IMAGE_LINE } from './validate'
 // space ("la\n> emitas" → "laemitas"), so wrapped quote lines are joined into one first.
 const joinQuoteLines = (markdown: string) => markdown.replace(/^(>.*)\n>\s?(?=\S)/gm, '$1 ')
 
-type Segment = { kind: 'markdown'; text: string } | { kind: 'image'; file: string }
+type Segment = { kind: 'markdown'; text: string } | { kind: 'image'; file: string; alt: string }
 
 // The Lexical upload feature has no Markdown transformer, so image lines (validated to sit alone on
 // their line) are split out and inserted as upload nodes between the converted Markdown chunks.
@@ -29,13 +29,42 @@ const segment = (markdown: string): Segment[] => {
     const image = line.trim().match(IMAGE_LINE)
     if (image) {
       flush()
-      segments.push({ kind: 'image', file: image[2] })
+      segments.push({ kind: 'image', file: image[2], alt: image[1].trim() })
     } else {
       buffer.push(line)
     }
   }
   flush()
   return segments
+}
+
+export const supportEditorConfig = (config: SanitizedConfig) =>
+  editorConfigFactory.fromFeatures({ config, features: supportEditorFeatures })
+
+type EditorConfig = Awaited<ReturnType<typeof supportEditorConfig>>
+
+// Lexical nodes back to Markdown, as one block (no images: those are handled by the caller).
+export const nodesToMarkdown = (editorConfig: EditorConfig, children: SerializedLexicalNode[]) =>
+  convertLexicalToMarkdown({
+    data: { root: { type: 'root', format: '', indent: 0, version: 1, direction: 'ltr', children } } as never,
+    editorConfig,
+  }).trim()
+
+export const imageLine = (alt: string, file: string) => `![${alt}](./images/${file})`
+
+// The form the body takes after a trip through Lexical (Markdown to Lexical to Markdown). The
+// converters do not preserve formatting details (blank lines, nested list indentation), so the
+// sync compares bodies in this form, never as written.
+export const canonicalMarkdown = async (config: SanitizedConfig, markdown: string) => {
+  const editorConfig = await supportEditorConfig(config)
+  return segment(markdown)
+    .map((part) =>
+      part.kind === 'image'
+        ? imageLine(part.alt, part.file)
+        : nodesToMarkdown(editorConfig, convertMarkdownToLexical({ editorConfig, markdown: part.text }).root.children),
+    )
+    .filter(Boolean)
+    .join('\n\n')
 }
 
 export const markdownToLexical = async ({
@@ -50,7 +79,7 @@ export const markdownToLexical = async ({
   // support-media id by key (<section>/<file>); every referenced image must be present
   imageIds: Map<string, string>
 }): Promise<SupportArticle['content']> => {
-  const editorConfig = await editorConfigFactory.fromFeatures({ config, features: supportEditorFeatures })
+  const editorConfig = await supportEditorConfig(config)
   const children: SerializedLexicalNode[] = []
   for (const part of segment(markdown)) {
     if (part.kind === 'markdown') {

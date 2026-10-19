@@ -8,7 +8,8 @@ import { describe, it, beforeAll, beforeEach, afterAll, expect } from 'vitest'
 import type { User } from '@/payload-types'
 import { supportSyncEndpoints } from '@/endpoints/supportSync'
 import { deleteArticle, syncArticle, syncImage, syncSection } from '@/endpoints/supportSync/sync'
-import { noRevalidate, resetSupport } from './helpers/support'
+import { exportArticle, hasAdminEdits } from '@/endpoints/supportSync/export'
+import { lexicalParagraph, noRevalidate, resetSupport } from './helpers/support'
 
 let payload: Payload
 let syncUser: User
@@ -300,5 +301,114 @@ describe('Support sync', () => {
     expect(await call(syncUser, created.id)).toBe(200)
     expect(await call(syncUser, created.id)).toBe(200)
     expect(await call(syncUser, 42)).toBe(400)
+  })
+
+  describe('admin edits', () => {
+    // What a save in the admin does: it writes the content and leaves the hidden sync fields alone.
+    const editInAdmin = (id: string, text: string, draft = false) =>
+      payload.update({
+        collection: 'support-articles',
+        id,
+        data: { content: lexicalParagraph(text) as never },
+        draft,
+        context: noRevalidate,
+      })
+
+    const load = (id: string) =>
+      payload.findByID({ collection: 'support-articles', id, draft: true, depth: 0 })
+
+    const created = async () => {
+      const result = await syncAll()
+      if (result.status !== 'created') throw new Error('setup failed')
+      return result.id
+    }
+
+    it('refuses to overwrite an admin edit with a different repo file (409)', async () => {
+      const id = await created()
+      await editInAdmin(id, 'Editado en el admin.')
+
+      const result = await syncAll('Otro texto del repo.')
+      expect(result.status).toBe('conflict')
+      expect((await load(id)).plainText).not.toContain('otro texto del repo')
+      expect(JSON.stringify((await load(id)).content)).toContain('Editado en el admin.')
+    })
+
+    it('treats an unpublished admin draft as an edit', async () => {
+      const id = await created()
+      await editInAdmin(id, 'Borrador del admin.', true)
+      expect((await syncAll('Otro texto del repo.')).status).toBe('conflict')
+    })
+
+    it('reports an unchanged repo file as unchanged and keeps the edit', async () => {
+      const id = await created()
+      await editInAdmin(id, 'Editado en el admin.')
+      expect((await syncAll()).status).toBe('unchanged')
+      expect(await hasAdminEdits(await reqAs(syncUser), await load(id))).toBe(true)
+    })
+
+    it('accepts the pulled admin version, then repo edits flow again', async () => {
+      const id = await created()
+      await editInAdmin(id, 'Editado en el admin.')
+      const req = await reqAs(syncUser)
+      const pulled = await exportArticle(req, await load(id))
+      expect(pulled.content).toContain('Editado en el admin.')
+
+      expect((await syncArticle(req, ARTICLE_PATH, pulled.content)).status).toBe('updated')
+      expect(await hasAdminEdits(req, await load(id))).toBe(false)
+      const next = await syncArticle(req, ARTICLE_PATH, pulled.content.replace('Editado en el admin.', 'Nuevo cambio.'))
+      expect(next.status).toBe('updated')
+    })
+
+    it('exports the image line with its alt text', async () => {
+      const id = await created()
+      const exported = await exportArticle(await reqAs(syncUser), await load(id))
+      expect(exported.content).toContain('![Botón Anular en la lista de comprobantes](./images/anular-una-factura-1.png)')
+    })
+
+    it('catches body edits on articles synced before exportHash existed', async () => {
+      const id = await created()
+      await payload.update({ collection: 'support-articles', id, data: { exportHash: null }, context: noRevalidate })
+      expect(await hasAdminEdits(await reqAs(syncUser), await load(id))).toBe(false)
+      await editInAdmin(id, 'Editado antes del deploy.')
+      expect(await hasAdminEdits(await reqAs(syncUser), await load(id))).toBe(true)
+    })
+
+    it('maps a conflict to 409 on the articles endpoint', async () => {
+      const id = await created()
+      await editInAdmin(id, 'Editado en el admin.')
+      const endpoint = supportSyncEndpoints.find((e) => e.path === '/support-sync/articles' && e.method === 'put')!
+      const req = await reqAs(syncUser)
+      req.json = async () => ({ path: ARTICLE_PATH, content: article('Otro texto del repo.') })
+      expect((await endpoint.handler(req)).status).toBe(409)
+    })
+
+    it('lists only edited articles on the admin-edits endpoint, filtered by ids', async () => {
+      const endpoint = supportSyncEndpoints.find((e) => e.path === '/support-sync/articles/admin-edits')!
+      const call = async (user: User | null, ids?: string) => {
+        const req = await reqAs(user)
+        ;(req as { searchParams: URLSearchParams }).searchParams = new URLSearchParams(ids ? { ids } : {})
+        const response = await endpoint.handler(req)
+        return { status: response.status, body: await response.json() }
+      }
+      const edited = await created()
+      const req = await reqAs(syncUser)
+      const other = await syncArticle(
+        req,
+        'facturacion-arca/otro.md',
+        article('Texto.').replace('slug: anular-una-factura', 'slug: otro'),
+      )
+      if (other.status !== 'created') throw new Error('setup failed')
+
+      expect((await call(syncUser)).body.articles).toEqual([])
+      await editInAdmin(edited, 'Editado en el admin.')
+
+      expect((await call(null)).status).toBe(401)
+      const all = await call(syncUser)
+      expect(all.body.articles.map((a: { id: string; path: string }) => [a.id, a.path])).toEqual([
+        [edited, ARTICLE_PATH],
+      ])
+      expect((await call(syncUser, other.id)).body.articles).toEqual([])
+      expect((await call(syncUser, `${other.id},${edited}`)).body.articles).toHaveLength(1)
+    })
   })
 })
