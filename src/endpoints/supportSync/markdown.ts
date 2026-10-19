@@ -14,6 +14,75 @@ import { IMAGE_LINE } from './validate'
 // space ("la\n> emitas" → "laemitas"), so wrapped quote lines are joined into one first.
 const joinQuoteLines = (markdown: string) => markdown.replace(/^(>.*)\n>\s?(?=\S)/gm, '$1 ')
 
+const LIST_ITEM = /^( *)([-*+]|\d+\.)( +)(.*)$/
+
+// The Lexical list import reads nesting as 4 spaces per level, so the 3-space indent CommonMark uses
+// under "1. " lands at level 0. List items are re-indented by nesting (an item is nested when it
+// starts at or past the parent item's text column), 4 spaces per level. Other lines are untouched.
+const normalizeListIndent = (markdown: string) => {
+  let parents: number[] = [] // text column of each open parent item
+  return markdown
+    .split('\n')
+    .map((line) => {
+      const item = line.match(LIST_ITEM)
+      if (!item) {
+        if (line.trim() && !line.startsWith(' ')) parents = []
+        return line
+      }
+      const [, spaces, marker, gap, text] = item
+      while (parents.length && spaces.length < parents[parents.length - 1]) parents.pop()
+      const level = parents.length
+      parents.push(spaces.length + marker.length + gap.length)
+      return `${'    '.repeat(level)}${marker} ${text}`
+    })
+    .join('\n')
+}
+
+type ListNode = SerializedLexicalNode & { listType: string; start?: number; children: ListItemNode[] }
+type ListItemNode = SerializedLexicalNode & { value?: number; children: SerializedLexicalNode[] }
+
+const isList = (node: SerializedLexicalNode | undefined): node is ListNode => node?.type === 'list'
+
+// An item that only holds a nested list: Lexical's shape for a sublist under the item before it.
+const isNestingItem = (item: ListItemNode) => item.children.length === 1 && isList(item.children[0])
+
+// A sublist of another type than its parent (bullets under a numbered step) comes out of the import
+// as three sibling lists: the parent's items, the nested items, the parent's remaining items. They
+// are joined back into one list with the nested items in place, numbered as Lexical numbers them
+// (a nesting item takes the next value without using it up).
+const joinSplitLists = (children: SerializedLexicalNode[]) => {
+  const joined: SerializedLexicalNode[] = []
+  for (let i = 0; i < children.length; i++) {
+    const node = children[i]
+    const nested = children[i + 1]
+    if (!isList(node) || !isList(nested) || !nested.children.every(isNestingItem)) {
+      joined.push(node)
+      continue
+    }
+    const rest = children[i + 2]
+    const sameType = isList(rest) && rest.listType === node.listType
+    const items = [...node.children, ...nested.children, ...(sameType ? rest.children : [])]
+    let value = node.start ?? 1
+    for (const item of items) {
+      item.value = value
+      if (!isNestingItem(item)) value++
+    }
+    joined.push({ ...node, children: items } as ListNode)
+    i += sameType ? 2 : 1
+  }
+  return joined
+}
+
+// Bumped when the conversion changes, so a full re-sync reconverts every article (it is part of the
+// sync's contentHash). Version 1 had no list fixes.
+export const CONVERTER_VERSION = 2
+
+// `legacy` reproduces version 1, which is what articles synced before exportHash were stored with.
+const parseMarkdown = (editorConfig: EditorConfig, markdown: string, legacy = false) =>
+  legacy
+    ? convertMarkdownToLexical({ editorConfig, markdown }).root.children
+    : joinSplitLists(convertMarkdownToLexical({ editorConfig, markdown: normalizeListIndent(markdown) }).root.children)
+
 type Segment = { kind: 'markdown'; text: string } | { kind: 'image'; file: string; alt: string }
 
 // The Lexical upload feature has no Markdown transformer, so image lines (validated to sit alone on
@@ -55,13 +124,13 @@ export const imageLine = (alt: string, file: string) => `![${alt}](./images/${fi
 // The form the body takes after a trip through Lexical (Markdown to Lexical to Markdown). The
 // converters do not preserve formatting details (blank lines, nested list indentation), so the
 // sync compares bodies in this form, never as written.
-export const canonicalMarkdown = async (config: SanitizedConfig, markdown: string) => {
+export const canonicalMarkdown = async (config: SanitizedConfig, markdown: string, { legacy = false } = {}) => {
   const editorConfig = await supportEditorConfig(config)
   return segment(markdown)
     .map((part) =>
       part.kind === 'image'
         ? imageLine(part.alt, part.file)
-        : nodesToMarkdown(editorConfig, convertMarkdownToLexical({ editorConfig, markdown: part.text }).root.children),
+        : nodesToMarkdown(editorConfig, parseMarkdown(editorConfig, part.text, legacy)),
     )
     .filter(Boolean)
     .join('\n\n')
@@ -83,8 +152,7 @@ export const markdownToLexical = async ({
   const children: SerializedLexicalNode[] = []
   for (const part of segment(markdown)) {
     if (part.kind === 'markdown') {
-      const state = convertMarkdownToLexical({ editorConfig, markdown: part.text })
-      children.push(...state.root.children)
+      children.push(...parseMarkdown(editorConfig, part.text))
     } else {
       const value = imageIds.get(`${section}/${part.file}`)
       if (!value) throw new Error(`Imagen sin subir: ${section}/${part.file}`)

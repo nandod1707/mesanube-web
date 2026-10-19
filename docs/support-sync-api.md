@@ -115,6 +115,11 @@ converters do not keep formatting details (blank lines after headings, nested li
 Articles synced before `exportHash` existed are compared by body only, against the last synced
 Markdown.
 
+The sync's `contentHash` includes a converter version. When the Markdown conversion changes, bump
+`CONVERTER_VERSION` (`src/endpoints/supportSync/markdown.ts`) and run the POS Action manually with
+**full**: every article is reconverted even if its file did not change. Version 2 nests sublists
+under list items (3-space indent, or a bullet list under a numbered step), which version 1 flattened.
+
 ## What the sync never does
 
 - It never deletes sections or images. Only articles are deleted, and only when the Action calls

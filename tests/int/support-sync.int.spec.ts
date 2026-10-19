@@ -2,12 +2,16 @@
 import { createLocalReq, getPayload, Payload, PayloadRequest } from 'payload'
 import config from '@/payload.config'
 import sharp from 'sharp'
+import { createHash } from 'crypto'
 
 import { describe, it, beforeAll, beforeEach, afterAll, expect } from 'vitest'
 
 import type { User } from '@/payload-types'
 import { supportSyncEndpoints } from '@/endpoints/supportSync'
 import { deleteArticle, syncArticle, syncImage, syncSection } from '@/endpoints/supportSync/sync'
+import { convertMarkdownToLexical, editorConfigFactory } from '@payloadcms/richtext-lexical'
+
+import { supportEditorFeatures } from '@/collections/Support/editor'
 import { exportArticle, hasAdminEdits } from '@/endpoints/supportSync/export'
 import { lexicalParagraph, noRevalidate, resetSupport } from './helpers/support'
 
@@ -104,6 +108,28 @@ describe('Support sync', () => {
     const upload = doc.content.root.children[3] as unknown as { relationTo: string; value: string }
     expect(upload.relationTo).toBe('support-media')
     expect(doc.sourceMarkdown).toContain('## Pasos')
+  })
+
+  // Regression: the 3-space indent under "1. " imported at level 0, and a bullet sublist split its
+  // numbered list in three, so the steps rendered flat with the numbering restarted.
+  it('nests a sublist under a numbered step instead of splitting the list', async () => {
+    const result = await syncAll(`1. Elegí la forma de pago:
+   - **Efectivo**: elegí la caja.
+   - **Cuenta corriente**: elegí el proveedor.
+2. Tocá **Guardar**.
+`)
+    if (!('id' in result)) throw new Error('setup failed')
+    const doc = await payload.findByID({ collection: 'support-articles', id: result.id, depth: 0 })
+    type Node = { type: string; listType?: string; value?: number; children?: Node[] }
+    const children = (doc.content.root.children as unknown as Node[]).filter((node) => node.type === 'list')
+    expect(children).toHaveLength(1)
+    const [list] = children
+    expect(list.listType).toBe('number')
+    const items = list.children!
+    expect(items.map((item) => item.children![0].type)).toEqual(['text', 'list', 'text'])
+    expect(items[1].children![0].listType).toBe('bullet')
+    expect(items[1].children![0].children).toHaveLength(2)
+    expect(items.map((item) => item.value)).toEqual([1, 2, 2])
   })
 
   it('keeps a space where a quote wraps onto a second > line', async () => {
@@ -371,6 +397,38 @@ describe('Support sync', () => {
       expect(await hasAdminEdits(await reqAs(syncUser), await load(id))).toBe(false)
       await editInAdmin(id, 'Editado antes del deploy.')
       expect(await hasAdminEdits(await reqAs(syncUser), await load(id))).toBe(true)
+    })
+
+    // The deploy that adds exportHash also fixes nested lists. Articles stored before it hold the
+    // old flat conversion and no exportHash: they must not read as admin edits, and a full re-sync of
+    // the unchanged file must reconvert them.
+    it('reconverts an article stored by the old converter without a conflict', async () => {
+      const nested = `1. Elegí la forma de pago:
+   - **Efectivo**: elegí la caja.
+   - **Cuenta corriente**: elegí el proveedor.
+2. Tocá **Guardar**.
+`
+      const result = await syncAll(nested)
+      if (result.status !== 'created') throw new Error('setup failed')
+      const editorConfig = await editorConfigFactory.fromFeatures({ config: payload.config, features: supportEditorFeatures })
+      const oldContent = convertMarkdownToLexical({ editorConfig, markdown: nested.trim() })
+      // contentHash exactly as the previous sync computed it: no converter version in it.
+      const stored = await load(result.id)
+      const oldContentHash = createHash('sha256')
+        .update(JSON.stringify({ content: article(nested), section: stored.section, images: [] }))
+        .digest('hex')
+      await payload.update({
+        collection: 'support-articles',
+        id: result.id,
+        data: { content: oldContent as never, exportHash: null, contentHash: oldContentHash },
+        context: noRevalidate,
+      })
+      expect(await hasAdminEdits(await reqAs(syncUser), await load(result.id))).toBe(false)
+
+      expect((await syncAll(nested)).status).toBe('updated')
+      const lists = ((await load(result.id)).content.root.children as { type: string }[]).filter((n) => n.type === 'list')
+      expect(lists).toHaveLength(1)
+      expect((await load(result.id)).exportHash).toBeTruthy()
     })
 
     it('maps a conflict to 409 on the articles endpoint', async () => {

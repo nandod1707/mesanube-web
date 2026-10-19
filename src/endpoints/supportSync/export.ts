@@ -153,10 +153,11 @@ export const exportArticle = async (req: PayloadRequest, doc: SupportArticle): P
 
 // `doc` is read with draft: true, so an admin draft that is not published yet also counts.
 // Articles synced before `exportHash` existed fall back to comparing the body with the last synced
-// Markdown, which catches body edits made in the admin before this shipped.
+// Markdown, which catches body edits made in the admin before this shipped. Those articles were
+// converted by converter version 1, so the Markdown is read the same way.
 export const hasAdminEdits = async (req: PayloadRequest, doc: SupportArticle, exported?: ExportedArticle) => {
   const current = exported ?? (await exportArticle(req, doc))
   if (doc.exportHash && current.hash) return current.hash !== doc.exportHash
   if (!doc.sourceMarkdown) return false
-  return current.body !== (await canonicalMarkdown(req.payload.config, doc.sourceMarkdown))
+  return current.body !== (await canonicalMarkdown(req.payload.config, doc.sourceMarkdown, { legacy: true }))
 }

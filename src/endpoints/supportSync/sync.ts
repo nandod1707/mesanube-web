@@ -7,7 +7,7 @@ import { createHash } from 'crypto'
 import { SUPPORT_IMAGE_MAX_BYTES, SUPPORT_IMAGE_TYPES } from '@/collections/Support/shared'
 
 import { exportArticle, fileExportHash, hasAdminEdits } from './export'
-import { buildSearchText, markdownToLexical } from './markdown'
+import { buildSearchText, CONVERTER_VERSION, markdownToLexical } from './markdown'
 import { parseArticleFile, parseImagePath, parseSectionFile } from './validate'
 
 // Core of the support sync. Each function handles one file from the POS repo and reports what
@@ -184,9 +184,10 @@ export const syncArticle = async (req: PayloadRequest, path: string, content: st
   }
 
   // Image and section ids are part of the hash so a recreated image or section (new id) re-links the
-  // article instead of being skipped as unchanged.
+  // article instead of being skipped as unchanged; the converter version, so a conversion fix
+  // reaches articles whose file did not change.
   const contentHash = sha256(
-    JSON.stringify({ content, section: section.id, images: [...imageIds.entries()].sort() }),
+    JSON.stringify({ content, section: section.id, images: [...imageIds.entries()].sort(), converter: CONVERTER_VERSION }),
   )
   const found = await findArticle(req, article.id, article.slug)
   if ('errors' in found) return { path, status: 'error', errors: found.errors }
