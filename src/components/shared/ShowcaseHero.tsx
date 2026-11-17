@@ -113,7 +113,7 @@ export function ShowcaseHero({
 
       <Reveal immediate delay={1} className="relative w-full">
         <div
-          className={`relative h-[220px] w-full overflow-visible rounded-[20px] sm:h-[280px] sm:rounded-[24px] lg:h-[362px] lg:rounded-[30px] ${
+          className={`relative h-[220px] w-full overflow-visible rounded-[var(--radius-xl)] sm:h-[280px] sm:rounded-[var(--radius-2xl)] lg:h-[362px] lg:rounded-[var(--radius-3xl)] ${
             background ? 'bg-[var(--media-bg)]' : 'bg-[var(--hero-bg)]'
           }`}
         >
@@ -124,11 +124,11 @@ export function ShowcaseHero({
                 alt={background.alt}
                 fill
                 sizes="(max-width: 1500px) 100vw, 1500px"
-                className="rounded-[20px] object-cover sm:rounded-[24px] lg:rounded-[30px]"
+                className="rounded-[var(--radius-xl)] object-cover sm:rounded-[var(--radius-2xl)] lg:rounded-[var(--radius-3xl)]"
                 priority
               />
               <div
-                className="absolute inset-0 rounded-[20px] bg-black/10 sm:rounded-[24px] lg:rounded-[30px]"
+                className="absolute inset-0 rounded-[var(--radius-xl)] bg-black/10 sm:rounded-[var(--radius-2xl)] lg:rounded-[var(--radius-3xl)]"
                 aria-hidden="true"
               />
             </>
@@ -138,10 +138,10 @@ export function ShowcaseHero({
           <div className={`absolute top-1/2 w-[88%] max-w-[907px] -translate-y-1/2 ${ALIGN_X[align]}`}>
             <div
               aria-label="Vista previa del panel de Mesanube mostrando comandas, mesas y reportes"
-              className="ipad-float-y relative w-full overflow-hidden rounded-[14px] border-x-2 border-t-2 border-white/50 bg-black shadow-[0_-4px_20px_rgba(0,0,0,0.1)] sm:rounded-[18px] lg:rounded-[24px]"
+              className="ipad-float-y relative w-full overflow-hidden rounded-[var(--radius-sm)] border-x-2 border-t-2 border-white/50 bg-black shadow-[var(--shadow-device)] sm:rounded-[var(--radius-lg)] lg:rounded-[var(--radius-2xl)]"
               style={{ aspectRatio: '907 / 644' }}
             >
-              <div className="absolute inset-[2%_2%_0_2%] overflow-hidden rounded-[10px] sm:rounded-[14px] lg:rounded-[16px]">
+              <div className="absolute inset-[2%_2%_0_2%] overflow-hidden rounded-[var(--radius-xs)] sm:rounded-[var(--radius-sm)] lg:rounded-[var(--radius-md)]">
                 <Image
                   src={preview.src}
                   alt={preview.alt}

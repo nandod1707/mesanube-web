@@ -35,7 +35,7 @@ export function PlanCard({
   return (
     <Reveal
       delay={delay}
-      className={`relative flex flex-1 flex-col items-start gap-6 rounded-[20px] p-8 ${
+      className={`relative flex flex-1 flex-col items-start gap-6 rounded-[var(--radius-xl)] p-8 ${
         highlighted
           ? 'border border-[var(--surface-dark)] bg-[var(--surface-dark)]'
           : 'border border-[var(--divider)]'

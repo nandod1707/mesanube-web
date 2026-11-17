@@ -128,7 +128,7 @@ All user-facing text must follow these rules:
 
 ## Design System
 
-The canonical tokens live in `src/app/(frontend)/globals.css` (`:root`); usage rules are in `.claude/rules/frontend.md` (§2 colors, §3 typography, §6 section components).
+The canonical tokens live in `src/app/(frontend)/globals.css` (`:root`). **`DESIGN.md`** (repo root) explains the visual intent, surfaces, component recipes and do/don'ts; `.claude/rules/frontend.md` has the implementation rules (§2 colors, §3 typography, §4 spacing/radius/shadows, §6 section components).
 
 ### Quick-reference tokens
 
@@ -142,7 +142,7 @@ The canonical tokens live in `src/app/(frontend)/globals.css` (`:root`); usage r
 - Display (headings): `Crimson Text` serif — `var(--font-crimson)` — `font-display` Tailwind class
 - Body: `DM Sans` — `var(--font-dm-sans)` — `font-sans`
 - Mono (labels/tags): `Roboto Mono` — `var(--font-roboto-mono)` — `font-mono`
-- Body size: `15px / 21px` · Label size: `12px` · Button size: `14px`
+- Body size: `18px / 1.4` · Eyebrow/caption: `14px` · Button: `14px` · Input: `15px`
 
 **Motion**
 - Primary easing: `cubic-bezier(0.22, 1, 0.36, 1)` · Reveal: `900ms` · Image zoom: `1200ms`
@@ -152,6 +152,10 @@ The canonical tokens live in `src/app/(frontend)/globals.css` (`:root`); usage r
 **Spacing / layout**
 - Max content width: `1500px` · Horizontal padding: `px-4 sm:px-6 lg:px-10`
 - Section vertical padding: `py-[80px] lg:py-[120px]` · Border separators: `border-[var(--divider)]`
+
+**Radius / elevation**
+- Radius scale `--radius-xs` (10) · `-sm` (14) · `-md` (16) · `-lg` (18) · `-xl` (20) · `-2xl` (24) · `-3xl` (30); pills use `rounded-full`
+- Shadows only on floating elements: `--shadow-float`, `--shadow-dialog`, `--shadow-device`, `--shadow-card-hover`
 
 **Never invent new hex values** — reuse the tokens above or extend this list first.
 

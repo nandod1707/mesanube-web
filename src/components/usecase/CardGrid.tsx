@@ -75,7 +75,7 @@ export function CardGrid({
       {image && (
         <Reveal
           delay={1}
-          className="zoom-wrap relative mt-[40px] h-[260px] w-full overflow-hidden rounded-[20px] sm:h-[380px] lg:h-[500px] lg:rounded-[30px]"
+          className="zoom-wrap relative mt-[40px] h-[260px] w-full overflow-hidden rounded-[var(--radius-xl)] sm:h-[380px] lg:h-[500px] lg:rounded-[var(--radius-3xl)]"
         >
           <Image
             src={image.src}

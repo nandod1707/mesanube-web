@@ -11,7 +11,7 @@ export function SiteFooter({ links = FOOTER_NAV }: SiteFooterProps) {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[#e9e9e9] pt-10 pb-5 sm:gap-[80px]">
+    <footer className="flex w-full max-w-[1500px] flex-col items-start justify-end gap-[50px] border-t border-[var(--divider)] pt-10 pb-5 sm:gap-[80px]">
       <nav
         aria-label="Navegación del pie de página"
         className="flex h-10 w-full items-center justify-between"
@@ -36,11 +36,11 @@ export function SiteFooter({ links = FOOTER_NAV }: SiteFooterProps) {
         >
           mesanube
         </Link>
-        <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+        <div className="flex flex-1 items-center gap-4 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
           <p>© Mesanube.</p>
           <p>{year}</p>
         </div>
-        <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+        <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
           Todos los derechos reservados
         </p>
       </div>

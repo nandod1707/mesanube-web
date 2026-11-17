@@ -265,7 +265,7 @@ export default function PreciosPage() {
 
           <Reveal
             delay={1}
-            className="w-full rounded-[20px] bg-[var(--olive-soft)] px-8 py-[40px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--olive)]"
+            className="w-full rounded-[var(--radius-xl)] bg-[var(--olive-soft)] px-8 py-[40px] text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--olive)]"
           >
             Los primeros {TRIAL} son siempre gratis, independientemente del plan y la frecuencia de
             pago.

@@ -4,7 +4,7 @@
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--divider);
-  border-radius: 1.25rem;
+  border-radius: var(--radius-xl);
   background: white;
   transition:
     border-color 200ms ease,
@@ -14,7 +14,7 @@
 
 .card:hover {
   border-color: var(--olive);
-  box-shadow: 0 4px 16px rgba(36, 52, 29, 0.08);
+  box-shadow: var(--shadow-card-hover);
   transform: translateY(-2px);
 }
 

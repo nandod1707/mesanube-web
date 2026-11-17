@@ -38,7 +38,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="w-full rounded-[20px] border border-[var(--divider)] bg-white px-7 py-8 sm:px-8">
+      <div className="w-full rounded-[var(--radius-xl)] border border-[var(--divider)] bg-white px-7 py-8 sm:px-8">
         <p className="font-display text-[28px] leading-none tracking-[-0.5px] text-[var(--heading)]">
           ¡Listo!
         </p>
@@ -52,7 +52,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full rounded-[20px] border border-[var(--divider)] bg-white px-7 py-7 sm:px-8"
+      className="w-full rounded-[var(--radius-xl)] border border-[var(--divider)] bg-white px-7 py-7 sm:px-8"
     >
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field label="Tu nombre" name="name" autoComplete="name" required />
@@ -106,7 +106,7 @@ function Field({
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="rounded-[10px] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-[var(--heading)] outline-none transition-colors placeholder:text-[var(--caption)] focus:border-[var(--olive)]"
+        className="rounded-[var(--radius-xs)] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-[var(--heading)] outline-none transition-colors placeholder:text-[var(--caption)] focus:border-[var(--olive)]"
       />
     </label>
   )
@@ -133,7 +133,7 @@ function Textarea({
         name={name}
         rows={rows}
         required={required}
-        className="resize-none rounded-[10px] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-[var(--heading)] outline-none transition-colors placeholder:text-[var(--caption)] focus:border-[var(--olive)]"
+        className="resize-none rounded-[var(--radius-xs)] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-[var(--heading)] outline-none transition-colors placeholder:text-[var(--caption)] focus:border-[var(--olive)]"
       />
     </label>
   )

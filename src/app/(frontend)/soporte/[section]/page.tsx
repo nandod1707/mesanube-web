@@ -48,7 +48,7 @@ export default async function SupportSectionPage({ params }: Args) {
       />
       <header className="flex flex-col items-start gap-5">
         <SupportBreadcrumb items={[{ label: 'Centro de ayuda', href: '/soporte' }, { label: section.title }]} />
-        <span className="flex size-14 items-center justify-center rounded-[16px] bg-[var(--olive)] text-[var(--warm-white)]">
+        <span className="flex size-14 items-center justify-center rounded-[var(--radius-md)] bg-[var(--olive)] text-[var(--warm-white)]">
           <SectionIcon icon={section.icon} className="size-7" />
         </span>
         <h1 className={TITLE} style={TITLE_STYLE}>

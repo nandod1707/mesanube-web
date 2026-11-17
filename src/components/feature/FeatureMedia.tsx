@@ -50,7 +50,7 @@ export function FeatureMedia({ id, eyebrow, heading, paragraphs, image, reversed
   const media = (
     <Reveal
       delay={1}
-      className={`relative w-full overflow-hidden rounded-[20px] bg-[var(--media-bg)] ${reversed ? 'lg:order-1' : ''}`}
+      className={`relative w-full overflow-hidden rounded-[var(--radius-xl)] bg-[var(--media-bg)] ${reversed ? 'lg:order-1' : ''}`}
       style={{ minHeight: '360px' }}
     >
       <Image src={image.src} alt={image.alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />

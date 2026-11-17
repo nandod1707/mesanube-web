@@ -87,7 +87,7 @@ export default function FidelizacionPage() {
 
         <Reveal delay={1} className="mt-12 w-full">
           <div
-            className="zoom-wrap relative w-full overflow-hidden rounded-[20px] bg-[var(--olive-soft)]"
+            className="zoom-wrap relative w-full overflow-hidden rounded-[var(--radius-xl)] bg-[var(--olive-soft)]"
             style={{ aspectRatio: '16/7' }}
           >
             <Image
