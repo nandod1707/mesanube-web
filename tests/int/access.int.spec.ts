@@ -8,6 +8,7 @@ import type { User } from '@/payload-types'
 let payload: Payload
 let legacyUser: User
 let syncUser: User
+let editorUser: User
 
 describe('Access roles', () => {
   beforeAll(async () => {
@@ -27,6 +28,10 @@ describe('Access roles', () => {
     syncUser = await payload.create({
       collection: 'users',
       data: { email: 'sync@access.test', password: 'test-password', role: 'support-sync' },
+    })
+    editorUser = await payload.create({
+      collection: 'users',
+      data: { email: 'editor@access.test', password: 'test-password', role: 'editor' },
     })
   })
 
@@ -94,5 +99,54 @@ describe('Access roles', () => {
     const usersConfig = payload.collections.users.config
     const canAccessAdmin = await usersConfig.access.admin!({ req: { user: syncUser } } as never)
     expect(canAccessAdmin).toBe(false)
+  })
+
+  it('lets the editor role into the admin panel and write blog content', async () => {
+    const usersConfig = payload.collections.users.config
+    expect(await usersConfig.access.admin!({ req: { user: editorUser } } as never)).toBe(true)
+    const category = await payload.create({
+      collection: 'categories',
+      data: { title: 'Editor category', slug: 'editor-category' },
+      user: editorUser,
+      overrideAccess: false,
+    })
+    expect(category.id).toBeDefined()
+    await payload.delete({ collection: 'categories', id: category.id })
+  })
+
+  it('blocks the editor role from users, globals, plugin collections and support content', async () => {
+    const asEditor = { user: editorUser, overrideAccess: false } as const
+    await expect(
+      payload.create({
+        collection: 'users',
+        data: { email: 'escalate2@access.test', password: 'x', role: 'admin' },
+        ...asEditor,
+      }),
+    ).rejects.toThrow()
+    await expect(
+      payload.update({ collection: 'users', id: editorUser.id, data: { role: 'admin' }, ...asEditor }),
+    ).rejects.toThrow()
+    await expect(
+      payload.updateGlobal({ slug: 'footer', data: { navItems: [] }, ...asEditor }),
+    ).rejects.toThrow()
+    await expect(
+      payload.create({
+        collection: 'redirects',
+        data: { from: '/x', to: { type: 'custom', url: '/y' } },
+        ...asEditor,
+      }),
+    ).rejects.toThrow()
+    await expect(
+      payload.create({
+        collection: 'support-sections',
+        data: { title: 'Nope', slug: 'nope' } as never,
+        ...asEditor,
+      }),
+    ).rejects.toThrow()
+  })
+
+  it('lets the editor read only their own user', async () => {
+    const { docs } = await payload.find({ collection: 'users', user: editorUser, overrideAccess: false })
+    expect(docs.map((d) => d.id)).toEqual([editorUser.id])
   })
 })
