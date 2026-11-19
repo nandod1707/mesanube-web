@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -149,6 +151,13 @@ export default function PreciosPage() {
             </h2>
             <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
               Si tenés dudas sobre cuál te queda mejor, escribinos con tu consulta y en cinco minutos lo resolvemos.
+            </p>
+            <p className="text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+              ¿Qué estás comparando, exactamente? Antes de mirar la tabla, repasá{' '}
+              <InlineLink href={LINKED_POSTS.softwareGastronomico}>
+                qué incluye un software gastronómico
+              </InlineLink>
+              .
             </p>
           </Reveal>
 

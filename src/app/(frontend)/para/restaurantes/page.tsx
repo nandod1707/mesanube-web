@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { ReadingNote } from '@/components/shared/ReadingNote'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -188,6 +191,14 @@ export default function RestaurantesPage() {
 
         <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan." items={faq} />
+        <ReadingNote>
+          Antes de decidir, leé{' '}
+          <InlineLink href={LINKED_POSTS.softwareGastronomico}>
+            cómo elegir el software gastronómico ideal para tu restaurante
+          </InlineLink>
+          : los cinco criterios que importan cuando tenés salón y cocina.
+        </ReadingNote>
+
         <UseCaseCta
           heading={`Organizá tu restaurante. ${TRIAL_PERIOD} gratis.`}
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona antes de empezar, agendá una demo y te lo mostramos en tu local."

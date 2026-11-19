@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { ReadingNote } from '@/components/shared/ReadingNote'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -179,6 +182,14 @@ export default function CafeteriasPage() {
 
         <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan." items={faq} />
+        <ReadingNote>
+          Si todavía estás comparando opciones, te contamos{' '}
+          <InlineLink href={LINKED_POSTS.softwareGastronomico}>
+            cómo elegir el software gastronómico ideal para tu cafetería
+          </InlineLink>
+          , sin vueltas.
+        </ReadingNote>
+
         <UseCaseCta
           heading={`Probá Mesanube en tu cafetería. ${TRIAL_PERIOD} gratis.`}
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima."

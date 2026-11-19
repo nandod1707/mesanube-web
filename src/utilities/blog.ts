@@ -5,3 +5,9 @@ export const postPath = (slug: string | null | undefined): string => `${BLOG_PAT
 
 export const blogPagePath = (page: number): string =>
   page <= 1 ? BLOG_PATH : `${BLOG_PATH}/page/${page}`
+
+/** Posts linked from the marketing pages (internal linking). Change the slug here if a post moves. */
+export const LINKED_POSTS = {
+  softwareGastronomico: postPath('software-gastronomico-que-es-como-elegirlo'),
+  sistemaVsPuntoDeVenta: postPath('sistema-gastronomico-vs-punto-de-venta'),
+} as const

@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { ReadingNote } from '@/components/shared/ReadingNote'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -100,9 +103,25 @@ export default function FuncionesPage() {
               al reporte del día. Sin pasos manuales. Sin información duplicada. Sin que el error de
               una app arruine el dato en otra.
             </p>
+            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+              Es la misma lógica que separa a un POS de un sistema completo. Si querés entenderla a
+              fondo, leé{' '}
+              <InlineLink href={LINKED_POSTS.sistemaVsPuntoDeVenta}>
+                sistema gastronómico vs punto de venta: diferencias
+              </InlineLink>
+              .
+            </p>
             <CtaLink href="/precios">Ver planes y precios</CtaLink>
           </Reveal>
         </section>
+
+        <ReadingNote>
+          ¿Estás evaluando varios sistemas? Armamos una{' '}
+          <InlineLink href={LINKED_POSTS.softwareGastronomico}>
+            guía: cómo elegir un software gastronómico
+          </InlineLink>{' '}
+          con los cinco criterios que importan de verdad.
+        </ReadingNote>
 
         <UseCaseCta
           heading={`Probá todas las funciones gratis por ${TRIAL_PERIOD}`}

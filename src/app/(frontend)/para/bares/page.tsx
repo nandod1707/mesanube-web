@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { ReadingNote } from '@/components/shared/ReadingNote'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -212,6 +215,14 @@ export default function BaresPage() {
 
         <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan" items={faq} />
+        <ReadingNote>
+          ¿Comparando sistemas? Te dejamos{' '}
+          <InlineLink href={LINKED_POSTS.softwareGastronomico}>
+            cómo elegir el software gastronómico ideal para tu bar
+          </InlineLink>
+          , pensado para noches de mucho movimiento.
+        </ReadingNote>
+
         <UseCaseCta
           heading="Tu bar se merece un sistema a su altura. Probalo gratis."
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima. Si querés ver cómo funciona en un bar antes de empezar, agendá una demo y te lo mostramos en vivo."

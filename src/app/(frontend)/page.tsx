@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { TRIAL_PERIOD } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -218,6 +220,13 @@ export default function HomePage() {
               Mesanube es el POS que usan cafeterías, bares y restaurantes argentinos para tomar
               pedidos sin anotar nada a mano, emitir facturas ARCA y cerrar la caja sin diferencias. Funciona en
               cualquier tablet o celular, o computadora con Windows. No necesitás hardware especial.
+            </p>
+            <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
+              Si todavía estás comparando opciones, te explicamos{' '}
+              <InlineLink href={LINKED_POSTS.softwareGastronomico}>
+                qué es un software gastronómico
+              </InlineLink>{' '}
+              y qué mirar antes de elegir uno.
             </p>
           </Reveal>
         </section>

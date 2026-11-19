@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { ReadingNote } from '@/components/shared/ReadingNote'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -149,6 +152,14 @@ export default function PizzeriasPage() {
 
         <JsonLd data={buildFaqSchema(faq)} />
         <FaqSection heading="Lo que más nos preguntan." items={faq} />
+        <ReadingNote>
+          Con salón, mostrador y delivery a la vez, un POS solo se queda corto. Te explicamos{' '}
+          <InlineLink href={LINKED_POSTS.sistemaVsPuntoDeVenta}>
+            qué sistema gastronómico necesita una pizzería
+          </InlineLink>
+          .
+        </ReadingNote>
+
         <UseCaseCta
           heading={`Probá Mesanube en tu pizzería. ${TRIAL_PERIOD} gratis.`}
           subtitle="Sin tarjeta de crédito. Sin permanencia mínima."
