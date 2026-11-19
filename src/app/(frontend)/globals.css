@@ -178,25 +178,16 @@
   }
 }
 
-/* ── Fluid font size ── */
+/* ── Root font size ──
+   Fixed at 16px. It used to be fluid (vw-based), which made every rem value (Tailwind spacing,
+   text-sm, prose…) jump between ~11px and ~30px depending on the viewport. Headings scale with
+   their own clamp(); everything else is px or rem on this fixed base. */
 html {
-  font-size: calc(-1.30612px + 4.08163vw);
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss02", "zero";
   scrollbar-gutter: stable;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: calc(3.285714px + 1vw);
-  }
-}
-
-@media (min-width: 1440px) {
-  html {
-    font-size: calc(-0.142857px + 0.982143vw);
-  }
 }
 
 /* ── Squircle clip-path utilities ── */

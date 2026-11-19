@@ -84,6 +84,10 @@ Three font families carry the whole system:
 The big headings use explicit `clamp()` on `font-size` (this is the shipped pattern — don't convert
 them to fluid `rem`). Body and smaller text use fixed `px` sizes.
 
+> `<html>` is a fixed `16px` (it used to be vw-based, which made `rem` jump between ~11px and ~30px).
+> Prefer explicit px for type (`text-[18px]`, the `styles.ts` constants, `shared/Prose.module.css`)
+> so it matches the shipped scale; Tailwind's `rem` spacing is safe.
+
 ### Type scale (shipped)
 
 Prefer the `SectionTitle`, `Eyebrow`, and `Body` primitives in `src/components/shared/` over
@@ -369,7 +373,7 @@ export function HeroSection() { /* 200 lines */ }
 
 - Mobile-first: base styles are mobile, add breakpoints upward
 - Use Tailwind breakpoints: `sm:` (640px), `md:` (768px), `lg:` (1024px), `xl:` (1280px)
-- The fluid `font-size` on `html` handles most type scaling automatically — don't add breakpoint overrides for font sizes unless truly necessary
+- Headings scale with explicit `clamp()`; body and small text are fixed px. Don't add breakpoint overrides for font sizes unless truly necessary
 - Grid layouts: prefer `grid-cols-1 lg:grid-cols-2` or `auto-fill`/`auto-fit` with `minmax()` over manually placing items
 - Test at 375px (iPhone SE), 768px (tablet), 1280px (desktop), 1440px (large)
 
