@@ -37,7 +37,7 @@ export function SupportSidebar({ sections, activeSection, activeArticle }: Suppo
               <Link
                 href={`/soporte/${section.slug}`}
                 aria-current={open && !activeArticle ? 'page' : undefined}
-                className={`group flex items-center gap-3 rounded-[10px] px-2 py-2 text-[15px] font-bold leading-[1.3] transition-colors duration-150 hover:bg-[var(--olive-tint)] ${FOCUS} ${
+                className={`group flex items-center gap-3 rounded-[var(--radius-xs)] px-2 py-2 text-[15px] font-bold leading-[1.3] transition-colors duration-150 hover:bg-[var(--olive-tint)] ${FOCUS} ${
                   open ? 'text-[var(--olive)]' : 'text-[var(--heading)]'
                 }`}
               >

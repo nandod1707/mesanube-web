@@ -16,6 +16,8 @@ type Props = MediaBlockProps & {
   imgClassName?: string
   staticImage?: StaticImageData
   disableInnerContainer?: boolean
+  /** Render the caption with Tailwind `prose` (rem-based). Off when `captionClassName` sets the type. */
+  enableCaptionProse?: boolean
 }
 
 export const MediaBlock: React.FC<Props> = (props) => {
@@ -27,6 +29,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
     media,
     staticImage,
     disableInnerContainer,
+    enableCaptionProse = true,
   } = props
 
   let caption
@@ -59,7 +62,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
             captionClassName,
           )}
         >
-          <RichText data={caption} enableGutter={false} />
+          <RichText data={caption} enableGutter={false} enableProse={enableCaptionProse} />
         </div>
       )}
     </div>

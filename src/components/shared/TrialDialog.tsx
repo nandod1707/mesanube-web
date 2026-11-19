@@ -99,10 +99,10 @@ function Modal({ onClose }: { onClose: () => void }) {
         className="absolute inset-0 cursor-default bg-black/40 backdrop-blur-sm transition-opacity"
       />
 
-      <div className="relative w-full max-w-[520px] max-h-[calc(100dvh-2rem)] overflow-y-auto scrollbar-hide rounded-[24px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
+      <div className="relative w-full max-w-[520px] max-h-[calc(100dvh-2rem)] overflow-y-auto scrollbar-hide rounded-[var(--radius-2xl)] bg-white shadow-[var(--shadow-dialog)]">
         <div className="flex items-start justify-between gap-6 px-7 pt-7 pb-2">
           <div>
-            <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+            <p className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
               Agendá una demo
             </p>
             <h2
@@ -116,7 +116,7 @@ function Modal({ onClose }: { onClose: () => void }) {
             >
               Te mostramos cómo funciona
             </h2>
-            <p className="mt-3 text-[16px] leading-[1.4] tracking-[-0.08px] text-[#6f6f6f]">
+            <p className="mt-3 text-[16px] leading-[1.4] tracking-[-0.08px] text-[var(--body)]">
               Una llamada de 20 minutos para ver Mesanube en acción y resolver tus dudas.
             </p>
           </div>
@@ -124,7 +124,7 @@ function Modal({ onClose }: { onClose: () => void }) {
             type="button"
             onClick={onClose}
             aria-label="Cerrar formulario"
-            className="-mr-2 -mt-1 flex size-9 shrink-0 items-center justify-center rounded-full text-[#6f6f6f] transition-colors hover:bg-[#f3f3f3] hover:text-black"
+            className="-mr-2 -mt-1 flex size-9 shrink-0 items-center justify-center rounded-full text-[var(--body)] transition-colors hover:bg-black/5 hover:text-black"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path
@@ -140,18 +140,18 @@ function Modal({ onClose }: { onClose: () => void }) {
         <>
           {submitted ? (
             <div className="px-7 pb-8 pt-6">
-              <div className="rounded-[16px] border border-[#dfecc6] bg-[#f5fae8] px-5 py-6">
+              <div className="rounded-[var(--radius-md)] border border-[var(--olive-soft)] bg-[var(--olive-tint)] px-5 py-6">
                 <p className="font-display text-[22px] leading-none tracking-[-0.5px] text-black">
                   ¡Listo!
                 </p>
-                <p className="mt-3 text-[16px] leading-[1.4] tracking-[-0.08px] text-[#485c11]">
+                <p className="mt-3 text-[16px] leading-[1.4] tracking-[-0.08px] text-[var(--olive)]">
                   Te contactamos para coordinar la demo.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-colors hover:bg-[#3a4c0d]"
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[var(--olive)] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-colors hover:bg-[var(--olive-dark)]"
               >
                 Cerrar
               </button>
@@ -192,12 +192,12 @@ function Modal({ onClose }: { onClose: () => void }) {
               <button
                 type="submit"
                 disabled={pending}
-                className="mt-6 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#485c11] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[#3a4c0d] active:scale-[0.98] disabled:opacity-60"
+                className="mt-6 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[var(--olive)] px-[22px] py-[14px] text-[14px] font-bold leading-[1.4] tracking-[-0.35px] text-white transition-[background-color,transform] duration-300 hover:bg-[var(--olive-dark)] active:scale-[0.98] disabled:opacity-60"
               >
                 {pending ? 'Enviando...' : 'Agendar la demo'}
               </button>
 
-              <p className="mt-4 text-center text-[13px] leading-[1.4] tracking-[-0.05px] text-[#929292]">
+              <p className="mt-4 text-center text-[13px] leading-[1.4] tracking-[-0.05px] text-[var(--caption)]">
                 Te respondemos por WhatsApp. Sin spam, sin llamados frías.
               </p>
             </form>
@@ -223,16 +223,16 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[13px] leading-[1.4] tracking-[-0.05px] text-[#6f6f6f]">
+      <span className="text-[13px] leading-[1.4] tracking-[-0.05px] text-[var(--body)]">
         {label}
-        {required && <span className="ml-1 text-[#485c11]">*</span>}
+        {required && <span className="ml-1 text-[var(--olive)]">*</span>}
       </span>
       <input
         name={name}
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="rounded-[10px] border border-[#e9e9e9] bg-white px-3.5 py-2.5 text-[15px] text-black outline-none transition-colors placeholder:text-[#929292] focus:border-[#485c11]"
+        className="rounded-[var(--radius-xs)] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-black outline-none transition-colors placeholder:text-[var(--caption)] focus:border-[var(--olive)]"
       />
     </label>
   )
@@ -249,10 +249,10 @@ function Select({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[13px] leading-[1.4] tracking-[-0.05px] text-[#6f6f6f]">{label}</span>
+      <span className="text-[13px] leading-[1.4] tracking-[-0.05px] text-[var(--body)]">{label}</span>
       <select
         name={name}
-        className="rounded-[10px] border border-[#e9e9e9] bg-white px-3.5 py-2.5 text-[15px] text-black outline-none transition-colors focus:border-[#485c11]"
+        className="rounded-[var(--radius-xs)] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-black outline-none transition-colors focus:border-[var(--olive)]"
       >
         {children}
       </select>
@@ -271,11 +271,11 @@ function Textarea({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[13px] leading-[1.4] tracking-[-0.05px] text-[#6f6f6f]">{label}</span>
+      <span className="text-[13px] leading-[1.4] tracking-[-0.05px] text-[var(--body)]">{label}</span>
       <textarea
         name={name}
         rows={rows}
-        className="resize-none rounded-[10px] border border-[#e9e9e9] bg-white px-3.5 py-2.5 text-[15px] text-black outline-none transition-colors placeholder:text-[#929292] focus:border-[#485c11]"
+        className="resize-none rounded-[var(--radius-xs)] border border-[var(--divider)] bg-white px-3.5 py-2.5 text-[15px] text-black outline-none transition-colors placeholder:text-[var(--caption)] focus:border-[var(--olive)]"
       />
     </label>
   )

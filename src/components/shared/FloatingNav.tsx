@@ -68,7 +68,7 @@ export default function FloatingNav() {
       <nav
         aria-label="Navegación principal"
         data-hidden={hidden}
-        className="nav-pill fixed left-1/2 top-4 z-50 hidden -translate-x-1/2 items-center gap-7 rounded-full border border-black/5 bg-white/55 px-6 py-4 text-[14px] font-bold tracking-[-0.35px] text-black shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg lg:flex"
+        className="nav-pill fixed left-1/2 top-4 z-50 hidden -translate-x-1/2 items-center gap-7 rounded-full border border-black/5 bg-white/55 px-6 py-4 text-[14px] font-bold tracking-[-0.35px] text-black shadow-[var(--shadow-float)] backdrop-blur-lg lg:flex"
       >
         {items.map((item) => (
           <Link
@@ -89,7 +89,7 @@ export default function FloatingNav() {
         aria-expanded={open}
         data-hidden={hidden}
         onClick={() => setOpen(true)}
-        className="fixed right-4 top-4 z-50 flex size-12 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-black/5 bg-white/55 text-black shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[hidden=true]:pointer-events-none data-[hidden=true]:-translate-y-[150%] data-[hidden=true]:opacity-0 lg:hidden"
+        className="fixed right-4 top-4 z-50 flex size-12 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-black/5 bg-white/55 text-black shadow-[var(--shadow-float)] backdrop-blur-lg transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[hidden=true]:pointer-events-none data-[hidden=true]:-translate-y-[150%] data-[hidden=true]:opacity-0 lg:hidden"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -104,7 +104,7 @@ export default function FloatingNav() {
         rel="noopener noreferrer"
         aria-label="Escribinos por WhatsApp"
         data-hidden={hidden}
-        className="fab-pill fixed bottom-6 right-6 z-50 flex size-16 items-center justify-center rounded-full border border-black/5 bg-white/55 shadow-[0_6px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg hover:scale-105"
+        className="fab-pill fixed bottom-6 right-6 z-50 flex size-16 items-center justify-center rounded-full border border-black/5 bg-white/55 shadow-[var(--shadow-float)] backdrop-blur-lg hover:scale-105"
       >
         <Image src="/assets/logo-whatsapp.svg" alt="" width={28} height={28} aria-hidden="true" />
       </Link>

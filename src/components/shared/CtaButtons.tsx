@@ -10,8 +10,8 @@ type Variant = 'primary' | 'soft'
 
 const VARIANT_CLASS: Record<Variant, string> = {
   primary:
-    'bg-[#485c11] text-white hover:bg-[#3a4c0d]',
-  soft: 'bg-[#dfecc6] text-black hover:bg-[#d0e1ac]',
+    'bg-[var(--olive)] text-white hover:bg-[var(--olive-dark)]',
+  soft: 'bg-[var(--olive-soft)] text-black hover:bg-[var(--olive-soft-hover)]',
 }
 
 function BaseButton({
@@ -149,8 +149,8 @@ export function DemoLink({
   const { openDemo } = useTrialDialog()
   const color =
     tone === 'muted'
-      ? 'text-[#6f6f6f] hover:text-black'
-      : 'text-black hover:text-[#485c11]'
+      ? 'text-[var(--body)] hover:text-black'
+      : 'text-black hover:text-[var(--olive)]'
   return (
     <button
       type="button"
@@ -177,8 +177,8 @@ export function TrialLink({
 }) {
   const color =
     tone === 'muted'
-      ? 'text-[#6f6f6f] hover:text-black'
-      : 'text-black hover:text-[#485c11]'
+      ? 'text-[var(--body)] hover:text-black'
+      : 'text-black hover:text-[var(--olive)]'
   return (
     <Link
       href={APP_REGISTER_URL}

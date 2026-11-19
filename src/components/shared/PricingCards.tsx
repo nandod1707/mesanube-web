@@ -65,7 +65,7 @@ export function PricingCards({
         id="precios"
         className="w-full max-w-[1500px] border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
       >
-        <div className="mx-auto max-w-[600px] rounded-[20px] border border-[var(--divider)] p-8 text-center">
+        <div className="mx-auto max-w-[600px] rounded-[var(--radius-xl)] border border-[var(--divider)] p-8 text-center">
           <p className="mb-4 font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
             {label}
           </p>

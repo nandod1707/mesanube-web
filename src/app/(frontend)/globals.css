@@ -14,17 +14,6 @@
   }
 
   :root {
-    /* ── Brand color tokens (rgb) ── */
-    --cream-bg: rgb(255, 254, 252);
-    --warm-white: rgb(255, 247, 238);
-    --pale-cream: rgb(255, 249, 241);
-    --yellow: rgb(255, 190, 13);
-    --warm-yellow: rgb(255, 203, 52);
-    --coral: rgb(246, 110, 70);
-    --salmon: rgb(248, 137, 103);
-    --sky-blue: rgb(112, 155, 202);
-    --pale-blue: rgb(225, 234, 244);
-
     /* ── Canonical semantic tokens (marketing site — single source of truth) ──
        Olive / black / gray, matching the shipped design. Use these everywhere
        in (frontend) pages/components — never raw hex.
@@ -43,6 +32,22 @@
     --surface-dark: rgb(36, 52, 29); /* dark brand panels (Avanzado pricing card, dark CTA panels) */
     --hero-bg: #8e9c78;          /* hero background */
     --media-bg: #f5f5f0;         /* image/media placeholder background */
+    --warm-white: rgb(255, 247, 238); /* text on --surface-dark / --olive panels */
+
+    /* ── Radius scale (use by size; see DESIGN.md "Forma") ── */
+    --radius-xs: 10px;   /* inputs, sidebar items, product screenshot (mobile) */
+    --radius-sm: 14px;   /* product screenshot / device frame (mobile) */
+    --radius-md: 16px;   /* inner panels, icon tiles, product screenshot (lg) */
+    --radius-lg: 18px;   /* device frame (sm) */
+    --radius-xl: 20px;   /* content panels and section images (mobile), cards */
+    --radius-2xl: 24px;  /* dialogs, hero panels (sm), device frame (lg) */
+    --radius-3xl: 30px;  /* section images and hero panels (lg) */
+
+    /* ── Elevation: only for things floating above the content flow ── */
+    --shadow-float: 0 6px 30px rgba(0, 0, 0, 0.08);       /* floating nav / FAB */
+    --shadow-dialog: 0 20px 60px rgba(0, 0, 0, 0.18);     /* modal dialogs */
+    --shadow-device: 0 -4px 20px rgba(0, 0, 0, 0.1);      /* product screenshot in the hero */
+    --shadow-card-hover: 0 4px 16px rgba(36, 52, 29, 0.08); /* link-card hover */
 
     /* ── shadcn/ui HSL tokens (Payload admin compatibility) ── */
     --background: 46 100% 99%;
@@ -68,16 +73,6 @@
     --success: 196 52% 74%;
     --warning: 43 100% 53%;
     --error: 14 90% 62%;
-
-    /* ── Layout tokens ── */
-    --section-padding-y: 5.714rem;
-    --section-padding-x: 2rem;
-    --container-max: 72rem;
-    --container-max-narrow: 44rem;
-    --container-max-mid: 60rem;
-
-    /* ── Scrollbar ── */
-    --scrollbar-size: 6px;
   }
 
   * {
@@ -183,25 +178,16 @@
   }
 }
 
-/* ── Fluid font size ── */
+/* ── Root font size ──
+   Fixed at 16px. It used to be fluid (vw-based), which made every rem value (Tailwind spacing,
+   text-sm, prose…) jump between ~11px and ~30px depending on the viewport. Headings scale with
+   their own clamp(); everything else is px or rem on this fixed base. */
 html {
-  font-size: calc(-1.30612px + 4.08163vw);
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss02", "zero";
   scrollbar-gutter: stable;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: calc(3.285714px + 1vw);
-  }
-}
-
-@media (min-width: 1440px) {
-  html {
-    font-size: calc(-0.142857px + 0.982143vw);
-  }
 }
 
 /* ── Squircle clip-path utilities ── */

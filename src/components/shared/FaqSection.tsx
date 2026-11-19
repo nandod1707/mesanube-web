@@ -24,12 +24,12 @@ export function FaqSection({
   return (
     <section
       id={id}
-      className="flex w-full max-w-[1500px] flex-col items-start border-t border-[#e9e9e9] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
+      className="flex w-full max-w-[1500px] flex-col items-start border-t border-[var(--divider)] pt-[60px] pb-[80px] sm:pt-[80px] lg:pb-[120px]"
     >
       <div className="mx-auto flex w-full max-w-[60rem] flex-col gap-[40px]">
         <Reveal className="flex w-full flex-col items-start gap-5">
           {eyebrow ? (
-            <p className="font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[#485c11]">
+            <p className="font-mono text-[14px] uppercase leading-[1.4] tracking-[-0.14px] text-[var(--olive)]">
               {eyebrow}
             </p>
           ) : null}
@@ -50,12 +50,12 @@ export function FaqSection({
             <Reveal
               key={item.q}
               delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}
-              className="flex w-full flex-col items-start gap-3 border-t border-[#e9e9e9] py-6"
+              className="flex w-full flex-col items-start gap-3 border-t border-[var(--divider)] py-6"
             >
               <p className="w-full text-[18px] font-bold leading-[1.4] tracking-[-0.09px] text-black">
                 {item.q}
               </p>
-              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[#6f6f6f]">
+              <p className="w-full text-[18px] leading-[1.4] tracking-[-0.09px] text-[var(--body)]">
                 {item.a}
               </p>
             </Reveal>

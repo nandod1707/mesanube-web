@@ -19,6 +19,7 @@ export const MAIN_NAV: NavItem[] = [
   { href: '/#que-es', label: 'Qué es' },
   { href: '/funciones', label: 'Funciones' },
   { href: '/precios', label: 'Precios' },
+  { href: '/blog', label: 'Blog' },
   { href: '/soporte', label: 'Ayuda' },
 ]
 
@@ -26,6 +27,7 @@ export const MAIN_NAV: NavItem[] = [
 export const FOOTER_NAV: NavItem[] = [
   { href: '/funciones', label: 'Funciones' },
   { href: '/precios', label: 'Precios' },
+  { href: '/blog', label: 'Blog' },
   { href: '/soporte', label: 'Soporte' },
   { href: '/contacto', label: 'Contacto' },
 ]

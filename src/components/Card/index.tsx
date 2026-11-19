@@ -1,84 +1,69 @@
-'use client'
-import { cn } from '@/utilities/ui'
-import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
-import React, { Fragment } from 'react'
+import React from 'react'
 
-import type { Post } from '@/payload-types'
-
+import { categoryTitles, formatPostDate } from '@/components/blog/format'
 import { Media } from '@/components/Media'
+import { BODY, CARD_TITLE, EYEBROW } from '@/components/usecase/styles'
+import type { Post } from '@/payload-types'
+import { postPath } from '@/utilities/blog'
+import { cn } from '@/utilities/ui'
 
-export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
+export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'> &
+  Partial<Pick<Post, 'publishedAt' | 'heroImage'>>
 
+/**
+ * Post card: rounded image, category eyebrow, bold sans title, description and date. Flat — no
+ * box, border or shadow; the whole card is one link and the image zooms on hover.
+ */
 export const Card: React.FC<{
-  alignItems?: 'center'
   className?: string
   doc?: CardPostData
+  /** Kept for the Payload blocks that pass it; posts are the only card type. */
   relationTo?: 'posts'
   showCategories?: boolean
   title?: string
-}> = (props) => {
-  const { card, link } = useClickableCard({})
-  const { className, doc, relationTo, showCategories, title: titleFromProps } = props
-
-  const { slug, categories, meta, title } = doc || {}
-  const { description, image: metaImage } = meta || {}
-
-  const hasCategories = categories && Array.isArray(categories) && categories.length > 0
+}> = ({ className, doc, showCategories, title: titleFromProps }) => {
+  const { slug, categories, heroImage, meta, title, publishedAt } = doc || {}
+  // The featured (hero) image is what the post shows; the SEO image is only a fallback.
+  const image = heroImage && typeof heroImage === 'object' ? heroImage : meta?.image
+  const description = meta?.description?.replace(/\s/g, ' ')
   const titleToUse = titleFromProps || title
-  const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/${relationTo}/${slug}`
+  const labels = showCategories ? categoryTitles(categories) : []
 
   return (
-    <article
-      className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
-        className,
-      )}
-      ref={card.ref}
-    >
-      <div className="relative w-full ">
-        {!metaImage && <div className="">No image</div>}
-        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
-      </div>
-      <div className="p-4">
-        {showCategories && hasCategories && (
-          <div className="uppercase text-sm mb-4">
-            {showCategories && hasCategories && (
-              <div>
-                {categories?.map((category, index) => {
-                  if (typeof category === 'object') {
-                    const { title: titleFromCategory } = category
-
-                    const categoryTitle = titleFromCategory || 'Untitled category'
-
-                    const isLast = index === categories.length - 1
-
-                    return (
-                      <Fragment key={index}>
-                        {categoryTitle}
-                        {!isLast && <Fragment>, &nbsp;</Fragment>}
-                      </Fragment>
-                    )
-                  }
-
-                  return null
-                })}
-              </div>
-            )}
+    <article className={cn('h-full', className)}>
+      <Link
+        href={postPath(slug)}
+        className="group flex h-full flex-col gap-5 rounded-[var(--radius-xl)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--olive)]"
+      >
+        {image && typeof image === 'object' && (
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[var(--radius-xl)] bg-[var(--media-bg)]">
+            <Media
+              fill
+              imgClassName="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+              resource={image}
+              size="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
           </div>
         )}
-        {titleToUse && (
-          <div className="prose">
-            <h3>
-              <Link className="not-prose" href={href} ref={link.ref}>
-                {titleToUse}
-              </Link>
+        <div className="flex flex-col gap-3">
+          {labels.length > 0 && <p className={EYEBROW}>{labels.join(', ')}</p>}
+          {titleToUse && (
+            <h3 className={`${CARD_TITLE} transition-colors duration-200 group-hover:text-[var(--olive)]`}>
+              {titleToUse}
             </h3>
-          </div>
-        )}
-        {description && <div className="mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
-      </div>
+          )}
+          {description && <p className={`line-clamp-3 ${BODY}`}>{description}</p>}
+          {publishedAt && (
+            <time
+              dateTime={publishedAt}
+              className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--caption)]"
+            >
+              {formatPostDate(publishedAt)}
+            </time>
+          )}
+        </div>
+      </Link>
     </article>
   )
 }

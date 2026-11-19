@@ -11,8 +11,10 @@ type UseCaseCtaProps = {
   subtitle: string
   primaryLabel?: string
   demoLabel?: string
-  /** Replace the default demo button (e.g. a WhatsApp link). */
+  /** Replace the default demo button (e.g. a WhatsApp link). Pass `null` to show only the trial CTA. */
   secondary?: React.ReactNode
+  /** Stretch the trial CTA to the full column width (default) or keep it at its natural width. */
+  fullWidth?: boolean
 }
 
 /** Centered closing CTA: big heading, subtitle, trial + demo (or custom) CTAs. */
@@ -23,6 +25,7 @@ export function UseCaseCta({
   primaryLabel = 'Empezá tu prueba gratuita',
   demoLabel = 'Agendá una demo de 20 minutos',
   secondary,
+  fullWidth = true,
 }: UseCaseCtaProps) {
   return (
     <section
@@ -36,8 +39,8 @@ export function UseCaseCta({
         {subtitle}
       </Reveal>
       <Reveal delay={2} className="flex w-full flex-col items-center gap-4">
-        <TrialButton className="w-full">{primaryLabel}</TrialButton>
-        {secondary ?? <DemoButton>{demoLabel}</DemoButton>}
+        <TrialButton className={fullWidth ? 'w-full' : undefined}>{primaryLabel}</TrialButton>
+        {secondary === undefined ? <DemoButton>{demoLabel}</DemoButton> : secondary}
       </Reveal>
     </section>
   )
