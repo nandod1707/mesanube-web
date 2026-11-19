@@ -9,10 +9,10 @@ import { postPath } from '@/utilities/blog'
 import { cn } from '@/utilities/ui'
 
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'> &
-  Partial<Pick<Post, 'publishedAt' | 'heroImage'>>
+  Partial<Pick<Post, 'updatedAt' | 'heroImage'>>
 
 /**
- * Post card: rounded image, category eyebrow, bold sans title, description and date. Flat — no
+ * Post card: rounded image, category eyebrow, bold sans title, description and last-updated date. Flat — no
  * box, border or shadow; the whole card is one link and the image zooms on hover.
  */
 export const Card: React.FC<{
@@ -23,7 +23,7 @@ export const Card: React.FC<{
   showCategories?: boolean
   title?: string
 }> = ({ className, doc, showCategories, title: titleFromProps }) => {
-  const { slug, categories, heroImage, meta, title, publishedAt } = doc || {}
+  const { slug, categories, heroImage, meta, title, updatedAt } = doc || {}
   // The featured (hero) image is what the post shows; the SEO image is only a fallback.
   const image = heroImage && typeof heroImage === 'object' ? heroImage : meta?.image
   const description = meta?.description?.replace(/\s/g, ' ')
@@ -54,12 +54,12 @@ export const Card: React.FC<{
             </h3>
           )}
           {description && <p className={`line-clamp-3 ${BODY}`}>{description}</p>}
-          {publishedAt && (
+          {updatedAt && (
             <time
-              dateTime={publishedAt}
+              dateTime={updatedAt}
               className="font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--caption)]"
             >
-              {formatPostDate(publishedAt)}
+              {formatPostDate(updatedAt)}
             </time>
           )}
         </div>

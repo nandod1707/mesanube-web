@@ -13,13 +13,16 @@ const META = 'font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(-
 
 /**
  * Article header: "Blog · category" eyebrow, serif title, the meta description as a lede, author
- * and date, then the hero image as a rounded panel (no full-bleed overlay).
+ * and publish/update dates, then the hero image as a rounded panel (no full-bleed overlay).
  */
 export function PostHeader({ post }: { post: Post }) {
-  const { heroImage, meta, populatedAuthors, publishedAt, title } = post
+  const { heroImage, meta, populatedAuthors, publishedAt, title, updatedAt } = post
   const categories = categoryTitles(post.categories)
   const authors = formatAuthorNames(populatedAuthors)
   const lede = meta?.description
+  // Only mention the update when it lands on a different day than the publication.
+  const showUpdated =
+    Boolean(updatedAt) && (!publishedAt || formatPostDate(updatedAt) !== formatPostDate(publishedAt))
 
   return (
     <header className="flex w-full flex-col items-center gap-[60px] pt-6 sm:gap-[80px] lg:pt-10">
@@ -39,11 +42,23 @@ export function PostHeader({ post }: { post: Post }) {
           {title}
         </h1>
         {lede && <p className={`max-w-[720px] ${BODY}`}>{lede}</p>}
-        {(authors || publishedAt) && (
+        {(authors || publishedAt || showUpdated) && (
           <p className={`${META} flex flex-wrap gap-x-2`}>
-            {authors && <span>Por {authors}</span>}
-            {authors && publishedAt && <span aria-hidden="true">·</span>}
-            {publishedAt && <time dateTime={publishedAt}>{formatPostDate(publishedAt)}</time>}
+            {[
+              authors && <span key="by">Por {authors}</span>,
+              publishedAt && (
+                <span key="pub">
+                  Publicado el <time dateTime={publishedAt}>{formatPostDate(publishedAt)}</time>
+                </span>
+              ),
+              showUpdated && (
+                <span key="upd">
+                  Actualizado el <time dateTime={updatedAt}>{formatPostDate(updatedAt)}</time>
+                </span>
+              ),
+            ]
+              .filter(Boolean)
+              .flatMap((item, i) => (i ? [<span key={`sep${i}`} aria-hidden="true">·</span>, item] : [item]))}
           </p>
         )}
       </Reveal>
