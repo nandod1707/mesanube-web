@@ -141,3 +141,33 @@ export function buildFaqSchema(items: FaqItem[]) {
     })),
   }
 }
+
+/** BlogPosting schema for `/blog/:slug` — headline, dates, image, publisher. */
+export function buildBlogPostingSchema(post: {
+  title: string
+  description: string
+  path: string
+  image?: string
+  publishedAt?: string | null
+  updatedAt?: string | null
+  authors?: string[]
+}) {
+  const url = getServerSideURL()
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    url: `${url}${post.path}`,
+    mainEntityOfPage: `${url}${post.path}`,
+    inLanguage: 'es-AR',
+    ...(post.image && { image: post.image }),
+    ...(post.publishedAt && { datePublished: post.publishedAt }),
+    ...(post.updatedAt && { dateModified: post.updatedAt }),
+    author: post.authors?.length
+      ? post.authors.map((name) => ({ '@type': 'Person', name }))
+      : { '@id': orgId(url) },
+    publisher: { '@id': orgId(url) },
+  }
+}

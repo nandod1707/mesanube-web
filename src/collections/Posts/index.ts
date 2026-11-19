@@ -136,6 +136,27 @@ export const Posts: CollectionConfig<'posts'> = {
           label: 'Meta',
         },
         {
+          label: 'FAQ',
+          description:
+            'Preguntas frecuentes: se muestran al final del post y generan el schema FAQPage para Google. No las repitas en el contenido.',
+          fields: [
+            {
+              name: 'faq',
+              type: 'array',
+              label: 'Preguntas frecuentes',
+              labels: { singular: 'Pregunta', plural: 'Preguntas' },
+              admin: {
+                initCollapsed: true,
+                components: { RowLabel: '@/collections/Posts/FaqRowLabel#FaqRowLabel' },
+              },
+              fields: [
+                { name: 'question', type: 'text', label: 'Pregunta', required: true },
+                { name: 'answer', type: 'textarea', label: 'Respuesta', required: true },
+              ],
+            },
+          ],
+        },
+        {
           name: 'meta',
           label: 'SEO',
           fields: [
