@@ -1,32 +1,30 @@
-import { cn } from '@/utilities/ui'
 import React from 'react'
 
 import { Card, CardPostData } from '@/components/Card'
+import Reveal from '@/components/shared/Reveal'
+import { cn } from '@/utilities/ui'
 
 export type Props = {
   posts: CardPostData[]
+  className?: string
 }
 
-export const CollectionArchive: React.FC<Props> = (props) => {
-  const { posts } = props
-
+/** Responsive grid of post cards (1 / 2 / 3 columns). */
+export const CollectionArchive: React.FC<Props> = ({ posts, className }) => {
   return (
-    <div className={cn('container')}>
-      <div>
-        <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8">
-          {posts?.map((result, index) => {
-            if (typeof result === 'object' && result !== null) {
-              return (
-                <div className="col-span-4" key={index}>
-                  <Card className="h-full" doc={result} relationTo="posts" showCategories />
-                </div>
-              )
-            }
-
-            return null
-          })}
-        </div>
-      </div>
+    <div
+      className={cn(
+        'grid w-full grid-cols-1 gap-x-[20px] gap-y-[60px] sm:grid-cols-2 lg:grid-cols-3',
+        className,
+      )}
+    >
+      {posts?.map((post, index) =>
+        typeof post === 'object' && post !== null ? (
+          <Reveal key={post.slug ?? index} delay={((index % 3) + 1) as 1 | 2 | 3}>
+            <Card doc={post} showCategories />
+          </Reveal>
+        ) : null,
+      )}
     </div>
   )
 }

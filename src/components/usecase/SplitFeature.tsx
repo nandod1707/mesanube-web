@@ -37,7 +37,7 @@ export function SplitFeature({ eyebrow, heading, paragraphs, image, cta }: Split
 
       <Reveal
         delay={1}
-        className="zoom-wrap relative w-full flex-[1_0_0] overflow-hidden rounded-[20px] lg:rounded-[30px]"
+        className="zoom-wrap relative w-full flex-[1_0_0] overflow-hidden rounded-[var(--radius-xl)] lg:rounded-[var(--radius-3xl)]"
       >
         <div className="relative aspect-[4/5] w-full sm:aspect-[16/10] lg:h-[620px]">
           <Image

@@ -9,7 +9,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { isAdmin } from '@/access/roles'
+import { isAdminOrEditor } from '@/access/roles'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
@@ -30,10 +30,10 @@ import { slugField } from 'payload'
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
-    create: isAdmin,
-    delete: isAdmin,
+    create: isAdminOrEditor,
+    delete: isAdminOrEditor,
     read: authenticatedOrPublished,
-    update: isAdmin,
+    update: isAdminOrEditor,
   },
   // This config controls what's populated by default when a post is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
@@ -42,6 +42,10 @@ export const Posts: CollectionConfig<'posts'> = {
     title: true,
     slug: true,
     categories: true,
+    // Cards show the featured image (falling back to the SEO image) and the last-updated date.
+    heroImage: true,
+    publishedAt: true,
+    updatedAt: true,
     meta: {
       image: true,
       description: true,
@@ -131,6 +135,27 @@ export const Posts: CollectionConfig<'posts'> = {
             },
           ],
           label: 'Meta',
+        },
+        {
+          label: 'FAQ',
+          description:
+            'Preguntas frecuentes: se muestran al final del post y generan el schema FAQPage para Google. No las repitas en el contenido.',
+          fields: [
+            {
+              name: 'faq',
+              type: 'array',
+              label: 'Preguntas frecuentes',
+              labels: { singular: 'Pregunta', plural: 'Preguntas' },
+              admin: {
+                initCollapsed: true,
+                components: { RowLabel: '@/collections/Posts/FaqRowLabel#FaqRowLabel' },
+              },
+              fields: [
+                { name: 'question', type: 'text', label: 'Pregunta', required: true },
+                { name: 'answer', type: 'textarea', label: 'Respuesta', required: true },
+              ],
+            },
+          ],
         },
         {
           name: 'meta',

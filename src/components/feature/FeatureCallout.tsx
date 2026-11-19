@@ -20,7 +20,7 @@ type FeatureCalloutProps = {
 export function FeatureCallout({ id, eyebrow, heading, paragraphs, cta }: FeatureCalloutProps) {
   return (
     <section id={id} className="w-full max-w-[1500px] pb-[80px] lg:pb-[120px]">
-      <Reveal className="flex w-full flex-col items-center gap-8 rounded-[20px] bg-[var(--olive-soft)] px-6 py-[80px] text-center sm:px-12 sm:py-[120px] lg:px-[240px]">
+      <Reveal className="flex w-full flex-col items-center gap-8 rounded-[var(--radius-xl)] bg-[var(--olive-soft)] px-6 py-[80px] text-center sm:px-12 sm:py-[120px] lg:px-[240px]">
         {eyebrow && <p className={EYEBROW}>{eyebrow}</p>}
         <h2 className="w-full font-display text-[var(--heading)]" style={TITLE_STYLE}>
           {heading}

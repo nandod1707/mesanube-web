@@ -12,12 +12,15 @@ export const BannerBlock: React.FC<Props> = ({ className, content, style }) => {
   return (
     <div className={cn('mx-auto my-8 w-full', className)}>
       <div
-        className={cn('border py-3 px-6 flex items-center rounded', {
-          'border-border bg-card': style === 'info',
-          'border-error bg-error/30': style === 'error',
-          'border-success bg-success/30': style === 'success',
-          'border-warning bg-warning/30': style === 'warning',
-        })}
+        className={cn(
+          'flex items-center rounded-r-[var(--radius-xs)] border-l-[3px] px-5 py-4 text-[var(--heading)]',
+          {
+            // One accent: informative banners are olive; warnings and errors stay neutral-dark.
+            'border-[var(--olive)] bg-[var(--olive-tint)]': style === 'info',
+            'border-[var(--olive)] bg-[var(--olive-soft)]': style === 'success',
+            'border-[var(--heading)] bg-[var(--media-bg)]': style === 'warning' || style === 'error',
+          },
+        )}
       >
         <RichText data={content} enableGutter={false} enableProse={false} />
       </div>

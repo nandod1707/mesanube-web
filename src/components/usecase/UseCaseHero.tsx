@@ -61,7 +61,7 @@ export function UseCaseHero({
       </div>
 
       {image && (
-        <Reveal className="zoom-wrap relative h-[220px] w-full overflow-hidden rounded-[20px] sm:h-[320px] lg:h-[420px] lg:rounded-[30px]">
+        <Reveal className="zoom-wrap relative h-[220px] w-full overflow-hidden rounded-[var(--radius-xl)] sm:h-[320px] lg:h-[420px] lg:rounded-[var(--radius-3xl)]">
           <Image
             src={image.src}
             alt={image.alt}

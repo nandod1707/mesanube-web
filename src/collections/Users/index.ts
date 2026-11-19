@@ -1,15 +1,16 @@
 import type { CollectionConfig } from 'payload'
 
-import { isAdmin } from '@/access/roles'
+import { isAdmin, isAdminOrEditor, isAdminOrSelf } from '@/access/roles'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   access: {
     // The support-sync integration user authenticates by API key only; it never uses the admin panel.
-    admin: isAdmin,
+    // Editors use the panel too; the support-sync user stays API-only.
+    admin: isAdminOrEditor,
     create: isAdmin,
     delete: isAdmin,
-    read: isAdmin,
+    read: isAdminOrSelf,
     update: isAdmin,
   },
   admin: {
@@ -33,11 +34,12 @@ export const Users: CollectionConfig = {
       required: true,
       options: [
         { label: 'Admin', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
         { label: 'Sync de soporte (API)', value: 'support-sync' },
       ],
       admin: {
         description:
-          'Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.',
+          'Editor: gestiona el blog (posts, páginas, categorías y media); no toca usuarios, header/footer, redirects ni formularios. Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.',
       },
     },
   ],

@@ -7,7 +7,7 @@ import { SUPPORT_EMAIL, SUPPORT_EMAIL_URL, WHATSAPP_URL } from '@/config/contact
 /** "¿No encontraste lo que buscabas?" panel with the support contacts (R14). */
 export function ContactCta() {
   return (
-    <aside className="flex w-full flex-col items-start gap-5 rounded-[20px] bg-[var(--olive-soft)] p-6 sm:p-8">
+    <aside className="flex w-full flex-col items-start gap-5 rounded-[var(--radius-xl)] bg-[var(--olive-soft)] p-6 sm:p-8">
       <div className="flex flex-col gap-2">
         <h2 className={CARD_TITLE}>¿No encontraste lo que buscabas?</h2>
         <p className={BODY}>

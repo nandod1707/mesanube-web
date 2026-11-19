@@ -305,7 +305,7 @@ export default function HomePage() {
 
           <Reveal
             delay={1}
-            className="zoom-wrap relative w-full flex-[1_0_0] overflow-hidden rounded-[20px] lg:rounded-[30px]"
+            className="zoom-wrap relative w-full flex-[1_0_0] overflow-hidden rounded-[var(--radius-xl)] lg:rounded-[var(--radius-3xl)]"
           >
             <div className="relative aspect-[4/5] w-full sm:aspect-[16/10] lg:h-[711px]">
               <Image
@@ -375,7 +375,7 @@ export default function HomePage() {
           aria-label="Testimonio de un cliente de Mesanube"
           className="flex w-full max-w-[1500px] flex-col items-start gap-6 pb-[80px] lg:flex-row lg:items-stretch lg:gap-5 lg:pb-[120px]"
         >
-          <Reveal className="zoom-wrap relative w-full overflow-hidden rounded-[20px] lg:w-1/2 lg:flex-[1_0_0] lg:rounded-[30px]">
+          <Reveal className="zoom-wrap relative w-full overflow-hidden rounded-[var(--radius-xl)] lg:w-1/2 lg:flex-[1_0_0] lg:rounded-[var(--radius-3xl)]">
             <div className="relative aspect-[550/624] w-full">
               <Image
                 src="/api/media/file/coffee-times.webp"

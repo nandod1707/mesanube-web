@@ -17,7 +17,7 @@ type TestimonialProps = {
 export function Testimonial({ quote, author, role, image }: TestimonialProps) {
   return (
     <section className="flex w-full max-w-[1500px] flex-col items-start gap-6 pb-[80px] lg:flex-row lg:items-stretch lg:gap-5 lg:pb-[120px]">
-      <Reveal className="zoom-wrap relative w-full overflow-hidden rounded-[20px] lg:w-1/2 lg:flex-[1_0_0] lg:rounded-[30px]">
+      <Reveal className="zoom-wrap relative w-full overflow-hidden rounded-[var(--radius-xl)] lg:w-1/2 lg:flex-[1_0_0] lg:rounded-[var(--radius-3xl)]">
         <div className="relative aspect-[550/624] w-full">
           <Image
             src={image.src}

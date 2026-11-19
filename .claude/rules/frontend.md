@@ -1,5 +1,8 @@
 # Frontend Rules — Mesanube Web
 
+> Visual intent, surfaces, recipes and do/don'ts live in **`DESIGN.md`** (repo root). This file is
+> the implementation rulebook; read both before building UI.
+
 Rules for all frontend work on this project. Follow these precisely. When in doubt, prefer the simpler, more explicit option.
 
 ---
@@ -9,7 +12,7 @@ Rules for all frontend work on this project. Follow these precisely. When in dou
 Apply styles in this order — exhaust each level before moving to the next:
 
 1. **Tailwind utility classes** — for spacing, layout, flex/grid, border-radius, display, overflow, z-index, cursor, transition
-2. **CSS custom properties via Tailwind** — `text-[var(--heading)]`, `bg-[var(--cream-bg)]`
+2. **CSS custom properties via Tailwind** — `text-[var(--heading)]`, `bg-[var(--media-bg)]`, `rounded-[var(--radius-xl)]`
 3. **CSS Modules** — for component-specific rules that Tailwind can't handle cleanly: complex selectors, pseudo-elements, `clip-path`, `animation`, `:hover` with multiple properties, media-query-heavy rules
 4. **`globals.css` `@layer components`** — for reusable patterns that appear across many components (e.g. `.btn-primary`, `.section-eyebrow`)
 5. **Inline `style={{}}`** — **only** for values that are computed at runtime in JavaScript (e.g. a transform derived from scroll position, an animation delay based on array index, a width set from a JS measurement). Never for static values.
@@ -44,15 +47,15 @@ accent** — olive `--olive`. These canonical semantic tokens are the source of 
 | `--olive` | `#485c11` | **The single accent** — eyebrows, links, checkmarks, primary CTA background |
 | `--olive-dark` | `#3a4c0d` | Accent hover (primary button) |
 | `--olive-soft` | `#dfecc6` | Accent soft — badges, soft button background |
+| `--olive-soft-hover` | `#d0e1ac` | Soft button hover |
+| `--olive-tint` | `#f7faf0` | Barely-tinted olive — outline button hover, soft inner panels |
 | `--body` | `#6f6f6f` | Body / paragraph text |
 | `--caption` | `#929292` | Captions, footnotes, plan-number labels |
 | `--divider` | `#e9e9e9` | Section `border-t` separators, card borders |
 | `--surface-dark` | `rgb(36, 52, 29)` | Dark brand panels (Avanzado pricing card, dark CTA panels) |
 | `--hero-bg` | `#8e9c78` | Hero background |
 | `--media-bg` | `#f5f5f0` | Image / media placeholder background |
-| `--cream-bg` | `rgb(255, 254, 252)` | Page / section background |
 | `--warm-white` | `rgb(255, 247, 238)` | Text on dark panels |
-| `--yellow` | `rgb(255, 190, 13)` | Reserved (not currently used in the marketing pages) |
 
 In Tailwind: `text-[var(--heading)]`, `text-[var(--body)]`, `text-[var(--olive)]`, `border-[var(--divider)]`, `bg-[var(--surface-dark)]`
 
@@ -80,6 +83,10 @@ Three font families carry the whole system:
 
 The big headings use explicit `clamp()` on `font-size` (this is the shipped pattern — don't convert
 them to fluid `rem`). Body and smaller text use fixed `px` sizes.
+
+> `<html>` is a fixed `16px` (it used to be vw-based, which made `rem` jump between ~11px and ~30px).
+> Prefer explicit px for type (`text-[18px]`, the `styles.ts` constants, `shared/Prose.module.css`)
+> so it matches the shipped scale; Tailwind's `rem` spacing is safe.
 
 ### Type scale (shipped)
 
@@ -111,32 +118,41 @@ Line heights:
 
 ---
 
-## 4. Spacing
+## 4. Spacing, radius & elevation
 
-The section rhythm of this site uses consistent spacing. Define layout tokens in `globals.css` `:root` and use them everywhere:
+### Layout (shipped pattern — use these exact values)
+- Max content width: `max-w-[1500px]` · Horizontal gutter: `px-4 sm:px-6 lg:px-10`
+- Section rhythm: `py-[80px] lg:py-[120px]` (or `pb-` when an inner `border-t` header carries `pt-[60px] sm:pt-[80px]`)
+- Section header: `gap-[30px]` eyebrow → title, `pb-[40px]` before the content
+- Card grids: `gap-x-[20px]`; each card `border-t border-[var(--divider)] py-[40px]` with `gap-4` inside
 
-```css
-:root {
-  --section-padding-y: 5.714rem;   /* vertical padding for all page sections */
-  --section-padding-x: 2rem;        /* horizontal padding for all page sections */
-  --container-max: 72rem;           /* max-width for content containers */
-  --container-max-narrow: 44rem;    /* for centered text-heavy sections */
-  --container-max-mid: 60rem;       /* for pricing and similar */
-}
-```
+Use Tailwind's scale (`gap-4`, `p-6`, `mb-8`) for everything else. There are no layout CSS vars —
+the section components in §6 already encode the rhythm, so compose them instead of re-spacing.
 
-Use Tailwind spacing utilities where possible (`p-4` = 1rem, `gap-6` = 1.5rem, `mb-8` = 2rem). Use CSS vars for values outside the Tailwind scale (e.g. `5.714rem`).
+### Radius tokens (`globals.css`)
+| Token | Value | Typical use |
+|---|---|---|
+| `--radius-xs` | 10px | Inputs, sidebar items |
+| `--radius-sm` | 14px | Device frame / screenshot (mobile) |
+| `--radius-md` | 16px | Inner panels, icon tiles |
+| `--radius-lg` | 18px | Device frame (sm) |
+| `--radius-xl` | 20px | Cards, content panels, section images (mobile) |
+| `--radius-2xl` | 24px | Dialogs, hero panels (sm) |
+| `--radius-3xl` | 30px | Section images, hero panels (lg) |
 
-Common mapping:
-- `0.35rem` → `gap-1.5` (approx)
-- `0.5rem` → `gap-2`
-- `0.75rem` → `mb-3`
-- `1rem` → `p-4` / `gap-4`
-- `1.5rem` → `p-6`
-- `2rem` → `p-8`
-- `2.5rem` → `mb-10`
-- `3rem` → `gap-12`
-- `4rem` → `py-16`
+Buttons, badges and floating nav are pills: `rounded-full`. Section images scale
+`rounded-[var(--radius-xl)] lg:rounded-[var(--radius-3xl)]`. Tailwind's `rounded-lg/md/sm` map to
+the shadcn `--radius` (admin) — don't use them on marketing pages.
+
+### Shadow tokens
+| Token | Use |
+|---|---|
+| `--shadow-float` | Floating nav / FAB |
+| `--shadow-dialog` | Modal dialogs |
+| `--shadow-device` | Product screenshot in the hero |
+| `--shadow-card-hover` | Link-card hover (§9) |
+
+Cards, sections and in-flow images have **no shadow**.
 
 ---
 
@@ -335,7 +351,7 @@ export function HeroSection() { /* 200 lines */ }
 /* In a .module.css */
 .card:hover {
   border-color: var(--olive);
-  box-shadow: 0 4px 16px rgba(36, 52, 29, 0.08);
+  box-shadow: var(--shadow-card-hover);
 }
 ```
 
@@ -357,7 +373,7 @@ export function HeroSection() { /* 200 lines */ }
 
 - Mobile-first: base styles are mobile, add breakpoints upward
 - Use Tailwind breakpoints: `sm:` (640px), `md:` (768px), `lg:` (1024px), `xl:` (1280px)
-- The fluid `font-size` on `html` handles most type scaling automatically — don't add breakpoint overrides for font sizes unless truly necessary
+- Headings scale with explicit `clamp()`; body and small text are fixed px. Don't add breakpoint overrides for font sizes unless truly necessary
 - Grid layouts: prefer `grid-cols-1 lg:grid-cols-2` or `auto-fill`/`auto-fit` with `minmax()` over manually placing items
 - Test at 375px (iPhone SE), 768px (tablet), 1280px (desktop), 1440px (large)
 
@@ -378,9 +394,8 @@ export function HeroSection() { /* 200 lines */ }
 
 - **No hardcoded rgb/hex colors** — use CSS vars
 - **No inline `style={{}}` for static values** — use Tailwind or CSS Modules
-- **No magic numbers** — if you write `5.714rem`, give it a name (`--section-padding-y`)
+- **No magic numbers** — reuse the layout values in §4 or the radius/shadow tokens; a new repeated value needs a token
 - **No `!important`** — fix specificity instead
-- **No `px` for font sizes** — use `rem`
 - **No inline `animation:` strings** — use a CSS class
 - **No client components for purely static sections**
 - **No page files longer than ~150 lines** — extract sections

@@ -250,6 +250,13 @@ export interface Post {
   };
   relatedPosts?: (string | Post)[] | null;
   categories?: (string | Category)[] | null;
+  faq?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -426,9 +433,9 @@ export interface User {
   id: string;
   name?: string | null;
   /**
-   * Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.
+   * Editor: gestiona el blog (posts, páginas, categorías y media); no toca usuarios, header/footer, redirects ni formularios. Sync de soporte: usuario de integración que sube los artículos de soporte por API key. Sin acceso al panel.
    */
-  role: 'admin' | 'support-sync';
+  role: 'admin' | 'editor' | 'support-sync';
   updatedAt: string;
   createdAt: string;
   enableAPIKey?: boolean | null;
@@ -1341,6 +1348,13 @@ export interface PostsSelect<T extends boolean = true> {
   content?: T;
   relatedPosts?: T;
   categories?: T;
+  faq?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
   meta?:
     | T
     | {
