@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { InlineLink } from '@/components/shared/InlineLink'
+import { ReadingNote } from '@/components/shared/ReadingNote'
+import { LINKED_POSTS } from '@/utilities/blog'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { TRIAL_PERIOD } from '@/config/site'
 import React from 'react'
@@ -147,6 +150,14 @@ export default function CadenasMultilocalPage() {
             </>
           }
         />
+
+        <ReadingNote>
+          Si estás pensando en sumar locales, mirá{' '}
+          <InlineLink href={LINKED_POSTS.sistemaVsPuntoDeVenta}>
+            qué sistema gastronómico necesita una cadena
+          </InlineLink>{' '}
+          antes de elegir: un POS por local no te da la vista consolidada.
+        </ReadingNote>
 
         <UseCaseCta
           heading="Sumá todos tus locales a Mesanube."
