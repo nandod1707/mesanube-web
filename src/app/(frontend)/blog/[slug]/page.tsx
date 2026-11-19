@@ -8,14 +8,15 @@ import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
 import { BlogShell } from '@/components/blog/BlogShell'
 import { PostBody } from '@/components/blog/PostBody'
 import { PostHeader } from '@/components/blog/PostHeader'
+import { FaqSection } from '@/components/shared/FaqSection'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { UseCaseCta } from '@/components/usecase'
 import { BLOG_PATH, postPath } from '@/utilities/blog'
 import {
-  extractPostFaq,
   generatePostMeta,
+  postFaq,
   postSeoDescription,
   postSeoImage,
   postSeoTitle,
@@ -52,7 +53,7 @@ export default async function PostPage({ params }: Args) {
   if (!post) return <PayloadRedirects url={url} />
 
   const related = post.relatedPosts?.filter((p) => typeof p === 'object') ?? []
-  const faq = extractPostFaq(post)
+  const faq = postFaq(post)
 
   return (
     <BlogShell>
@@ -81,6 +82,7 @@ export default async function PostPage({ params }: Args) {
       <article className="flex w-full flex-col items-center">
         <PostHeader post={post} />
         <PostBody content={post.content} />
+        {faq.length > 0 && <FaqSection heading="Lo que más nos preguntan" items={faq} />}
       </article>
       <RelatedPosts docs={related} />
       <UseCaseCta

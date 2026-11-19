@@ -8,19 +8,16 @@ import { mergeOpenGraph } from './mergeOpenGraph'
 
 // SEO for blog posts. Editors often leave the SEO tab empty, so every field
 // falls back to the post itself: title → post title, description → opening
-// paragraph, image → featured image. FAQ schema is derived from the content.
+// paragraph, image → featured image. The FAQ comes from the post's `faq` field.
 
 type LexicalNode = {
   type?: string
   tag?: string
   text?: string
-  format?: number
   children?: LexicalNode[]
 }
 
-const FAQ_HEADING = /^preguntas frecuentes$/i
 const DESCRIPTION_MAX = 155
-const ITALIC = 2
 
 const textOf = (node: LexicalNode): string =>
   (node.text ?? '') + (node.children ?? []).map(textOf).join('')
@@ -30,47 +27,11 @@ const clean = (text: string) => text.replace(/\s+/g, ' ').trim()
 const topLevel = (post: Partial<Post>): LexicalNode[] =>
   (post.content?.root?.children as LexicalNode[] | undefined) ?? []
 
-/** A paragraph fully in italics (or wrapped in literal `*`) is the closing CTA, not FAQ copy. */
-const isAside = (node: LexicalNode, text: string) => {
-  if (text.startsWith('*')) return true
-  const leaves = (node.children ?? []).filter((c) => c.type === 'text' && c.text?.trim())
-  return leaves.length > 0 && leaves.every((c) => ((c.format ?? 0) & ITALIC) !== 0)
-}
-
-const isQuestion = (text: string) => text.startsWith('¿') && text.endsWith('?')
-
-/**
- * Q&A pairs under the "Preguntas frecuentes" h2: each `¿…?` paragraph is a
- * question, the paragraphs after it (until the next question or heading) its answer.
- */
-export function extractPostFaq(post: Partial<Post>): FaqItem[] {
-  const items: FaqItem[] = []
-  let inFaq = false
-  let current: { q: string; a: string[] } | null = null
-
-  const flush = () => {
-    if (current && current.a.length) items.push({ q: current.q, a: current.a.join(' ') })
-    current = null
-  }
-
-  for (const node of topLevel(post)) {
-    const text = clean(textOf(node))
-    if (node.type === 'heading') {
-      if (inFaq) break
-      inFaq = FAQ_HEADING.test(text)
-      continue
-    }
-    if (!inFaq || node.type !== 'paragraph' || !text) continue
-    if (isAside(node, text)) continue
-    if (isQuestion(text)) {
-      flush()
-      current = { q: text, a: [] }
-    } else if (current) {
-      current.a.push(text)
-    }
-  }
-  flush()
-  return items
+/** The post's FAQ field as `{ q, a }` pairs (shared by the section and the FAQPage schema). */
+export function postFaq(post: Partial<Post>): FaqItem[] {
+  return (post.faq ?? [])
+    .map(({ question, answer }) => ({ q: question.trim(), a: answer.trim() }))
+    .filter((item) => item.q && item.a)
 }
 
 /** First real paragraph, trimmed at a word boundary to fit a meta description. */
