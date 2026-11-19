@@ -1,20 +1,22 @@
-/* Reading styles for support articles, on the canonical tokens. Scoped here because the Lexical
-   renderer emits plain h2/p/ol/blockquote elements we can't put utility classes on. */
+/* Reading styles for long-form content (support articles and blog posts), on the canonical tokens.
+   Scoped here because the Lexical renderer emits plain h2/p/ol/blockquote elements we can't put
+   utility classes on.
+   Sizes are in px to match the rest of the site's type scale (see BODY in usecase/styles). */
 
 .body {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  font-size: 1.125rem;
+  gap: 20px;
+  font-size: 18px;
   line-height: 1.6;
   letter-spacing: -0.09px;
   color: var(--body);
 }
 
 .body h2 {
-  margin-top: 1.5rem;
+  margin-top: 24px;
   font-family: var(--font-crimson);
-  font-size: 2.25rem;
+  font-size: 36px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.8px;
@@ -22,8 +24,8 @@
 }
 
 .body h3 {
-  margin-top: 0.75rem;
-  font-size: 1.125rem;
+  margin-top: 12px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
   color: var(--heading);
@@ -38,8 +40,8 @@
 .body ul {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding-left: 1.5rem;
+  gap: 8px;
+  padding-left: 24px;
 }
 
 .body ol {
@@ -72,9 +74,9 @@
 }
 
 .body code {
-  border-radius: 0.375rem;
+  border-radius: 6px;
   background: var(--media-bg);
-  padding: 0.1rem 0.4rem;
+  padding: 2px 6px;
   font-family: var(--font-roboto-mono);
   font-size: 0.9em;
   color: var(--heading);
@@ -82,9 +84,9 @@
 
 .body blockquote {
   border-left: 3px solid var(--olive);
-  border-radius: 0 0.75rem 0.75rem 0;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
   background: var(--olive-soft);
-  padding: 1rem 1.25rem;
+  padding: 16px 20px;
   color: var(--heading);
 }
 
@@ -92,5 +94,24 @@
   height: auto;
   max-width: 100%;
   border: 1px solid var(--divider);
-  border-radius: 1rem;
+  border-radius: var(--radius-md);
+}
+
+.body h4 {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--heading);
+}
+
+.body hr {
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid var(--divider);
+}
+
+/* Payload blocks inside the post body (media, banner, code) get some extra air. */
+.body > div:not(:first-child) {
+  margin-top: 12px;
 }

@@ -42,6 +42,9 @@ export const Posts: CollectionConfig<'posts'> = {
     title: true,
     slug: true,
     categories: true,
+    // Cards show the featured image (falling back to the SEO image) and the publish date.
+    heroImage: true,
+    publishedAt: true,
     meta: {
       image: true,
       description: true,

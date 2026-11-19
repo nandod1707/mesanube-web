@@ -10,7 +10,7 @@ import {
 import type { SupportArticle, SupportMedia } from '@/payload-types'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
-import styles from './ArticleBody.module.css'
+import styles from '@/components/shared/Prose.module.css'
 
 // Screenshots render through next/image at their intrinsic size, capped by the column width.
 const converters: JSXConvertersFunction = ({ defaultConverters }) => ({

@@ -21,7 +21,7 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 
 export const generateMeta = async (args: {
   doc: Partial<Page> | Partial<Post> | null
-  /** Canonical path override — required for collections not mounted at the site root (e.g. posts live under `/posts/:slug`). */
+  /** Canonical path override — required for collections not mounted at the site root (e.g. posts live under `/blog/:slug`). */
   path?: string
 }): Promise<Metadata> => {
   const { doc, path: pathOverride } = args

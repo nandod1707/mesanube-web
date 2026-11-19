@@ -1,32 +1,35 @@
-import clsx from 'clsx'
 import React from 'react'
-import RichText from '@/components/RichText'
 
+import { CollectionArchive } from '@/components/CollectionArchive'
+import Reveal from '@/components/shared/Reveal'
+import { EYEBROW, TITLE, TITLE_STYLE } from '@/components/usecase/styles'
 import type { Post } from '@/payload-types'
-
-import { Card } from '../../components/Card'
-import { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
+import { cn } from '@/utilities/ui'
 
 export type RelatedPostsProps = {
   className?: string
   docs?: Post[]
-  introContent?: DefaultTypedEditorState
+  heading?: string
 }
 
-export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
-  const { className, docs, introContent } = props
+/** "Seguí leyendo": section header + post card grid. */
+export const RelatedPosts: React.FC<RelatedPostsProps> = ({
+  className,
+  docs,
+  heading = 'Más para tu local',
+}) => {
+  const posts = docs?.filter((doc) => typeof doc === 'object') ?? []
+  if (posts.length === 0) return null
 
   return (
-    <div className={clsx('lg:container', className)}>
-      {introContent && <RichText data={introContent} enableGutter={false} />}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
-        {docs?.map((doc, index) => {
-          if (typeof doc === 'string') return null
-
-          return <Card key={index} doc={doc} relationTo="posts" showCategories />
-        })}
-      </div>
-    </div>
+    <section className={cn('flex w-full flex-col items-start pb-[80px] lg:pb-[120px]', className)}>
+      <Reveal className="flex w-full flex-col items-start gap-[30px] border-t border-[var(--divider)] pt-[60px] pb-[40px] sm:pt-[80px]">
+        <h2 className={EYEBROW}>Seguí leyendo</h2>
+        <p className={TITLE} style={TITLE_STYLE}>
+          {heading}
+        </p>
+      </Reveal>
+      <CollectionArchive posts={posts} />
+    </section>
   )
 }

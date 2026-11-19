@@ -57,7 +57,7 @@ Mesanube is a POS system for Argentine gastronomy businesses. This website serve
   Next.js pages built as **data + composition** using the section-component collections
   (`components/usecase/` and `components/feature/`), **not** Payload blocks. See
   `.claude/rules/frontend.md §6` for which collection to use.
-- **Blog/posts**: managed entirely through Payload admin panel by editors (these use Payload blocks).
+- **Blog** (`/blog`, Payload `posts` collection): content managed in the Payload admin by editors (posts use Payload blocks). The template lives in `components/blog/` + `components/Card`; post URLs go through `utilities/blog.ts` (`postPath`). Old `/posts/*` URLs redirect to `/blog/*`.
 - **Language**: Spanish only (Argentine voseo — "vos/probá/organizá", never "tú/prueba/organiza")
 
 ### Pending work

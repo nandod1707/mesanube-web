@@ -55,7 +55,8 @@ son la paleta de marketing.**
 | 3 | `--surface-dark` | Un panel oscuro puntual: el plan destacado o un CTA de cierre |
 
 Las secciones **no** se separan con fondos alternados: se separan con un `border-t` de
-`--divider` y aire vertical. Eso es lo que le da el aspecto de página impresa.
+`--divider` y aire vertical. Excepción: la primera sección después del hero no lleva línea, solo
+`pt-[60px] sm:pt-[80px]` (el hero ya cierra con el CTA). Eso es lo que le da el aspecto de página impresa.
 
 ## Tipografía
 
@@ -142,6 +143,19 @@ Secciones, cards e imágenes en el flujo: **sin sombra**.
 - **Hero (`ShowcaseHero`):** panel `--hero-bg` (o foto) con la captura del producto flotando encima.
 - **Panel oscuro:** `--surface-dark` con texto `--warm-white`. Uno por página como máximo.
 - **Input:** fondo blanco, borde `--divider`, `--radius-xs`, 15px, foco borde `--olive`.
+- **Card de post** (`components/Card`): imagen 3:2 con `--radius-xl` y zoom en hover, eyebrow con la categoría, título sans bold 18px (pasa a `--olive` en hover), descripción en 3 líneas como máximo y fecha en mono `--caption`. Toda la card es un solo link, sin caja.
+- **Columna de lectura** (`shared/Prose.module.css`): máximo 720px, body de 18px con line-height 1.6, h2 serif de 36px, viñetas en `--olive` y citas sobre `--olive-soft`. La usan los artículos de soporte y los posts.
+
+## Plantilla del blog (`/blog`)
+
+- **Archivo** (`/blog`, `/blog/page/N`): hero de solo texto (`UseCaseHero`) y, sin línea divisoria, una grilla de cards de 1, 2 o 3 columnas (`gap-x-[20px] gap-y-[60px]`). La paginación usa pills outline y la página actual va en `--olive`.
+- **Post** (`/blog/[slug]`), de arriba hacia abajo:
+  1. Eyebrow "Blog · categoría", h1 serif (`TITLE_STYLE`), la meta description como bajada y autor · fecha en mono `--caption`. Todo con un ancho máximo de 900px.
+  2. Imagen principal 16:9 dentro de un panel redondeado (`--radius-xl` → `--radius-3xl`). Sin overlay ni degradé.
+  3. El cuerpo, en la columna de lectura de 720px.
+  4. "Seguí leyendo": los posts relacionados, con la misma grilla de cards.
+  5. Un CTA de cierre (`UseCaseCta`).
+- Los bloques de Payload dentro del post también siguen los tokens. El banner es una franja con borde izquierdo de 3px: info y success en oliva, warning y error en `--heading` sobre `--media-bg`.
 
 ## Do / Don't
 

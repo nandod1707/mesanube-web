@@ -21,6 +21,7 @@ import type {
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
+import { postPath } from '@/utilities/blog'
 
 type NodeTypes =
   | DefaultNodeTypes
@@ -32,7 +33,7 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
     throw new Error('Expected value to be an object')
   }
   const slug = value.slug
-  return relationTo === 'posts' ? `/posts/${slug}` : `/${slug}`
+  return relationTo === 'posts' ? postPath(String(slug)) : `/${slug}`
 }
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
@@ -43,9 +44,10 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     mediaBlock: ({ node }) => (
       <MediaBlock
         className="col-start-1 col-span-3"
-        imgClassName="m-0"
+        imgClassName="m-0 rounded-[var(--radius-xl)] border-[var(--divider)]"
         {...node.fields}
-        captionClassName="mx-auto max-w-[48rem]"
+        captionClassName="mt-3 font-mono text-[14px] leading-[1.4] tracking-[-0.14px] text-[var(--caption)]"
+        enableCaptionProse={false}
         enableGutter={false}
         disableInnerContainer={true}
       />

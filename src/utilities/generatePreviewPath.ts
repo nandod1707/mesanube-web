@@ -1,7 +1,8 @@
 import { PayloadRequest, CollectionSlug } from 'payload'
+import { BLOG_PATH } from '@/utilities/blog'
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
-  posts: '/posts',
+  posts: BLOG_PATH,
   pages: '',
 }
 
