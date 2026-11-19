@@ -18,7 +18,7 @@ export async function findBlogPage(page: number) {
     depth: 1,
     limit: POSTS_PER_PAGE,
     page,
-    sort: '-publishedAt',
+    sort: '-updatedAt',
     overrideAccess: false,
     select: {
       title: true,
@@ -26,6 +26,7 @@ export async function findBlogPage(page: number) {
       categories: true,
       meta: true,
       publishedAt: true,
+      updatedAt: true,
       heroImage: true,
     },
   })
