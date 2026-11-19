@@ -13,8 +13,18 @@ import { PayloadRedirects } from '@/components/PayloadRedirects'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { UseCaseCta } from '@/components/usecase'
 import { BLOG_PATH, postPath } from '@/utilities/blog'
-import { generateMeta } from '@/utilities/generateMeta'
-import { buildBreadcrumbSchema } from '@/utilities/schema'
+import {
+  extractPostFaq,
+  generatePostMeta,
+  postSeoDescription,
+  postSeoImage,
+  postSeoTitle,
+} from '@/utilities/postSeo'
+import {
+  buildBlogPostingSchema,
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+} from '@/utilities/schema'
 
 type Args = { params: Promise<{ slug?: string }> }
 
@@ -42,6 +52,7 @@ export default async function PostPage({ params }: Args) {
   if (!post) return <PayloadRedirects url={url} />
 
   const related = post.relatedPosts?.filter((p) => typeof p === 'object') ?? []
+  const faq = extractPostFaq(post)
 
   return (
     <BlogShell>
@@ -55,6 +66,18 @@ export default async function PostPage({ params }: Args) {
           { name: post.title, path: url },
         ])}
       />
+      <JsonLd
+        data={buildBlogPostingSchema({
+          title: postSeoTitle(post),
+          description: postSeoDescription(post),
+          path: url,
+          image: postSeoImage(post),
+          publishedAt: post.publishedAt,
+          updatedAt: post.updatedAt,
+          authors: post.populatedAuthors?.map((a) => a.name).filter((n): n is string => !!n),
+        })}
+      />
+      {faq.length > 0 && <JsonLd data={buildFaqSchema(faq)} />}
       <article className="flex w-full flex-col items-center">
         <PostHeader post={post} />
         <PostBody content={post.content} />
@@ -74,7 +97,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug = '' } = await params
   const decodedSlug = decodeURIComponent(slug)
   const post = await queryPostBySlug({ slug: decodedSlug })
-  return generateMeta({ doc: post, path: postPath(decodedSlug) })
+  return generatePostMeta(post, postPath(decodedSlug))
 }
 
 const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
